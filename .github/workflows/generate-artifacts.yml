@@ -44,7 +44,7 @@ jobs:
         run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.changes.outputs.added_modified }}')
           for added_modified_file in "${added_modified_files[@]}"; do
-            if [[ $added_modified_file == *".ttl" ]]; then
+            if [[ $added_modified_file == *".ttl" ]]; then 
               echo "Generate model artifacts for ${added_modified_file}."
               ./generate.sh ${added_modified_file}
               git add $(dirname "${added_modified_file}")
