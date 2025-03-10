@@ -48,12 +48,12 @@
       }
     },
     "predecessor" : {
-      "left" : "urn:uuid:8AAf9167-3AeA-eCD1-1Fd0-ADd271CBBFbf"
+      "left" : "urn:uuid:Df1eEbeD-c5B5-b4C1-F6BB-4522d36a9453"
     },
     "issueDate" : "2000-01-01",
     "version" : "1.0.0",
     "passportIdentifier" : {
-      "left" : "urn:uuid:17eD9A7F-d16f-BcC2-02Fd-c431F48814A6"
+      "left" : "urn:uuid:4a31394F-F86f-6CA0-f40d-Abec995FBBE8"
     },
     "status" : "draft",
     "expirationDate" : "2000-01-01"
@@ -140,7 +140,7 @@
                   "technicalKey" : "BLOCK"
                 },
                 "country" : {
-                  "shortName" : "NZ-6V"
+                  "shortName" : ""
                 },
                 "postCode" : {
                   "value" : "98765-4321",
@@ -224,7 +224,7 @@
               "technicalKey" : "BLOCK"
             },
             "country" : {
-              "shortName" : ""
+              "shortName" : "ZF-H"
             },
             "postCode" : {
               "value" : "98765-4321",
@@ -327,7 +327,7 @@
                 "technicalKey" : "BLOCK"
               },
               "country" : {
-                "shortName" : ""
+                "shortName" : "TE-MU"
               },
               "postCode" : {
                 "value" : "98765-4321",

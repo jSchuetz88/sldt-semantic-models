@@ -94,7 +94,7 @@
             "technicalKey" : "BLOCK"
           },
           "country" : {
-            "shortName" : ""
+            "shortName" : "WC-UD4"
           },
           "postCode" : {
             "value" : "98765-4321",
@@ -162,12 +162,12 @@
       }
     },
     "predecessor" : {
-      "left" : "urn:uuid:EA09Ba8b-df9F-e748-fAD0-BCeDB5fc2F9D"
+      "left" : "urn:uuid:9eDEDc1b-ea9e-4950-dd3E-98caABaE0dec"
     },
     "issueDate" : "2000-01-01",
     "version" : "1.0.0",
     "passportIdentifier" : {
-      "left" : "urn:uuid:017DfbCa-2Ca3-b1E4-BbE6-bcBC3E87BdCA"
+      "left" : "urn:uuid:2A4Bb699-F9D9-10d7-F8bc-BB3d136BC178"
     },
     "status" : "draft",
     "expirationDate" : "2000-01-01"
@@ -446,7 +446,7 @@
     } ]
   },
   "generalInformation" : {
-    "intoServiceDate" : "3723-79-75",
+    "intoServiceDate" : "7725-35-11",
     "lifespan" : [ {
       "value" : 36,
       "unit" : "unit:day",
@@ -497,7 +497,7 @@
               "technicalKey" : "BLOCK"
             },
             "country" : {
-              "shortName" : ""
+              "shortName" : "GB-LL"
             },
             "postCode" : {
               "value" : "98765-4321",

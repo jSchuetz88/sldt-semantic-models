@@ -11,7 +11,7 @@
       "name" : "Ecoinvent",
       "version" : "1.2.3"
     } ],
-    "fossilGhgEmissions" : 2.423284E38,
+    "fossilGhgEmissions" : 1.3289631E35,
     "biogenicCarbonContent" : 0.0,
     "geographyCountry" : "DE",
     "boundaryProcessesDescription" : "End-of-life included",
