@@ -1,9 +1,9 @@
 {
   "catenaXId" : "580d3adf-1981-44a0-a214-13d6ceed9379",
   "sites" : [ {
-    "functionValidUntil" : "2025-03-10T16:29:46.738Z",
+    "functionValidUntil" : "2025-03-10T20:14:38.508Z",
     "catenaXsiteId" : "BPNS1234567890ZZ",
     "function" : "production",
-    "functionValidFrom" : "2025-03-10T16:29:46.737Z"
+    "functionValidFrom" : "2025-03-10T20:14:38.507Z"
   } ]
 }

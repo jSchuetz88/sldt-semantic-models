@@ -3,7 +3,7 @@
     "countingValue" : "Time",
     "countingUnit" : "s",
     "channels" : [ {
-      "binLimits" : [ -2.9527728E38 ],
+      "binLimits" : [ -2.38634E37 ],
       "channelName" : "TorqueInputshaft",
       "unit" : "Nm",
       "upperLimit" : 1500.0,
@@ -17,7 +17,7 @@
     "componentDescription" : "gear set",
     "routeDescription" : "\"city munich heavy trailer\"",
     "status" : {
-      "date" : "2025-03-10T16:18:56.077Z",
+      "date" : "2025-03-10T20:03:40.770Z",
       "operatingHours" : 3456.2,
       "mileage" : 123456
     }

@@ -55,7 +55,7 @@
   "cxHeader" : {
     "context" : "manufacturing as a service",
     "senderBpn" : "BPNL50096894aNXY",
-    "messageId" : "a1CcFDC0-caF6-685C-9280-Afc95d3d6F5A",
+    "messageId" : "bf3fbA7B-cBa3-e410-fA57-5c535dC90b24",
     "recipientBpn" : "BPNL50096894aNXY",
     "sentDateTime" : "2023-10-24T14:48:54.709Z",
     "version" : "1.0.1"

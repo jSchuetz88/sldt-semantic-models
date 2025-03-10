@@ -94,7 +94,7 @@
             "technicalKey" : "BLOCK"
           },
           "country" : {
-            "shortName" : "WC-UD4"
+            "shortName" : "IW-W"
           },
           "postCode" : {
             "value" : "98765-4321",
@@ -162,12 +162,12 @@
       }
     },
     "predecessor" : {
-      "left" : "urn:uuid:9eDEDc1b-ea9e-4950-dd3E-98caABaE0dec"
+      "left" : "6EEB4fA4-A50A-A1Dd-c4AD-BdfAF6a3284C"
     },
     "issueDate" : "2000-01-01",
     "version" : "1.0.0",
     "passportIdentifier" : {
-      "left" : "urn:uuid:2A4Bb699-F9D9-10d7-F8bc-BB3d136BC178"
+      "left" : "urn:uuid:B8DC87f7-46d7-ba49-c04D-9c3C7a58cB6A"
     },
     "status" : "draft",
     "expirationDate" : "2000-01-01"
@@ -446,7 +446,7 @@
     } ]
   },
   "generalInformation" : {
-    "intoServiceDate" : "7725-35-11",
+    "intoServiceDate" : "7406-81-67",
     "lifespan" : [ {
       "value" : 36,
       "unit" : "unit:day",
@@ -460,7 +460,7 @@
             "technicalKey" : "BLOCK"
           },
           "country" : {
-            "shortName" : ""
+            "shortName" : "ZI-KD"
           },
           "postCode" : {
             "value" : "98765-4321",
@@ -497,7 +497,7 @@
               "technicalKey" : "BLOCK"
             },
             "country" : {
-              "shortName" : "GB-LL"
+              "shortName" : ""
             },
             "postCode" : {
               "value" : "98765-4321",
@@ -550,7 +550,7 @@
   },
   "chemicalMaterial" : {
     "materialSymbol" : {
-      "left" : "Pb, Cd"
+      "left" : "Cd, Pb"
     },
     "otherMaterials" : {
       "left" : [ {

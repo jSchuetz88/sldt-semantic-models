@@ -19,11 +19,11 @@
   "title" : "BMW 318i Brake caliper",
   "priceRange" : {
     "minPrice" : {
-      "value" : -1.8831051E38,
+      "value" : -1.1848088E38,
       "currency" : "EUR"
     },
     "maxPrice" : {
-      "value" : 9.706248E37,
+      "value" : 3.232762E38,
       "currency" : "EUR"
     }
   },

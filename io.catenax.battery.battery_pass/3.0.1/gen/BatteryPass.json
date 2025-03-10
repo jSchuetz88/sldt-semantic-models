@@ -125,7 +125,7 @@
         "technicalKey" : "BLOCK"
       },
       "country" : {
-        "shortName" : "VT-M"
+        "shortName" : "IC-QB"
       },
       "postCode" : {
         "value" : "68161\\12",
@@ -164,7 +164,7 @@
             "technicalKey" : "BLOCK"
           },
           "country" : {
-            "shortName" : "FI-030"
+            "shortName" : ""
           },
           "postCode" : {
             "value" : "68161\\12",
@@ -201,7 +201,7 @@
         "technicalKey" : "BLOCK"
       },
       "country" : {
-        "shortName" : ""
+        "shortName" : "LX-G1D"
       },
       "postCode" : {
         "value" : "68161\\12",

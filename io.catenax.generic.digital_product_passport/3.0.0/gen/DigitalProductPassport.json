@@ -48,12 +48,12 @@
       }
     },
     "predecessor" : {
-      "left" : "urn:uuid:Df1eEbeD-c5B5-b4C1-F6BB-4522d36a9453"
+      "left" : "urn:uuid:70D8b42A-DEAf-3fAD-76B5-Bdec1dfe4Bcb"
     },
     "issueDate" : "2000-01-01",
     "version" : "1.0.0",
     "passportIdentifier" : {
-      "left" : "urn:uuid:4a31394F-F86f-6CA0-f40d-Abec995FBBE8"
+      "left" : "urn:uuid:343c62D2-AEC2-2f2F-C71a-8E0f9fa052eE"
     },
     "status" : "draft",
     "expirationDate" : "2000-01-01"
@@ -140,7 +140,7 @@
                   "technicalKey" : "BLOCK"
                 },
                 "country" : {
-                  "shortName" : ""
+                  "shortName" : "KJ-F1"
                 },
                 "postCode" : {
                   "value" : "98765-4321",
@@ -224,7 +224,7 @@
               "technicalKey" : "BLOCK"
             },
             "country" : {
-              "shortName" : "ZF-H"
+              "shortName" : "EA-Y7"
             },
             "postCode" : {
               "value" : "98765-4321",
@@ -261,7 +261,7 @@
               "technicalKey" : "BLOCK"
             },
             "country" : {
-              "shortName" : ""
+              "shortName" : "MP-8"
             },
             "postCode" : {
               "value" : "98765-4321",
@@ -327,7 +327,7 @@
                 "technicalKey" : "BLOCK"
               },
               "country" : {
-                "shortName" : "TE-MU"
+                "shortName" : ""
               },
               "postCode" : {
                 "value" : "98765-4321",
@@ -396,7 +396,7 @@
               "technicalKey" : "BLOCK"
             },
             "country" : {
-              "shortName" : ""
+              "shortName" : "RC-WOP"
             },
             "postCode" : {
               "value" : "98765-4321",

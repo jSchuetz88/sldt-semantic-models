@@ -287,8 +287,8 @@ components:
       - Info
     Long:
       type: number
-      minimum: -9223372036854775808
       maximum: 9223372036854775807
+      minimum: -9223372036854775808
       x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:1.0.0#Long"
     DiagnosticTroubleCode:
       description: |
