@@ -15,7 +15,6 @@
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
 
-
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
 @prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
@@ -29,7 +28,7 @@
 
 :WarrantyClaimRequest a samm:Aspect ;
    samm:preferredName "Warranty Claim Request"@en ;
-   samm:description "XXX "@en ;
+   samm:description "The focus of the data model is on standardizing the exchange of warranty information within the Catena-X network. This issue primarily affects suppliers who do not receive quality data from their customers (OEMs) and do not exchange data with their own suppliers (Tier 2 - n). These suppliers receive warranty claims from their customers (OEMs) at regular or irregular intervals. Due to a lack of “real” quality data, these claims are used to derive a quality analysis of the faulty components. "@en ;
    samm:properties ( :claimId :qualityTaskId :cxBPN :vehicleId :anonymizedVIN :billingId :billingDate :repairIndicator :recoveryType :warrantyType :recoveryGroupCode :recoveryGroupName :billedCurrency :billedAmount :billedTF :repairCostsTF100 :materialCosts :laborCosts :otherCosts :hourlyRate :globalLaborCode :globalLaborCodeDesc :baseLaborHours :otherLaborHours :supplementalLaborHours :diagnosticLaborHours :totalHours ) ;
    samm:operations ( ) ;
    samm:events ( ) .
@@ -37,34 +36,32 @@
 # Do we need an individual trait? Is it actually BPNxclaimId?
 :claimId a samm:Property ;
    samm:preferredName "Claim Identifier"@en ;
-   samm:description "Each claim from this data provider has a unique claim ID.If you combine the BPNL of the data provider with this claim ID you get a unique claim ID in the data space."@en ;
+   samm:description "Each claim from this data provider has a unique claim ID. If you combine the BPNL of the data provider with this claim ID you get a unique claim ID in the data space."@en ;
    samm:characteristic samm-c:Text ;
    samm:exampleValue "a214-13d6" .
 
 :qualityTaskId a samm:Property ;
    samm:preferredName "Quality Task Identifier"@en ;
-   samm:description "A unique quality task identifier within this data-space."@en ;
+   samm:description "A unique quality task identifier within this data space."@en ;
    samm:characteristic ext-uuid:UuidV4Trait .
 
-# BPNL, BPNA or BPNS?
-:cxBPN a samm:Property ;
+:cxBPNS a samm:Property ;
    samm:preferredName "Business Partner Number"@en ;
-   samm:description "A unique plant identifier according BPNS definition. This property is optional as of now not all plants have assigned BPNS identifiers."@en ;
+   samm:description "A unique plant identifier according to BPNS definition. This property is optional as of now not all plants have assigned BPNS identifiers."@en ;
    samm:characteristic ext-bpn:BpnlCharacteristic ;
-   samm:exampleValue "BPNL 1234 5678 90ZZ" .
+   samm:exampleValue "BPNS 1234 5678 90ZZ" .
 
 :vehicleId a samm:Property ;
    samm:preferredName "Vehicle Identifier"@en ;
    samm:description "A unique identifier for this vehicle in data-space. This property is optional as of now not all vehicles have this identifier assigned."@en ;
    samm:characteristic ext-uuid:UuidV4Trait .
 
-# Freetext?
+# Todo Johann: Prüfen ob Shared Model existiert
 :anonymizedVIN a samm:Property ;
    samm:preferredName "XXX"@en ;
    samm:description "Vehicle manufacturer-specific anonymized VIN, which is still a unique identifier within this data provider."@en ;
    samm:characteristic samm-c:Text ;
    samm:exampleValue "3747429FGH382923974682" .
-
 
 :billingId a samm:Property ;
    samm:preferredName "XXX"@en ;
@@ -73,6 +70,7 @@
    samm:exampleValue "B123456789" .
 
 # Usually not how it is intended. If all formats are possible, it has to be a free-text. With a free-text, you could add anything here.
+# Todo Johann: Check for shared model for date 
 :billingDate a samm:Property ;
    samm:preferredName "Billing date"@en ;
    samm:description "References the date when the claim was billed (all date formats possible)"@en ;
@@ -81,7 +79,7 @@
 
 # No standardized list?
 :repairIndicator a samm:Property ;
-   samm:preferredName "Repair Indicatpr"@en ;
+   samm:preferredName "Repair Indicator"@en ; 
    samm:description "Type of activitiy; e.g., regular warranty, TSB work, service campaign, …"@en ;
    samm:characteristic samm-c:Text ;
    samm:exampleValue "Regular" .
@@ -111,9 +109,10 @@
    samm:exampleValue "Part family A" .
 
 # all currency ISO codes  -> ISO4217 (currency codes) (Add into description)
+# Todo: 
 :billedCurrency a samm:Property ;
    samm:preferredName "XXX"@en ;
-   samm:description "Billing currency"@en ;
+   samm:description "Billing currency in accordance to ISO 4217"@en ;
    samm:characteristic samm-c:Text ;
    samm:exampleValue "EUR" .
 
