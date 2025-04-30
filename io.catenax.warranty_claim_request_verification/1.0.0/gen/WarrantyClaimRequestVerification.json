@@ -1,0 +1,17 @@
+{
+  "cxBPN" : "BPNL 1234 5678 90ZZ",
+  "claimPlausible" : 500,
+  "statementReason" : "TF too high",
+  "billingId" : "XXX",
+  "qualityTaskId" : "urn:uuid:aDc6e482-53A4-55f3-bfbA-5cF464Ef7bAE",
+  "statementDate" : "XXX",
+  "claimId" : "a214-13d6",
+  "anonymizedVIN" : "3747429FGH382923974682",
+  "claimImplausible" : 500,
+  "agreedTF" : 50,
+  "billingDate" : "XXX",
+  "billStatus" : "XXX",
+  "debitValueJustified" : "XXX",
+  "billedCurrency" : "EUR",
+  "vehicleId" : "urn:uuid:d95d8B21-4cfF-b7AC-6E4B-bB1Cc4dBf9Fe"
+}
