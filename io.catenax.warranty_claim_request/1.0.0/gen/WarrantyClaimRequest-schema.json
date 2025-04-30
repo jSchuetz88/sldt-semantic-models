@@ -1,0 +1,173 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema",
+  "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#WarrantyClaimRequest",
+  "description" : "XXX ",
+  "type" : "object",
+  "components" : {
+    "schemas" : {
+      "Text" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#Text",
+        "description" : "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
+      },
+      "UuidV4Trait" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.uuid:2.0.0#UuidV4Trait",
+        "description" : "The provided regular expression ensures that the UUID is composed of five groups of characters separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens), optionally prefixed by \"urn:uuid:\" to make it an IRI.",
+        "pattern" : "(^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$)|(^urn:uuid:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$)"
+      },
+      "BpnlCharacteristic" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.business_partner_number:2.0.0#BpnlCharacteristic",
+        "description" : "BPNL (Business Partner Number Legal Entity) represents the legal entity of an organization (e.g. enterprise, university, association, …) and contains its legal name (incl. legal form, if registered), registered address and tax number. The registered address is the official, legal correspondence address which has to be supplied to governmental and tax authorities and is the address which is used in any legal or court documents. BPNL is on corporate level and is unique for this legal entity."
+      },
+      "CurrencyCharacteristic" : {
+        "type" : "string",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#CurrencyCharacteristic"
+      },
+      "BillableMinutesCharacteristic" : {
+        "type" : "number",
+        "minimum" : 1,
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#BillableMinutesCharacteristic"
+      }
+    }
+  },
+  "properties" : {
+    "claimId" : {
+      "description" : "Each claim from this data provider has a unique claim ID.If you combine the BPNL of the data provider with this claim ID you get a unique claim ID in the data space.",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#claimId",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "qualityTaskId" : {
+      "description" : "A unique quality task identifier within this data-space.",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#qualityTaskId",
+      "$ref" : "#/components/schemas/UuidV4Trait"
+    },
+    "cxBPN" : {
+      "description" : "A unique plant identifier according BPNS definition. This property is optional as of now not all plants have assigned BPNS identifiers.",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#cxBPN",
+      "$ref" : "#/components/schemas/BpnlCharacteristic"
+    },
+    "vehicleId" : {
+      "description" : "A unique identifier for this vehicle in data-space. This property is optional as of now not all vehicles have this identifier assigned.",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#vehicleId",
+      "$ref" : "#/components/schemas/UuidV4Trait"
+    },
+    "anonymizedVIN" : {
+      "description" : "Vehicle manufacturer-specific anonymized VIN, which is still a unique identifier within this data provider.",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#anonymizedVIN",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "billingId" : {
+      "description" : "Billing ID is unique for each OEM",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#billingId",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "billingDate" : {
+      "description" : "References the date when the claim was billed (all date formats possible)",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#billingDate",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "repairIndicator" : {
+      "description" : "Type of activitiy; e.g., regular warranty, TSB work, service campaign, …",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#repairIndicator",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "recoveryType" : {
+      "description" : "OEM to Supplier (Standard / Replacement / …)",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#recoveryType",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "warrantyType" : {
+      "description" : "OEM internal (Vehicle warranty / Spare part warranty / Goodwill …)",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#warrantyType",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "recoveryGroupCode" : {
+      "description" : "Code for a specific part family / technically similar product groups",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#recoveryGroupCode",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "recoveryGroupName" : {
+      "description" : "Name for a specific part family / technically similar product groups",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#recoveryGroupName",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "billedCurrency" : {
+      "description" : "Billing currency",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#billedCurrency",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "billedAmount" : {
+      "description" : "Billing amount for the specific repair",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#billedAmount",
+      "$ref" : "#/components/schemas/CurrencyCharacteristic"
+    },
+    "billedTF" : {
+      "description" : "TF which is billed",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#billedTF",
+      "$ref" : "#/components/schemas/CurrencyCharacteristic"
+    },
+    "repairCostsTF100" : {
+      "description" : "Costs for the repair",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#repairCostsTF100",
+      "$ref" : "#/components/schemas/CurrencyCharacteristic"
+    },
+    "materialCosts" : {
+      "description" : "Costs for the repaired part (purchasing price OES)",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#materialCosts",
+      "$ref" : "#/components/schemas/CurrencyCharacteristic"
+    },
+    "laborCosts" : {
+      "description" : "Labor costs for the repair",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#laborCosts",
+      "$ref" : "#/components/schemas/CurrencyCharacteristic"
+    },
+    "otherCosts" : {
+      "description" : "Other costs for consumables, admin.- & handling fee",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#otherCosts",
+      "$ref" : "#/components/schemas/CurrencyCharacteristic"
+    },
+    "hourlyRate" : {
+      "description" : "Individual hourly rate per OEM / per country",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#hourlyRate",
+      "$ref" : "#/components/schemas/CurrencyCharacteristic"
+    },
+    "globalLaborCode" : {
+      "description" : "Code for OEM specific definition of the repair performed / billed",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#globalLaborCode",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "globalLaborCodeDesc" : {
+      "description" : "Description for OEM specific definition of the repair performed / billed",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#globalLaborCodeDesc",
+      "$ref" : "#/components/schemas/Text"
+    },
+    "baseLaborHours" : {
+      "description" : "Billable minutes for individual repair",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#baseLaborHours",
+      "$ref" : "#/components/schemas/BillableMinutesCharacteristic"
+    },
+    "otherLaborHours" : {
+      "description" : "Billable minutes for individual repair",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#otherLaborHours",
+      "$ref" : "#/components/schemas/BillableMinutesCharacteristic"
+    },
+    "supplementalLaborHours" : {
+      "description" : "Billable minutes for individual repair",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#supplementalLaborHours",
+      "$ref" : "#/components/schemas/BillableMinutesCharacteristic"
+    },
+    "diagnosticLaborHours" : {
+      "description" : "Billable minutes for individual repair",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#diagnosticLaborHours",
+      "$ref" : "#/components/schemas/BillableMinutesCharacteristic"
+    },
+    "totalHours" : {
+      "description" : "Billable minutes for individual repair",
+      "x-samm-aspect-model-urn" : "urn:samm:io.catenax.warranty_claim_request:1.0.0#totalHours",
+      "$ref" : "#/components/schemas/BillableMinutesCharacteristic"
+    }
+  },
+  "required" : [ "claimId", "qualityTaskId", "cxBPN", "vehicleId", "anonymizedVIN", "billingId", "billingDate", "repairIndicator", "recoveryType", "warrantyType", "recoveryGroupCode", "recoveryGroupName", "billedCurrency", "billedAmount", "billedTF", "repairCostsTF100", "materialCosts", "laborCosts", "otherCosts", "hourlyRate", "globalLaborCode", "globalLaborCodeDesc", "baseLaborHours", "otherLaborHours", "supplementalLaborHours", "diagnosticLaborHours", "totalHours" ]
+}
