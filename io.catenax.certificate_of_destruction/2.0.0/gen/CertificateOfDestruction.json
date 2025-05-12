@@ -1,35 +1,35 @@
 {
   "dismantlerProperties" : {
-    "expiryDate" : "2025-03-10",
+    "expiryDate" : "2025-05-12",
     "governmentAddress" : {
       "houseNumber" : "45",
       "zip" : "68161/12",
       "name" : "VLhpfQGTMDYpsBZxvfBoeygjb",
-      "country" : "DC",
+      "country" : "RB",
       "location" : "Mannheim",
       "street" : "Bernstraße"
     },
     "dismantlerAuditorContact" : {
-      "fax" : "+862646149041484519043744346 5583760613 05 7785 51 9819629099756",
-      "phone" : "3980497112313736791391908 9258030080936 7697260592053923051616"
+      "fax" : "+8407157 4523209603 17170872236345369043597  9 7683",
+      "phone" : "+ 37269 4704 9323148607148 89155 92540148578331729777087  93988 9018 982677478124155"
     },
     "receiverAuditorAddress" : {
       "houseNumber" : "45",
       "zip" : "68161/12",
       "name" : "UMaAIKKIkknjWEXJUfPxxQHeWKEJ",
-      "country" : "WM",
+      "country" : "OZ",
       "location" : "Mannheim",
       "street" : "Bernstraße"
     },
     "dismantlerContact" : {
-      "fax" : "+0398536537649024691716025 03 947",
-      "phone" : "494438 5491391591547167560551932056412863 085 85  0493738"
+      "fax" : "+026801 315 4  0625 703 658 20597",
+      "phone" : "+3832 3328"
     },
     "dismantlerAuditorAddress" : {
       "houseNumber" : "45",
       "zip" : "68161/12",
       "name" : "dpHYZGhtgdntugzvvKAXLhM",
-      "country" : "XO",
+      "country" : "WV",
       "location" : "Mannheim",
       "street" : "Bernstraße"
     },
@@ -37,11 +37,11 @@
       "houseNumber" : "45",
       "zip" : "68161/12",
       "name" : "RYtGKbgicZaHCBRQDSx",
-      "country" : "MX",
+      "country" : "IT",
       "location" : "Mannheim",
       "street" : "Bernstraße"
     },
-    "issueDate" : "2025-03-10",
+    "issueDate" : "2025-05-12",
     "isVehicleWithdrawnFromService" : false
   },
   "serialNumber" : "LRP1087432",
@@ -58,12 +58,12 @@
     "firstRegistration" : "19.12.2014"
   },
   "returnPointProperties" : {
-    "expiryDate" : "2025-03-10",
+    "expiryDate" : "2025-05-12",
     "receiverAddress" : {
       "houseNumber" : "45",
       "zip" : "68161/12",
       "name" : "JxkyvRnL",
-      "country" : "HR",
+      "country" : "UA",
       "location" : "Mannheim",
       "street" : "Bernstraße"
     },
@@ -71,19 +71,19 @@
       "houseNumber" : "45",
       "zip" : "68161/12",
       "name" : "yedUsFwdkelQbxeTeQOvaScfqIOOmaa",
-      "country" : "VL",
+      "country" : "LN",
       "location" : "Mannheim",
       "street" : "Bernstraße"
     },
     "receiverAuditorContact" : {
-      "fax" : "969585654837 636462935 00",
-      "phone" : "30392361 43  5 871 71216 639840510993947 5833 86734208629222673 70"
+      "fax" : "093074853653 8",
+      "phone" : " 644 66970598904520516 4 644369 785328452465651 00497 9309166530 131608 412"
     },
     "receiverContact" : {
-      "fax" : "+6768224067 7309",
-      "phone" : "910  5672393531 655756 785  4 6  5863510871271606 0166210248"
+      "fax" : "905100493 5260936160 40418124 212 533716004438689002669618041",
+      "phone" : "199988904472 9 6241955201535791615431934 416599 432495113 5579108208 1095  7 16951341 "
     },
-    "issueDate" : "2025-03-10",
+    "issueDate" : "2025-05-12",
     "isVehicleWithdrawnFromService" : true
   },
   "vehicleOwnerProperties" : {
@@ -92,11 +92,11 @@
       "houseNumber" : "45",
       "zip" : "68161/12",
       "name" : "eOMtThyhVNLWUZNRcBaQKxI",
-      "country" : "EF",
+      "country" : "SJ",
       "location" : "Mannheim",
       "street" : "Bernstraße"
     },
     "citizenship" : "DE"
   },
-  "dismantlingDate" : "2025-03-10"
+  "dismantlingDate" : "2025-05-12"
 }

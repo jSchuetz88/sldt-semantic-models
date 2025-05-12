@@ -63,7 +63,7 @@
       "fileLocation" : "http://www.wikipedia.org"
     } ]
   },
-  "datePlacedOnMarket" : "2025-03-10",
+  "datePlacedOnMarket" : "2025-05-12",
   "cellChemistry" : {
     "electrolyteComposition" : [ {
       "matierialPercentageMassFraction" : 19,
@@ -126,7 +126,7 @@
         "technicalKey" : "BLOCK"
       },
       "country" : {
-        "shortName" : ""
+        "shortName" : "NF-N"
       },
       "postCode" : {
         "value" : "68161\\12",
@@ -165,7 +165,7 @@
             "technicalKey" : "BLOCK"
           },
           "country" : {
-            "shortName" : "TW-TQ5"
+            "shortName" : "AX-X4"
           },
           "postCode" : {
             "value" : "68161\\12",
@@ -202,7 +202,7 @@
         "technicalKey" : "BLOCK"
       },
       "country" : {
-        "shortName" : "XE-J8R"
+        "shortName" : ""
       },
       "postCode" : {
         "value" : "68161\\12",

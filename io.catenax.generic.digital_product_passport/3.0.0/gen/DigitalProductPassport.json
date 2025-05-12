@@ -48,12 +48,12 @@
       }
     },
     "predecessor" : {
-      "left" : "E14EffDf-520F-90cD-cBf5-427cc5D88e7b"
+      "left" : "f2C89ac2-CDe0-e748-160C-f0fa2DDb1EfF"
     },
     "issueDate" : "2000-01-01",
     "version" : "1.0.0",
     "passportIdentifier" : {
-      "left" : "urn:uuid:1A9c7c2b-F12d-dc56-D2bd-0c65BbFB26FD"
+      "left" : "urn:uuid:5ce38276-BcB3-a2E1-Fea2-DbFE14d6Df9B"
     },
     "status" : "draft",
     "expirationDate" : "2000-01-01"
@@ -327,7 +327,7 @@
                 "technicalKey" : "BLOCK"
               },
               "country" : {
-                "shortName" : ""
+                "shortName" : "MR-AR"
               },
               "postCode" : {
                 "value" : "98765-4321",

@@ -8,7 +8,7 @@
         "technicalKey" : "BLOCK"
       },
       "country" : {
-        "shortName" : "HS-S"
+        "shortName" : ""
       },
       "postCode" : {
         "value" : "98765-4321",
@@ -61,7 +61,7 @@
     "partRevision" : "EC11",
     "batchNumber" : "0335434567"
   },
-  "customerReference3" : [ "VLhpfQGTMDYpsBZxvfBoeygjb", "UMaAIKKIkknjWEXJUfPxxQHeWKEJ" ],
+  "customerReference3" : [ "VLhpfQGTMDYpsBZxvfBoeygjb" ],
   "labelType" : "M",
   "packageId" : {
     "licencePlate" : "1J 123456789 000000010",

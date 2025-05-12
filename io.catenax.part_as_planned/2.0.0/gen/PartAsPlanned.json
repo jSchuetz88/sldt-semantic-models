@@ -5,10 +5,10 @@
     "nameAtManufacturer" : "Mirror left"
   },
   "partSitesInformationAsPlanned" : [ {
-    "functionValidUntil" : "2025-03-10T19:16:18.902Z",
+    "functionValidUntil" : "2025-05-12T16:16:23.733Z",
     "catenaXsiteId" : "BPNS1234567890ZZ",
     "function" : "production",
-    "functionValidFrom" : "2025-03-10T19:16:18.901Z"
+    "functionValidFrom" : "2025-05-12T16:16:23.733Z"
   } ],
   "catenaXId" : "580d3adf-1981-44a0-a214-13d6ceed9379"
 }
