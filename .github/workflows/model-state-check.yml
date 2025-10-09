@@ -15,4 +15,4 @@ jobs:
         run: git fetch origin main
 
       - name: Run PR file check
-        run: .github/scripts/check-model-states.py
+        run: python .github/scripts/check-model-states.py
