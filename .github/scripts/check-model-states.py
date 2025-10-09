@@ -50,9 +50,9 @@ def check_metadata(folder, version):
 def main():
     warnings = []
     ttl_files = []
-    # Try to get changed files from environment
-    if 'GITHUB_EVENT_PATH' in os.environ:
-        ttl_files = get_changed_ttl_files()
+    # if 'GITHUB_EVENT_PATH' in os.environ:
+    # Get changed files from environment
+    ttl_files = get_changed_ttl_files()
 
     for ttl in ttl_files:
         prefixes = parse_prefixes(ttl)
