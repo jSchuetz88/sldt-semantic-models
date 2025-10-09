@@ -7,27 +7,26 @@ import sys
 import os, subprocess
 from pathlib import Path
 
-def get_changed_ttl_files():
-
-    event_path = os.environ.get('GITHUB_EVENT_PATH')
-    files = []
-
-    if event_path and os.path.exists(event_path):
-        with open(event_path) as f:
-            event = json.load(f)
-        pr_files = event.get('pull_request', {}).get('files', [])
-        files = [f['filename'] for f in pr_files if f['filename'].endswith('.ttl')]
-
-    if not files:
-        result = subprocess.run(['git', 'diff', '--name-only', 'main..HEAD'], capture_output=True, text=True)
-        files = [f for f in result.stdout.splitlines() if f.endswith('.ttl')]
-
-    return files
-
+def get_changed_ttl_files_in_pr(base_branch='origin/main'):
+    """
+    Returns a list of .ttl files changed in the current PR compared to the base branch.
+    Assumes that 'git fetch' has been run and that the base branch exists locally.
+    """
+    try:
+        result = subprocess.run(
+            ['git', 'diff', '--name-only', f'{base_branch}..HEAD'],
+            capture_output=True, text=True, check=True
+        )
+        changed_files = result.stdout.splitlines()
+        ttl_files = [f for f in changed_files if f.endswith('.ttl')]
+        return ttl_files
+    except subprocess.CalledProcessError as e:
+        print(f"Error running git diff: {e}")
+        return []
 
 def parse_prefixes(ttl_path):
     prefixes = []
-    prefix_re = re.compile(r'@prefix\s+([\w-]+):\s+<urn:samm:([\w\.]+):(\d+\.\d+\.\d+)#>')
+    prefix_re = re.compile(r'@prefix\s+([\w-]+):\s+<urn:[b|s]amm:([\w\.]+):(\d+\.\d+\.\d+)#>')
     with open(ttl_path) as f:
         for line in f:
             m = prefix_re.search(line)
