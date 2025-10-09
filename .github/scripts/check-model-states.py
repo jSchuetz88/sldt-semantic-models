@@ -64,7 +64,7 @@ def main():
         prefixes = parse_prefixes(ttl)
         for p in prefixes:
             meta = check_metadata(p['folder'], p['version'])
-                            warnings.append(f"WARNING: {ttl} imports deprecated model {p['folder']}:{p['version']}")
+            print(f"Checking model {p['folder']}:{p['version']} : "+meta.get('status'))
             if meta and meta.get('deprecated'):
                 warnings.append(f"WARNING: {ttl} imports deprecated model {p['folder']}:{p['version']}")
     if warnings:
