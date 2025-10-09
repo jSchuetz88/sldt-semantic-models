@@ -4,26 +4,26 @@ import os
 import re
 import json
 import sys
+import os, subprocess
 from pathlib import Path
 
 def get_changed_ttl_files():
-    # Get list of changed files from GITHUB_EVENT_PATH
+
     event_path = os.environ.get('GITHUB_EVENT_PATH')
-    if not event_path or not os.path.exists(event_path):
-        print('GITHUB_EVENT_PATH not found, cannot determine changed files.')
-        return []
-    with open(event_path) as f:
-        event = json.load(f)
     files = []
-    for file in event.get('pull_request', {}).get('files', []):
-        if file['filename'].endswith('.ttl'):
-            files.append(file['filename'])
-    # Fallback: use git diff if event doesn't contain files
+
+    if event_path and os.path.exists(event_path):
+        with open(event_path) as f:
+            event = json.load(f)
+        pr_files = event.get('pull_request', {}).get('files', [])
+        files = [f['filename'] for f in pr_files if f['filename'].endswith('.ttl')]
+
     if not files:
-        import subprocess
-        result = subprocess.run(['git', 'diff', '--name-only', 'origin/main...HEAD'], capture_output=True, text=True)
+        result = subprocess.run(['git', 'diff', '--name-only', 'main..HEAD'], capture_output=True, text=True)
         files = [f for f in result.stdout.splitlines() if f.endswith('.ttl')]
+
     return files
+
 
 def parse_prefixes(ttl_path):
     prefixes = []
