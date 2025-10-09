@@ -14,4 +14,4 @@ jobs:
         with:
           python-version: '3.x'
       - name: Run model version check
-        run: python ./.github/scripts/check_model_states.py
+        run: python .github/scripts/check-model-states.py
