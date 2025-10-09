@@ -60,9 +60,9 @@ def main():
             for file in files:
                 if file.endswith('.ttl'):
                     ttl_files.append(os.path.join(root, file))
+    print(f"yyy")
     for ttl in ttl_files:
         prefixes = parse_prefixes(ttl)
-        print(f"xxx")
         for p in prefixes:
             meta = check_metadata(p['folder'], p['version'])
             print(f"Checking model {p['folder']}:{p['version']} : "+meta.get('status'))
