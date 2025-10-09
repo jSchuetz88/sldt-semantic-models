@@ -7,7 +7,7 @@ import sys
 import os, subprocess
 from pathlib import Path
 
-def get_changed_ttl_files_in_pr(base_branch='origin/main'):
+def get_changed_ttl_files(base_branch='origin/main'):
     """
     Returns a list of .ttl files changed in the current PR compared to the base branch.
     Assumes that 'git fetch' has been run and that the base branch exists locally.
