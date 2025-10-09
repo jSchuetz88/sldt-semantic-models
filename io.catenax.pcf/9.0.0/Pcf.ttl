@@ -26,8 +26,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.pcf:9.0.0#> .
-@prefix ext-uuid: <urn:samm:io.catenax.shared.uuid:1.0.0#> .
-@prefix ext-test: <urn:samm:io.catenax.essincident:2.0.0#> .
+@prefix ext-uuid: <urn:samm:io.catenax.shared.uuid:2.0.0#> .
 
 :Pcf a samm:Aspect ;
    samm:preferredName "Product (Carbon) Footprint"@en ;

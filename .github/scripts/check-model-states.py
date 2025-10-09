@@ -59,7 +59,6 @@ def main():
             for file in files:
                 if file.endswith('.ttl'):
                     ttl_files.append(os.path.join(root, file))
-    print(f"yyy")
     for ttl in ttl_files:
         prefixes = parse_prefixes(ttl)
         for p in prefixes:
