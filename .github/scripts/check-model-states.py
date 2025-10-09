@@ -61,12 +61,12 @@ def main():
 
             meta = check_metadata(p['folder'], p['version'])
             if not meta:
-                meta.set('status', 'nil')
-
-            print(f"Checking model {p['folder']}:{p['version']} : "+meta.get('status'))
+                print(f"Checking model {p['folder']}:{p['version']} : metadata.json not found")
+            else:
+                print(f"Checking model {p['folder']}:{p['version']} : "+meta.get('status'))
             
-            if meta.get('status') != 'release':
-                warnings.append(f"WARNING: {ttl} imports deprecated model {p['folder']}:{p['version']}")
+            if not meta or meta.get('status') != 'release':
+                warnings.append(f"WARNING: {ttl} imports deprecated or non-existing model {p['folder']}:{p['version']}")
     if warnings:
         for w in warnings:
             print(w)
