@@ -61,7 +61,7 @@ def main():
 
             meta = check_metadata(p['folder'], p['version'])
             if not meta:
-                meta = 'nil'
+                meta.set('status', 'nil')
 
             print(f"Checking model {p['folder']}:{p['version']} : "+meta.get('status'))
             
