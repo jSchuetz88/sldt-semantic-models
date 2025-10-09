@@ -50,11 +50,9 @@ def check_metadata(folder, version):
 def main():
     warnings = []
     ttl_files = []
-
-    for root, _, files in os.walk('.'):
-        for file in files:
-            if file.endswith('.ttl'):
-                ttl_files.append(os.path.join(root, file))
+    # Try to get changed files from environment
+    if 'GITHUB_EVENT_PATH' in os.environ:
+        ttl_files = get_changed_ttl_files()
 
     for ttl in ttl_files:
         prefixes = parse_prefixes(ttl)
@@ -62,11 +60,11 @@ def main():
         for p in prefixes:
 
             meta = check_metadata(p['folder'], p['version'])
-            if not meta:
+            if not meta
                 meta = 'nil'
 
             print(f"Checking model {p['folder']}:{p['version']} : "+meta.get('status'))
-
+            
             if meta.get('status') != 'release':
                 warnings.append(f"WARNING: {ttl} imports deprecated model {p['folder']}:{p['version']}")
     if warnings:
