@@ -62,6 +62,7 @@ def main():
                     ttl_files.append(os.path.join(root, file))
     for ttl in ttl_files:
         prefixes = parse_prefixes(ttl)
+        print(f"xxx")
         for p in prefixes:
             meta = check_metadata(p['folder'], p['version'])
             print(f"Checking model {p['folder']}:{p['version']} : "+meta.get('status'))
