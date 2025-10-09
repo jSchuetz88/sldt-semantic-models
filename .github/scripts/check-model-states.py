@@ -62,7 +62,7 @@ def main():
         for p in prefixes:
 
             meta = check_metadata(p['folder'], p['version'])
-            if not meta
+            if not meta:
                 meta = 'nil'
 
             print(f"Checking model {p['folder']}:{p['version']} : "+meta.get('status'))
