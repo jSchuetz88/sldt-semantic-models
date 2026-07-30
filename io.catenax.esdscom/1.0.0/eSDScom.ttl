@@ -16,10 +16,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-#
-# This ontology was generated from an XML schema definition by a
-# script and thus lacks the perfection of a native TTL file.
-#######################################################################
+
 @prefix :       <urn:samm:io.catenax.esdscom:1.0.0#> .
 @prefix samm:   <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
@@ -33,7 +30,7 @@
 # Aspect
 # ──────────────────────────────────────────────────────────────────────────
 
-:Esdscom a samm:Aspect ;
+:eSDScom a samm:Aspect ;
     samm:preferredName "Datasheet Feed"@en ;
     samm:description "The SDScom root element"@en ;
     samm:see <https://esdscom.eu/esdscom_5_6> ;
