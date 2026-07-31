@@ -2,11 +2,9 @@
 
 All notable changes to this model will be documented in this file.
 
-## [Moved] 26.09
+## [4.0.0] 26.09
 
 - moved to new namespace from `io.catenax.batch`
-
-## [4.0.0] 26.03
 
 ### Changed
 
