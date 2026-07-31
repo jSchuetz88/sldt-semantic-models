@@ -2,11 +2,9 @@
 
 All notable changes to this model will be documented in this file.
 
-## [4.0.0] 26.09
+## [Moved] 26.09
 
-### Changed
-
-- moved to new namespace from io.catenax.just_in_sequence_part
+- moved to new namespace from `io.catenax.just_in_sequence_part`
 
 ## [4.0.0] 26.03
 

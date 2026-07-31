@@ -2,11 +2,9 @@
 
 All notable changes to this model will be documented in this file.
 
-## [4.0.0] 26.09
+## [Moved] 26.09
 
-### Changed
-
-- moved to new namespace from io.catenax.single_level_usage_as_built
+- moved to new namespace from `io.catenax.single_level_usage_as_built`
 
 ## [4.0.0] 25.12
 
