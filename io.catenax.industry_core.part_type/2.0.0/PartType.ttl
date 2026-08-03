@@ -36,9 +36,9 @@
 @prefix ext-ic-pc: <urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#> .
 @prefix ext-number: <urn:samm:io.catenax.shared.business_partner_number:2.0.0#> .
 
-:PartTypeInformation a samm:Aspect ;
-   samm:preferredName "Part Type Information"@en ;
-   samm:description "A Part Type Information represents an item in the Catena-X Bill of Material (BOM) on a type level in a specific version."@en ;
+:PartType a samm:Aspect ;
+   samm:preferredName "Part Type"@en ;
+   samm:description "A Part Type represents an item in the Catena-X Bill of Material (BOM) on a type level in a specific version."@en ;
    samm:properties ( :partTypeInformation [ samm:property :partSitesInformationAsPlanned; samm:optional true ] ext-ic:globalAssetId ) ;
    samm:operations ( ) ;
    samm:events ( ) .

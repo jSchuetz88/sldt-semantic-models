@@ -4,11 +4,7 @@ All notable changes to this model will be documented in this file.
 
 ## [3.0.0] 26.09
 
-### Changed
-
-- moved from io.catenax.single_level_usage_as_planned
-
-## [3.0.0] 25.12
+- moved to new namespace from `io.catenax.single_level_usage_as_planned`
 
 ### Changed
 

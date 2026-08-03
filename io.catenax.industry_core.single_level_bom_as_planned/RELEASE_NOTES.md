@@ -4,6 +4,8 @@ All notable changes to this model will be documented in this file.
 
 ## [4.0.0] 26.09
 
+- moved to new namespace from `io.catenax.single_level_bom_as_planned`
+
 ### Changed
 
 - introduced `io.catenax.shared.industry_core.common:1.0.0` and `io.catenax.shared.quantity:3.0.0` as a shared model
