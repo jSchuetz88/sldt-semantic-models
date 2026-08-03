@@ -4,7 +4,7 @@ All notable changes to this model will be documented in this file.
 
 ## [4.0.0] 26.09
 
-- moved to new namespace from `io.catenax.single_level_usage_as_built`
+- semanticId has been changed from `io.catenax.single_level_usage_as_built` to `io.catenax.industry_core.single_level_usage_as_built`
 
 ### Changed
 

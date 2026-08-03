@@ -4,7 +4,7 @@ All notable changes to this model will be documented in this file.
 
 ## [2.0.0] 26.09
 
-- moved to new namespace from `io.catenax.part_type_information`
+- semanticId has been changed from `io.catenax.part_type_information` to `io.catenax.industry_core.part_type`
 
 ### Changed
 
