@@ -2,16 +2,15 @@
 
 All notable changes to this model will be documented in this file.
 
-## [Moved] 26.09
+## [4.0.0] 26.09
 
-- moved to new namespace from `io.catenax.single_level_bom_as_planned` to `io.catenax.industry_core.single_level_bom_as_planned`
-
-## [4.0.0] 25.12
+- moved to new namespace from `io.catenax.single_level_bom_as_planned`
 
 ### Changed
 
 - introduced `io.catenax.shared.industry_core.common:1.0.0` and `io.catenax.shared.quantity:3.0.0` as a shared model
 - renamed `catenaXId` to `globalAssetId`
+- moved the aspect to from io.catenax.single_level_bom_as_planned/4.0.0
 
 ## [3.0.0] 2024-02-26
 
