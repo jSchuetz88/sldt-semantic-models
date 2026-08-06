@@ -59,24 +59,3 @@ class Context:
             print(f"Error running git diff: {e}")
             return []
         return [f for f in result.stdout.splitlines() if f.endswith(".ttl")]
-
-    def commit_authors(self, file_path: str) -> list[str]:
-        # Names of the git authors who touched `file_path` on this branch
-        # since it diverged from base_branch. Used as a hint for the
-        # (not reliably automatable) copyright/contributor criterion.
-        try:
-            result = subprocess.run(
-                ["git", "log", "--format=%an", f"{self.base_branch}..HEAD", "--", file_path],
-                capture_output=True, text=True, check=True,
-            )
-        except subprocess.CalledProcessError:
-            return []
-        names = [n.strip() for n in result.stdout.splitlines() if n.strip()]
-        # de-duplicate while preserving order
-        seen: set[str] = set()
-        unique = []
-        for n in names:
-            if n not in seen:
-                seen.add(n)
-                unique.append(n)
-        return unique

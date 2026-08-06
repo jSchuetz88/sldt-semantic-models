@@ -15,10 +15,11 @@
 # MS2-22: "all contributors to this model are mentioned in copyright header
 # of model file".
 #
-# Informational only (INFO, never FAIL/WARN): copyright headers name
-# contributing *organizations*, while git authorship only gives GitHub
-# account names, which don't map 1:1 to those organizations. This just
-# surfaces both lists side by side for the reviewer to compare.
+# Only checks that a copyright header block is present at the top of the
+# file. Verifying that it actually names *every* contributor isn't
+# reliably automatable (git authorship is GitHub account names, headers
+# name companies/organizations - the two don't map 1:1), so that part is
+# left to the reviewer.
 
 from __future__ import annotations
 
@@ -29,7 +30,7 @@ from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-22"
-TITLE = "Contributors mentioned in copyright header (needs human review)"
+TITLE = "Copyright header exists"
 COPYRIGHT_LINE_RE = re.compile(r"#\s*Copyright\(?c\)?\s+\d{4}\s+(.+?)\s*$", re.MULTILINE)
 
 
@@ -38,12 +39,8 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     header = header_match.group(0) if header_match else ""
     copyright_holders = COPYRIGHT_LINE_RE.findall(header)
 
-    authors = ctx.commit_authors(model.file)
-
-    return [Finding(
-        "MS2-22", TITLE, "INFO", model.file,
-        f"copyright header lists: {copyright_holders or '(none found)'}; git commit authors for "
-        f"this file in this PR: {authors or '(none found)'}. GitHub author names don't map 1:1 to "
-        f"the company names used in headers, so please confirm manually that every contributing "
-        f"organization is represented.",
-    )]
+    if not copyright_holders:
+        return [Finding(ID, TITLE, "FAIL", model.file,
+                         "no copyright header found at the top of the file")]
+    return [Finding(ID, TITLE, "INFO", model.file,
+                     f"copyright header present, lists: {copyright_holders}")]
