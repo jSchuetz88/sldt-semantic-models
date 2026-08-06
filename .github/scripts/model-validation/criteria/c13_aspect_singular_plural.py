@@ -12,22 +12,21 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-13: "name of aspect is singular except if it only has one property
-which is a Collection, List or Set. In these cases, the aspect name is
-plural."
-
-Only the collection-valued-single-property -> must-be-plural direction is
-checked. The reverse (aspect should be singular) is not enforced because
-naive endswith('s') plural detection is unreliable for English nouns.
-"""
+# MS2-13: "name of aspect is singular except if it only has one property
+# which is a Collection, List or Set. In these cases, the aspect name is
+# plural."
+#
+# Only the collection-valued-single-property -> must-be-plural direction is
+# checked. The reverse (aspect should be singular) is not enforced because
+# naive endswith('s') plural detection is unreliable for English nouns.
 
 from __future__ import annotations
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
+ID = "MS2-13"
 TITLE = "Aspect name is singular/plural depending on single Collection property"
 COLLECTION_TYPES = {"Collection", "List", "Set", "SortedSet"}
 
@@ -46,9 +45,9 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
         return []
 
     if not aspect.name.endswith("s"):
-        return [Finding("MS2-13", TITLE, "FAIL", model.file,
+        return [Finding(ID, TITLE, "FAIL", model.file,
                          f"aspect '{aspect.name}' has a single Collection/List/Set property "
                          f"('{prop.name}') so its name should be plural", element=aspect.name)]
-    return [Finding("MS2-13", TITLE, "INFO", model.file,
+    return [Finding(ID, TITLE, "INFO", model.file,
                      f"aspect '{aspect.name}' is (heuristically) plural, matching its single "
                      f"collection-valued property", element=aspect.name)]

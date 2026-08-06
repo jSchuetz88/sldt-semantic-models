@@ -12,18 +12,17 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-04: "the identifiers for all model elements start with a capital
-letter except for properties".
-"""
+# MS2-04: "the identifiers for all model elements start with a capital
+# letter except for properties".
 
 from __future__ import annotations
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 from ._shared import element_findings
 
+ID = "MS2-04"
 TITLE = "Non-property identifiers start with a capital letter"
 
 

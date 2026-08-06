@@ -12,39 +12,56 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-18: "all external / imported models have the state 'release'".
-
-Reuses the prefix-parsing / metadata-lookup logic already implemented in
-.github/scripts/check-model-states.py (exposed via ctx.check_model_states)
-instead of duplicating it.
-"""
+# MS2-18: "all external / imported models have the state 'release'".
 
 from __future__ import annotations
 
+import json
+import re
+from pathlib import Path
+
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
+ID = "MS2-18"
 TITLE = "Imported models are in 'release' state"
+PREFIX_RE = re.compile(r"@prefix\s+([\w-]+):\s+<urn:[bs]amm:([\w.]+):(\d+\.\d+\.\d+)#>")
+
+
+def _parse_prefixes(ttl_path: str) -> list[dict[str, str]]:
+    prefixes = []
+    with open(ttl_path) as f:
+        for line in f:
+            m = PREFIX_RE.search(line)
+            if m:
+                prefixes.append({"prefix": m.group(1), "folder": m.group(2), "version": m.group(3)})
+    return prefixes
+
+
+def _read_metadata(folder: str, version: str) -> dict | None:
+    meta_path = Path(folder) / version / "metadata.json"
+    if not meta_path.exists():
+        return None
+    with open(meta_path) as f:
+        return json.load(f)
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    cms = ctx.check_model_states
     findings = []
-    for prefix_info in cms.parse_prefixes(model.file):
+    for prefix_info in _parse_prefixes(model.file):
         folder, version = prefix_info["folder"], prefix_info["version"]
         if folder == model.namespace and version == model.version:
             continue  # this is the model's own namespace, see MS2-19
-        meta = cms.check_metadata(folder, version)
+        meta = _read_metadata(folder, version)
         if not meta:
-            findings.append(Finding("MS2-18", TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"metadata.json not found for imported model {folder}:{version}"))
         elif meta.get("status") != "release":
-            findings.append(Finding("MS2-18", TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"imported model {folder}:{version} has status "
                                      f"'{meta.get('status')}', expected 'release'"))
     if not findings:
-        findings.append(Finding("MS2-18", TITLE, "INFO", model.file,
+        findings.append(Finding(ID, TITLE, "INFO", model.file,
                                  "all imported/external models are in 'release' state"))
     return findings

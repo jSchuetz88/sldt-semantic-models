@@ -12,17 +12,46 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-01: "the model validates with the SAMM SDS SDK in the version
-specified in the Readme.md of this repository by the time of the MS2
-check".
+# MS2-01: "the model validates with the SAMM SDS SDK in the version
+# specified in the Readme.md of this repository by the time of the MS2
+# check".
+#
+# Deviates from the letter of that wording: the version actually comes
+# from config.json's "settings.samm_cli_version" key (see config.py), not
+# parsed out of README.md - see config.py's module comment for why.
 
-Deliberately NOT implemented as a check here: the `validate-model-proposal`
-job in .github/workflows/governance.yml already runs this exact
-validation via .github/actions/model-validation for every changed .ttl
-file. Re-running samm-cli validate a second time from this script (and
-downloading a second copy of the jar) would just duplicate that job's
-work without adding anything. This file exists only so the criterion
-still shows up in the one-file-per-criterion overview; it has no `check`
-function, so criteria/__init__.py's auto-discovery skips it.
-"""
+from __future__ import annotations
+
+import re
+
+from .. import samm_cli
+from ..context import Context
+from ..samm_model_parser import TTLModel
+from ..report import Finding
+
+ID = "MS2-01"
+TITLE = "Model validates with SAMM CLI"
+
+ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
+MAX_DETAIL_LENGTH = 2000
+
+
+def _clean_detail(text: str) -> str:
+    text = ANSI_ESCAPE_RE.sub("", text).strip()
+    if len(text) > MAX_DETAIL_LENGTH:
+        text = text[:MAX_DETAIL_LENGTH] + "... (truncated)"
+    return text
+
+
+def check(model: TTLModel, ctx: Context) -> list[Finding]:
+    jar = ctx.samm_jar
+    if jar is None:
+        return [Finding(ID, TITLE, "SKIP", model.file,
+                         "SAMM CLI jar unavailable (no Java / no network) - run "
+                         "`java -jar samm-cli-<version>.jar aspect <file> validate` manually")]
+
+    result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "validate"])
+    if result.returncode != 0:
+        detail = _clean_detail(result.stdout or result.stderr or f"exit code {result.returncode}")
+        return [Finding(ID, TITLE, "FAIL", model.file, f"samm-cli validation failed:\n{detail}")]
+    return [Finding(ID, TITLE, "INFO", model.file, "samm-cli validation passed")]

@@ -13,32 +13,56 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-Master script for the MS2 criteria check (see .github/PULL_REQUEST_TEMPLATE.md).
-
-This is the single entry point triggered by CI on every pull request (see
-.github/workflows/ms2-criteria-check.yml). Its only job is to:
-
-  1. Find out which .ttl files this PR changed.
-  2. Parse each one into a TTLModel (.github/scripts/model-validation/model.py).
-  3. Hand that model + a shared Context to every criterion sub-routine
-     registered in .github/scripts/model-validation/criteria/.
-  4. Collect all Findings, print/report them, and fail the job if any
-     criterion reports a FAIL-level finding.
-
-It intentionally does none of the actual rule-checking itself - each MS2
-checklist item lives in its own sub-routine under criteria/, which is
-where you extend this when a criterion is added or changes. See the
-package docstring there for details.
-
-Usage (run from the repository root, mirrors check-model-states.py):
-    python .github/scripts/ms2_check.py [--base-branch origin/main]
-"""
+# Master script for the MS2 criteria check (see .github/PULL_REQUEST_TEMPLATE.md).
+#
+# This is the single entry point triggered by CI on every pull request (see
+# .github/workflows/governance.yml, which runs it three ways):
+#
+#   --list-changed-files      -> used once by the "detect-changed-models" job
+#                                 to build the per-model check matrix (prints
+#                                 a JSON array of changed .ttl files)
+#   --list-all-changed-files  -> used once by the same job to also hand every
+#                                 changed file (not just .ttl) to each matrix
+#                                 leg, so they don't each need to compute
+#                                 their own git diff (see --changed-files)
+#   --file <path>              -> used by each matrix leg of the
+#                                 "ms2-criteria-check" job to check exactly
+#                                 one model, so each model gets its own check
+#                                 mark in the PR UI. Combined with
+#                                 --changed-files, a leg needs no git history
+#                                 at all - just a shallow checkout.
+#   --changed-files <json>     -> supplies the full changed-files list (see
+#                                 --list-all-changed-files above) instead of
+#                                 computing it locally via git diff
+#
+# Run without any of these, it auto-detects and checks every changed .ttl
+# file in one go via its own git diff (useful for local runs). Either way,
+# per file it:
+#
+#   1. Parses the file into a TTLModel (model-validation/samm_model_parser.py).
+#   2. Loads the per-criterion overrides from model-validation/config.json,
+#      if any (see model-validation/config.py).
+#   3. Hands the model + a shared Context to every enabled criterion
+#      sub-routine registered in model-validation/criteria/, downgrading
+#      FAILs to WARN for criteria configured as non-blocking.
+#   4. Collects all Findings, prints/reports them, and fails the job if any
+#      criterion reports a FAIL-level finding.
+#
+# It intentionally does none of the actual rule-checking itself - each MS2
+# checklist item lives in its own sub-routine under criteria/, which is
+# where you extend this when a criterion is added or changes. See
+# model-validation/criteria/__init__.py for details.
+#
+# Usage (run from the repository root):
+#     python .github/scripts/ms2_check.py [--base-branch origin/main]
+#     python .github/scripts/ms2_check.py --list-changed-files
+#     python .github/scripts/ms2_check.py --file path/to/Model.ttl
 
 from __future__ import annotations
 
 import argparse
 import importlib
+import json
 import os
 import sys
 from pathlib import Path
@@ -53,15 +77,46 @@ _pkg = importlib.import_module("model-validation")
 criteria = importlib.import_module("model-validation.criteria")
 report = importlib.import_module("model-validation.report")
 Context = importlib.import_module("model-validation.context").Context
-parse_model = importlib.import_module("model-validation.model").parse_model
+parse_model = importlib.import_module("model-validation.samm_model_parser").parse_model
+config_module = importlib.import_module("model-validation.config")
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(
+        description="Runs the MS2 criteria check (see .github/PULL_REQUEST_TEMPLATE.md) "
+                     "against .ttl files changed on this branch."
+    )
     parser.add_argument(
         "--base-branch",
         default=os.environ.get("MS2_BASE_BRANCH", "origin/main"),
-        help="Branch to diff against to find changed .ttl files (default: origin/main)",
+        help="Branch to diff against to find changed files (default: origin/main)",
+    )
+    parser.add_argument(
+        "--file",
+        action="append",
+        dest="files",
+        help="Check only this .ttl file instead of auto-detecting changed files "
+             "(repeatable). Used by the per-model matrix job in governance.yml.",
+    )
+    parser.add_argument(
+        "--list-changed-files",
+        action="store_true",
+        help="Print the changed .ttl files as a JSON array and exit - nothing "
+             "else is printed. Used by the detect-changed-models job to build "
+             "the per-model check matrix.",
+    )
+    parser.add_argument(
+        "--list-all-changed-files",
+        action="store_true",
+        help="Print every changed file (not just .ttl) as a JSON array and "
+             "exit. Used by the detect-changed-models job to feed --changed-files.",
+    )
+    parser.add_argument(
+        "--changed-files",
+        help="JSON array of every file changed in this PR (not just .ttl), as "
+             "produced by --list-all-changed-files. When given, a matrix leg "
+             "doesn't need to compute this itself via git diff, so it doesn't "
+             "need repo history - just the files at HEAD.",
     )
     return parser.parse_args()
 
@@ -69,26 +124,62 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     repo_root = Path.cwd()
-
     ctx = Context(repo_root=repo_root, base_branch=args.base_branch)
-    changed_ttl_files = ctx.check_model_states.get_changed_ttl_files(args.base_branch)
-    ctx.changed_files = changed_ttl_files
 
-    if not changed_ttl_files:
+    if args.list_changed_files:
+        ttl_files = ctx.get_changed_ttl_files()
+        _write_step_summary(report.render_detected_models(ttl_files))
+        print(json.dumps(ttl_files))
+        return 0
+
+    if args.list_all_changed_files:
+        print(json.dumps(ctx.get_changed_files()))
+        return 0
+
+    config = config_module.load_config(repo_root)
+    _warn_about_unknown_criteria(config)
+
+    # A matrix leg that already knows the full changed-files list (passed by
+    # the detect-changed-models job) doesn't need to compute its own git diff
+    # - and with it, doesn't need repo history at all, just a shallow checkout.
+    ctx.changed_files = json.loads(args.changed_files) if args.changed_files else ctx.get_changed_files()
+    ttl_files_to_check = args.files or ctx.get_changed_ttl_files()
+
+    if not ttl_files_to_check:
         print("No .ttl files changed - nothing to check for MS2 criteria.")
         _write_step_summary(report.render_markdown([], []))
         return 0
 
     all_findings: list[report.Finding] = []
-    for ttl_file in changed_ttl_files:
+    for ttl_file in ttl_files_to_check:
         print(f"\n=== MS2 criteria for {ttl_file} ===")
         model = parse_model(ttl_file)
-        for check_fn in criteria.REGISTRY:
-            findings = check_fn(model, ctx)
+        for criterion in criteria.REGISTRY:
+            if not config.is_enabled(criterion.id):
+                finding = report.Finding(
+                    criterion.id, criterion.title, "SKIP", ttl_file,
+                    f"disabled via {config_module.DEFAULT_CONFIG_RELPATH} (enabled: false)",
+                )
+                all_findings.append(finding)
+                report.print_console([finding])
+                continue
+
+            findings = criterion.check(model, ctx)
+            if not findings:
+                # A criterion that only flags problems (and stays silent
+                # when there's nothing to flag) still needs a row in the
+                # report table, so treat "nothing reported" as a pass.
+                findings = [report.Finding(criterion.id, criterion.title, "INFO", ttl_file, "no issues found")]
+            if not config.is_blocking(criterion.id):
+                for finding in findings:
+                    if finding.level == "FAIL":
+                        finding.level = "WARN"
+                        finding.message += " (non-blocking: downgraded from FAIL via " \
+                                            f"{config_module.DEFAULT_CONFIG_RELPATH})"
             all_findings.extend(findings)
             report.print_console(findings)
 
-    markdown = report.render_markdown(all_findings, changed_ttl_files)
+    markdown = report.render_markdown(all_findings, ttl_files_to_check)
     _write_step_summary(markdown)
 
     if report.has_failures(all_findings):
@@ -97,6 +188,14 @@ def main() -> int:
 
     print("\nMS2 criteria check passed (WARN/INFO entries may still need human review).")
     return 0
+
+
+def _warn_about_unknown_criteria(config: config_module.Config) -> None:
+    known_ids = {criterion.id for criterion in criteria.REGISTRY}
+    unknown = set(config.overrides) - known_ids
+    for criterion_id in sorted(unknown):
+        print(f"WARNING: {config_module.DEFAULT_CONFIG_RELPATH} configures unknown criterion "
+              f"'{criterion_id}' (typo? known ids: {sorted(known_ids)})")
 
 
 def _write_step_summary(markdown: str) -> None:

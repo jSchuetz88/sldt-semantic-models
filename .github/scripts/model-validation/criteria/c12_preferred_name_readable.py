@@ -12,19 +12,18 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-12: "preferredName should be human readable and follow normal
-orthography (e.g., no camel case but normal word separation)".
-"""
+# MS2-12: "preferredName should be human readable and follow normal
+# orthography (e.g., no camel case but normal word separation)".
 
 from __future__ import annotations
 
 import re
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
+ID = "MS2-12"
 TITLE = "preferredName is human-readable (not Camel-Case)"
 CAMEL_HUMP_RE = re.compile(r"[a-z][A-Z]")
 
@@ -34,7 +33,7 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     for el in model.elements.values():
         pn = el.preferred_name("en")
         if pn and " " not in pn and CAMEL_HUMP_RE.search(pn):
-            findings.append(Finding("MS2-12", TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"preferredName '{pn}' of '{el.name}' looks Camel-Case, "
                                      f"expected normal word separation",
                                      element=el.name))

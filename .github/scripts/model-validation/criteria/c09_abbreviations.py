@@ -12,16 +12,14 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-09: "use abbreviations only when necessary and if these are
-sufficiently common".
-
-Deliberately NOT implemented as a check: whether an abbreviation is
-"necessary" and "sufficiently common" is a judgement call that can't be
-reduced to a reliable text pattern without an unavoidably arbitrary
-allow-list of "known-good" abbreviations, which produces more noise than
-signal. This file exists only so the criterion still shows up in the
-one-file-per-criterion overview; it has no `check` function, so
-criteria/__init__.py's auto-discovery skips it. This stays a manual
-review item on the PR checklist.
-"""
+# MS2-09: "use abbreviations only when necessary and if these are
+# sufficiently common".
+#
+# Deliberately NOT implemented as a check: whether an abbreviation is
+# "necessary" and "sufficiently common" is a judgement call that can't be
+# reduced to a reliable text pattern without an unavoidably arbitrary
+# allow-list of "known-good" abbreviations, which produces more noise than
+# signal. This file exists only so the criterion still shows up in the
+# one-file-per-criterion overview; it has no `check` function, so
+# criteria/__init__.py's auto-discovery skips it. This stays a manual
+# review item on the PR checklist.

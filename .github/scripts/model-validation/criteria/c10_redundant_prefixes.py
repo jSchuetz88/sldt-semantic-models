@@ -12,26 +12,25 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-10: "avoid redundant prefixes in property names (consider adding
-properties to an enclosing Entity or even adapt the namespace of the
-model elements, e.g., instead of having two properties `DismantlerId`
-and `DismantlerName` use an Entity `Dismantler` with the properties
-`name` and `id` [...])"
-
-Heuristic only (WARN, not FAIL): flags sibling properties of the same
-Aspect/Entity that share a leading camel-case word, as a hint the
-reviewer should consider factoring out an Entity.
-"""
+# MS2-10: "avoid redundant prefixes in property names (consider adding
+# properties to an enclosing Entity or even adapt the namespace of the
+# model elements, e.g., instead of having two properties `DismantlerId`
+# and `DismantlerName` use an Entity `Dismantler` with the properties
+# `name` and `id` [...])"
+#
+# Heuristic only (WARN, not FAIL): flags sibling properties of the same
+# Aspect/Entity that share a leading camel-case word, as a hint the
+# reviewer should consider factoring out an Entity.
 
 from __future__ import annotations
 
 import re
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
+ID = "MS2-10"
 TITLE = "Avoid redundant prefixes in property names (heuristic, needs human review)"
 
 
