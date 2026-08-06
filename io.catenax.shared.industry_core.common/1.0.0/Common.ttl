@@ -61,7 +61,7 @@
    samm:preferredName "valid from"@en ;
    samm:description "Start date and time of validity period."@en ;
    samm:characteristic samm-c:Timestamp ;
-   samm:exampleValue "2023-03-21T08:17:29.187+01:00"^^xsd:dateTime .
+   samm:exampleValue "202dsfdsf3-03-21T08:17:29.187+01:00"^^xsd:dateTime .
 
 :businessPartner a samm:Property ;
    samm:preferredName "business partner"@en ;
