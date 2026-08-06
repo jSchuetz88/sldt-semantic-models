@@ -36,7 +36,7 @@
 @prefix ext-ic-mx: <urn:samm:io.catenax.shared.industry_core.manufacturing_information:1.0.0#> .
 @prefix ext-ic-pc: <urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#> .
 
-:Batch a samm:Aspect ;
+:Batch a samm:Aspect .
    samm:preferredName "batch"@en ;
    samm:description "A batch is a quantity of(semi-)finished products or(raw)material product that have been produced under the same circumstances(e.g. same production location), as specified groups or amounts, within a certain time frame. Every batch can differ in the number or amount of products. Different batches can have varied specifications, e.g., different colors. A batch is identified via a Batch ID."@en ;
    samm:properties ( :partTypeInformation ext-ic:globalAssetId ext-ic:localIdentifiers ext-ic-mx:manufacturingInformation ) ;
