@@ -44,6 +44,16 @@ def has_failures(findings: list[Finding]) -> bool:
     return any(f.level == "FAIL" for f in findings)
 
 
+# Table icon per level: check = nothing wrong, warning = non-blocking
+# heads-up, cross = blocking failure, dash = doesn't matter right now
+# (skipped/disabled/couldn't run).
+ICON = {"FAIL": "❌", "WARN": "⚠️", "INFO": "✅", "SKIP": "➖"}
+
+
+def _escape_cell(text: str) -> str:
+    return text.replace("|", "\\|").replace("\n", " ")
+
+
 def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
     lines = ["# MS2 Criteria Report", ""]
 
@@ -51,31 +61,36 @@ def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
         lines.append("No `.ttl` files were changed in this PR.")
         return "\n".join(lines)
 
-    lines.append("Checked files:")
-    for f in files_checked:
-        lines.append(f"- `{f}`")
-    lines.append("")
-
-    counts = {level: sum(1 for f in findings if f.level == level) for level in LEVELS}
-    lines.append(
-        f"**Summary:** {counts['FAIL']} failing, {counts['WARN']} warnings, "
-        f"{counts['INFO']} notes, {counts['SKIP']} skipped."
-    )
-    lines.append("")
-
-    by_criterion: dict[str, list[Finding]] = {}
+    by_file: dict[str, list[Finding]] = {}
     for finding in findings:
-        by_criterion.setdefault(finding.criterion_id, []).append(finding)
+        by_file.setdefault(finding.file, []).append(finding)
 
-    icon = {"FAIL": "❌", "WARN": "⚠️", "INFO": "ℹ️", "SKIP": "⏭️"}
+    for file in files_checked:
+        file_findings = by_file.get(file, [])
 
-    for criterion_id in sorted(by_criterion):
-        group = by_criterion[criterion_id]
-        worst = min(group, key=lambda f: LEVELS.index(f.level))
-        lines.append(f"## {icon[worst.level]} {criterion_id} — {group[0].title}")
-        for entry in group:
-            loc = f"`{entry.file}`" + (f" — `{entry.element}`" if entry.element else "")
-            lines.append(f"- {icon[entry.level]} **{entry.level}** {loc}: {entry.message}")
+        lines.append(f"## MS2 Criteria — {file}")
+        lines.append("")
+
+        counts = {level: sum(1 for f in file_findings if f.level == level) for level in LEVELS}
+        lines.append(
+            f"**Summary:** {counts['FAIL']} failing, {counts['WARN']} warnings, "
+            f"{counts['INFO']} passing, {counts['SKIP']} skipped."
+        )
+        lines.append("")
+
+        lines.append("| | Criterion | Message |")
+        lines.append("|---|---|---|")
+
+        by_criterion: dict[str, list[Finding]] = {}
+        for finding in file_findings:
+            by_criterion.setdefault(finding.criterion_id, []).append(finding)
+
+        for criterion_id in sorted(by_criterion):
+            group = by_criterion[criterion_id]
+            worst = min(group, key=lambda f: LEVELS.index(f.level))
+            messages = "<br>".join(_escape_cell(f.message) for f in group)
+            lines.append(f"| {ICON[worst.level]} | {criterion_id} {_escape_cell(group[0].title)} | {messages} |")
+
         lines.append("")
 
     return "\n".join(lines)

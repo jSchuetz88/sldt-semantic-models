@@ -132,6 +132,11 @@ def main() -> int:
                 continue
 
             findings = criterion.check(model, ctx)
+            if not findings:
+                # A criterion that only flags problems (and stays silent
+                # when there's nothing to flag) still needs a row in the
+                # report table, so treat "nothing reported" as a pass.
+                findings = [report.Finding(criterion.id, criterion.title, "INFO", ttl_file, "no issues found")]
             if not config.is_blocking(criterion.id):
                 for finding in findings:
                     if finding.level == "FAIL":
