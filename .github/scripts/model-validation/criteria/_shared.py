@@ -12,19 +12,19 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""Small helper shared by a handful of criterion modules. Not a criterion
-itself - not picked up by the auto-discovery in __init__.py because its
-filename doesn't start with 'c'."""
+# Small helper shared by a handful of criterion modules. Not a criterion
+# itself - not picked up by the auto-discovery in __init__.py because its
+# filename doesn't start with 'c'.
 
 from __future__ import annotations
 
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 
 def element_findings(criterion_id: str, title: str, model: TTLModel, predicate, message_fn, level="FAIL"):
-    """Runs `predicate(element)` over every element in the model; wherever
-    it returns a truthy value, turns that into a Finding via `message_fn`."""
+    # Runs `predicate(element)` over every element in the model; wherever
+    # it returns a truthy value, turns that into a Finding via `message_fn`.
     findings = []
     for el in model.elements.values():
         msg = predicate(el)

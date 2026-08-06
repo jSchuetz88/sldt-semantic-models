@@ -12,22 +12,20 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-22: "all contributors to this model are mentioned in copyright header
-of model file".
-
-Informational only (INFO, never FAIL/WARN): copyright headers name
-contributing *organizations*, while git authorship only gives GitHub
-account names, which don't map 1:1 to those organizations. This just
-surfaces both lists side by side for the reviewer to compare.
-"""
+# MS2-22: "all contributors to this model are mentioned in copyright header
+# of model file".
+#
+# Informational only (INFO, never FAIL/WARN): copyright headers name
+# contributing *organizations*, while git authorship only gives GitHub
+# account names, which don't map 1:1 to those organizations. This just
+# surfaces both lists side by side for the reviewer to compare.
 
 from __future__ import annotations
 
 import re
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-22"

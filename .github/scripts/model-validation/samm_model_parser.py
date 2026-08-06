@@ -12,19 +12,17 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-Lightweight, dependency-free Turtle/SAMM parser.
-
-This is intentionally *not* a full RDF/Turtle parser: SAMM aspect models
-in this repository are written in a very consistent style (one top-level
-model element per unindented ``:Name a samm:Type ;`` block), which is
-reliable enough to extract the fields the MS2 criteria care about without
-pulling in an external RDF library.
-
-The ``TTLModel`` produced here is the "data package" the master script
-(``ms2_check.py``) hands to every criterion sub-routine under
-``criteria/``.
-"""
+# Lightweight, dependency-free Turtle/SAMM parser.
+#
+# This is intentionally *not* a full RDF/Turtle parser: SAMM aspect models
+# in this repository are written in a very consistent style (one top-level
+# model element per unindented ``:Name a samm:Type ;`` block), which is
+# reliable enough to extract the fields the MS2 criteria care about without
+# pulling in an external RDF library.
+#
+# The ``TTLModel`` produced here is the "data package" the master script
+# (``ms2_check.py``) hands to every criterion sub-routine under
+# ``criteria/``.
 
 from __future__ import annotations
 

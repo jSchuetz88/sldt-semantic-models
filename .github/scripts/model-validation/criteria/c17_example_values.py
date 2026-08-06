@@ -12,19 +12,17 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-17: "all properties with an simple type have an example value".
-
-Only resolvable within a single file: if a Property's Characteristic (and
-its samm:dataType) is defined in an imported model rather than locally,
-we can't tell whether it's a simple (xsd:) type, so it's skipped rather
-than guessed.
-"""
+# MS2-17: "all properties with an simple type have an example value".
+#
+# Only resolvable within a single file: if a Property's Characteristic (and
+# its samm:dataType) is defined in an imported model rather than locally,
+# we can't tell whether it's a simple (xsd:) type, so it's skipped rather
+# than guessed.
 
 from __future__ import annotations
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-17"

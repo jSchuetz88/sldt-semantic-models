@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""Finding data structure and report rendering shared by all criteria."""
+# Finding data structure and report rendering shared by all criteria.
 
 from __future__ import annotations
 

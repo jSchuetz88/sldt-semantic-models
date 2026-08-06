@@ -12,19 +12,17 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-06: "all model elements at least contain the fields 'preferred name'
-and 'description' in English language. The description must be
-comprehensible. [...] style should be consistent over the whole model"
-
-Only presence of samm:preferredName/@en and samm:description/@en is
-machine-checkable; comprehensibility and style consistency are not.
-"""
+# MS2-06: "all model elements at least contain the fields 'preferred name'
+# and 'description' in English language. The description must be
+# comprehensible. [...] style should be consistent over the whole model"
+#
+# Only presence of samm:preferredName/@en and samm:description/@en is
+# machine-checkable; comprehensibility and style consistency are not.
 
 from __future__ import annotations
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-06"
@@ -35,9 +33,9 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     findings = []
     for el in model.elements.values():
         if el.preferred_name("en") is None:
-            findings.append(Finding("MS2-06", TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"'{el.name}' is missing samm:preferredName ... @en", element=el.name))
         if el.description("en") is None:
-            findings.append(Finding("MS2-06", TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"'{el.name}' is missing samm:description ... @en", element=el.name))
     return findings

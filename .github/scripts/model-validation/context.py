@@ -12,13 +12,11 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-The Context object is created once by the master script and handed to
-every criterion sub-routine together with the parsed model. It bundles
-everything that is shared across criteria (repo root, list of changed
-files, a lazily-downloaded SAMM CLI jar, ...) so individual criteria stay
-small and don't each re-implement this bookkeeping.
-"""
+# The Context object is created once by the master script and handed to
+# every criterion sub-routine together with the parsed model. It bundles
+# everything that is shared across criteria (repo root, list of changed
+# files, a lazily-downloaded SAMM CLI jar, git plumbing, ...) so individual
+# criteria stay small and don't each re-implement this bookkeeping.
 
 from __future__ import annotations
 
@@ -26,7 +24,7 @@ import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import git_utils, samm_cli
+from . import samm_cli
 
 
 @dataclass
@@ -39,9 +37,9 @@ class Context:
 
     @property
     def samm_jar(self) -> Path | None:
-        """Lazily downloads (once per run) the SAMM CLI jar in the version
-        pinned in README.md, used by the criteria that need to actually
-        run the CLI (schema/payload generation, MS2-20)."""
+        # Lazily downloads (once per run) the SAMM CLI jar in the version
+        # pinned in README.md, used by the criteria that need to actually
+        # run the CLI (schema/payload generation, MS2-20).
         if not self._samm_jar_resolved:
             version = samm_cli.samm_version_from_readme(self.repo_root)
             self._samm_jar = samm_cli.ensure_samm_cli(version)
@@ -49,12 +47,23 @@ class Context:
         return self._samm_jar
 
     def get_changed_ttl_files(self) -> list[str]:
-        return git_utils.get_changed_ttl_files(self.base_branch)
+        # Returns the .ttl files changed on this branch compared to
+        # base_branch. Assumes `git fetch` has already made base_branch
+        # available locally (see the checkout step in governance.yml).
+        try:
+            result = subprocess.run(
+                ["git", "diff", "--name-only", f"{self.base_branch}..HEAD"],
+                capture_output=True, text=True, check=True,
+            )
+        except subprocess.CalledProcessError as e:
+            print(f"Error running git diff: {e}")
+            return []
+        return [f for f in result.stdout.splitlines() if f.endswith(".ttl")]
 
     def commit_authors(self, file_path: str) -> list[str]:
-        """Names of the git authors who touched `file_path` on this branch
-        since it diverged from base_branch. Used as a hint for the
-        (not reliably automatable) copyright/contributor criterion."""
+        # Names of the git authors who touched `file_path` on this branch
+        # since it diverged from base_branch. Used as a hint for the
+        # (not reliably automatable) copyright/contributor criterion.
         try:
             result = subprocess.run(
                 ["git", "log", "--format=%an", f"{self.base_branch}..HEAD", "--", file_path],

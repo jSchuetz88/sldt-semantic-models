@@ -12,14 +12,14 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""MS2-02: "use Camel-Case"."""
+# MS2-02: "use Camel-Case".
 
 from __future__ import annotations
 
 import re
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 from ._shared import element_findings
 

@@ -12,17 +12,15 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-01: "the model validates with the SAMM SDS SDK in the version
-specified in the Readme.md of this repository by the time of the MS2
-check".
-"""
+# MS2-01: "the model validates with the SAMM SDS SDK in the version
+# specified in the Readme.md of this repository by the time of the MS2
+# check".
 
 from __future__ import annotations
 
 from .. import samm_cli
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-01"
@@ -32,7 +30,7 @@ TITLE = "Model validates with SAMM CLI"
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
     jar = ctx.samm_jar
     if jar is None:
-        return [Finding("MS2-01", TITLE, "SKIP", model.file,
+        return [Finding(ID, TITLE, "SKIP", model.file,
                          "SAMM CLI jar unavailable (no Java / no network) - run "
                          "`java -jar samm-cli-<version>.jar aspect <file> validate` manually")]
 
@@ -40,5 +38,5 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     if result.returncode != 0:
         detail = (result.stdout or result.stderr or "").strip().splitlines()
         first_line = detail[0] if detail else f"exit code {result.returncode}"
-        return [Finding("MS2-01", TITLE, "FAIL", model.file, f"samm-cli validation failed: {first_line}")]
-    return [Finding("MS2-01", TITLE, "INFO", model.file, "samm-cli validation passed")]
+        return [Finding(ID, TITLE, "FAIL", model.file, f"samm-cli validation failed: {first_line}")]
+    return [Finding(ID, TITLE, "INFO", model.file, "samm-cli validation passed")]

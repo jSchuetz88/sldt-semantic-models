@@ -12,15 +12,13 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-03: "payload names and property identifiers must not contain two
-consecutive underscores ('__') at any position".
-"""
+# MS2-03: "payload names and property identifiers must not contain two
+# consecutive underscores ('__') at any position".
 
 from __future__ import annotations
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-03"
@@ -31,9 +29,9 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     findings = []
     for el in model.elements.values():
         if "__" in el.name:
-            findings.append(Finding("MS2-03", TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"identifier '{el.name}' contains '__'", element=el.name))
         if el.payload_name and "__" in el.payload_name:
-            findings.append(Finding("MS2-03", TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"payloadName '{el.payload_name}' contains '__'", element=el.name))
     return findings
