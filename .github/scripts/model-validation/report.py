@@ -85,41 +85,13 @@ def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
         for finding in file_findings:
             by_criterion.setdefault(finding.criterion_id, []).append(finding)
 
-        # Multi-line messages (e.g. a full samm-cli error dump) would get
-        # squashed into a single, hard-to-read line if put straight into a
-        # table cell - table rows can't contain real line breaks. Those go
-        # into a collapsible <details> block below the table instead, with
-        # just a short pointer left in the cell.
-        details_blocks: list[tuple[str, str, str]] = []
-
         for criterion_id in sorted(by_criterion):
             group = by_criterion[criterion_id]
             worst = min(group, key=lambda f: LEVELS.index(f.level))
-
-            cell_parts = []
-            for f in group:
-                if "\n" in f.message:
-                    summary = f.message.split("\n", 1)[0].rstrip(":")
-                    cell_parts.append(f"{_escape_cell(summary)} — see details below")
-                    details_blocks.append((criterion_id, group[0].title, f.message))
-                else:
-                    cell_parts.append(_escape_cell(f.message))
-            messages = "<br>".join(cell_parts)
+            messages = "<br>".join(_escape_cell(f.message) for f in group)
             lines.append(f"| {ICON[worst.level]} | {criterion_id} | {_escape_cell(group[0].title)} | {messages} |")
 
         lines.append("")
-
-        for criterion_id, title, full_text in details_blocks:
-            # Not using <details>/<summary> here: GitHub's job-summary
-            # sanitizer strips raw HTML tags like <details> entirely (the
-            # element doesn't even show up in the DOM), so a collapsible
-            # section isn't an option in this context - plain Markdown it is.
-            lines.append(f"**{criterion_id} {title} — full output:**")
-            lines.append("")
-            lines.append("```")
-            lines.append(full_text)
-            lines.append("```")
-            lines.append("")
 
     return "\n".join(lines)
 
