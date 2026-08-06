@@ -16,17 +16,25 @@
 # Master script for the MS2 criteria check (see .github/PULL_REQUEST_TEMPLATE.md).
 #
 # This is the single entry point triggered by CI on every pull request (see
-# the ms2-criteria-check job in .github/workflows/governance.yml). Its only
-# job is to:
+# .github/workflows/governance.yml, which runs it two ways):
 #
-#   1. Find out which .ttl files this PR changed.
-#   2. Parse each one into a TTLModel (.github/scripts/model-validation/samm_model_parser.py).
-#   3. Load the per-criterion overrides from model-validation/ms2-criteria.json,
-#      if any (see .github/scripts/model-validation/config.py).
-#   4. Hand that model + a shared Context to every enabled criterion
-#      sub-routine registered in .github/scripts/model-validation/criteria/,
-#      downgrading FAILs to WARN for criteria configured as non-blocking.
-#   5. Collect all Findings, print/report them, and fail the job if any
+#   --list-changed-files  -> used by the "detect-changed-models" job to build
+#                             the per-model check matrix (prints a JSON array
+#                             of changed .ttl files, nothing else)
+#   --file <path>          -> used by each matrix leg of the "ms2-criteria-check"
+#                             job to check exactly one model, so each model
+#                             gets its own check mark in the PR UI
+#
+# Run without either flag, it auto-detects and checks every changed .ttl file
+# in one go (useful for local runs). Either way, per file it:
+#
+#   1. Parses the file into a TTLModel (model-validation/samm_model_parser.py).
+#   2. Loads the per-criterion overrides from model-validation/ms2-criteria.json,
+#      if any (see model-validation/config.py).
+#   3. Hands the model + a shared Context to every enabled criterion
+#      sub-routine registered in model-validation/criteria/, downgrading
+#      FAILs to WARN for criteria configured as non-blocking.
+#   4. Collects all Findings, prints/reports them, and fails the job if any
 #      criterion reports a FAIL-level finding.
 #
 # It intentionally does none of the actual rule-checking itself - each MS2
@@ -36,11 +44,14 @@
 #
 # Usage (run from the repository root):
 #     python .github/scripts/ms2_check.py [--base-branch origin/main]
+#     python .github/scripts/ms2_check.py --list-changed-files
+#     python .github/scripts/ms2_check.py --file path/to/Model.ttl
 
 from __future__ import annotations
 
 import argparse
 import importlib
+import json
 import os
 import sys
 from pathlib import Path
@@ -62,12 +73,26 @@ config_module = importlib.import_module("model-validation.config")
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Runs the MS2 criteria check (see .github/PULL_REQUEST_TEMPLATE.md) "
-                     "against every .ttl file changed on this branch."
+                     "against .ttl files changed on this branch."
     )
     parser.add_argument(
         "--base-branch",
         default=os.environ.get("MS2_BASE_BRANCH", "origin/main"),
-        help="Branch to diff against to find changed .ttl files (default: origin/main)",
+        help="Branch to diff against to find changed files (default: origin/main)",
+    )
+    parser.add_argument(
+        "--file",
+        action="append",
+        dest="files",
+        help="Check only this .ttl file instead of auto-detecting changed files "
+             "(repeatable). Used by the per-model matrix job in governance.yml.",
+    )
+    parser.add_argument(
+        "--list-changed-files",
+        action="store_true",
+        help="Print the changed .ttl files as a JSON array and exit - nothing "
+             "else is printed. Used by the detect-changed-models job to build "
+             "the per-model check matrix.",
     )
     return parser.parse_args()
 
@@ -75,21 +100,25 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     repo_root = Path.cwd()
+    ctx = Context(repo_root=repo_root, base_branch=args.base_branch)
+
+    if args.list_changed_files:
+        print(json.dumps(ctx.get_changed_ttl_files()))
+        return 0
 
     config = config_module.load_config(repo_root)
     _warn_about_unknown_criteria(config)
 
-    ctx = Context(repo_root=repo_root, base_branch=args.base_branch)
-    changed_ttl_files = ctx.get_changed_ttl_files()
-    ctx.changed_files = changed_ttl_files
+    ctx.changed_files = ctx.get_changed_files()
+    ttl_files_to_check = args.files or ctx.get_changed_ttl_files()
 
-    if not changed_ttl_files:
+    if not ttl_files_to_check:
         print("No .ttl files changed - nothing to check for MS2 criteria.")
         _write_step_summary(report.render_markdown([], []))
         return 0
 
     all_findings: list[report.Finding] = []
-    for ttl_file in changed_ttl_files:
+    for ttl_file in ttl_files_to_check:
         print(f"\n=== MS2 criteria for {ttl_file} ===")
         model = parse_model(ttl_file)
         for criterion in criteria.REGISTRY:
@@ -112,7 +141,7 @@ def main() -> int:
             all_findings.extend(findings)
             report.print_console(findings)
 
-    markdown = report.render_markdown(all_findings, changed_ttl_files)
+    markdown = report.render_markdown(all_findings, ttl_files_to_check)
     _write_step_summary(markdown)
 
     if report.has_failures(all_findings):

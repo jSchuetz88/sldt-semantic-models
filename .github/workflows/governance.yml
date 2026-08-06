@@ -19,9 +19,41 @@ on:
   pull_request:
 
 jobs:
-  ms2-criteria-check:
+  # Determines which .ttl models changed in this PR, so the next job can
+  # check each one as its own matrix leg (own check mark in the PR UI).
+  detect-changed-models:
     runs-on: ubuntu-latest
-    name: Check MS2 Criteria
+    name: Detect Changed Models
+    outputs:
+      files: ${{ steps.list.outputs.files }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Fetch main branch
+        run: git fetch origin main
+
+      - name: List changed .ttl files
+        id: list
+        run: |
+          echo "files=$(python .github/scripts/ms2_check.py --list-changed-files --base-branch origin/main)" >> "$GITHUB_OUTPUT"
+
+  # One job run per changed model - shows up as its own check mark, e.g.
+  # "Check MS2 Criteria (io.catenax.batch/4.0.0/Batch.ttl)". Do NOT mark
+  # this job itself as a required status check: its name (and how many
+  # runs of it exist) varies per PR depending on which models changed, so
+  # branch protection can't pin it down. Use ms2-criteria-gate for that.
+  ms2-criteria-check:
+    needs: detect-changed-models
+    if: needs.detect-changed-models.outputs.files != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ttl_file: ${{ fromJson(needs.detect-changed-models.outputs.files) }}
+    name: Check MS2 Criteria (${{ matrix.ttl_file }})
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -40,4 +72,25 @@ jobs:
         run: pip install jsonschema
 
       - name: Run MS2 criteria check
-        run: python .github/scripts/ms2_check.py --base-branch origin/main
+        run: python .github/scripts/ms2_check.py --file "${{ matrix.ttl_file }}" --base-branch origin/main
+
+  # Fixed-name summary of the matrix above - this is the one to configure
+  # as a required status check in branch protection. Always runs (even
+  # with zero changed models, where the matrix job above is skipped
+  # entirely), so it's always available to select and never leaves a
+  # required check stuck pending.
+  ms2-criteria-gate:
+    needs: [detect-changed-models, ms2-criteria-check]
+    if: always()
+    runs-on: ubuntu-latest
+    name: MS2 Criteria Check
+    steps:
+      - name: Evaluate matrix result
+        run: |
+          result="${{ needs.ms2-criteria-check.result }}"
+          echo "ms2-criteria-check matrix result: $result"
+          if [ "$result" = "failure" ] || [ "$result" = "cancelled" ]; then
+            echo "At least one model failed its MS2 criteria check."
+            exit 1
+          fi
+          echo "All changed models passed (or none changed)."

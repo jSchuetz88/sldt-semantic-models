@@ -21,6 +21,7 @@
 from __future__ import annotations
 
 import subprocess
+import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -46,16 +47,23 @@ class Context:
             self._samm_jar_resolved = True
         return self._samm_jar
 
-    def get_changed_ttl_files(self) -> list[str]:
-        # Returns the .ttl files changed on this branch compared to
-        # base_branch. Assumes `git fetch` has already made base_branch
-        # available locally (see the checkout step in governance.yml).
+    def get_changed_files(self) -> list[str]:
+        # Returns every file changed on this branch compared to base_branch
+        # (not just .ttl files - used e.g. by MS2-21 to check whether
+        # RELEASE_NOTES.md was also touched). Assumes `git fetch` has
+        # already made base_branch available locally (see the checkout
+        # step in governance.yml).
         try:
             result = subprocess.run(
                 ["git", "diff", "--name-only", f"{self.base_branch}..HEAD"],
                 capture_output=True, text=True, check=True,
             )
         except subprocess.CalledProcessError as e:
-            print(f"Error running git diff: {e}")
+            # stderr, not stdout: --list-changed-files relies on stdout being
+            # clean JSON for the workflow to parse.
+            print(f"Error running git diff: {e}", file=sys.stderr)
             return []
-        return [f for f in result.stdout.splitlines() if f.endswith(".ttl")]
+        return result.stdout.splitlines()
+
+    def get_changed_ttl_files(self) -> list[str]:
+        return [f for f in self.get_changed_files() if f.endswith(".ttl")]
