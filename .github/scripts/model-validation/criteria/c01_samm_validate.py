@@ -16,13 +16,28 @@
 MS2-01: "the model validates with the SAMM SDS SDK in the version
 specified in the Readme.md of this repository by the time of the MS2
 check".
-
-Deliberately NOT implemented as a check here: the `validate-model-proposal`
-job in .github/workflows/governance.yml already runs this exact
-validation via .github/actions/model-validation for every changed .ttl
-file. Re-running samm-cli validate a second time from this script (and
-downloading a second copy of the jar) would just duplicate that job's
-work without adding anything. This file exists only so the criterion
-still shows up in the one-file-per-criterion overview; it has no `check`
-function, so criteria/__init__.py's auto-discovery skips it.
 """
+
+from __future__ import annotations
+
+from .. import samm_cli
+from ..context import Context
+from ..model import TTLModel
+from ..report import Finding
+
+TITLE = "Model validates with SAMM CLI"
+
+
+def check(model: TTLModel, ctx: Context) -> list[Finding]:
+    jar = ctx.samm_jar
+    if jar is None:
+        return [Finding("MS2-01", TITLE, "SKIP", model.file,
+                         "SAMM CLI jar unavailable (no Java / no network) - run "
+                         "`java -jar samm-cli-<version>.jar aspect <file> validate` manually")]
+
+    result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "validate"])
+    if result.returncode != 0:
+        detail = (result.stdout or result.stderr or "").strip().splitlines()
+        first_line = detail[0] if detail else f"exit code {result.returncode}"
+        return [Finding("MS2-01", TITLE, "FAIL", model.file, f"samm-cli validation failed: {first_line}")]
+    return [Finding("MS2-01", TITLE, "INFO", model.file, "samm-cli validation passed")]

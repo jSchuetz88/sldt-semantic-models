@@ -9,6 +9,7 @@
 .idea
 __pycache__/
 *.pyc
+node_modules/
 .ttl-artifacts
 static
 

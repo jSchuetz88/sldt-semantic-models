@@ -22,27 +22,11 @@ small and don't each re-implement this bookkeeping.
 
 from __future__ import annotations
 
-import importlib.util
 import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
-from types import ModuleType
 
-from . import samm_cli
-
-SCRIPTS_DIR = Path(__file__).resolve().parent.parent
-
-
-def _load_check_model_states() -> ModuleType:
-    """Dynamically imports .github/scripts/check-model-states.py (its
-    filename has a hyphen, so a normal `import` won't work) to reuse its
-    prefix-parsing / metadata-lookup logic instead of duplicating it."""
-    spec = importlib.util.spec_from_file_location(
-        "check_model_states", SCRIPTS_DIR / "check-model-states.py"
-    )
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+from . import git_utils, samm_cli
 
 
 @dataclass
@@ -52,13 +36,6 @@ class Context:
     changed_files: list[str] = field(default_factory=list)
     _samm_jar: Path | None = field(default=None, init=False, repr=False)
     _samm_jar_resolved: bool = field(default=False, init=False, repr=False)
-    _check_model_states: ModuleType | None = field(default=None, init=False, repr=False)
-
-    @property
-    def check_model_states(self) -> ModuleType:
-        if self._check_model_states is None:
-            self._check_model_states = _load_check_model_states()
-        return self._check_model_states
 
     @property
     def samm_jar(self) -> Path | None:
@@ -70,6 +47,9 @@ class Context:
             self._samm_jar = samm_cli.ensure_samm_cli(version)
             self._samm_jar_resolved = True
         return self._samm_jar
+
+    def get_changed_ttl_files(self) -> list[str]:
+        return git_utils.get_changed_ttl_files(self.base_branch)
 
     def commit_authors(self, file_path: str) -> list[str]:
         """Names of the git authors who touched `file_path` on this branch

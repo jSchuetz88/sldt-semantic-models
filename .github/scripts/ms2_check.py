@@ -17,7 +17,8 @@
 Master script for the MS2 criteria check (see .github/PULL_REQUEST_TEMPLATE.md).
 
 This is the single entry point triggered by CI on every pull request (see
-.github/workflows/ms2-criteria-check.yml). Its only job is to:
+the ms2-criteria-check job in .github/workflows/governance.yml). Its only
+job is to:
 
   1. Find out which .ttl files this PR changed.
   2. Parse each one into a TTLModel (.github/scripts/model-validation/model.py).
@@ -31,7 +32,7 @@ checklist item lives in its own sub-routine under criteria/, which is
 where you extend this when a criterion is added or changes. See the
 package docstring there for details.
 
-Usage (run from the repository root, mirrors check-model-states.py):
+Usage (run from the repository root):
     python .github/scripts/ms2_check.py [--base-branch origin/main]
 """
 
@@ -71,7 +72,7 @@ def main() -> int:
     repo_root = Path.cwd()
 
     ctx = Context(repo_root=repo_root, base_branch=args.base_branch)
-    changed_ttl_files = ctx.check_model_states.get_changed_ttl_files(args.base_branch)
+    changed_ttl_files = ctx.get_changed_ttl_files()
     ctx.changed_files = changed_ttl_files
 
     if not changed_ttl_files:
