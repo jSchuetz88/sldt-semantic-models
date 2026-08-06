@@ -7,6 +7,8 @@
 .BAMMCLI
 .SAMMCLI
 .idea
+__pycache__/
+*.pyc
 .ttl-artifacts
 static
 
