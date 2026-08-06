@@ -12,15 +12,16 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""MS2-05: "the identifier for properties starts with a small letter"."""
+# MS2-05: "the identifier for properties starts with a small letter".
 
 from __future__ import annotations
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 from ._shared import element_findings
 
+ID = "MS2-05"
 TITLE = "Property identifiers start with a lowercase letter"
 
 

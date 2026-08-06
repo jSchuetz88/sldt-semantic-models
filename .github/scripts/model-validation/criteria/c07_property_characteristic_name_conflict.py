@@ -12,17 +12,16 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""
-MS2-07: "Property and the referenced Characteristic should not have the
-same name".
-"""
+# MS2-07: "Property and the referenced Characteristic should not have the
+# same name".
 
 from __future__ import annotations
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
+ID = "MS2-07"
 TITLE = "Property and its Characteristic have different names"
 
 
@@ -30,7 +29,7 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     findings = []
     for el in model.elements.values():
         if el.short_type == "Property" and el.characteristic and el.characteristic == el.name:
-            findings.append(Finding("MS2-07", TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"property '{el.name}' and its characteristic share the same name",
                                      element=el.name))
     return findings

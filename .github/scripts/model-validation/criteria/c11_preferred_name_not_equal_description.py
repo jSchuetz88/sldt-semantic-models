@@ -12,14 +12,15 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-"""MS2-11: "fields preferredName and description are not the same"."""
+# MS2-11: "fields preferredName and description are not the same".
 
 from __future__ import annotations
 
 from ..context import Context
-from ..model import TTLModel
+from ..samm_model_parser import TTLModel
 from ..report import Finding
 
+ID = "MS2-11"
 TITLE = "preferredName and description are not identical"
 
 
@@ -29,7 +30,7 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
         pn = el.preferred_name("en")
         de = el.description("en")
         if pn is not None and pn == de:
-            findings.append(Finding("MS2-11", TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"'{el.name}': preferredName and description are identical",
                                      element=el.name))
     return findings
