@@ -96,6 +96,19 @@ def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
     return "\n".join(lines)
 
 
+def render_detected_models(files: list[str]) -> str:
+    lines = ["# Detected Models", ""]
+    if not files:
+        lines.append("No `.ttl` files changed in this PR - MS2 criteria check skipped.")
+        return "\n".join(lines)
+
+    lines.append(f"{len(files)} model file(s) changed, one MS2 Criteria check each:")
+    lines.append("")
+    for f in files:
+        lines.append(f"- `{f}`")
+    return "\n".join(lines)
+
+
 def print_console(findings: list[Finding]) -> None:
     for finding in findings:
         print(finding)

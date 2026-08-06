@@ -103,7 +103,9 @@ def main() -> int:
     ctx = Context(repo_root=repo_root, base_branch=args.base_branch)
 
     if args.list_changed_files:
-        print(json.dumps(ctx.get_changed_ttl_files()))
+        ttl_files = ctx.get_changed_ttl_files()
+        _write_step_summary(report.render_detected_models(ttl_files))
+        print(json.dumps(ttl_files))
         return 0
 
     config = config_module.load_config(repo_root)
