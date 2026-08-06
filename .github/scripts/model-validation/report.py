@@ -110,13 +110,15 @@ def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
         lines.append("")
 
         for criterion_id, title, full_text in details_blocks:
-            lines.append(f"<details><summary>{criterion_id} {title} — full output</summary>")
+            # Not using <details>/<summary> here: GitHub's job-summary
+            # sanitizer strips raw HTML tags like <details> entirely (the
+            # element doesn't even show up in the DOM), so a collapsible
+            # section isn't an option in this context - plain Markdown it is.
+            lines.append(f"**{criterion_id} {title} — full output:**")
             lines.append("")
             lines.append("```")
             lines.append(full_text)
             lines.append("```")
-            lines.append("")
-            lines.append("</details>")
             lines.append("")
 
     return "\n".join(lines)
