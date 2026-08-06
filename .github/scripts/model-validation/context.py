@@ -53,9 +53,17 @@ class Context:
         # RELEASE_NOTES.md was also touched). Assumes `git fetch` has
         # already made base_branch available locally (see the checkout
         # step in governance.yml).
+        #
+        # Three dots, not two: `A...B` diffs against the merge-base of A
+        # and B, i.e. "what did this branch change since it forked from
+        # base_branch" - independent of whatever else has landed on
+        # base_branch since then. `A..B` (two dots) instead diffs directly
+        # against base_branch's current tip, which would also pick up
+        # unrelated files simply because base_branch moved on without this
+        # branch, misattributing them to this PR.
         try:
             result = subprocess.run(
-                ["git", "diff", "--name-only", f"{self.base_branch}..HEAD"],
+                ["git", "diff", "--name-only", f"{self.base_branch}...HEAD"],
                 capture_output=True, text=True, check=True,
             )
         except subprocess.CalledProcessError as e:

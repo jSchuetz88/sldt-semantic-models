@@ -50,8 +50,22 @@ def has_failures(findings: list[Finding]) -> bool:
 ICON = {"FAIL": "❌", "WARN": "⚠️", "INFO": "✅", "SKIP": "➖"}
 
 
+def _flatten(text: str) -> str:
+    return text.replace("\n", " ")
+
+
 def _escape_cell(text: str) -> str:
-    return text.replace("|", "\\|").replace("\n", " ")
+    return _flatten(text).replace("|", "\\|")
+
+
+def _code_cell(text: str) -> str:
+    # Wraps a table cell's content in an inline code span so it renders in
+    # monospace - real line breaks don't survive inside a table cell, but
+    # at least indentation/alignment reads better than flowing prose. `|`
+    # doesn't need escaping inside a code span (GFM tables don't treat it
+    # as a cell separator there); a literal backtick would end the span
+    # early though, so that one still needs handling.
+    return f"`{_flatten(text).replace('`', chr(39))}`"
 
 
 def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
@@ -88,7 +102,7 @@ def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
         for criterion_id in sorted(by_criterion):
             group = by_criterion[criterion_id]
             worst = min(group, key=lambda f: LEVELS.index(f.level))
-            messages = "<br>".join(_escape_cell(f.message) for f in group)
+            messages = "<br>".join(_code_cell(f.message) for f in group)
             lines.append(f"| {ICON[worst.level]} | {criterion_id} | {_escape_cell(group[0].title)} | {messages} |")
 
         lines.append("")
