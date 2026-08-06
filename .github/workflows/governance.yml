@@ -94,3 +94,27 @@ jobs:
         with:
           name: validation-output
           path: output
+
+  ms2-criteria-check:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request
+    name: 02 Check MS2 Criteria
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Fetch main branch
+        run: git fetch origin main
+
+      - uses: actions/setup-java@8df1039502a15bceb9433410b1a100fbe190c53b # v4.5.0
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Install Python dependencies
+        run: pip install jsonschema
+
+      - name: Run MS2 criteria check
+        run: python .github/scripts/ms2_check.py --base-branch origin/main
