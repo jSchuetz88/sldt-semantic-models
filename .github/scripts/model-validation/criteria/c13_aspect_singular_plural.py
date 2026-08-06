@@ -28,6 +28,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-13"
 TITLE = "Aspect name is singular/plural depending on single Collection property"
 COLLECTION_TYPES = {"Collection", "List", "Set", "SortedSet"}
 

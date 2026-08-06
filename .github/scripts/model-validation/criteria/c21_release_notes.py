@@ -26,6 +26,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-21"
 TITLE = "RELEASE_NOTES.md exists and documents this version"
 
 

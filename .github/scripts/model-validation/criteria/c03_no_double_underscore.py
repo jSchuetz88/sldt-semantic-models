@@ -23,6 +23,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-03"
 TITLE = "No double underscores in identifiers/payload names"
 
 

@@ -23,6 +23,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-07"
 TITLE = "Property and its Characteristic have different names"
 
 

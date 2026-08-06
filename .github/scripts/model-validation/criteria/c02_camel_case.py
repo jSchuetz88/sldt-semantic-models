@@ -23,6 +23,7 @@ from ..model import TTLModel
 from ..report import Finding
 from ._shared import element_findings
 
+ID = "MS2-02"
 TITLE = "Identifiers use Camel-Case"
 CAMEL_CASE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*$")
 

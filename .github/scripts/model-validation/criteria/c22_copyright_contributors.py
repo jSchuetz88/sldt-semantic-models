@@ -30,6 +30,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-22"
 TITLE = "Contributors mentioned in copyright header (needs human review)"
 COPYRIGHT_LINE_RE = re.compile(r"#\s*Copyright\(?c\)?\s+\d{4}\s+(.+?)\s*$", re.MULTILINE)
 

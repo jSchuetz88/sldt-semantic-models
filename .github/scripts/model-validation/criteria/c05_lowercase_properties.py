@@ -21,6 +21,7 @@ from ..model import TTLModel
 from ..report import Finding
 from ._shared import element_findings
 
+ID = "MS2-05"
 TITLE = "Property identifiers start with a lowercase letter"
 
 

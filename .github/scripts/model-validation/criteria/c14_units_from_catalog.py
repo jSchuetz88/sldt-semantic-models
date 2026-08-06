@@ -27,6 +27,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-14"
 TITLE = "Units reference the SAMM unit catalog (heuristic, needs human review)"
 
 

@@ -31,6 +31,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-20"
 TITLE = "Generated JSON schema validates against generated example payload"
 
 

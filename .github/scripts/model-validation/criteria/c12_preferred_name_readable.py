@@ -25,6 +25,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-12"
 TITLE = "preferredName is human-readable (not Camel-Case)"
 CAMEL_HUMP_RE = re.compile(r"[a-z][A-Z]")
 

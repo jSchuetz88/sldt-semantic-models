@@ -27,6 +27,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-06"
 TITLE = "preferredName and description present (English)"
 
 

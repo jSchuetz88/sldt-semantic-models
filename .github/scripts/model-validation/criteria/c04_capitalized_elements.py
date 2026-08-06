@@ -24,6 +24,7 @@ from ..model import TTLModel
 from ..report import Finding
 from ._shared import element_findings
 
+ID = "MS2-04"
 TITLE = "Non-property identifiers start with a capital letter"
 
 

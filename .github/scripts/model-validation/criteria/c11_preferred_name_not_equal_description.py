@@ -20,6 +20,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-11"
 TITLE = "preferredName and description are not identical"
 
 

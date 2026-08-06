@@ -25,6 +25,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-01"
 TITLE = "Model validates with SAMM CLI"
 
 

@@ -28,6 +28,7 @@ from ..context import Context
 from ..model import TTLModel
 from ..report import Finding
 
+ID = "MS2-16"
 TITLE = "External standards referenced via samm:see (informational, needs human review)"
 
 
