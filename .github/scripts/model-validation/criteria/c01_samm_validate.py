@@ -15,6 +15,10 @@
 # MS2-01: "the model validates with the SAMM SDS SDK in the version
 # specified in the Readme.md of this repository by the time of the MS2
 # check".
+#
+# Deviates from the letter of that wording: the version actually comes
+# from config.json's "settings.samm_cli_version" key (see config.py), not
+# parsed out of README.md - see config.py's module comment for why.
 
 from __future__ import annotations
 

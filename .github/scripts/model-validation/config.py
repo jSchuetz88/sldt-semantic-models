@@ -12,28 +12,42 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# Loads ms2-criteria.json (in this same directory), the per-repo overrides
-# for the MS2 criteria. Two independent knobs per criterion (both default
-# to "on"):
+# Loads config.json (in this same directory), the per-repo config for the
+# MS2 criteria check. Two separate sections:
 #
-# "enabled":  false -> the criterion is skipped entirely, no Findings at all
-# "blocking": false -> the criterion still runs and is reported, but any
-# FAIL it produces is downgraded to WARN, so it no
-# longer breaks the CI job (still a MUST per the PR
-# template, just not (yet) enforced automatically)
+# "settings": general settings, currently just:
 #
-# Example ms2-criteria.json:
+#   "samm_cli_version": the SAMM CLI version to download and run for
+#   MS2-01 / MS2-20 (see samm_cli.py). Single source of truth - not parsed
+#   out of README.md prose, so it can't silently drift if that text gets
+#   reworded, and editing the README doesn't invalidate the SAMM CLI
+#   download cache in governance.yml.
+#
+# "criteria": per-criterion overrides, keyed by criterion id
+# ("MS2-01".."MS2-22"), two independent knobs each (both default to "on"):
+#
+#   "enabled":  false -> the criterion is skipped entirely, no Findings at all
+#   "blocking": false -> the criterion still runs and is reported, but any
+#                        FAIL it produces is downgraded to WARN, so it no
+#                        longer breaks the CI job (still a MUST per the PR
+#                        template, just not (yet) enforced automatically)
+#
+# Example config.json:
 #
 # {
-# "MS2-19": {"blocking": false},
-# "MS2-14": {"enabled": false}
+#   "settings": {
+#     "samm_cli_version": "2.11.1"
+#   },
+#   "criteria": {
+#     "MS2-19": {"blocking": false},
+#     "MS2-14": {"enabled": false}
+#   }
 # }
 #
-# A criterion not mentioned in the file, or the file not existing at all
-# (it's fine to delete it - an empty/missing file just means no overrides),
-# behaves exactly as if this module didn't exist (enabled + blocking).
-# Criterion ids are "MS2-01" through "MS2-22", matching the checklist order
-# in PULL_REQUEST_TEMPLATE.md.
+# A criterion not mentioned in "criteria", or the file not existing at all
+# (it's fine to delete it - an empty/missing file just means no overrides
+# and the default SAMM CLI version), behaves exactly as if this module
+# didn't exist.
 
 from __future__ import annotations
 
@@ -41,7 +55,8 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-DEFAULT_CONFIG_RELPATH = ".github/scripts/model-validation/ms2-criteria.json"
+DEFAULT_CONFIG_RELPATH = ".github/scripts/model-validation/config.json"
+DEFAULT_SAMM_CLI_VERSION = "2.11.1"
 
 
 @dataclass(frozen=True)
@@ -53,6 +68,7 @@ class CriterionOverride:
 @dataclass
 class Config:
     overrides: dict[str, CriterionOverride] = field(default_factory=dict)
+    samm_cli_version: str = DEFAULT_SAMM_CLI_VERSION
 
     def for_criterion(self, criterion_id: str) -> CriterionOverride:
         return self.overrides.get(criterion_id, CriterionOverride())
@@ -70,11 +86,14 @@ def load_config(repo_root: Path, path: str = DEFAULT_CONFIG_RELPATH) -> Config:
         return Config()
 
     raw = json.loads(config_path.read_text(encoding="utf-8")) or {}
+    settings = raw.get("settings") or {}
+    samm_cli_version = settings.get("samm_cli_version") or DEFAULT_SAMM_CLI_VERSION
+
     overrides = {}
-    for criterion_id, settings in raw.items():
-        settings = settings or {}
+    for criterion_id, criterion_settings in (raw.get("criteria") or {}).items():
+        criterion_settings = criterion_settings or {}
         overrides[criterion_id] = CriterionOverride(
-            enabled=bool(settings.get("enabled", True)),
-            blocking=bool(settings.get("blocking", True)),
+            enabled=bool(criterion_settings.get("enabled", True)),
+            blocking=bool(criterion_settings.get("blocking", True)),
         )
-    return Config(overrides)
+    return Config(overrides, samm_cli_version)

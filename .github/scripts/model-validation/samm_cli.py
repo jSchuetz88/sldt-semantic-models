@@ -23,26 +23,12 @@
 
 from __future__ import annotations
 
-import re
 import shutil
 import subprocess
 import urllib.request
 from pathlib import Path
 
-README_VERSION_RE = re.compile(r"version\s+(\d+\.\d+\.\d+)\s+of\s+the\s+\[SAMM-CLI\]", re.IGNORECASE)
-DEFAULT_VERSION = "2.11.1"
 CACHE_DIR = Path(".SAMMCLI")
-
-
-def samm_version_from_readme(repo_root: Path) -> str:
-    # MS2-01 explicitly requires validating against 'the version specified
-    # in the Readme.md of this repository', so that's where we read it from.
-    readme = repo_root / "README.md"
-    if readme.exists():
-        m = README_VERSION_RE.search(readme.read_text(encoding="utf-8"))
-        if m:
-            return m.group(1)
-    return DEFAULT_VERSION
 
 
 def ensure_samm_cli(version: str, cache_dir: Path = CACHE_DIR) -> Path | None:

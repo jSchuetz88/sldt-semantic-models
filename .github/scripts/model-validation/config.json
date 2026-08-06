@@ -1,4 +1,9 @@
 {
-    "MS2-15": {"blocking": false},
-    "MS2-16": {"blocking": false}
+    "settings": {
+        "samm_cli_version": "2.11.1"
+    },
+    "criteria": {
+        "MS2-15": {"blocking": false},
+        "MS2-16": {"blocking": false}
+    }
 }

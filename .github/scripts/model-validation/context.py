@@ -25,7 +25,7 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import samm_cli
+from . import config, samm_cli
 
 
 @dataclass
@@ -39,10 +39,10 @@ class Context:
     @property
     def samm_jar(self) -> Path | None:
         # Lazily downloads (once per run) the SAMM CLI jar in the version
-        # pinned in README.md, used by the criteria that need to actually
-        # run the CLI (schema/payload generation, MS2-20).
+        # pinned in config.json (see config.py), used by the criteria
+        # that need to actually run the CLI (schema/payload generation, MS2-20).
         if not self._samm_jar_resolved:
-            version = samm_cli.samm_version_from_readme(self.repo_root)
+            version = config.load_config(self.repo_root).samm_cli_version
             self._samm_jar = samm_cli.ensure_samm_cli(version)
             self._samm_jar_resolved = True
         return self._samm_jar

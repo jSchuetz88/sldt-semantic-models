@@ -32,7 +32,7 @@
 # checkable report at WARN/INFO level instead of FAIL, and say so, rather
 # than pretending to be an authoritative check. FAIL is reserved for
 # criteria that are genuinely unambiguous from the text - and even those
-# can be downgraded to non-blocking per-repo via ms2-criteria.json
+# can be downgraded to non-blocking per-repo via config.json
 # (see config.py) if a team decides a given MUST shouldn't break CI yet.
 #
 # REGISTRY below is built automatically by importing every cNN_*.py module
