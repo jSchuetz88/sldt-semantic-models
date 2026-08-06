@@ -78,8 +78,8 @@ def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
         )
         lines.append("")
 
-        lines.append("| | Criterion | Message |")
-        lines.append("|---|---|---|")
+        lines.append("| | ID | Criterion | Message |")
+        lines.append("|---|---|---|---|")
 
         by_criterion: dict[str, list[Finding]] = {}
         for finding in file_findings:
@@ -89,7 +89,7 @@ def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
             group = by_criterion[criterion_id]
             worst = min(group, key=lambda f: LEVELS.index(f.level))
             messages = "<br>".join(_escape_cell(f.message) for f in group)
-            lines.append(f"| {ICON[worst.level]} | {criterion_id} {_escape_cell(group[0].title)} | {messages} |")
+            lines.append(f"| {ICON[worst.level]} | {criterion_id} | {_escape_cell(group[0].title)} | {messages} |")
 
         lines.append("")
 
