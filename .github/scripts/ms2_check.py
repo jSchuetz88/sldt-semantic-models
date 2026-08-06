@@ -16,17 +16,28 @@
 # Master script for the MS2 criteria check (see .github/PULL_REQUEST_TEMPLATE.md).
 #
 # This is the single entry point triggered by CI on every pull request (see
-# .github/workflows/governance.yml, which runs it two ways):
+# .github/workflows/governance.yml, which runs it three ways):
 #
-#   --list-changed-files  -> used by the "detect-changed-models" job to build
-#                             the per-model check matrix (prints a JSON array
-#                             of changed .ttl files, nothing else)
-#   --file <path>          -> used by each matrix leg of the "ms2-criteria-check"
-#                             job to check exactly one model, so each model
-#                             gets its own check mark in the PR UI
+#   --list-changed-files      -> used once by the "detect-changed-models" job
+#                                 to build the per-model check matrix (prints
+#                                 a JSON array of changed .ttl files)
+#   --list-all-changed-files  -> used once by the same job to also hand every
+#                                 changed file (not just .ttl) to each matrix
+#                                 leg, so they don't each need to compute
+#                                 their own git diff (see --changed-files)
+#   --file <path>              -> used by each matrix leg of the
+#                                 "ms2-criteria-check" job to check exactly
+#                                 one model, so each model gets its own check
+#                                 mark in the PR UI. Combined with
+#                                 --changed-files, a leg needs no git history
+#                                 at all - just a shallow checkout.
+#   --changed-files <json>     -> supplies the full changed-files list (see
+#                                 --list-all-changed-files above) instead of
+#                                 computing it locally via git diff
 #
-# Run without either flag, it auto-detects and checks every changed .ttl file
-# in one go (useful for local runs). Either way, per file it:
+# Run without any of these, it auto-detects and checks every changed .ttl
+# file in one go via its own git diff (useful for local runs). Either way,
+# per file it:
 #
 #   1. Parses the file into a TTLModel (model-validation/samm_model_parser.py).
 #   2. Loads the per-criterion overrides from model-validation/ms2-criteria.json,
@@ -94,6 +105,19 @@ def parse_args() -> argparse.Namespace:
              "else is printed. Used by the detect-changed-models job to build "
              "the per-model check matrix.",
     )
+    parser.add_argument(
+        "--list-all-changed-files",
+        action="store_true",
+        help="Print every changed file (not just .ttl) as a JSON array and "
+             "exit. Used by the detect-changed-models job to feed --changed-files.",
+    )
+    parser.add_argument(
+        "--changed-files",
+        help="JSON array of every file changed in this PR (not just .ttl), as "
+             "produced by --list-all-changed-files. When given, a matrix leg "
+             "doesn't need to compute this itself via git diff, so it doesn't "
+             "need repo history - just the files at HEAD.",
+    )
     return parser.parse_args()
 
 
@@ -108,10 +132,17 @@ def main() -> int:
         print(json.dumps(ttl_files))
         return 0
 
+    if args.list_all_changed_files:
+        print(json.dumps(ctx.get_changed_files()))
+        return 0
+
     config = config_module.load_config(repo_root)
     _warn_about_unknown_criteria(config)
 
-    ctx.changed_files = ctx.get_changed_files()
+    # A matrix leg that already knows the full changed-files list (passed by
+    # the detect-changed-models job) doesn't need to compute its own git diff
+    # - and with it, doesn't need repo history at all, just a shallow checkout.
+    ctx.changed_files = json.loads(args.changed_files) if args.changed_files else ctx.get_changed_files()
     ttl_files_to_check = args.files or ctx.get_changed_ttl_files()
 
     if not ttl_files_to_check:
