@@ -18,6 +18,8 @@
 
 from __future__ import annotations
 
+import re
+
 from .. import samm_cli
 from ..context import Context
 from ..samm_model_parser import TTLModel
@@ -25,6 +27,16 @@ from ..report import Finding
 
 ID = "MS2-01"
 TITLE = "Model validates with SAMM CLI"
+
+ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
+MAX_DETAIL_LENGTH = 2000
+
+
+def _clean_detail(text: str) -> str:
+    text = ANSI_ESCAPE_RE.sub("", text).strip()
+    if len(text) > MAX_DETAIL_LENGTH:
+        text = text[:MAX_DETAIL_LENGTH] + "... (truncated)"
+    return text
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -36,7 +48,6 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
 
     result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "validate"])
     if result.returncode != 0:
-        detail = (result.stdout or result.stderr or "").strip().splitlines()
-        first_line = detail[0] if detail else f"exit code {result.returncode}"
-        return [Finding(ID, TITLE, "FAIL", model.file, f"samm-cli validation failed: {first_line}")]
+        detail = _clean_detail(result.stdout or result.stderr or f"exit code {result.returncode}")
+        return [Finding(ID, TITLE, "FAIL", model.file, f"samm-cli validation failed:\n{detail}")]
     return [Finding(ID, TITLE, "INFO", model.file, "samm-cli validation passed")]
