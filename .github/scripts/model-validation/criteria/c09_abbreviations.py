@@ -30,7 +30,7 @@ from ..report import Finding
 
 ID = "MS2-09"
 TITLE = "Abbreviations used only when necessary and common (not automatically verifiable)"
-CATEGORY = "SEMANTIC QUALITY"
+CATEGORY = "Semantic Quality"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

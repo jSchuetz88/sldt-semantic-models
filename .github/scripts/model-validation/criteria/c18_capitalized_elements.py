@@ -25,7 +25,7 @@ from ._shared import element_findings
 ID = "MS2-18"
 # Identifiers of all model elements except properties must start with a capital letter.
 TITLE = "Non-property identifiers start with a capital letter"
-CATEGORY = "Formal Requirements"
+CATEGORY = "Naming Conventions"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

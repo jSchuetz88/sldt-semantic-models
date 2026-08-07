@@ -26,7 +26,7 @@ from ._shared import element_findings
 ID = "MS2-20"
 # All identifiers must use Camel-Case (letters/digits only, no other characters).
 TITLE = "Identifiers use Camel-Case"
-CATEGORY = "Formal Requirements"
+CATEGORY = "Naming Conventions"
 CAMEL_CASE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*$")
 
 

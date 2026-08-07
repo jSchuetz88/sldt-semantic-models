@@ -24,7 +24,7 @@ from ..report import Finding
 ID = "MS2-19"
 # Identifiers and payloadName values must not contain two consecutive underscores.
 TITLE = "No double underscores in identifiers/payload names"
-CATEGORY = "Formal Requirements"
+CATEGORY = "Naming Conventions"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

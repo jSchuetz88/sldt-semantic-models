@@ -24,7 +24,7 @@ from ._shared import element_findings
 ID = "MS2-21"
 # Property identifiers must start with a lowercase letter.
 TITLE = "Property identifiers start with a lowercase letter"
-CATEGORY = "Formal Requirements"
+CATEGORY = "Naming Conventions"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
