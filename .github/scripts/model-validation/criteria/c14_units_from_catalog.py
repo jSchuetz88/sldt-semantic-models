@@ -15,7 +15,7 @@
 # MS2-14: "units are referenced from the SAMM unit catalog whenever
 # possible".
 #
-# Never FAIL/WARN/INFO, always SKIP: whether a matching catalog unit
+# Never FAIL/WARN/SUCCESS, always SKIP: whether a matching catalog unit
 # actually exists for a given quantity isn't something this script can
 # know (it doesn't load the catalog itself), so a unit that doesn't use
 # the 'unit:' prefix - or a custom samm:Unit definition - is not actually
@@ -51,7 +51,7 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
                                      f"already exist in the SAMM unit catalog", element=el.name, line=el.line_no))
     if not findings:
         # An empty list here would otherwise fall through to ms2_check.py's
-        # "silent criterion -> synthesize a passing INFO" fallback, which
+        # "silent criterion -> synthesize a passing SUCCESS" fallback, which
         # would undo the point of using SKIP above.
         findings.append(Finding(ID, TITLE, "SKIP", model.file,
                                  "no non-catalog unit references or custom samm:Unit definitions found"))

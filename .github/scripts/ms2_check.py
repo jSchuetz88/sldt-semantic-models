@@ -197,7 +197,7 @@ def main() -> int:
                 # A criterion that only flags problems (and stays silent
                 # when there's nothing to flag) still needs a row in the
                 # report table, so treat "nothing reported" as a pass.
-                findings = [report.Finding(criterion.id, criterion.title, "INFO", ttl_file, "no issues found")]
+                findings = [report.Finding(criterion.id, criterion.title, "SUCCESS", ttl_file, "no issues found")]
             if not config.is_blocking(criterion.id):
                 for finding in findings:
                     if finding.level == "FAIL":
@@ -218,7 +218,7 @@ def main() -> int:
         print("\nMS2 criteria check FAILED - see FAIL entries above.")
         return 1
 
-    print("\nMS2 criteria check passed (WARN/INFO entries may still need human review).")
+    print("\nMS2 criteria check passed (WARN/SUCCESS entries may still need human review).")
     return 0
 
 

@@ -63,4 +63,4 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     if result.returncode != 0:
         detail = _clean_detail(result.stdout or result.stderr or f"exit code {result.returncode}")
         return [Finding(ID, TITLE, "FAIL", model.file, f"samm-cli validation failed:\n{detail}", line=1)]
-    return [Finding(ID, TITLE, "INFO", model.file, "samm-cli validation passed")]
+    return [Finding(ID, TITLE, "SUCCESS", model.file, "samm-cli validation passed")]

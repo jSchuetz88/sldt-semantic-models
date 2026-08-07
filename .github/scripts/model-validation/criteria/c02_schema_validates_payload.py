@@ -58,5 +58,5 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
                          f"generated example payload does not validate against the generated "
                          f"JSON schema: {e.message}", line=1)]
 
-    return [Finding(ID, TITLE, "INFO", model.file,
+    return [Finding(ID, TITLE, "SUCCESS", model.file,
                      "generated JSON schema validates against the generated example payload")]

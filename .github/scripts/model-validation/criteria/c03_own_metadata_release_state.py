@@ -16,9 +16,13 @@
 #
 # Broadened beyond the letter of that wording: a model's metadata.json
 # legitimately moves through - or ends up in - other lifecycle states too
-# (e.g. a PR whose whole point is deprecating a model), so any of
-# VALID_STATUSES is accepted, not just "release". Still catches real typos
-# like "deprecate" (missing the 'd') since those aren't in the set either.
+# (e.g. a PR whose whole point is deprecating a model). Any of
+# VALID_STATUSES is accepted as a genuine state (not a FAIL) - still
+# catches real typos like "deprecate" (missing the 'd') since those aren't
+# in the set either - but only "release" is a clean pass; the other valid
+# states are surfaced as WARN ("please verify"), since a model landing in
+# this PR with e.g. status "draft" or "deprecated" is usually intentional
+# but still worth a reviewer's second look.
 
 from __future__ import annotations
 
@@ -54,4 +58,7 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     if status not in VALID_STATUSES:
         return [Finding(ID, TITLE, "FAIL", model.file,
                          f"{meta_path} has status '{status}', expected one of {sorted(VALID_STATUSES)}", line=1)]
-    return [Finding(ID, TITLE, "INFO", model.file, f"{meta_path} has status '{status}'")]
+    if status != "release":
+        return [Finding(ID, TITLE, "WARN", model.file,
+                         f"{meta_path} has status '{status}' - please verify this is intentional", line=1)]
+    return [Finding(ID, TITLE, "SUCCESS", model.file, f"{meta_path} has status 'release'")]

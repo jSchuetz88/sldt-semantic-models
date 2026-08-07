@@ -47,5 +47,5 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     # RELEASE_NOTES.md itself was touched in this PR used to be checked
     # separately, but that only ever produced a near-duplicate warning
     # alongside the one above without adding real signal.
-    return [Finding(ID, TITLE, "INFO", model.file,
+    return [Finding(ID, TITLE, "SUCCESS", model.file,
                      f"{release_notes} mentions version {model.version}")]

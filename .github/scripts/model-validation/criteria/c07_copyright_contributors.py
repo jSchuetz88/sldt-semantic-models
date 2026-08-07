@@ -44,5 +44,5 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     if not copyright_holders:
         return [Finding(ID, TITLE, "FAIL", model.file,
                          "no copyright header found at the top of the file", line=1)]
-    return [Finding(ID, TITLE, "INFO", model.file,
+    return [Finding(ID, TITLE, "SUCCESS", model.file,
                      f"copyright header present, lists: {copyright_holders}")]

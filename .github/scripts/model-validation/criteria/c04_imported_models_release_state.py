@@ -64,6 +64,6 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
                                      f"imported model {folder}:{version} has status "
                                      f"'{meta.get('status')}', expected 'release'", line=1))
     if not findings:
-        findings.append(Finding(ID, TITLE, "INFO", model.file,
+        findings.append(Finding(ID, TITLE, "SUCCESS", model.file,
                                  "all imported/external models are in 'release' state"))
     return findings

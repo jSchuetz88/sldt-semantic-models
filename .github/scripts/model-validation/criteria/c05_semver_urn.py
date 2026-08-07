@@ -52,6 +52,6 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
                                  f"URN version '{model.version}' does not match the "
                                  f"version folder '{version_dirs[0]}'", line=1))
     if not findings:
-        findings.append(Finding(ID, TITLE, "INFO", model.file,
+        findings.append(Finding(ID, TITLE, "SUCCESS", model.file,
                                  f"URN version '{model.version}' is well-formed and matches its folder"))
     return findings
