@@ -175,12 +175,11 @@ def main() -> int:
                 continue
 
             if model_invalid and criterion.id != "MS2-01":
-                finding = report.Finding(
-                    criterion.id, criterion.title, "SKIP", ttl_file,
-                    "skipped - model does not validate against SAMM CLI (see MS2-01)",
-                )
-                all_findings.append(finding)
-                report.print_console([finding])
+                # Not even reported as SKIP: an invalid model makes every
+                # other criterion moot, so only MS2-01's own FAIL shows up
+                # for this model at all - no 21 additional SKIP rows to
+                # scroll past.
+                print(f"{criterion.id} not evaluated - model does not validate against SAMM CLI (see MS2-01)")
                 continue
 
             findings = criterion.check(model, ctx)
