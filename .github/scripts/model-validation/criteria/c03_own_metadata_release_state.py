@@ -13,6 +13,12 @@
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
 # MS2-03: "metadata.json exists with status 'release'".
+#
+# Broadened beyond the letter of that wording: a model's metadata.json
+# legitimately moves through - or ends up in - other lifecycle states too
+# (e.g. a PR whose whole point is deprecating a model), so any of
+# VALID_STATUSES is accepted, not just "release". Still catches real typos
+# like "deprecate" (missing the 'd') since those aren't in the set either.
 
 from __future__ import annotations
 
@@ -24,9 +30,10 @@ from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-03"
-TITLE = "metadata.json exists with status 'release'"
+TITLE = "metadata.json exists with a valid status"
 CATEGORY = "Formal Requirements"
 POST_COMMENT = True
+VALID_STATUSES = {"release", "deprecated", "draft", "invalidated"}
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -43,7 +50,8 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     except json.JSONDecodeError as e:
         return [Finding(ID, TITLE, "FAIL", model.file, f"{meta_path} is not valid JSON: {e}", line=1)]
 
-    if meta.get("status") != "release":
+    status = meta.get("status")
+    if status not in VALID_STATUSES:
         return [Finding(ID, TITLE, "FAIL", model.file,
-                         f"{meta_path} has status '{meta.get('status')}', expected 'release'", line=1)]
-    return [Finding(ID, TITLE, "INFO", model.file, f"{meta_path} has status 'release'")]
+                         f"{meta_path} has status '{status}', expected one of {sorted(VALID_STATUSES)}", line=1)]
+    return [Finding(ID, TITLE, "INFO", model.file, f"{meta_path} has status '{status}'")]
