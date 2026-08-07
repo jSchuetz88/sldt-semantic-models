@@ -36,7 +36,7 @@
 #
 # {
 #   "settings": {
-#     "samm_cli_version": "2.11.1"
+#     "samm_cli_version": "2.15.1"
 #   },
 #   "criteria": {
 #     "MS2-19": {"blocking": false},
@@ -56,7 +56,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 DEFAULT_CONFIG_RELPATH = ".github/scripts/model-validation/config.json"
-DEFAULT_SAMM_CLI_VERSION = "2.11.1"
+DEFAULT_SAMM_CLI_VERSION = "2.15.1"
 
 
 @dataclass(frozen=True)

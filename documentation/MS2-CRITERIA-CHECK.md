@@ -120,7 +120,7 @@ Two sections, both optional - a missing or empty file behaves exactly like defau
 ```json
 {
   "settings": {
-    "samm_cli_version": "2.11.1"
+    "samm_cli_version": "2.15.1"
   },
   "criteria": {
     "MS2-08": { "blocking": false },

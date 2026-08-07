@@ -10,7 +10,7 @@ Closes #
 ## MS2 Criteria
 
 (to be filled out by PR reviewer)
-- [ ] [MS2-01] the model **validates** with the SAMM SDS SDK in the version specified in the Readme.md of this repository by the time of the MS2 check  (e.g., 'java -jar samm-cli.jar aspect \<path-to-aspect-model\> validate ). The  SAMM CLI is available [here](https://eclipse-esmf.github.io/esmf-developer-guide/tooling-guide/samm-cli.html) and in [GitHub](https://github.com/eclipse-esmf/esmf-sdk/releases/tag/v2.11.1)
+- [ ] [MS2-01] the model **validates** with the SAMM SDS SDK in the version specified in the Readme.md of this repository by the time of the MS2 check  (e.g., 'java -jar samm-cli.jar aspect \<path-to-aspect-model\> validate ). The  SAMM CLI is available [here](https://eclipse-esmf.github.io/esmf-developer-guide/tooling-guide/samm-cli.html) and in [GitHub](https://github.com/eclipse-esmf/esmf-sdk/releases/tag/v2.15.1)
 - [ ] [MS2-02] generated json schema validates against example json payload
 - [ ] [MS2-03] metadata.json exists with status "release"
 - [ ] [MS2-04] all external / imported models have the state "release"
