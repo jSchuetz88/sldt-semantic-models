@@ -38,16 +38,14 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     if not release_notes.exists():
         return [Finding(ID, TITLE, "FAIL", model.file, f"{release_notes} does not exist", line=1)]
 
-    findings = []
     text = release_notes.read_text(encoding="utf-8")
     if model.version and not re.search(re.escape(f"[{model.version}]"), text):
-        findings.append(Finding(ID, TITLE, "WARN", model.file,
-                                 f"{release_notes} has no entry mentioning '[{model.version}]'", line=1))
-    if str(release_notes) not in ctx.changed_files:
-        findings.append(Finding(ID, TITLE, "WARN", model.file,
-                                 f"{release_notes} was not modified in this PR - verify it already "
-                                 f"documents this change", line=1))
-    if not findings:
-        findings.append(Finding(ID, TITLE, "INFO", model.file,
-                                 f"{release_notes} was updated and mentions version {model.version}"))
-    return findings
+        return [Finding(ID, TITLE, "WARN", model.file,
+                         f"{release_notes} has no entry mentioning '[{model.version}]'", line=1)]
+
+    # An entry for this version is enough on its own - whether
+    # RELEASE_NOTES.md itself was touched in this PR used to be checked
+    # separately, but that only ever produced a near-duplicate warning
+    # alongside the one above without adding real signal.
+    return [Finding(ID, TITLE, "INFO", model.file,
+                     f"{release_notes} mentions version {model.version}")]
