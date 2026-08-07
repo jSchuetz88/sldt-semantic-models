@@ -21,6 +21,9 @@ This describes the automated check that runs on every pull request to verify the
         ├── samm_cli.py                downloads/runs the SAMM CLI jar
         ├── samm_model_parser.py       lightweight Turtle/SAMM parser (no RDF library)
         ├── report.py                  Finding type + Markdown table rendering
+        ├── github_comments.py         posts/updates one PR checklist comment per
+        │                             model, for criteria with POST_COMMENT = True
+        │                             (see "Report format" below)
         └── criteria/                  one file per MS2 checklist item
             ├── __init__.py            auto-discovers every cNN_*.py below into REGISTRY
             ├── c01_samm_validate.py
@@ -65,6 +68,8 @@ For each file, it: parses the model, loads `config.json`, then hands the parsed 
 
 Each `cNN_<slug>.py` is a self-contained sub-routine exposing `ID`, `TITLE`, `CATEGORY`, and `check(model, ctx) -> list[Finding]`. `criteria/__init__.py` builds `REGISTRY` by importing every `cNN_*.py` file in numeric order and collecting the ones that define `check`. All 22 currently do - even a criterion that's a pure judgement call and can't render any verdict (e.g. MS2-09, "abbreviations only when necessary") still has a `check` function; it just always returns the same static `SKIP`/`NOTE` Finding regardless of file content, so it still shows up as its own row in the report rather than being invisible. A `cNN_*.py` file with no `check` function at all would be excluded from `REGISTRY` entirely (not currently used by any criterion here).
 
+Optionally, a module can also set `POST_COMMENT = True` (default `False` if omitted) to have its `FAIL`/`WARN` findings included in the per-model PR checklist comment - see "PR checklist comments" below.
+
 **To add or change a criterion:** drop in (or edit) a `cNN_<slug>.py` file with `ID`, `TITLE`, `CATEGORY`, and a `check` function. Nothing else needs to change - no registry to update by hand.
 
 `CATEGORY` is one of `"Model Validation"`, `"Formal Requirements"`, or `"Semantic Quality"` - see the checklist table below for which criterion is in which. It exists purely to group the report table into sections (see "Report format" below); it doesn't affect execution, blocking, or anything else.
@@ -77,8 +82,8 @@ Each `Finding` has a level:
 | --- | --- | --- |
 | `FAIL` | ❌ | objectively violates the MS2 rule, breaks the CI check |
 | `WARN` | ⚠️ | heuristic or non-certain violation, doesn't break CI, needs human review |
-| `INFO` | ✅ | a genuine automated pass: this was actually checked and nothing is wrong (also synthesized by the master script for a criterion that stays silent when it finds nothing to flag) |
-| `NOTE` | ℹ️ | the criterion can never render a pass/fail verdict at all (the question isn't machine-answerable from the file alone) - a fact for the reviewer, not a confirmation of anything. Counted together with `INFO` in the summary line's "passing" total, but rendered with a different icon so a real automated pass isn't visually confused with "nothing to check here, please review manually" |
+| `SUCCESS` | ✅ | a genuine automated pass: this was actually checked and nothing is wrong (also synthesized by the master script for a criterion that stays silent when it finds nothing to flag) |
+| `NOTE` | ℹ️ | the criterion can never render a pass/fail verdict at all (the question isn't machine-answerable from the file alone) - a fact for the reviewer, not a confirmation of anything. Doesn't break CI (same as `SUCCESS`), but counted separately in the summary line ("N passing" vs "M for manual review") and rendered with a different icon, so it never reads as an actual automated pass |
 | `SKIP` | ➖ | couldn't be evaluated (e.g. no Java for the SAMM CLI, disabled via config), or deliberately not attempted because a prerequisite already failed (e.g. MS2-02 when the model doesn't validate) |
 
 ### The 22 checklist items
@@ -87,7 +92,7 @@ Each `Finding` has a level:
 | --- | --- | --- | --- |
 | MS2-01 | Model Validation | ✅ automated | runs `samm-cli aspect <file> validate` for real |
 | MS2-02 | Model Validation | ✅ automated | generated JSON schema validates the generated example payload. Schema/payload come from `ctx.generated_artifacts()` (shared with any other criterion that wants them, see `context.py`), which itself skips generation (`SKIP`) if the model doesn't validate (MS2-01) - moot in the normal CI flow since MS2-01 failing already skips MS2-02 entirely, but keeps this criterion correct if ever invoked on its own |
-| MS2-03 | Formal Requirements | ✅ automated | own `metadata.json` exists with status `release` |
+| MS2-03 | Formal Requirements | ✅ automated | own `metadata.json` exists with a status in `{release, deprecated, draft, invalidated}`; only `release` is a clean `SUCCESS`, the other three valid states are `WARN` ("please verify this is intentional"), anything else is `FAIL` |
 | MS2-04 | Formal Requirements | ✅ automated | imported/external models are in `release` state |
 | MS2-05 | Formal Requirements | ✅ automated | URN version is valid semver and matches its folder |
 | MS2-06 | Formal Requirements | ✅ automated | `RELEASE_NOTES.md` exists and mentions this version |
@@ -135,6 +140,28 @@ A criterion ID in the config that doesn't match any known criterion prints a `WA
 Written to the GitHub Actions job summary (and printed to the console). Since each CI matrix leg checks exactly one model, its report title carries the model's file path directly (`# MS2 Criteria Report — <file>`) instead of a redundant per-model sub-header; a local run checking several changed `.ttl` files at once (no `--file`) keeps a generic title with a `## MS2 Criteria — <file>` sub-header per model instead, so the sections stay distinguishable.
 
 Within a model's section, criteria are grouped into their `CATEGORY` (`Model Validation` / `Formal Requirements` / `Semantic Quality` - see the checklist table above), each its own sub-header (`##`, or `###` when nested under a per-model sub-header in the multi-file case), ordered by the lowest criterion ID it contains. Each category's table has one row per criterion: status icon, criterion ID, criterion name, and message. A criterion that produces multiple findings for the same model shows the worst icon and all messages (`<br>`-joined) in one row. Messages are wrapped in an inline code span for monospace rendering, since real line breaks aren't possible inside a Markdown table cell - collapsible `<details>` sections were tried for long multi-line output (e.g. a full samm-cli error dump) but GitHub's job-summary sanitizer strips that tag entirely, so plain inline code is what's left.
+
+The summary line above each model's table (`**Summary:** N failing, M warnings, X passing, Y for manual review, Z skipped.`) counts `SUCCESS` and `NOTE` separately: `X passing` is genuinely `SUCCESS` only, `Y for manual review` is `NOTE` only - they're kept apart on purpose so "passing" always means "an automated check actually ran and found nothing wrong", not diluted by criteria that can't render a verdict at all (MS2-09, MS2-13, MS2-15, MS2-16).
+
+## PR checklist comments (`model-validation/github_comments.py`)
+
+In addition to the job-summary report above, criteria with `POST_COMMENT = True` also get their `FAIL`/`WARN` findings collected (per model, across all such criteria) and posted as **one PR comment per model** - a Markdown checklist, e.g.:
+
+```markdown
+### MS2 Criteria issues — `io.catenax.pcf/10.0.0/Pcf.ttl`
+
+- [ ] ⚠️ **MS2-12** (io.catenax.pcf/10.0.0/Pcf.ttl:148) — preferredName 'FooBar' looks Camel-Case
+```
+
+This is a plain PR **issue** comment (`POST`/`PATCH .../issues/{pr}/comments`), not a diff-anchored **review** comment. An earlier version used review comments instead, but GitHub's review-comment API only accepts lines that are part of the PR's diff - a `FAIL` on an untouched, pre-existing line would then silently fail to post. Issue comments have no such constraint and are simpler to keep in sync besides: since there's at most one comment per model, a re-run just `PATCH`es it in place (matched via a hidden `<!-- ms2-check:<path> -->` marker in the body) instead of tracking "does a comment for this exact finding already exist".
+
+Needs `pull-requests: write` on the `ms2-criteria-check` job in `governance.yml` (least-privilege: only that job gets it) and `GITHUB_TOKEN` passed to the "Run MS2 criteria check" step's `env`. Silently does nothing (just a log line) when posting isn't possible or doesn't apply - no `pull_request` event, no token, or no findings for that model - never a reason to fail the check itself.
+
+Known limitations of this first version:
+
+- The checklist body is fully regenerated and `PATCH`ed on every run - checkboxes always start at `- [ ]`, so ticking one off manually doesn't survive the next update.
+- If every finding for a model gets fixed, the comment is left exactly as it was (not deleted, not marked resolved) rather than being cleared - a `[]` findings list is a no-op, on purpose, since GitHub gives no cheap way to distinguish "nothing to report" from "haven't checked yet".
+- If a human hides ("minimizes") the comment, later updates don't un-hide it - GitHub's `unminimizeComment` GraphQL mutation (REST has no equivalent) reliably fails for the Actions-provided `GITHUB_TOKEN` ("Resource not accessible by integration", a known GitHub limitation) - fixing this for real would need a PAT stored as a repo secret, not currently considered worth it. Whether something is still actually open is always visible from the check run status itself regardless.
 
 ## Running locally
 
