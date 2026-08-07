@@ -63,9 +63,9 @@ jobs:
     needs: detect-changed-models
     if: needs.detect-changed-models.outputs.files != '[]'
     runs-on: ubuntu-latest
-    # Only this job needs it (least privilege): criteria with
-    # POST_COMMENT = True (see model-validation/github_comments.py) post
-    # their FAIL/WARN findings as inline PR review comments.
+    # Only this job needs it (least privilege): posts/updates one PR
+    # checklist comment per model listing FAIL/WARN findings from criteria
+    # with POST_COMMENT = True (see model-validation/github_comments.py).
     permissions:
       contents: read
       pull-requests: write

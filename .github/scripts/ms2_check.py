@@ -44,10 +44,10 @@
 #      if any (see model-validation/config.py).
 #   3. Hands the model + a shared Context to every enabled criterion
 #      sub-routine registered in model-validation/criteria/, downgrading
-#      FAILs to WARN for criteria configured as non-blocking, and (for
-#      criteria that opt in via POST_COMMENT, see criteria/__init__.py and
-#      model-validation/github_comments.py) posting an inline PR review
-#      comment per FAIL/WARN finding.
+#      FAILs to WARN for criteria configured as non-blocking. FAIL/WARN
+#      findings from criteria that opt in via POST_COMMENT (see
+#      criteria/__init__.py) are collected and posted as a single PR
+#      checklist comment per model (model-validation/github_comments.py).
 #   4. Collects all Findings, prints/reports them, and fails the job if any
 #      criterion reports a FAIL-level finding.
 #
@@ -169,6 +169,11 @@ def main() -> int:
         validation = ctx.validation_result(model) if ctx.samm_jar else None
         model_invalid = validation is not None and validation.returncode != 0
 
+        # Findings from POST_COMMENT-enabled criteria, collected across the
+        # whole model and posted as a single PR checklist comment after the
+        # loop below - see github_comments.post_checklist_comment.
+        comment_findings: list[report.Finding] = []
+
         for criterion in criteria.REGISTRY:
             if not config.is_enabled(criterion.id):
                 finding = report.Finding(
@@ -200,11 +205,11 @@ def main() -> int:
                         finding.message += " (non-blocking: downgraded from FAIL via " \
                                             f"{config_module.DEFAULT_CONFIG_RELPATH})"
             if criterion.post_comment:
-                for finding in findings:
-                    if finding.level in ("FAIL", "WARN"):
-                        github_comments.post_review_comment(finding, criterion.id)
+                comment_findings.extend(f for f in findings if f.level in ("FAIL", "WARN"))
             all_findings.extend(findings)
             report.print_console(findings)
+
+        github_comments.post_checklist_comment(ttl_file, comment_findings)
 
     markdown = report.render_markdown(all_findings, ttl_files_to_check, categories)
     _write_step_summary(markdown)

@@ -21,9 +21,10 @@
 # - ``CATEGORY``: one of "Model Validation" / "Formal Requirements" /
 #   "Semantic Quality" - used to group the report table into sections
 # - ``check(model, ctx) -> list[Finding]``: the sub-routine itself
-# - ``POST_COMMENT`` (optional, default False): set to True to also post
-#   this criterion's FAIL/WARN findings as inline PR review comments (see
-#   github_comments.py) instead of only showing up in the report table
+# - ``POST_COMMENT`` (optional, default False): set to True to also
+#   include this criterion's FAIL/WARN findings in the per-model PR
+#   checklist comment (see github_comments.py) instead of only showing up
+#   in the report table
 #
 # It receives the data package the master script (``ms2_check.py``) built
 # for the changed ``.ttl`` file (see ``samm_model_parser.py``) plus the shared
@@ -76,9 +77,9 @@ class Criterion:
     category: str
     check: Callable[[TTLModel, Context], list[Finding]]
     # Opt-in per criterion (set ``POST_COMMENT = True`` in the cNN_*.py
-    # module - see github_comments.py) to post its FAIL/WARN findings as
-    # inline PR review comments, in addition to the normal report. Defaults
-    # to False for criteria that don't declare the constant at all.
+    # module - see github_comments.py) to include its FAIL/WARN findings in
+    # the per-model PR checklist comment, in addition to the normal report.
+    # Defaults to False for criteria that don't declare the constant at all.
     post_comment: bool = False
 
 
