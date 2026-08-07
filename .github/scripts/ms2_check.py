@@ -154,11 +154,30 @@ def main() -> int:
     for ttl_file in ttl_files_to_check:
         print(f"\n=== MS2 criteria for {ttl_file} ===")
         model = parse_model(ttl_file)
+
+        # If the model doesn't even validate against SAMM (MS2-01), don't
+        # bother running the rest of the criteria on it - naming
+        # conventions, example values etc. on a model that's already known
+        # to be broken are noise, not signal. Computed once via the shared
+        # cache (see Context.validation_result) rather than by relying on
+        # MS2-01 happening to run first in REGISTRY order.
+        validation = ctx.validation_result(model) if ctx.samm_jar else None
+        model_invalid = validation is not None and validation.returncode != 0
+
         for criterion in criteria.REGISTRY:
             if not config.is_enabled(criterion.id):
                 finding = report.Finding(
                     criterion.id, criterion.title, "SKIP", ttl_file,
                     f"disabled via {config_module.DEFAULT_CONFIG_RELPATH} (enabled: false)",
+                )
+                all_findings.append(finding)
+                report.print_console([finding])
+                continue
+
+            if model_invalid and criterion.id != "MS2-01":
+                finding = report.Finding(
+                    criterion.id, criterion.title, "SKIP", ttl_file,
+                    "skipped - model does not validate against SAMM CLI (see MS2-01)",
                 )
                 all_findings.append(finding)
                 report.print_console([finding])

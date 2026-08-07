@@ -15,9 +15,12 @@
 # MS2-15: "use constraints to make known constraints from the use case
 # explicit in the aspect model".
 #
-# Informational only (INFO, never FAIL/WARN): whether constraints are
-# *missing* for a given use case cannot be determined from the model file
-# alone. This just surfaces what's there for the reviewer.
+# Informational only (NOTE, never FAIL/WARN/SKIP/INFO): whether constraints
+# are *missing* for a given use case cannot be determined from the model
+# file alone, so this never amounts to a verdict - it surfaces what's there
+# plus an explicit "checked by reviewer" note, for the reviewer. NOTE
+# rather than INFO: INFO is reserved for a genuine automated pass, and this
+# criterion never actually confirms anything.
 
 from __future__ import annotations
 
@@ -26,14 +29,15 @@ from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-15"
-TITLE = "Constraints used where applicable (informational, needs human review)"
+TITLE = "Constraints used where applicable (not automatically verifiable)"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
     constrained = [el.name for el in model.elements.values() if el.short_type.endswith("Constraint")]
     if constrained:
-        return [Finding(ID, TITLE, "INFO", model.file,
-                         f"{len(constrained)} constraint(s) defined: {constrained}")]
-    return [Finding(ID, TITLE, "INFO", model.file,
-                     "no samm-c constraints found - if the use case has known constraints "
-                     "(ranges, patterns, lengths, ...), consider making them explicit")]
+        result = f"{len(constrained)} constraint(s) defined: {constrained}"
+    else:
+        result = ("no samm-c constraints found - if the use case has known constraints "
+                  "(ranges, patterns, lengths, ...), consider making them explicit")
+    return [Finding(ID, TITLE, "NOTE", model.file,
+                     f"{result} (checked by reviewer - not automatically verifiable)")]

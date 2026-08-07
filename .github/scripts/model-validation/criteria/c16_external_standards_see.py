@@ -15,10 +15,12 @@
 # MS2-16: "when relying on external standards, they are referenced through
 # a 'see' element".
 #
-# Informational only (INFO, never FAIL/WARN): whether this model *relies
-# on* an external standard at all is not something that can be inferred
-# from the file. This just surfaces existing samm:see usage for the
-# reviewer.
+# Informational only (NOTE, never FAIL/WARN/SKIP/INFO): whether this model
+# *relies on* an external standard at all is not something that can be
+# inferred from the file, so this never amounts to a verdict - it surfaces
+# existing samm:see usage plus an explicit "checked by reviewer" note, for
+# the reviewer. NOTE rather than INFO: INFO is reserved for a genuine
+# automated pass, and this criterion never actually confirms anything.
 
 from __future__ import annotations
 
@@ -27,14 +29,15 @@ from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-16"
-TITLE = "External standards referenced via samm:see (informational, needs human review)"
+TITLE = "External standards referenced via samm:see (not automatically verifiable)"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
     with_see = [el.name for el in model.elements.values() if el.see]
     if with_see:
-        return [Finding(ID, TITLE, "INFO", model.file,
-                         f"{len(with_see)} element(s) carry a samm:see reference: {with_see}")]
-    return [Finding(ID, TITLE, "INFO", model.file,
-                     "no samm:see references found - if this model implements/relates to an "
-                     "external standard, reference it via samm:see")]
+        result = f"{len(with_see)} element(s) carry a samm:see reference: {with_see}"
+    else:
+        result = ("no samm:see references found - if this model implements/relates to an "
+                  "external standard, reference it via samm:see")
+    return [Finding(ID, TITLE, "NOTE", model.file,
+                     f"{result} (checked by reviewer - not automatically verifiable)")]

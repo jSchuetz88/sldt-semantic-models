@@ -16,9 +16,11 @@
 # which is a Collection, List or Set. In these cases, the aspect name is
 # plural."
 #
-# Only the collection-valued-single-property -> must-be-plural direction is
-# checked. The reverse (aspect should be singular) is not enforced because
-# naive endswith('s') plural detection is unreliable for English nouns.
+# Not a machine-checkable criterion: singular/plural in English has too
+# many edge cases (irregular plurals, property counts skewed by imported
+# properties, ...) to decide reliably from the file alone. Doesn't attempt
+# any analysis; always reports the same static SKIP note that this item
+# needs manual review.
 
 from __future__ import annotations
 
@@ -27,27 +29,9 @@ from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-13"
-TITLE = "Aspect name is singular/plural depending on single Collection property"
-COLLECTION_TYPES = {"Collection", "List", "Set", "SortedSet"}
+TITLE = "Aspect name is singular/plural depending on single Collection property (not automatically verifiable)"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    aspect = model.aspect
-    if not aspect or len(aspect.properties) != 1:
-        return []
-
-    prop = model.elements.get(aspect.properties[0])
-    if not prop or not prop.characteristic:
-        return []
-
-    characteristic = model.elements.get(prop.characteristic)
-    if not characteristic or characteristic.short_type not in COLLECTION_TYPES:
-        return []
-
-    if not aspect.name.endswith("s"):
-        return [Finding(ID, TITLE, "FAIL", model.file,
-                         f"aspect '{aspect.name}' has a single Collection/List/Set property "
-                         f"('{prop.name}') so its name should be plural", element=aspect.name)]
-    return [Finding(ID, TITLE, "INFO", model.file,
-                     f"aspect '{aspect.name}' is (heuristically) plural, matching its single "
-                     f"collection-valued property", element=aspect.name)]
+    return [Finding(ID, TITLE, "SKIP", model.file,
+                     "checked by reviewer - singular/plural naming cannot be automatically verified")]

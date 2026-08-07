@@ -14,17 +14,17 @@
 #######################################################################
 # MS2-20: "generated json schema validates against example json payload".
 #
-# Uses the SAMM CLI's `aspect <file> to schema` / `aspect <file> to json`
-# commands (same ones as generate.sh) to produce both artifacts, then
-# cross-validates them with the `jsonschema` package if it's installed.
+# The JSON schema and example payload themselves come from
+# ctx.generated_artifacts() (see context.py), which runs the SAMM CLI's
+# `aspect <file> to schema` / `aspect <file> to json` commands (same ones
+# as generate.sh) and caches the result per model file - shared with any
+# other criterion that wants the same generated artifacts. This criterion
+# just cross-validates them with the `jsonschema` package if installed.
 
 from __future__ import annotations
 
 import json
-import tempfile
-from pathlib import Path
 
-from .. import samm_cli
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
@@ -34,42 +34,27 @@ TITLE = "Generated JSON schema validates against generated example payload"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    jar = ctx.samm_jar
-    if jar is None:
+    artifacts = ctx.generated_artifacts(model)
+    if artifacts.schema_path is None or artifacts.payload_path is None:
+        level = "SKIP" if artifacts.skipped else "FAIL"
+        return [Finding(ID, TITLE, level, model.file, artifacts.error)]
+
+    try:
+        import jsonschema
+    except ImportError:
         return [Finding(ID, TITLE, "SKIP", model.file,
-                         "SAMM CLI jar unavailable (no Java / no network) - run "
-                         "`java -jar samm-cli-<version>.jar aspect <file> to schema` / `to json` manually")]
+                         "schema and example payload generated successfully, but the "
+                         "'jsonschema' package is not installed so they were not cross-validated "
+                         "(pip install jsonschema)")]
 
-    with tempfile.TemporaryDirectory() as tmp:
-        schema_path = Path(tmp) / "schema.json"
-        payload_path = Path(tmp) / "payload.json"
-
-        schema_result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "to", "schema", "-o", str(schema_path)])
-        if schema_result.returncode != 0 or not schema_path.exists():
-            return [Finding(ID, TITLE, "FAIL", model.file,
-                             f"JSON schema generation failed: {schema_result.stderr.strip()[:300]}")]
-
-        payload_result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "to", "json", "-o", str(payload_path)])
-        if payload_result.returncode != 0 or not payload_path.exists():
-            return [Finding(ID, TITLE, "FAIL", model.file,
-                             f"example JSON payload generation failed: {payload_result.stderr.strip()[:300]}")]
-
-        try:
-            import jsonschema
-        except ImportError:
-            return [Finding(ID, TITLE, "SKIP", model.file,
-                             "schema and example payload generated successfully, but the "
-                             "'jsonschema' package is not installed so they were not cross-validated "
-                             "(pip install jsonschema)")]
-
-        schema = json.loads(schema_path.read_text(encoding="utf-8"))
-        payload = json.loads(payload_path.read_text(encoding="utf-8"))
-        try:
-            jsonschema.validate(payload, schema)
-        except jsonschema.ValidationError as e:
-            return [Finding(ID, TITLE, "FAIL", model.file,
-                             f"generated example payload does not validate against the generated "
-                             f"JSON schema: {e.message}")]
+    schema = json.loads(artifacts.schema_path.read_text(encoding="utf-8"))
+    payload = json.loads(artifacts.payload_path.read_text(encoding="utf-8"))
+    try:
+        jsonschema.validate(payload, schema)
+    except jsonschema.ValidationError as e:
+        return [Finding(ID, TITLE, "FAIL", model.file,
+                         f"generated example payload does not validate against the generated "
+                         f"JSON schema: {e.message}")]
 
     return [Finding(ID, TITLE, "INFO", model.file,
                      "generated JSON schema validates against the generated example payload")]

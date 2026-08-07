@@ -32,8 +32,11 @@ CACHE_DIR = Path(".SAMMCLI")
 
 
 def ensure_samm_cli(version: str, cache_dir: Path = CACHE_DIR) -> Path | None:
-    # Downloads the samm-cli jar (once, cached) or returns None if it
-    # could not be obtained (e.g. no network access).
+    # Returns None only when Java itself isn't installed (a legitimate,
+    # expected state for local/manual runs, tolerated so the criteria
+    # needing the CLI can SKIP gracefully instead of failing the whole
+    # run). A download failure is not caught here - it's left to propagate
+    # and fail the run, same as any other unexpected error.
     cache_dir.mkdir(parents=True, exist_ok=True)
     jar_path = cache_dir / f"samm-cli-{version}.jar"
 
@@ -44,12 +47,8 @@ def ensure_samm_cli(version: str, cache_dir: Path = CACHE_DIR) -> Path | None:
         return None
 
     url = f"https://github.com/eclipse-esmf/esmf-sdk/releases/download/v{version}/samm-cli-{version}.jar"
-    try:
-        urllib.request.urlretrieve(url, jar_path)
-    except OSError:
-        return None
-
-    return jar_path if jar_path.exists() else None
+    urllib.request.urlretrieve(url, jar_path)
+    return jar_path
 
 
 def run_samm_cli(jar_path: Path, args: list[str], timeout: int = 120) -> subprocess.CompletedProcess:

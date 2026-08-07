@@ -19,12 +19,17 @@
 # Deviates from the letter of that wording: the version actually comes
 # from config.json's "settings.samm_cli_version" key (see config.py), not
 # parsed out of README.md - see config.py's module comment for why.
+#
+# The actual `validate` run lives in ctx.validation_result() (see
+# context.py), shared with generated_artifacts() and ms2_check.py's main
+# loop, which both skip further work entirely for a model that fails here
+# - there's no point generating schema/payload or checking naming
+# conventions on a model that's already known to be broken.
 
 from __future__ import annotations
 
 import re
 
-from .. import samm_cli
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
@@ -44,13 +49,12 @@ def _clean_detail(text: str) -> str:
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    jar = ctx.samm_jar
-    if jar is None:
+    if ctx.samm_jar is None:
         return [Finding(ID, TITLE, "SKIP", model.file,
                          "SAMM CLI jar unavailable (no Java / no network) - run "
                          "`java -jar samm-cli-<version>.jar aspect <file> validate` manually")]
 
-    result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "validate"])
+    result = ctx.validation_result(model)
     if result.returncode != 0:
         detail = _clean_detail(result.stdout or result.stderr or f"exit code {result.returncode}")
         return [Finding(ID, TITLE, "FAIL", model.file, f"samm-cli validation failed:\n{detail}")]

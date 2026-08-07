@@ -21,6 +21,13 @@
 # Heuristic only (WARN, not FAIL): flags sibling properties of the same
 # Aspect/Entity that share a leading camel-case word, as a hint the
 # reviewer should consider factoring out an Entity.
+#
+# Redundancy is judged on the name that actually ends up in the payload:
+# a property's samm:payloadName (if set) overrides its SAMM identifier for
+# this purpose, since a payloadName can already resolve the redundancy
+# (e.g. SAMM identifiers `dismantlerId`/`dismantlerName` overridden to
+# payload names `id`/`name`) even though the underlying model identifiers
+# still share a prefix.
 
 from __future__ import annotations
 
@@ -45,7 +52,9 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
             continue
         first_words: dict[str, list[str]] = {}
         for prop_name in el.properties:
-            words = _split_camel(prop_name)
+            prop = model.elements.get(prop_name)
+            effective_name = prop.payload_name if prop and prop.payload_name else prop_name
+            words = _split_camel(effective_name)
             if not words:
                 continue
             first_words.setdefault(words[0], []).append(prop_name)

@@ -14,6 +14,11 @@
 #######################################################################
 # MS2-12: "preferredName should be human readable and follow normal
 # orthography (e.g., no camel case but normal word separation)".
+#
+# Heuristic only (WARN, not FAIL): a lowercase-to-uppercase hump can't be
+# told apart from a genuine single established term that happens to use
+# internal capitalization (e.g. "eCommerce", "iPhone"), so this is a
+# plausible but not certain violation.
 
 from __future__ import annotations
 
@@ -24,7 +29,7 @@ from ..samm_model_parser import TTLModel
 from ..report import Finding
 
 ID = "MS2-12"
-TITLE = "preferredName is human-readable (not Camel-Case)"
+TITLE = "preferredName is human-readable (not Camel-Case) (heuristic, needs human review)"
 CAMEL_HUMP_RE = re.compile(r"[a-z][A-Z]")
 
 
@@ -33,8 +38,9 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     for el in model.elements.values():
         pn = el.preferred_name("en")
         if pn and " " not in pn and CAMEL_HUMP_RE.search(pn):
-            findings.append(Finding(ID, TITLE, "FAIL", model.file,
+            findings.append(Finding(ID, TITLE, "WARN", model.file,
                                      f"preferredName '{pn}' of '{el.name}' looks Camel-Case, "
-                                     f"expected normal word separation",
+                                     f"expected normal word separation - confirm it isn't a "
+                                     f"genuine single term with internal capitalization",
                                      element=el.name))
     return findings

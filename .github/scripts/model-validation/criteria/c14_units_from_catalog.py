@@ -15,9 +15,13 @@
 # MS2-14: "units are referenced from the SAMM unit catalog whenever
 # possible".
 #
-# Heuristic only (WARN, not FAIL): flags samm:unit values that don't use
-# the catalog's 'unit:' prefix, and custom samm:Unit definitions. Whether a
-# matching catalog unit actually exists is left to the reviewer.
+# Never FAIL/WARN/INFO, always SKIP: whether a matching catalog unit
+# actually exists for a given quantity isn't something this script can
+# know (it doesn't load the catalog itself), so a unit that doesn't use
+# the 'unit:' prefix - or a custom samm:Unit definition - is not actually
+# evidence of a violation, just a fact to point the reviewer at. SKIP
+# (rather than WARN) keeps it from claiming a "likely violation" it can't
+# substantiate, and out of the "passing" count when nothing is found.
 
 from __future__ import annotations
 
@@ -33,12 +37,18 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     findings = []
     for el in model.elements.values():
         if el.unit and not el.unit.startswith("unit:"):
-            findings.append(Finding(ID, TITLE, "WARN", model.file,
+            findings.append(Finding(ID, TITLE, "SKIP", model.file,
                                      f"'{el.name}' uses unit '{el.unit}' which is not from the "
                                      f"'unit:' catalog prefix - confirm no catalog unit fits",
                                      element=el.name))
         if el.short_type == "Unit":
-            findings.append(Finding(ID, TITLE, "WARN", model.file,
+            findings.append(Finding(ID, TITLE, "SKIP", model.file,
                                      f"'{el.name}' defines a custom samm:Unit - confirm it does not "
                                      f"already exist in the SAMM unit catalog", element=el.name))
+    if not findings:
+        # An empty list here would otherwise fall through to ms2_check.py's
+        # "silent criterion -> synthesize a passing INFO" fallback, which
+        # would undo the point of using SKIP above.
+        findings.append(Finding(ID, TITLE, "SKIP", model.file,
+                                 "no non-catalog unit references or custom samm:Unit definitions found"))
     return findings

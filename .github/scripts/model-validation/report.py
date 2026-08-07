@@ -21,9 +21,17 @@ from dataclasses import dataclass
 # FAIL   -> objectively violates a MS2 rule, breaks the CI check
 # WARN   -> rule is only partially machine-checkable (heuristic) or the
 #           finding is a likely-but-not-certain violation; does not break CI
-# INFO   -> nothing wrong found, but a note useful for the human reviewer
+# INFO   -> a genuine automated pass: this was actually checked and nothing
+#           is wrong
+# NOTE   -> the criterion can never render a pass/fail verdict at all (the
+#           question isn't machine-answerable from the file), so this is
+#           just a fact for the reviewer, not a confirmation of anything.
+#           Treated the same as INFO for blocking/summary-counting purposes
+#           - the distinction is for the reader, not the gate - but gets a
+#           different icon so a real automated pass isn't visually
+#           confused with "nothing to check here, please review manually".
 # SKIP   -> criterion could not be evaluated (e.g. missing external tool)
-LEVELS = ("FAIL", "WARN", "INFO", "SKIP")
+LEVELS = ("FAIL", "WARN", "INFO", "NOTE", "SKIP")
 
 
 @dataclass
@@ -44,10 +52,11 @@ def has_failures(findings: list[Finding]) -> bool:
     return any(f.level == "FAIL" for f in findings)
 
 
-# Table icon per level: check = nothing wrong, warning = non-blocking
-# heads-up, cross = blocking failure, dash = doesn't matter right now
-# (skipped/disabled/couldn't run).
-ICON = {"FAIL": "❌", "WARN": "⚠️", "INFO": "✅", "SKIP": "➖"}
+# Table icon per level: check = genuine automated pass, info = non-
+# evaluable fact for the reviewer, warning = non-blocking heads-up, cross =
+# blocking failure, dash = doesn't matter right now (skipped/disabled/
+# couldn't run).
+ICON = {"FAIL": "❌", "WARN": "⚠️", "INFO": "✅", "NOTE": "ℹ️", "SKIP": "➖"}
 
 
 def _flatten(text: str) -> str:
@@ -88,7 +97,7 @@ def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
         counts = {level: sum(1 for f in file_findings if f.level == level) for level in LEVELS}
         lines.append(
             f"**Summary:** {counts['FAIL']} failing, {counts['WARN']} warnings, "
-            f"{counts['INFO']} passing, {counts['SKIP']} skipped."
+            f"{counts['INFO'] + counts['NOTE']} passing, {counts['SKIP']} skipped."
         )
         lines.append("")
 
