@@ -32,13 +32,14 @@ from ..report import Finding
 ID = "MS2-02"
 TITLE = "Generated JSON schema validates against generated example payload"
 CATEGORY = "Model Validation"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
     artifacts = ctx.generated_artifacts(model)
     if artifacts.schema_path is None or artifacts.payload_path is None:
         level = "SKIP" if artifacts.skipped else "FAIL"
-        return [Finding(ID, TITLE, level, model.file, artifacts.error)]
+        return [Finding(ID, TITLE, level, model.file, artifacts.error, line=1 if level == "FAIL" else None)]
 
     try:
         import jsonschema
@@ -55,7 +56,7 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     except jsonschema.ValidationError as e:
         return [Finding(ID, TITLE, "FAIL", model.file,
                          f"generated example payload does not validate against the generated "
-                         f"JSON schema: {e.message}")]
+                         f"JSON schema: {e.message}", line=1)]
 
     return [Finding(ID, TITLE, "INFO", model.file,
                      "generated JSON schema validates against the generated example payload")]

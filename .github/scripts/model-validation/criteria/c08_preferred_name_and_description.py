@@ -29,6 +29,7 @@ ID = "MS2-08"
 # Every model element must have samm:preferredName and samm:description in English.
 TITLE = "preferredName and description present (English)"
 CATEGORY = "Semantic Quality"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -36,8 +37,10 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     for el in model.elements.values():
         if el.preferred_name("en") is None:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"'{el.name}' is missing samm:preferredName ... @en", element=el.name))
+                                     f"'{el.name}' is missing samm:preferredName ... @en",
+                                     element=el.name, line=el.line_no))
         if el.description("en") is None:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"'{el.name}' is missing samm:description ... @en", element=el.name))
+                                     f"'{el.name}' is missing samm:description ... @en",
+                                     element=el.name, line=el.line_no))
     return findings

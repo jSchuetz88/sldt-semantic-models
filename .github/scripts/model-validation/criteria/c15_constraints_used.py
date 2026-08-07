@@ -31,6 +31,9 @@ from ..report import Finding
 ID = "MS2-15"
 TITLE = "Constraints used where applicable (not automatically verifiable)"
 CATEGORY = "Semantic Quality"
+# Harmless no-op today (check() below only ever returns NOTE) - see c09's
+# comment on POST_COMMENT for why this is still set.
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

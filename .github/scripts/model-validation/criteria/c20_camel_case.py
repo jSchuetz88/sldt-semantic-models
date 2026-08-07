@@ -27,6 +27,7 @@ ID = "MS2-20"
 # All identifiers must use Camel-Case (letters/digits only, no other characters).
 TITLE = "Identifiers use Camel-Case"
 CATEGORY = "Naming Conventions"
+POST_COMMENT = True
 CAMEL_CASE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*$")
 
 

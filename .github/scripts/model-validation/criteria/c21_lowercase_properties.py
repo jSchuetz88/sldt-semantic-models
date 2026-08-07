@@ -25,6 +25,7 @@ ID = "MS2-21"
 # Property identifiers must start with a lowercase letter.
 TITLE = "Property identifiers start with a lowercase letter"
 CATEGORY = "Naming Conventions"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

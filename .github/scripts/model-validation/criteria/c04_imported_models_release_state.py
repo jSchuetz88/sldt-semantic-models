@@ -27,6 +27,7 @@ from ..report import Finding
 ID = "MS2-04"
 TITLE = "Imported models are in 'release' state"
 CATEGORY = "Model Validation"
+POST_COMMENT = True
 PREFIX_RE = re.compile(r"@prefix\s+([\w-]+):\s+<urn:[bs]amm:([\w.]+):(\d+\.\d+\.\d+)#>")
 
 
@@ -57,11 +58,11 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
         meta = _read_metadata(folder, version)
         if not meta:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"metadata.json not found for imported model {folder}:{version}"))
+                                     f"metadata.json not found for imported model {folder}:{version}", line=1))
         elif meta.get("status") != "release":
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"imported model {folder}:{version} has status "
-                                     f"'{meta.get('status')}', expected 'release'"))
+                                     f"'{meta.get('status')}', expected 'release'", line=1))
     if not findings:
         findings.append(Finding(ID, TITLE, "INFO", model.file,
                                  "all imported/external models are in 'release' state"))

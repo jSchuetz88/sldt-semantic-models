@@ -26,6 +26,7 @@ ID = "MS2-18"
 # Identifiers of all model elements except properties must start with a capital letter.
 TITLE = "Non-property identifiers start with a capital letter"
 CATEGORY = "Naming Conventions"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

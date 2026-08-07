@@ -32,6 +32,9 @@ from ..report import Finding
 ID = "MS2-14"
 TITLE = "Units reference the SAMM unit catalog (heuristic, needs human review)"
 CATEGORY = "Semantic Quality"
+# Harmless no-op today (check() below only ever returns SKIP) - see c09's
+# comment on POST_COMMENT for why this is still set.
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -41,11 +44,11 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
             findings.append(Finding(ID, TITLE, "SKIP", model.file,
                                      f"'{el.name}' uses unit '{el.unit}' which is not from the "
                                      f"'unit:' catalog prefix - confirm no catalog unit fits",
-                                     element=el.name))
+                                     element=el.name, line=el.line_no))
         if el.short_type == "Unit":
             findings.append(Finding(ID, TITLE, "SKIP", model.file,
                                      f"'{el.name}' defines a custom samm:Unit - confirm it does not "
-                                     f"already exist in the SAMM unit catalog", element=el.name))
+                                     f"already exist in the SAMM unit catalog", element=el.name, line=el.line_no))
     if not findings:
         # An empty list here would otherwise fall through to ms2_check.py's
         # "silent criterion -> synthesize a passing INFO" fallback, which

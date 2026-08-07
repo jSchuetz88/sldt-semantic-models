@@ -25,6 +25,7 @@ ID = "MS2-22"
 # A property and its referenced Characteristic must not share the same name.
 TITLE = "Property and its Characteristic have different names"
 CATEGORY = "Semantic Quality"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -33,5 +34,5 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
         if el.short_type == "Property" and el.characteristic and el.characteristic == el.name:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"property '{el.name}' and its characteristic share the same name",
-                                     element=el.name))
+                                     element=el.name, line=el.line_no))
     return findings

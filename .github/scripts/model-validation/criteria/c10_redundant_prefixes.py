@@ -40,6 +40,7 @@ from ..report import Finding
 ID = "MS2-10"
 TITLE = "Avoid redundant prefixes in property names (heuristic, needs human review)"
 CATEGORY = "Semantic Quality"
+POST_COMMENT = True
 
 
 def _split_camel(name: str) -> list[str]:
@@ -65,6 +66,6 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
                     ID, TITLE, "WARN", model.file,
                     f"properties {props} of '{el.name}' all share the prefix '{word}' - "
                     f"consider an enclosing Entity instead (e.g. '{word}' with sub-properties)",
-                    element=el.name,
+                    element=el.name, line=el.line_no,
                 ))
     return findings

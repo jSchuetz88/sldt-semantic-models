@@ -23,6 +23,7 @@ from ..report import Finding
 ID = "MS2-11"
 TITLE = "preferredName and description are not identical"
 CATEGORY = "Semantic Quality"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -33,5 +34,5 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
         if pn is not None and pn == de:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"'{el.name}': preferredName and description are identical",
-                                     element=el.name))
+                                     element=el.name, line=el.line_no))
     return findings

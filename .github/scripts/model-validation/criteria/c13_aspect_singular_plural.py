@@ -31,6 +31,9 @@ from ..report import Finding
 ID = "MS2-13"
 TITLE = "Aspect name is singular/plural depending on single Collection property (not automatically verifiable)"
 CATEGORY = "Naming Conventions"
+# Harmless no-op today (check() below only ever returns SKIP) - see c09's
+# comment on POST_COMMENT for why this is still set.
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

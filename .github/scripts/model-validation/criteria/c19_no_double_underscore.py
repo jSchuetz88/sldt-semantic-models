@@ -25,6 +25,7 @@ ID = "MS2-19"
 # Identifiers and payloadName values must not contain two consecutive underscores.
 TITLE = "No double underscores in identifiers/payload names"
 CATEGORY = "Naming Conventions"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -32,8 +33,9 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     for el in model.elements.values():
         if "__" in el.name:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"identifier '{el.name}' contains '__'", element=el.name))
+                                     f"identifier '{el.name}' contains '__'", element=el.name, line=el.line_no))
         if el.payload_name and "__" in el.payload_name:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"payloadName '{el.payload_name}' contains '__'", element=el.name))
+                                     f"payloadName '{el.payload_name}' contains '__'",
+                                     element=el.name, line=el.line_no))
     return findings

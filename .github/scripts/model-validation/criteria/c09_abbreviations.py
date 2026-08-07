@@ -31,6 +31,11 @@ from ..report import Finding
 ID = "MS2-09"
 TITLE = "Abbreviations used only when necessary and common (not automatically verifiable)"
 CATEGORY = "Semantic Quality"
+# Harmless no-op today (check() below only ever returns SKIP, and
+# ms2_check.py only posts FAIL/WARN findings) - set for consistency with
+# every other criterion and so this doesn't need to be remembered if the
+# check ever grows a real verdict.
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
