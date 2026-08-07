@@ -30,7 +30,7 @@ from ..report import Finding
 
 ID = "MS2-13"
 TITLE = "Aspect name is singular/plural depending on single Collection property (not automatically verifiable)"
-CATEGORY = "Formal Requirements"
+CATEGORY = "Semantic Quality"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

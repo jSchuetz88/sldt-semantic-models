@@ -22,7 +22,7 @@ from ..report import Finding
 
 ID = "MS2-11"
 TITLE = "preferredName and description are not identical"
-CATEGORY = "Formal Requirements"
+CATEGORY = "Semantic Quality"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

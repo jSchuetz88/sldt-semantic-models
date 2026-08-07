@@ -39,7 +39,7 @@ from ..report import Finding
 
 ID = "MS2-10"
 TITLE = "Avoid redundant prefixes in property names (heuristic, needs human review)"
-CATEGORY = "Formal Requirements"
+CATEGORY = "Semantic Quality"
 
 
 def _split_camel(name: str) -> list[str]:

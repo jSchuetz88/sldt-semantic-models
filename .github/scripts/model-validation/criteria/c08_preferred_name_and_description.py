@@ -28,7 +28,7 @@ from ..report import Finding
 ID = "MS2-08"
 # Every model element must have samm:preferredName and samm:description in English.
 TITLE = "preferredName and description present (English)"
-CATEGORY = "Formal Requirements"
+CATEGORY = "Semantic Quality"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:

@@ -24,7 +24,7 @@ from ..report import Finding
 ID = "MS2-22"
 # A property and its referenced Characteristic must not share the same name.
 TITLE = "Property and its Characteristic have different names"
-CATEGORY = "Formal Requirements"
+CATEGORY = "Semantic Quality"
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
