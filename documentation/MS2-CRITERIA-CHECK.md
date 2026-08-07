@@ -72,7 +72,7 @@ Optionally, a module can also set `POST_COMMENT = True` (default `False` if omit
 
 **To add or change a criterion:** drop in (or edit) a `cNN_<slug>.py` file with `ID`, `TITLE`, `CATEGORY`, and a `check` function. Nothing else needs to change - no registry to update by hand.
 
-`CATEGORY` is one of `"Model Validation"`, `"Formal Requirements"`, or `"Semantic Quality"` - see the checklist table below for which criterion is in which. It exists purely to group the report table into sections (see "Report format" below); it doesn't affect execution, blocking, or anything else.
+`CATEGORY` is one of `"Model Validation"`, `"Formal Requirements"`, `"Naming Conventions"`, or `"Semantic Quality"` - see the checklist table below for which criterion is in which. It exists purely to group the report table into sections (see "Report format" below); it doesn't affect execution, blocking, or anything else.
 
 The `cNN` file prefix and the `ID = "MS2-NN"` constant inside the file are independent: the prefix only controls **execution/report order** (`REGISTRY` is built by sorting on file name), while `ID` is the criterion's actual identity (used in the report, in `config.json` overrides, and everywhere else). They happen to line up for most criteria, but don't have to - e.g. `c02_schema_validates_payload.py` carries `ID = "MS2-02"` so the JSON-schema-vs-payload check runs right after MS2-01 (both are checks on whether the model's basic artifacts are even sound), while `c20_camel_case.py` carries `ID = "MS2-20"` and runs near the end.
 
@@ -102,15 +102,15 @@ Each `Finding` has a level:
 | MS2-10 | Formal Requirements | ⚠️ heuristic | redundant property-name prefixes among sibling properties of the same Aspect/Entity - flags (`WARN`), doesn't fail. Groups by `samm:payloadName` when set (falls back to the SAMM identifier), since a payload-name override can already resolve the redundancy even if the underlying SAMM identifiers still share a prefix |
 | MS2-11 | Formal Requirements | ✅ automated | `preferredName` != `description` |
 | MS2-12 | Formal Requirements | ⚠️ heuristic | `preferredName` looks Camel-Case (`WARN`, not `FAIL`) - a lowercase-to-uppercase hump can't be told apart from a genuine single term with internal capitalization (e.g. "eCommerce"), so this is a plausible but not certain violation |
-| MS2-13 | Formal Requirements | ⛔ not automated | plural aspect name required for a single Collection-valued property. Always `SKIP`, no analysis attempted (same pattern as MS2-09): English singular/plural has too many edge cases (irregular plurals not ending in "s"), and the property count itself is unreliable whenever an Aspect mixes local and externally-prefixed (imported) properties - the parser's local-reference regex silently drops the latter |
+| MS2-13 | Naming Conventions | ⛔ not automated | plural aspect name required for a single Collection-valued property. Always `SKIP`, no analysis attempted (same pattern as MS2-09): English singular/plural has too many edge cases (irregular plurals not ending in "s"), and the property count itself is unreliable whenever an Aspect mixes local and externally-prefixed (imported) properties - the parser's local-reference regex silently drops the latter |
 | MS2-14 | Semantic Quality | ⚠️ heuristic | units should come from the SAMM catalog. Always `SKIP` (never `WARN`): a non-catalog unit prefix or a custom `samm:Unit` definition is only a fact the script can point at, not evidence of a violation - it has no way to know whether a matching catalog unit actually exists for that quantity |
 | MS2-15 | Semantic Quality | ℹ️ informational (`NOTE`) | constraints usage - always the same static "checked by reviewer" note plus what's actually defined; whether more constraints are *needed* can't be judged from the file at all |
 | MS2-16 | Semantic Quality | ℹ️ informational (`NOTE`) | `samm:see` usage - same reasoning and treatment as MS2-15 |
 | MS2-17 | Semantic Quality | ✅ automated | simple-typed properties have an example value |
-| MS2-18 | Formal Requirements | ✅ automated | non-property identifiers start uppercase |
-| MS2-19 | Formal Requirements | ✅ automated | no `__` in identifiers/payload names |
-| MS2-20 | Formal Requirements | ✅ automated | Camel-Case identifiers |
-| MS2-21 | Formal Requirements | ✅ automated | property identifiers start lowercase |
+| MS2-18 | Naming Conventions | ✅ automated | non-property identifiers start uppercase |
+| MS2-19 | Naming Conventions | ✅ automated | no `__` in identifiers/payload names |
+| MS2-20 | Naming Conventions | ✅ automated | Camel-Case identifiers |
+| MS2-21 | Naming Conventions | ✅ automated | property identifiers start lowercase |
 | MS2-22 | Formal Requirements | ✅ automated | property and its Characteristic don't share a name |
 
 ## Config (`model-validation/config.json`)
@@ -139,7 +139,7 @@ A criterion ID in the config that doesn't match any known criterion prints a `WA
 
 Written to the GitHub Actions job summary (and printed to the console). Since each CI matrix leg checks exactly one model, its report title carries the model's file path directly (`# MS2 Criteria Report — <file>`) instead of a redundant per-model sub-header; a local run checking several changed `.ttl` files at once (no `--file`) keeps a generic title with a `## MS2 Criteria — <file>` sub-header per model instead, so the sections stay distinguishable.
 
-Within a model's section, criteria are grouped into their `CATEGORY` (`Model Validation` / `Formal Requirements` / `Semantic Quality` - see the checklist table above), each its own sub-header (`##`, or `###` when nested under a per-model sub-header in the multi-file case), ordered by the lowest criterion ID it contains. Each category's table has one row per criterion: status icon, criterion ID, criterion name, and message. A criterion that produces multiple findings for the same model shows the worst icon and all messages (`<br>`-joined) in one row. Messages are wrapped in an inline code span for monospace rendering, since real line breaks aren't possible inside a Markdown table cell - collapsible `<details>` sections were tried for long multi-line output (e.g. a full samm-cli error dump) but GitHub's job-summary sanitizer strips that tag entirely, so plain inline code is what's left.
+Within a model's section, criteria are grouped into their `CATEGORY` (`Model Validation` / `Formal Requirements` / `Naming Conventions` / `Semantic Quality` - see the checklist table above), each its own sub-header (`##`, or `###` when nested under a per-model sub-header in the multi-file case), ordered by the lowest criterion ID it contains. Each category's table has one row per criterion: status icon, criterion ID, criterion name, and message. A criterion that produces multiple findings for the same model shows the worst icon and all messages (`<br>`-joined) in one row. Messages are wrapped in an inline code span for monospace rendering, since real line breaks aren't possible inside a Markdown table cell - collapsible `<details>` sections were tried for long multi-line output (e.g. a full samm-cli error dump) but GitHub's job-summary sanitizer strips that tag entirely, so plain inline code is what's left.
 
 The summary line above each model's table (`**Summary:** N failing, M warnings, X passing, Y for manual review, Z skipped.`) counts `SUCCESS` and `NOTE` separately: `X passing` is genuinely `SUCCESS` only, `Y for manual review` is `NOTE` only - they're kept apart on purpose so "passing" always means "an automated check actually ran and found nothing wrong", not diluted by criteria that can't render a verdict at all (MS2-09, MS2-13, MS2-15, MS2-16).
 

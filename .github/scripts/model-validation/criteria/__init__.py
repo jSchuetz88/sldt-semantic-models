@@ -19,7 +19,8 @@
 # - ``ID``: the criterion id, e.g. "MS2-02"
 # - ``TITLE``: a short human-readable title
 # - ``CATEGORY``: one of "Model Validation" / "Formal Requirements" /
-#   "Semantic Quality" - used to group the report table into sections
+#   "Naming Conventions" / "Semantic Quality" - used to group the report
+#   table into sections
 # - ``check(model, ctx) -> list[Finding]``: the sub-routine itself
 # - ``POST_COMMENT`` (optional, default False): set to True to also
 #   include this criterion's FAIL/WARN findings in the per-model PR
