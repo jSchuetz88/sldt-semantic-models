@@ -32,7 +32,7 @@ from ..report import Finding
 ID = "MS2-07"
 TITLE = "Copyright header exists"
 CATEGORY = "Formal Requirements"
-COPYRIGHT_LINE_RE = re.compile(r"#\s*Copyright\(?c\)?\s+\d{4}\s+(.+?)\s*$", re.MULTILINE)
+COPYRIGHT_LINE_RE = re.compile(r"#\s*Copyright\s*\(?c\)?\s+\d{4}\s+(.+?)\s*$", re.MULTILINE)
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
