@@ -44,7 +44,10 @@
 #      if any (see model-validation/config.py).
 #   3. Hands the model + a shared Context to every enabled criterion
 #      sub-routine registered in model-validation/criteria/, downgrading
-#      FAILs to WARN for criteria configured as non-blocking.
+#      FAILs to WARN for criteria configured as non-blocking, and (for
+#      criteria that opt in via POST_COMMENT, see criteria/__init__.py and
+#      model-validation/github_comments.py) posting an inline PR review
+#      comment per FAIL/WARN finding.
 #   4. Collects all Findings, prints/reports them, and fails the job if any
 #      criterion reports a FAIL-level finding.
 #
@@ -79,6 +82,7 @@ report = importlib.import_module("model-validation.report")
 Context = importlib.import_module("model-validation.context").Context
 parse_model = importlib.import_module("model-validation.samm_model_parser").parse_model
 config_module = importlib.import_module("model-validation.config")
+github_comments = importlib.import_module("model-validation.github_comments")
 
 
 def parse_args() -> argparse.Namespace:
@@ -195,6 +199,10 @@ def main() -> int:
                         finding.level = "WARN"
                         finding.message += " (non-blocking: downgraded from FAIL via " \
                                             f"{config_module.DEFAULT_CONFIG_RELPATH})"
+            if criterion.post_comment:
+                for finding in findings:
+                    if finding.level in ("FAIL", "WARN"):
+                        github_comments.post_review_comment(finding, criterion.id)
             all_findings.extend(findings)
             report.print_console(findings)
 

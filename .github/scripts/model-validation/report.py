@@ -42,6 +42,12 @@ class Finding:
     file: str
     message: str
     element: str | None = None
+    # 1-based line in `file` this finding is anchored to (e.g. an element's
+    # declaration line - see samm_model_parser.Element.line_no), or None
+    # when the finding isn't tied to a specific line (e.g. a file-wide
+    # criterion). Only consumed by github_comments.py to place an inline PR
+    # review comment - unrelated to the console/Markdown report above.
+    line: int | None = None
 
     def __str__(self) -> str:
         loc = f"{self.file}" + (f" [{self.element}]" if self.element else "")

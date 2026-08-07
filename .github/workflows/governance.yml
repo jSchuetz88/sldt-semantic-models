@@ -63,6 +63,12 @@ jobs:
     needs: detect-changed-models
     if: needs.detect-changed-models.outputs.files != '[]'
     runs-on: ubuntu-latest
+    # Only this job needs it (least privilege): criteria with
+    # POST_COMMENT = True (see model-validation/github_comments.py) post
+    # their FAIL/WARN findings as inline PR review comments.
+    permissions:
+      contents: read
+      pull-requests: write
     strategy:
       fail-fast: false
       matrix:
@@ -89,6 +95,10 @@ jobs:
         run: pip install jsonschema
 
       - name: Run MS2 criteria check
+        env:
+          # Only used by criteria with POST_COMMENT = True, to post inline
+          # PR review comments (see model-validation/github_comments.py).
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python .github/scripts/ms2_check.py \
             --file "${{ matrix.ttl_file }}" \

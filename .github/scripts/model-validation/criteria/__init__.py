@@ -21,6 +21,9 @@
 # - ``CATEGORY``: one of "Model Validation" / "Formal Requirements" /
 #   "Semantic Quality" - used to group the report table into sections
 # - ``check(model, ctx) -> list[Finding]``: the sub-routine itself
+# - ``POST_COMMENT`` (optional, default False): set to True to also post
+#   this criterion's FAIL/WARN findings as inline PR review comments (see
+#   github_comments.py) instead of only showing up in the report table
 #
 # It receives the data package the master script (``ms2_check.py``) built
 # for the changed ``.ttl`` file (see ``samm_model_parser.py``) plus the shared
@@ -72,6 +75,11 @@ class Criterion:
     title: str
     category: str
     check: Callable[[TTLModel, Context], list[Finding]]
+    # Opt-in per criterion (set ``POST_COMMENT = True`` in the cNN_*.py
+    # module - see github_comments.py) to post its FAIL/WARN findings as
+    # inline PR review comments, in addition to the normal report. Defaults
+    # to False for criteria that don't declare the constant at all.
+    post_comment: bool = False
 
 
 def _discover_registry() -> list[Criterion]:
@@ -84,7 +92,10 @@ def _discover_registry() -> list[Criterion]:
         module = importlib.import_module(f"{__name__}.{module_info.name}")
         check_fn = getattr(module, "check", None)
         if check_fn is not None:
-            registry.append(Criterion(id=module.ID, title=module.TITLE, category=module.CATEGORY, check=check_fn))
+            registry.append(Criterion(
+                id=module.ID, title=module.TITLE, category=module.CATEGORY, check=check_fn,
+                post_comment=getattr(module, "POST_COMMENT", False),
+            ))
     return registry
 
 

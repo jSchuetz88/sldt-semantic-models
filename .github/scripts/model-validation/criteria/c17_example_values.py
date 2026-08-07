@@ -28,6 +28,7 @@ from ..report import Finding
 ID = "MS2-17"
 TITLE = "Properties with simple (xsd) type have an example value"
 CATEGORY = "Semantic Quality"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -44,6 +45,6 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
             findings.append(Finding(
                 ID, TITLE, "FAIL", model.file,
                 f"property '{el.name}' -> characteristic '{characteristic.name}' has simple type "
-                f"'{characteristic.data_type}' but no samm:exampleValue", element=el.name,
+                f"'{characteristic.data_type}' but no samm:exampleValue", element=el.name, line=el.line_no,
             ))
     return findings

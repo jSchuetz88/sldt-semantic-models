@@ -32,6 +32,7 @@ from ..report import Finding
 ID = "MS2-07"
 TITLE = "Copyright header exists"
 CATEGORY = "Formal Requirements"
+POST_COMMENT = True
 COPYRIGHT_LINE_RE = re.compile(r"#\s*Copyright\s*\(?c\)?\s+\d{4}\s+(.+?)\s*$", re.MULTILINE)
 
 
@@ -42,6 +43,6 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
 
     if not copyright_holders:
         return [Finding(ID, TITLE, "FAIL", model.file,
-                         "no copyright header found at the top of the file")]
+                         "no copyright header found at the top of the file", line=1)]
     return [Finding(ID, TITLE, "INFO", model.file,
                      f"copyright header present, lists: {copyright_holders}")]
