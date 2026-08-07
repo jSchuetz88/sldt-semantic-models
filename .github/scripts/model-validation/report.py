@@ -34,6 +34,11 @@ class Finding:
     file: str
     message: str
     element: str | None = None
+    # Overrides the table icon that ICON[level] would otherwise pick, e.g. to
+    # tell an INFO "genuine pass" apart from an INFO "nothing to report, but
+    # worth a human glance" without touching the level (and thus the
+    # FAIL/WARN/INFO/SKIP counts and blocking semantics).
+    icon: str | None = None
 
     def __str__(self) -> str:
         loc = f"{self.file}" + (f" [{self.element}]" if self.element else "")
@@ -102,8 +107,9 @@ def render_markdown(findings: list[Finding], files_checked: list[str]) -> str:
         for criterion_id in sorted(by_criterion):
             group = by_criterion[criterion_id]
             worst = min(group, key=lambda f: LEVELS.index(f.level))
+            icon = worst.icon or ICON[worst.level]
             messages = "<br>".join(_code_cell(f.message) for f in group)
-            lines.append(f"| {ICON[worst.level]} | {criterion_id} | {_escape_cell(group[0].title)} | {messages} |")
+            lines.append(f"| {icon} | {criterion_id} | {_escape_cell(group[0].title)} | {messages} |")
 
         lines.append("")
 

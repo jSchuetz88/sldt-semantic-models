@@ -17,7 +17,10 @@
 #
 # Informational only (INFO, never FAIL/WARN): whether constraints are
 # *missing* for a given use case cannot be determined from the model file
-# alone. This just surfaces what's there for the reviewer.
+# alone, so this just surfaces what's there for the reviewer - it stays
+# INFO (and counts as "passing") either way. The "nothing found" case gets
+# a distinct ℹ️ table icon instead of the default ✅ so it doesn't read as
+# a verified pass, just a heads-up worth a glance.
 
 from __future__ import annotations
 
@@ -36,4 +39,5 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
                          f"{len(constrained)} constraint(s) defined: {constrained}")]
     return [Finding(ID, TITLE, "INFO", model.file,
                      "no samm-c constraints found - if the use case has known constraints "
-                     "(ranges, patterns, lengths, ...), consider making them explicit")]
+                     "(ranges, patterns, lengths, ...), consider making them explicit",
+                     icon="ℹ️")]

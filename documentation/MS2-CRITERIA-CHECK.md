@@ -90,7 +90,7 @@ Each `Finding` has a level:
 | MS2-12 | ✅ automated | `preferredName` is human-readable, not Camel-Case |
 | MS2-13 | ✅ automated (partial) | plural aspect name required for a single Collection-valued property; the reverse (must be singular) isn't enforced, too unreliable |
 | MS2-14 | ⚠️ heuristic | units should come from the SAMM catalog - flags, doesn't fail |
-| MS2-15 | ℹ️ informational | constraints usage - only reports what's there, can't judge if more are needed |
+| MS2-15 | ℹ️ informational | constraints usage - only reports what's there, can't judge if more are needed; shows ℹ️ instead of ✅ when none are found |
 | MS2-16 | ℹ️ informational | `samm:see` usage - same reasoning as MS2-15 |
 | MS2-17 | ✅ automated | simple-typed properties have an example value |
 | MS2-18 | ✅ automated | imported/external models are in `release` state |
