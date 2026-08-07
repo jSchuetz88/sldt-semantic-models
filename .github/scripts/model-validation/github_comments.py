@@ -38,6 +38,14 @@
 #     than being deleted (deleting needs a separate `delete` call; a stale
 #     "all clear now" comment is a minor cosmetic issue, not a correctness
 #     one, so that's left for a future version)
+#
+# A human can "Hide" (minimize) the comment on GitHub - that doesn't delete
+# it (still found and PATCHed on the next run) but it also doesn't
+# automatically un-hide on edit, so an update could otherwise sit there
+# unnoticed. Every time an existing comment is updated with findings still
+# outstanding, it's explicitly un-minimized again via the GraphQL
+# `unminimizeComment` mutation - REST has no equivalent - so a still-open
+# issue can't stay silently hidden.
 
 from __future__ import annotations
 
@@ -95,14 +103,52 @@ def _api_request(method: str, path: str, token: str, body: dict | None = None) -
         return 0, {"message": str(e)}
 
 
-def _find_existing_comment(pr: PRContext, token: str, marker: str) -> int | None:
+def _graphql_request(query: str, variables: dict, token: str) -> tuple[int, object]:
+    # Same auth/error handling as _api_request, just a different endpoint
+    # and payload shape - GraphQL is the only way to reach mutations (like
+    # un-minimizing a comment) that the REST API doesn't expose at all.
+    url = f"{API_ROOT}/graphql"
+    data = json.dumps({"query": query, "variables": variables}).encode("utf-8")
+    req = urllib.request.Request(url, data=data, method="POST", headers={
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return resp.status, json.loads(resp.read() or b"{}")
+    except urllib.error.HTTPError as e:
+        return e.code, json.loads(e.read() or b"{}")
+    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as e:
+        return 0, {"message": str(e)}
+
+
+UNMINIMIZE_MUTATION = """
+mutation($id: ID!) {
+  unminimizeComment(input: { subjectId: $id }) {
+    unminimizedComment { id }
+  }
+}
+"""
+
+
+def _unminimize_comment(node_id: str, token: str) -> None:
+    status, payload = _graphql_request(UNMINIMIZE_MUTATION, {"id": node_id}, token)
+    errors = payload.get("errors") if isinstance(payload, dict) else None
+    if status != 200 or errors:
+        # Not worth failing over - e.g. the comment was never minimized to
+        # begin with is *not* an error GitHub raises here, so a genuine
+        # failure here is rare enough to just log and move on.
+        print(f"could not un-hide MS2 checklist PR comment: {errors or payload}")
+
+
+def _find_existing_comment(pr: PRContext, token: str, marker: str) -> tuple[int, str] | None:
     status, payload = _api_request(
         "GET", f"/repos/{pr.owner}/{pr.repo}/issues/{pr.pull_number}/comments?per_page=100", token)
     if status != 200 or not isinstance(payload, list):
         return None
     for comment in payload:
         if marker in comment.get("body", ""):
-            return comment["id"]
+            return comment["id"], comment["node_id"]
     return None
 
 
@@ -130,11 +176,17 @@ def post_checklist_comment(model_file: str, findings: list[Finding]) -> None:
 
     marker = HIDDEN_MARKER.format(path=model_file)
     body = _render_checklist(model_file, findings, marker)
-    existing_id = _find_existing_comment(pr, token, marker)
+    existing = _find_existing_comment(pr, token, marker)
 
-    if existing_id is not None:
+    if existing is not None:
+        existing_id, node_id = existing
         status, payload = _api_request(
             "PATCH", f"/repos/{pr.owner}/{pr.repo}/issues/comments/{existing_id}", token, body={"body": body})
+        if status in (200, 201):
+            # Findings are still outstanding (checked at the top of this
+            # function) - don't let a hidden/minimized comment sit there
+            # silently updated but invisible, see the module docstring.
+            _unminimize_comment(node_id, token)
     else:
         status, payload = _api_request(
             "POST", f"/repos/{pr.owner}/{pr.repo}/issues/{pr.pull_number}/comments", token, body={"body": body})
