@@ -12,24 +12,28 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-07: "Property and the referenced Characteristic should not have the
-# same name".
+# MS2-20: "use Camel-Case".
 
 from __future__ import annotations
+
+import re
 
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from ._shared import element_findings
 
-ID = "MS2-07"
-TITLE = "Property and its Characteristic have different names"
+ID = "MS2-20"
+# All identifiers must use Camel-Case (letters/digits only, no other characters).
+TITLE = "Identifiers use Camel-Case"
+CATEGORY = "Naming Conventions"
+POST_COMMENT = True
+CAMEL_CASE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*$")
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    findings = []
-    for el in model.elements.values():
-        if el.short_type == "Property" and el.characteristic and el.characteristic == el.name:
-            findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"property '{el.name}' and its characteristic share the same name",
-                                     element=el.name))
-    return findings
+    def bad(el):
+        return None if CAMEL_CASE_RE.match(el.name) else "contains characters other than letters/digits"
+
+    return element_findings(ID, TITLE, model, bad,
+                             lambda el, msg: f"identifier '{el.name}' is not Camel-Case ({msg})")

@@ -12,26 +12,28 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-03: "payload names and property identifiers must not contain two
-# consecutive underscores ('__') at any position".
+# MS2-18: "the identifiers for all model elements start with a capital
+# letter except for properties".
 
 from __future__ import annotations
 
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from ._shared import element_findings
 
-ID = "MS2-03"
-TITLE = "No double underscores in identifiers/payload names"
+ID = "MS2-18"
+# Identifiers of all model elements except properties must start with a capital letter.
+TITLE = "Non-property identifiers start with a capital letter"
+CATEGORY = "Naming Conventions"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    findings = []
-    for el in model.elements.values():
-        if "__" in el.name:
-            findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"identifier '{el.name}' contains '__'", element=el.name))
-        if el.payload_name and "__" in el.payload_name:
-            findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"payloadName '{el.payload_name}' contains '__'", element=el.name))
-    return findings
+    def bad(el):
+        if el.short_type == "Property" or not el.name:
+            return None
+        return None if el.name[0].isupper() else "does not start with a capital letter"
+
+    return element_findings(ID, TITLE, model, bad,
+                             lambda el, msg: f"'{el.name}' ({el.short_type}) {msg}")

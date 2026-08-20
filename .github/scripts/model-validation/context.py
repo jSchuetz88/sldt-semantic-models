@@ -57,7 +57,7 @@ class Context:
     def samm_jar(self) -> Path | None:
         # Lazily downloads (once per run) the SAMM CLI jar in the version
         # pinned in config.json (see config.py), used by the criteria
-        # that need to actually run the CLI (schema/payload generation, MS2-20).
+        # that need to actually run the CLI (schema/payload generation, MS2-02).
         if not self._samm_jar_resolved:
             version = config.load_config(self.repo_root).samm_cli_version
             self._samm_jar = samm_cli.ensure_samm_cli(version)
@@ -89,7 +89,7 @@ class Context:
         # Lazily generates (once per model file, cached for the rest of
         # this run) the JSON schema and example JSON payload via the SAMM
         # CLI's `to schema` / `to json` commands. Several criteria want to
-        # inspect these (currently MS2-20; a criterion wanting to judge
+        # inspect these (currently MS2-02; a criterion wanting to judge
         # property names on the fully-resolved payload rather than the raw
         # TTL identifiers would too) - sharing this avoids each one
         # shelling out to samm-cli separately for the same file.
@@ -140,10 +140,9 @@ class Context:
 
     def get_changed_files(self) -> list[str]:
         # Returns every file changed on this branch compared to base_branch
-        # (not just .ttl files - used e.g. by MS2-21 to check whether
-        # RELEASE_NOTES.md was also touched). Assumes `git fetch` has
-        # already made base_branch available locally (see the checkout
-        # step in governance.yml).
+        # (not just .ttl files). Assumes `git fetch` has already made
+        # base_branch available locally (see the checkout step in
+        # governance.yml).
         #
         # Three dots, not two: `A...B` diffs against the merge-base of A
         # and B, i.e. "what did this branch change since it forked from
@@ -152,9 +151,15 @@ class Context:
         # against base_branch's current tip, which would also pick up
         # unrelated files simply because base_branch moved on without this
         # branch, misattributing them to this PR.
+        #
+        # --diff-filter=d excludes deleted paths: a matrix leg checks out a
+        # shallow copy of HEAD (see governance.yml), where a deleted file
+        # simply doesn't exist any more - parse_model() would just raise
+        # FileNotFoundError on it. Deleting a model isn't an MS2 violation
+        # to begin with, so it shouldn't get a check (or a crash) at all.
         try:
             result = subprocess.run(
-                ["git", "diff", "--name-only", f"{self.base_branch}...HEAD"],
+                ["git", "diff", "--name-only", "--diff-filter=d", f"{self.base_branch}...HEAD"],
                 capture_output=True, text=True, check=True,
             )
         except subprocess.CalledProcessError as e:

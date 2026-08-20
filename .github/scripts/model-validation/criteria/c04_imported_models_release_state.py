@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-18: "all external / imported models have the state 'release'".
+# MS2-04: "all external / imported models have the state 'release'".
 
 from __future__ import annotations
 
@@ -24,8 +24,10 @@ from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
 
-ID = "MS2-18"
+ID = "MS2-04"
 TITLE = "Imported models are in 'release' state"
+CATEGORY = "Model Validation"
+POST_COMMENT = True
 PREFIX_RE = re.compile(r"@prefix\s+([\w-]+):\s+<urn:[bs]amm:([\w.]+):(\d+\.\d+\.\d+)#>")
 
 
@@ -52,16 +54,16 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     for prefix_info in _parse_prefixes(model.file):
         folder, version = prefix_info["folder"], prefix_info["version"]
         if folder == model.namespace and version == model.version:
-            continue  # this is the model's own namespace, see MS2-19
+            continue  # this is the model's own namespace, see MS2-03
         meta = _read_metadata(folder, version)
         if not meta:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"metadata.json not found for imported model {folder}:{version}"))
+                                     f"metadata.json not found for imported model {folder}:{version}", line=1))
         elif meta.get("status") != "release":
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                      f"imported model {folder}:{version} has status "
-                                     f"'{meta.get('status')}', expected 'release'"))
+                                     f"'{meta.get('status')}', expected 'release'", line=1))
     if not findings:
-        findings.append(Finding(ID, TITLE, "INFO", model.file,
+        findings.append(Finding(ID, TITLE, "SUCCESS", model.file,
                                  "all imported/external models are in 'release' state"))
     return findings

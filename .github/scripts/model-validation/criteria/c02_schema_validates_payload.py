@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-20: "generated json schema validates against example json payload".
+# MS2-02: "generated json schema validates against example json payload".
 #
 # The JSON schema and example payload themselves come from
 # ctx.generated_artifacts() (see context.py), which runs the SAMM CLI's
@@ -29,15 +29,17 @@ from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
 
-ID = "MS2-20"
+ID = "MS2-02"
 TITLE = "Generated JSON schema validates against generated example payload"
+CATEGORY = "Model Validation"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
     artifacts = ctx.generated_artifacts(model)
     if artifacts.schema_path is None or artifacts.payload_path is None:
         level = "SKIP" if artifacts.skipped else "FAIL"
-        return [Finding(ID, TITLE, level, model.file, artifacts.error)]
+        return [Finding(ID, TITLE, level, model.file, artifacts.error, line=1 if level == "FAIL" else None)]
 
     try:
         import jsonschema
@@ -54,7 +56,7 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     except jsonschema.ValidationError as e:
         return [Finding(ID, TITLE, "FAIL", model.file,
                          f"generated example payload does not validate against the generated "
-                         f"JSON schema: {e.message}")]
+                         f"JSON schema: {e.message}", line=1)]
 
-    return [Finding(ID, TITLE, "INFO", model.file,
+    return [Finding(ID, TITLE, "SUCCESS", model.file,
                      "generated JSON schema validates against the generated example payload")]

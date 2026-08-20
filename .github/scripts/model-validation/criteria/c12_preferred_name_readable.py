@@ -30,6 +30,8 @@ from ..report import Finding
 
 ID = "MS2-12"
 TITLE = "preferredName is human-readable (not Camel-Case) (heuristic, needs human review)"
+CATEGORY = "Semantic Quality"
+POST_COMMENT = True
 CAMEL_HUMP_RE = re.compile(r"[a-z][A-Z]")
 
 
@@ -42,5 +44,5 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
                                      f"preferredName '{pn}' of '{el.name}' looks Camel-Case, "
                                      f"expected normal word separation - confirm it isn't a "
                                      f"genuine single term with internal capitalization",
-                                     element=el.name))
+                                     element=el.name, line=el.line_no))
     return findings

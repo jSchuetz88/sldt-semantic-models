@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-22: "all contributors to this model are mentioned in copyright header
+# MS2-07: "all contributors to this model are mentioned in copyright header
 # of model file".
 #
 # Only checks that a copyright header block is present at the top of the
@@ -29,9 +29,11 @@ from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
 
-ID = "MS2-22"
+ID = "MS2-07"
 TITLE = "Copyright header exists"
-COPYRIGHT_LINE_RE = re.compile(r"#\s*Copyright\(?c\)?\s+\d{4}\s+(.+?)\s*$", re.MULTILINE)
+CATEGORY = "Formal Requirements"
+POST_COMMENT = True
+COPYRIGHT_LINE_RE = re.compile(r"#\s*Copyright\s*\(?c\)?\s+\d{4}\s+(.+?)\s*$", re.MULTILINE)
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -41,6 +43,6 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
 
     if not copyright_holders:
         return [Finding(ID, TITLE, "FAIL", model.file,
-                         "no copyright header found at the top of the file")]
-    return [Finding(ID, TITLE, "INFO", model.file,
+                         "no copyright header found at the top of the file", line=1)]
+    return [Finding(ID, TITLE, "SUCCESS", model.file,
                      f"copyright header present, lists: {copyright_holders}")]

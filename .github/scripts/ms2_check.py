@@ -44,7 +44,10 @@
 #      if any (see model-validation/config.py).
 #   3. Hands the model + a shared Context to every enabled criterion
 #      sub-routine registered in model-validation/criteria/, downgrading
-#      FAILs to WARN for criteria configured as non-blocking.
+#      FAILs to WARN for criteria configured as non-blocking. FAIL/WARN
+#      findings from criteria that opt in via POST_COMMENT (see
+#      criteria/__init__.py) are collected and posted as a single PR
+#      checklist comment per model (model-validation/github_comments.py).
 #   4. Collects all Findings, prints/reports them, and fails the job if any
 #      criterion reports a FAIL-level finding.
 #
@@ -79,6 +82,7 @@ report = importlib.import_module("model-validation.report")
 Context = importlib.import_module("model-validation.context").Context
 parse_model = importlib.import_module("model-validation.samm_model_parser").parse_model
 config_module = importlib.import_module("model-validation.config")
+github_comments = importlib.import_module("model-validation.github_comments")
 
 
 def parse_args() -> argparse.Namespace:
@@ -138,6 +142,7 @@ def main() -> int:
 
     config = config_module.load_config(repo_root)
     _warn_about_unknown_criteria(config)
+    categories = {criterion.id: criterion.category for criterion in criteria.REGISTRY}
 
     # A matrix leg that already knows the full changed-files list (passed by
     # the detect-changed-models job) doesn't need to compute its own git diff
@@ -147,7 +152,7 @@ def main() -> int:
 
     if not ttl_files_to_check:
         print("No .ttl files changed - nothing to check for MS2 criteria.")
-        _write_step_summary(report.render_markdown([], []))
+        _write_step_summary(report.render_markdown([], [], categories))
         return 0
 
     all_findings: list[report.Finding] = []
@@ -163,6 +168,11 @@ def main() -> int:
         # MS2-01 happening to run first in REGISTRY order.
         validation = ctx.validation_result(model) if ctx.samm_jar else None
         model_invalid = validation is not None and validation.returncode != 0
+
+        # Findings from POST_COMMENT-enabled criteria, collected across the
+        # whole model and posted as a single PR checklist comment after the
+        # loop below - see github_comments.post_checklist_comment.
+        comment_findings: list[report.Finding] = []
 
         for criterion in criteria.REGISTRY:
             if not config.is_enabled(criterion.id):
@@ -187,24 +197,28 @@ def main() -> int:
                 # A criterion that only flags problems (and stays silent
                 # when there's nothing to flag) still needs a row in the
                 # report table, so treat "nothing reported" as a pass.
-                findings = [report.Finding(criterion.id, criterion.title, "INFO", ttl_file, "no issues found")]
+                findings = [report.Finding(criterion.id, criterion.title, "SUCCESS", ttl_file, "no issues found")]
             if not config.is_blocking(criterion.id):
                 for finding in findings:
                     if finding.level == "FAIL":
                         finding.level = "WARN"
                         finding.message += " (non-blocking: downgraded from FAIL via " \
                                             f"{config_module.DEFAULT_CONFIG_RELPATH})"
+            if criterion.post_comment:
+                comment_findings.extend(f for f in findings if f.level in ("FAIL", "WARN"))
             all_findings.extend(findings)
             report.print_console(findings)
 
-    markdown = report.render_markdown(all_findings, ttl_files_to_check)
+        github_comments.post_checklist_comment(ttl_file, comment_findings)
+
+    markdown = report.render_markdown(all_findings, ttl_files_to_check, categories)
     _write_step_summary(markdown)
 
     if report.has_failures(all_findings):
         print("\nMS2 criteria check FAILED - see FAIL entries above.")
         return 1
 
-    print("\nMS2 criteria check passed (WARN/INFO entries may still need human review).")
+    print("\nMS2 criteria check passed (WARN/SUCCESS entries may still need human review).")
     return 0
 
 
