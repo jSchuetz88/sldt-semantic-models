@@ -9,8 +9,8 @@
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#FreeStringCharacteristic",
         "description" : "Characteristic for text properties without any constraints."
       },
-      "KeyValueEntity" : {
-        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#KeyValueEntity",
+      "KeyValueSingleCharacteristic" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#KeyValueSingleCharacteristic",
         "type" : "object",
         "properties" : {
           "key" : {
@@ -26,13 +26,6 @@
         },
         "required" : [ "key", "value" ]
       },
-      "KeyValueCharacteristic" : {
-        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#KeyValueCharacteristic",
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/KeyValueEntity"
-        }
-      },
       "TransactionReferenceDocumentLinkCharacteristic" : {
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#TransactionReferenceDocumentLinkCharacteristic",
         "type" : "object",
@@ -40,7 +33,7 @@
           "refDocElement" : {
             "description" : "Additional locator/metadata to identify a specific element within the referenced document (e.g., line item, position number, material code, annex section). Used when the document covers multiple goods/operators and you need to specify which part applies.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#refDocElement",
-            "$ref" : "#/components/schemas/KeyValueCharacteristic"
+            "$ref" : "#/components/schemas/KeyValueSingleCharacteristic"
           },
           "refDocValue" : {
             "description" : "Identifier of the referenced document; must match the corresponding reference document value from the request.",
@@ -65,6 +58,30 @@
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.business_partner_number:3.0.0#BpnlCharacteristic",
         "pattern" : "^BPNL[a-zA-Z0-9]{12}$"
       },
+      "KeyValueEntity" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#KeyValueSingleCharacteristic",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "description" : "Name of the identifier type.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#key",
+            "$ref" : "#/components/schemas/FreeStringCharacteristic"
+          },
+          "value" : {
+            "description" : "Value of the stated identifier type.",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#value",
+            "$ref" : "#/components/schemas/FreeStringCharacteristic"
+          }
+        },
+        "required" : [ "key", "value" ]
+      },
+      "KeyValueListCharacteristic" : {
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#KeyValueListCharacteristic",
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/KeyValueEntity"
+        }
+      },
       "OperatorIdsCharacteristic" : {
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#OperatorIdsCharacteristic",
         "type" : "object",
@@ -81,7 +98,7 @@
           },
           "otherIds" : {
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#otherIds",
-            "$ref" : "#/components/schemas/KeyValueCharacteristic"
+            "$ref" : "#/components/schemas/KeyValueListCharacteristic"
           }
         },
         "required" : [ "operatorBpnl", "operatorCbamId", "otherIds" ]
@@ -155,7 +172,7 @@
           },
           "otherIds" : {
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#otherIds",
-            "$ref" : "#/components/schemas/KeyValueCharacteristic"
+            "$ref" : "#/components/schemas/KeyValueListCharacteristic"
           }
         },
         "required" : [ "installationCbamId", "otherIds" ]
@@ -409,10 +426,10 @@
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#typeOfInstrument",
             "$ref" : "#/components/schemas/FreeStringCharacteristic"
           },
-          "independendPersonId" : {
+          "independentPersonId" : {
             "description" : "Identifier of the independent person issuing a payment statement about the carbon price paid by the direct supplier or any other tier-n supplier in the value chain.",
-            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#independendPersonId",
-            "$ref" : "#/components/schemas/KeyValueCharacteristic"
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#independentPersonId",
+            "$ref" : "#/components/schemas/KeyValueSingleCharacteristic"
           },
           "descriptionAndIndicationOfLegalAct" : {
             "description" : "Reference the description of the underlying legal act according to which the carbon price was paid.",
@@ -435,7 +452,7 @@
             "$ref" : "#/components/schemas/CountryAlpha3Trait"
           }
         },
-        "required" : [ "independendPersonId" ]
+        "required" : [ "independentPersonId" ]
       },
       "CarbonPricePaidCharacteristic" : {
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#CarbonPricePaidCharacteristic",
@@ -482,8 +499,7 @@
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#carbonPricePaid",
             "$ref" : "#/components/schemas/CarbonPricePaidCharacteristic"
           }
-        },
-        "required" : [ "attestationOfConformance", "activityData", "directEmissions", "indirectEmissions", "freeAllocationFactor", "carbonPricePaid" ]
+        }
       },
       "EmissionsRecordCharacteristic" : {
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#EmissionsRecordCharacteristic",
@@ -576,7 +592,7 @@
           "transactionReferenceDocuments" : {
             "description" : "List of reference documents used to identify the transaction (e.g., invoice, purchase order, customs declaration, shipment); each entry provides a document type and identifier value.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#transactionReferenceDocuments",
-            "$ref" : "#/components/schemas/KeyValueCharacteristic"
+            "$ref" : "#/components/schemas/KeyValueListCharacteristic"
           }
         },
         "required" : [ "requestNetMass", "requestReferencePeriodEnd", "requestReferencePeriodStart", "transactionReferenceDocuments" ]
@@ -610,7 +626,7 @@
           "productIds" : {
             "description" : "Set of product identifiers to identify the product from the business transaction.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#productIds",
-            "$ref" : "#/components/schemas/KeyValueCharacteristic"
+            "$ref" : "#/components/schemas/KeyValueListCharacteristic"
           },
           "cnCode" : {
             "description" : "This is the 8-digit CN code (combined nomenclature) of the reported good, refering to official CBAM value list to ensure updated content.",
@@ -618,7 +634,7 @@
             "$ref" : "#/components/schemas/CnCodeTrait"
           }
         },
-        "required" : [ "operator", "businessTransactionDetails", "productDescription", "cnCode" ]
+        "required" : [ "cnCode" ]
       },
       "GoodsListCharaceristic" : {
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#GoodsListCharaceristic",
@@ -634,12 +650,12 @@
           "respondingCompanyIds" : {
             "description" : "Object containing one or multiple identifiers of the responding company.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#respondingCompanyIds",
-            "$ref" : "#/components/schemas/KeyValueCharacteristic"
+            "$ref" : "#/components/schemas/KeyValueListCharacteristic"
           },
           "requestingCompanyIds" : {
             "description" : "Object containing one or multiple pairs of identifier type and value of the requesting company.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#requestingCompanyIds",
-            "$ref" : "#/components/schemas/KeyValueCharacteristic"
+            "$ref" : "#/components/schemas/KeyValueListCharacteristic"
           }
         }
       },

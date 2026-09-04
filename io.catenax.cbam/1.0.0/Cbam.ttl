@@ -8,9 +8,9 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.cbam:1.0.0#> .
-@prefix ext-codes: <urn:samm:io.catenax.shared.standard_codes:1.0.0#> .
-@prefix ext-bpnl: <urn:samm:io.catenax.shared.business_partner_number:3.0.0#> .
 @prefix ext-attestation: <urn:samm:io.catenax.shared.attestation_of_conformance:1.0.0#> .
+@prefix ext-bpnl: <urn:samm:io.catenax.shared.business_partner_number:3.0.0#> .
+@prefix ext-codes: <urn:samm:io.catenax.shared.standard_codes:1.0.0#> .
 @prefix samm-u: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 
 :Cbam a samm:Aspect ;
@@ -49,7 +49,7 @@
 
 :GoodEntity a samm:Entity ;
    samm:preferredName "good entity"@en ;
-   samm:properties ( :operator :businessTransactionDetails :productDescription [ samm:property :productIds; samm:optional true ] :cnCode ) .
+   samm:properties ( [ samm:property :operator; samm:optional true ] [ samm:property :businessTransactionDetails; samm:optional true ] [ samm:property :productDescription; samm:optional true] [ samm:property :productIds; samm:optional true ] :cnCode ) .
 
 :CompanyIdsEntity a samm:Entity ;
    samm:preferredName "company identifiers entity"@en ;
@@ -79,7 +79,7 @@
 :productIds a samm:Property ;
    samm:preferredName "product identifier"@en ;
    samm:description "Set of product identifiers to identify the product from the business transaction."@en ;
-   samm:characteristic :KeyValueCharacteristic .
+   samm:characteristic :KeyValueListCharacteristic .
 
 :cnCode a samm:Property ;
    samm:preferredName "CN code"@en ;
@@ -90,12 +90,12 @@
 :respondingCompanyIds a samm:Property ;
    samm:preferredName "responding company identifier"@en ;
    samm:description "Object containing one or multiple identifiers of the responding company."@en ;
-   samm:characteristic :KeyValueCharacteristic .
+   samm:characteristic :KeyValueListCharacteristic .
 
 :requestingCompanyIds a samm:Property ;
    samm:preferredName "requesting company identifier"@en ;
    samm:description "Object containing one or multiple pairs of identifier type and value of the requesting company."@en ;
-   samm:characteristic :KeyValueCharacteristic .
+   samm:characteristic :KeyValueListCharacteristic .
 
 :OperatorListCharacteristic a samm-c:List ;
    samm:preferredName "operator list characteristic"@en ;
@@ -110,8 +110,8 @@
    samm:description "Characteristic for text properties without any constraints."@en ;
    samm:dataType xsd:string .
 
-:KeyValueCharacteristic a samm-c:List ;
-   samm:preferredName "key value characteristic"@en ;
+:KeyValueListCharacteristic a samm-c:List ;
+   samm:preferredName "key value list characteristic"@en ;
    samm:dataType :KeyValueEntity .
 
 :CnCodeTrait a samm-c:Trait ;
@@ -178,7 +178,7 @@
 :transactionReferenceDocuments a samm:Property ;
    samm:preferredName "transaction reference documents"@en ;
    samm:description "List of reference documents used to identify the transaction (e.g., invoice, purchase order, customs declaration, shipment); each entry provides a document type and identifier value."@en ;
-   samm:characteristic :KeyValueCharacteristic .
+   samm:characteristic :KeyValueListCharacteristic .
 
 :key a samm:Property ;
    samm:preferredName "key"@en ;
@@ -225,7 +225,7 @@
 :refDocElement a samm:Property ;
    samm:preferredName "reference document element"@en ;
    samm:description "Additional locator/metadata to identify a specific element within the referenced document (e.g., line item, position number, material code, annex section). Used when the document covers multiple goods/operators and you need to specify which part applies."@en ;
-   samm:characteristic :KeyValueCharacteristic .
+   samm:characteristic :KeyValueSingleCharacteristic .
 
 :refDocValue a samm:Property ;
    samm:preferredName "reference document identifier"@en ;
@@ -317,7 +317,7 @@
 
 :EmissionsRecordsEntity a samm:Entity ;
    samm:preferredName "emissions records entity"@en ;
-   samm:properties ( ext-attestation:attestationOfConformance  [ samm:property :productionMethod; samm:optional true ] :activityData :directEmissions :indirectEmissions :freeAllocationFactor :carbonPricePaid ) .
+   samm:properties ( [ samm:property ext-attestation:attestationOfConformance; samm:optional true ] [ samm:property :productionMethod; samm:optional true ] [ samm:property :activityData; samm:optional true ] [ samm:property :directEmissions; samm:optional true ] [ samm:property :indirectEmissions; samm:optional true ] [ samm:property :freeAllocationFactor; samm:optional true ] [ samm:property :carbonPricePaid; samm:optional true ] ) .
 
 :operatorBpnl a samm:Property ;
    samm:preferredName "operator BPNL"@en ;
@@ -333,7 +333,7 @@
 
 :otherIds a samm:Property ;
    samm:preferredName "other identifier"@en ;
-   samm:characteristic :KeyValueCharacteristic .
+   samm:characteristic :KeyValueListCharacteristic .
 
 :city a samm:Property ;
    samm:preferredName "city"@en ;
@@ -446,7 +446,7 @@
 
 :CarbonPricePaidEntity a samm:Entity ;
    samm:preferredName "carbon price paid entity"@en ;
-   samm:properties ( [ samm:property :typeOfInstrument; samm:optional true ] :independendPersonId [ samm:property :descriptionAndIndicationOfLegalAct; samm:optional true ] [ samm:property :amountOfCarbonPricePaid; samm:optional true ] [ samm:property ext-codes:currency; samm:optional true ] [ samm:property ext-codes:country; samm:optional true; samm:payloadName "countryCode" ] ) .
+   samm:properties ( [ samm:property :typeOfInstrument; samm:optional true ] :independentPersonId [ samm:property :descriptionAndIndicationOfLegalAct; samm:optional true ] [ samm:property :amountOfCarbonPricePaid; samm:optional true ] [ samm:property ext-codes:currency; samm:optional true ] [ samm:property ext-codes:country; samm:optional true; samm:payloadName "countryCode" ] ) .
 
 :installationCbamId a samm:Property ;
    samm:preferredName "installation CBAM identifier"@en ;
@@ -571,10 +571,10 @@
    samm:characteristic :FreeStringCharacteristic ;
    samm:exampleValue "01" .
 
-:independendPersonId a samm:Property ;
+:independentPersonId a samm:Property ;
    samm:preferredName "independend person identifier"@en ;
    samm:description "Identifier of the independent person issuing a payment statement about the carbon price paid by the direct supplier or any other tier-n supplier in the value chain."@en ;
-   samm:characteristic :KeyValueCharacteristic .
+   samm:characteristic :KeyValueSingleCharacteristic .
 
 :descriptionAndIndicationOfLegalAct a samm:Property ;
    samm:preferredName "description and indication of legal act"@en ;
@@ -587,6 +587,10 @@
    samm:description "Monetary value of the paid carbon price."@en ;
    samm:characteristic :FreeNumberCharacteristic ;
    samm:exampleValue "12000.00"^^xsd:float .
+
+:KeyValueSingleCharacteristic a samm:Characteristic ;
+   samm:preferredName "key value single characteristic"@en ;
+   samm:dataType :KeyValueEntity .
 
 :GoodCharaceristic a samm:Characteristic ;
    samm:preferredName "good characteristic"@en ;

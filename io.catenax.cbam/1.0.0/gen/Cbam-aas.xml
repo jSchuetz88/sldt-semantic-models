@@ -140,7 +140,7 @@
                             </aas:langStringTextType>
                           </aas:description>
                           <aas:value>
-                            <aas:submodelElementList>
+                            <aas:submodelElementCollection>
                               <aas:idShort>refDocElement</aas:idShort>
                               <aas:displayName>
                                 <aas:langStringNameType>
@@ -154,75 +154,47 @@
                                   <aas:text>Additional locator/metadata to identify a specific element within the referenced document (e.g., line item, position number, material code, annex section). Used when the document covers multiple goods/operators and you need to specify which part applies.</aas:text>
                                 </aas:langStringTextType>
                               </aas:description>
-                              <aas:semanticId>
-                                <aas:type>ExternalReference</aas:type>
-                                <aas:keys>
-                                  <aas:key>
-                                    <aas:type>GlobalReference</aas:type>
-                                    <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueCharacteristic</aas:value>
-                                  </aas:key>
-                                </aas:keys>
-                              </aas:semanticId>
-                              <aas:orderRelevant>false</aas:orderRelevant>
-                              <aas:typeValueListElement>SubmodelElementCollection</aas:typeValueListElement>
                               <aas:value>
-                                <aas:submodelElementCollection>
-                                  <aas:idShort>refDocElement</aas:idShort>
+                                <aas:property>
+                                  <aas:idShort>key</aas:idShort>
                                   <aas:displayName>
                                     <aas:langStringNameType>
                                       <aas:language>en</aas:language>
-                                      <aas:text>reference document element</aas:text>
+                                      <aas:text>key</aas:text>
                                     </aas:langStringNameType>
                                   </aas:displayName>
-                                  <aas:description>
-                                    <aas:langStringTextType>
+                                  <aas:semanticId>
+                                    <aas:type>ExternalReference</aas:type>
+                                    <aas:keys>
+                                      <aas:key>
+                                        <aas:type>GlobalReference</aas:type>
+                                        <aas:value>urn:samm:io.catenax.cbam:1.0.0#key</aas:value>
+                                      </aas:key>
+                                    </aas:keys>
+                                  </aas:semanticId>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                </aas:property>
+                                <aas:property>
+                                  <aas:idShort>value</aas:idShort>
+                                  <aas:displayName>
+                                    <aas:langStringNameType>
                                       <aas:language>en</aas:language>
-                                      <aas:text>Additional locator/metadata to identify a specific element within the referenced document (e.g., line item, position number, material code, annex section). Used when the document covers multiple goods/operators and you need to specify which part applies.</aas:text>
-                                    </aas:langStringTextType>
-                                  </aas:description>
-                                  <aas:value>
-                                    <aas:property>
-                                      <aas:idShort>key</aas:idShort>
-                                      <aas:displayName>
-                                        <aas:langStringNameType>
-                                          <aas:language>en</aas:language>
-                                          <aas:text>key</aas:text>
-                                        </aas:langStringNameType>
-                                      </aas:displayName>
-                                      <aas:semanticId>
-                                        <aas:type>ExternalReference</aas:type>
-                                        <aas:keys>
-                                          <aas:key>
-                                            <aas:type>GlobalReference</aas:type>
-                                            <aas:value>urn:samm:io.catenax.cbam:1.0.0#key</aas:value>
-                                          </aas:key>
-                                        </aas:keys>
-                                      </aas:semanticId>
-                                      <aas:valueType>xs:string</aas:valueType>
-                                    </aas:property>
-                                    <aas:property>
-                                      <aas:idShort>value</aas:idShort>
-                                      <aas:displayName>
-                                        <aas:langStringNameType>
-                                          <aas:language>en</aas:language>
-                                          <aas:text>value</aas:text>
-                                        </aas:langStringNameType>
-                                      </aas:displayName>
-                                      <aas:semanticId>
-                                        <aas:type>ExternalReference</aas:type>
-                                        <aas:keys>
-                                          <aas:key>
-                                            <aas:type>GlobalReference</aas:type>
-                                            <aas:value>urn:samm:io.catenax.cbam:1.0.0#value</aas:value>
-                                          </aas:key>
-                                        </aas:keys>
-                                      </aas:semanticId>
-                                      <aas:valueType>xs:string</aas:valueType>
-                                    </aas:property>
-                                  </aas:value>
-                                </aas:submodelElementCollection>
+                                      <aas:text>value</aas:text>
+                                    </aas:langStringNameType>
+                                  </aas:displayName>
+                                  <aas:semanticId>
+                                    <aas:type>ExternalReference</aas:type>
+                                    <aas:keys>
+                                      <aas:key>
+                                        <aas:type>GlobalReference</aas:type>
+                                        <aas:value>urn:samm:io.catenax.cbam:1.0.0#value</aas:value>
+                                      </aas:key>
+                                    </aas:keys>
+                                  </aas:semanticId>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                </aas:property>
                               </aas:value>
-                            </aas:submodelElementList>
+                            </aas:submodelElementCollection>
                             <aas:property>
                               <aas:idShort>refDocValue</aas:idShort>
                               <aas:displayName>
@@ -363,7 +335,7 @@
                                     <aas:keys>
                                       <aas:key>
                                         <aas:type>GlobalReference</aas:type>
-                                        <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueCharacteristic</aas:value>
+                                        <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueListCharacteristic</aas:value>
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
@@ -651,7 +623,7 @@
                                             <aas:keys>
                                               <aas:key>
                                                 <aas:type>GlobalReference</aas:type>
-                                                <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueCharacteristic</aas:value>
+                                                <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueListCharacteristic</aas:value>
                                               </aas:key>
                                             </aas:keys>
                                           </aas:semanticId>
@@ -1545,8 +1517,8 @@ Property to collect all attestation of conformance properties.</aas:text>
                                                   </aas:semanticId>
                                                   <aas:valueType>xs:string</aas:valueType>
                                                 </aas:property>
-                                                <aas:submodelElementList>
-                                                  <aas:idShort>independendPersonId</aas:idShort>
+                                                <aas:submodelElementCollection>
+                                                  <aas:idShort>independentPersonId</aas:idShort>
                                                   <aas:displayName>
                                                     <aas:langStringNameType>
                                                       <aas:language>en</aas:language>
@@ -1559,75 +1531,47 @@ Property to collect all attestation of conformance properties.</aas:text>
                                                       <aas:text>Identifier of the independent person issuing a payment statement about the carbon price paid by the direct supplier or any other tier-n supplier in the value chain.</aas:text>
                                                     </aas:langStringTextType>
                                                   </aas:description>
-                                                  <aas:semanticId>
-                                                    <aas:type>ExternalReference</aas:type>
-                                                    <aas:keys>
-                                                      <aas:key>
-                                                        <aas:type>GlobalReference</aas:type>
-                                                        <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueCharacteristic</aas:value>
-                                                      </aas:key>
-                                                    </aas:keys>
-                                                  </aas:semanticId>
-                                                  <aas:orderRelevant>false</aas:orderRelevant>
-                                                  <aas:typeValueListElement>SubmodelElementCollection</aas:typeValueListElement>
                                                   <aas:value>
-                                                    <aas:submodelElementCollection>
-                                                      <aas:idShort>independendPersonId</aas:idShort>
+                                                    <aas:property>
+                                                      <aas:idShort>key</aas:idShort>
                                                       <aas:displayName>
                                                         <aas:langStringNameType>
                                                           <aas:language>en</aas:language>
-                                                          <aas:text>independend person identifier</aas:text>
+                                                          <aas:text>key</aas:text>
                                                         </aas:langStringNameType>
                                                       </aas:displayName>
-                                                      <aas:description>
-                                                        <aas:langStringTextType>
+                                                      <aas:semanticId>
+                                                        <aas:type>ExternalReference</aas:type>
+                                                        <aas:keys>
+                                                          <aas:key>
+                                                            <aas:type>GlobalReference</aas:type>
+                                                            <aas:value>urn:samm:io.catenax.cbam:1.0.0#key</aas:value>
+                                                          </aas:key>
+                                                        </aas:keys>
+                                                      </aas:semanticId>
+                                                      <aas:valueType>xs:string</aas:valueType>
+                                                    </aas:property>
+                                                    <aas:property>
+                                                      <aas:idShort>value</aas:idShort>
+                                                      <aas:displayName>
+                                                        <aas:langStringNameType>
                                                           <aas:language>en</aas:language>
-                                                          <aas:text>Identifier of the independent person issuing a payment statement about the carbon price paid by the direct supplier or any other tier-n supplier in the value chain.</aas:text>
-                                                        </aas:langStringTextType>
-                                                      </aas:description>
-                                                      <aas:value>
-                                                        <aas:property>
-                                                          <aas:idShort>key</aas:idShort>
-                                                          <aas:displayName>
-                                                            <aas:langStringNameType>
-                                                              <aas:language>en</aas:language>
-                                                              <aas:text>key</aas:text>
-                                                            </aas:langStringNameType>
-                                                          </aas:displayName>
-                                                          <aas:semanticId>
-                                                            <aas:type>ExternalReference</aas:type>
-                                                            <aas:keys>
-                                                              <aas:key>
-                                                                <aas:type>GlobalReference</aas:type>
-                                                                <aas:value>urn:samm:io.catenax.cbam:1.0.0#key</aas:value>
-                                                              </aas:key>
-                                                            </aas:keys>
-                                                          </aas:semanticId>
-                                                          <aas:valueType>xs:string</aas:valueType>
-                                                        </aas:property>
-                                                        <aas:property>
-                                                          <aas:idShort>value</aas:idShort>
-                                                          <aas:displayName>
-                                                            <aas:langStringNameType>
-                                                              <aas:language>en</aas:language>
-                                                              <aas:text>value</aas:text>
-                                                            </aas:langStringNameType>
-                                                          </aas:displayName>
-                                                          <aas:semanticId>
-                                                            <aas:type>ExternalReference</aas:type>
-                                                            <aas:keys>
-                                                              <aas:key>
-                                                                <aas:type>GlobalReference</aas:type>
-                                                                <aas:value>urn:samm:io.catenax.cbam:1.0.0#value</aas:value>
-                                                              </aas:key>
-                                                            </aas:keys>
-                                                          </aas:semanticId>
-                                                          <aas:valueType>xs:string</aas:valueType>
-                                                        </aas:property>
-                                                      </aas:value>
-                                                    </aas:submodelElementCollection>
+                                                          <aas:text>value</aas:text>
+                                                        </aas:langStringNameType>
+                                                      </aas:displayName>
+                                                      <aas:semanticId>
+                                                        <aas:type>ExternalReference</aas:type>
+                                                        <aas:keys>
+                                                          <aas:key>
+                                                            <aas:type>GlobalReference</aas:type>
+                                                            <aas:value>urn:samm:io.catenax.cbam:1.0.0#value</aas:value>
+                                                          </aas:key>
+                                                        </aas:keys>
+                                                      </aas:semanticId>
+                                                      <aas:valueType>xs:string</aas:valueType>
+                                                    </aas:property>
                                                   </aas:value>
-                                                </aas:submodelElementList>
+                                                </aas:submodelElementCollection>
                                                 <aas:property>
                                                   <aas:idShort>descriptionAndIndicationOfLegalAct</aas:idShort>
                                                   <aas:displayName>
@@ -1871,7 +1815,7 @@ Property to collect all attestation of conformance properties.</aas:text>
                         <aas:keys>
                           <aas:key>
                             <aas:type>GlobalReference</aas:type>
-                            <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueCharacteristic</aas:value>
+                            <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueListCharacteristic</aas:value>
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
@@ -1975,7 +1919,7 @@ Property to collect all attestation of conformance properties.</aas:text>
                     <aas:keys>
                       <aas:key>
                         <aas:type>GlobalReference</aas:type>
-                        <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueCharacteristic</aas:value>
+                        <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueListCharacteristic</aas:value>
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
@@ -2096,7 +2040,7 @@ Property to collect all attestation of conformance properties.</aas:text>
                 <aas:keys>
                   <aas:key>
                     <aas:type>GlobalReference</aas:type>
-                    <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueCharacteristic</aas:value>
+                    <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueListCharacteristic</aas:value>
                   </aas:key>
                 </aas:keys>
               </aas:semanticId>
@@ -2179,7 +2123,7 @@ Property to collect all attestation of conformance properties.</aas:text>
                 <aas:keys>
                   <aas:key>
                     <aas:type>GlobalReference</aas:type>
-                    <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueCharacteristic</aas:value>
+                    <aas:value>urn:samm:io.catenax.cbam:1.0.0#KeyValueListCharacteristic</aas:value>
                   </aas:key>
                 </aas:keys>
               </aas:semanticId>
@@ -4930,14 +4874,14 @@ Property to collect all attestation of conformance properties.</aas:text>
       </aas:embeddedDataSpecifications>
     </aas:conceptDescription>
     <aas:conceptDescription>
-      <aas:idShort>independendPersonId</aas:idShort>
+      <aas:idShort>independentPersonId</aas:idShort>
       <aas:displayName>
         <aas:langStringNameType>
           <aas:language>en</aas:language>
           <aas:text>independend person identifier</aas:text>
         </aas:langStringNameType>
       </aas:displayName>
-      <aas:id>urn:samm:io.catenax.cbam:1.0.0#independendPersonId</aas:id>
+      <aas:id>urn:samm:io.catenax.cbam:1.0.0#independentPersonId</aas:id>
       <aas:embeddedDataSpecifications>
         <aas:embeddedDataSpecification>
           <aas:dataSpecification>
@@ -4960,7 +4904,7 @@ Property to collect all attestation of conformance properties.</aas:text>
               <aas:shortName>
                 <aas:langStringShortNameTypeIec61360>
                   <aas:language>en</aas:language>
-                  <aas:text>independendPersonId</aas:text>
+                  <aas:text>independentPersonId</aas:text>
                 </aas:langStringShortNameTypeIec61360>
               </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
