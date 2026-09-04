@@ -19,8 +19,8 @@
         "operatorContactEmailAddress" : "contact@steelexample.com",
         "address" : {
           "city" : "Duisburg",
-          "country" : "DEU",
-          "street" : "Werkstraße 1"
+          "street" : "Werkstraße 1",
+          "countryCode" : "DEU"
         },
         "operatorIds" : {
           "operatorBpnl" : "BPNL00000000OOPR",
@@ -55,9 +55,9 @@
           "address" : {
             "country" : "DEU",
             "city" : "Duisburg",
-            "pilotOrParcelNumber" : "PLOT-456-INDUSTRIAL-ZONE-A",
             "latitude" : 28.6139,
             "typeOfCoordinates" : "01",
+            "plotOrParcelNumber" : "PLOT-456-INDUSTRIAL-ZONE-A",
             "unLoCode" : "INDEL",
             "longitude" : 77.2197
           }
@@ -74,8 +74,8 @@
             "providerName" : "TÜV-X"
           } ],
           "activityData" : {
-            "referencePeriodEnd" : "2026-09-04T16:23:59.574+02:00",
-            "referencePeriodStart" : "2026-09-04T16:23:59.574+02:00",
+            "referencePeriodEnd" : "2026-09-04T16:46:37.295+02:00",
+            "referencePeriodStart" : "2026-09-04T16:46:37.295+02:00",
             "netMass" : 60.0
           },
           "carbonPricePaid" : [ {
@@ -101,9 +101,9 @@
           "freeAllocationFactor" : 0.6,
           "indirectEmissions" : {
             "emissionFactorTonnesCo2PerMwh" : 0.45,
+            "specificEmbeddedEmissionsIndirect" : 0.25,
             "electricityConsumedMwhPerTonnesGood" : 0.6,
             "sourceOfEmissionFactorValue" : "IEA 2022 Electricity Report",
-            "specificEmbeddedEmissionIndirect" : 0.25,
             "sourceOfEmissionFactor" : "02",
             "sourceOfElectricity" : "SOE03"
           }

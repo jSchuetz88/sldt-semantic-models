@@ -135,7 +135,6 @@ components:
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#refDocKey"
           $ref: "#/components/schemas/FreeStringCharacteristic"
       required:
-      - refDocElement
       - refDocValue
       - refDocKey
     BooleanCharacteristic:
@@ -185,10 +184,6 @@ components:
         otherIds:
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#otherIds"
           $ref: "#/components/schemas/KeyValueListCharacteristic"
-      required:
-      - operatorBpnl
-      - operatorCbamId
-      - otherIds
     CountryAlpha3Trait:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.standard_codes:1.0.0#CountryAlpha3Trait"
@@ -206,7 +201,7 @@ components:
           description: The street where the operator is located.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#street"
           $ref: "#/components/schemas/FreeStringCharacteristic"
-        country:
+        countryCode:
           description: Alphabetic three-character (alpha-3) code representing a country
             name.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.standard_codes:1.0.0#country"
@@ -251,9 +246,6 @@ components:
         otherIds:
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#otherIds"
           $ref: "#/components/schemas/KeyValueListCharacteristic"
-      required:
-      - installationCbamId
-      - otherIds
     FreeNumberCharacteristic:
       type: number
       x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#FreeNumberCharacteristic"
@@ -282,9 +274,9 @@ components:
           description: "The type of coordinates: 01 GPS, 02 GNSS."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#typeOfCoordinates"
           $ref: "#/components/schemas/FreeStringCharacteristic"
-        pilotOrParcelNumber:
+        plotOrParcelNumber:
           description: The plot or parcel number of the location.
-          x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#pilotOrParcelNumber"
+          x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#plotOrParcelNumber"
           $ref: "#/components/schemas/FreeStringCharacteristic"
         unLoCode:
           description: The United Nations Code for Trade and Transport Locations (UN/LOCODE)
@@ -460,11 +452,11 @@ components:
             value.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#sourceOfEmissionFactorValue"
           $ref: "#/components/schemas/FreeStringCharacteristic"
-        specificEmbeddedEmissionIndirect:
+        specificEmbeddedEmissionsIndirect:
           description: "Value of the indirect embedded emissions, expressed in tonnes\
             \ of CO₂ equivalents per tonne of product, calculated with reference to\
             \ the specific production method and installation."
-          x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#specificEmbeddedEmissionIndirect"
+          x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#specificEmbeddedEmissionsIndirect"
           $ref: "#/components/schemas/FreeNumberCharacteristic"
         electricityConsumedMwhPerTonnesGood:
           description: "Value of the consumed electricity, expressed as MWh per tonne\
@@ -481,7 +473,7 @@ components:
       - sourceOfEmissionFactor
       - emissionFactorTonnesCo2PerMwh
       - sourceOfEmissionFactorValue
-      - specificEmbeddedEmissionIndirect
+      - specificEmbeddedEmissionsIndirect
       - electricityConsumedMwhPerTonnesGood
       - sourceOfElectricity
     CurrencyTrait:
@@ -595,8 +587,6 @@ components:
             \ as the sum across all applicable production methods within that installation."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#installationNetMass"
           $ref: "#/components/schemas/FreeNumberCharacteristic"
-      required:
-      - installationNetMass
     InstallationCharacteristic:
       x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#InstallationCharacteristic"
       type: array
@@ -663,10 +653,8 @@ components:
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#transactionReferenceDocuments"
           $ref: "#/components/schemas/KeyValueListCharacteristic"
       required:
-      - requestNetMass
       - requestReferencePeriodEnd
       - requestReferencePeriodStart
-      - transactionReferenceDocuments
     CnCodeTrait:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#CnCodeTrait"
@@ -782,8 +770,6 @@ components:
           $ref: "#/components/schemas/RequestedElementsListCharacteristic"
       required:
       - good
-      - companyIds
-      - requestedElements
   responses:
     Unauthorized:
       description: The requesting user or client is not authenticated.

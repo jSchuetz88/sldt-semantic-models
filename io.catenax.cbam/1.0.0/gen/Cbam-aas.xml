@@ -818,7 +818,7 @@
                                           <aas:valueType>xs:string</aas:valueType>
                                         </aas:property>
                                         <aas:property>
-                                          <aas:idShort>pilotOrParcelNumber</aas:idShort>
+                                          <aas:idShort>plotOrParcelNumber</aas:idShort>
                                           <aas:displayName>
                                             <aas:langStringNameType>
                                               <aas:language>en</aas:language>
@@ -830,7 +830,7 @@
                                             <aas:keys>
                                               <aas:key>
                                                 <aas:type>GlobalReference</aas:type>
-                                                <aas:value>urn:samm:io.catenax.cbam:1.0.0#pilotOrParcelNumber</aas:value>
+                                                <aas:value>urn:samm:io.catenax.cbam:1.0.0#plotOrParcelNumber</aas:value>
                                               </aas:key>
                                             </aas:keys>
                                           </aas:semanticId>
@@ -1380,7 +1380,7 @@ Property to collect all attestation of conformance properties.</aas:text>
                                               <aas:valueType>xs:string</aas:valueType>
                                             </aas:property>
                                             <aas:property>
-                                              <aas:idShort>specificEmbeddedEmissionIndirect</aas:idShort>
+                                              <aas:idShort>specificEmbeddedEmissionsIndirect</aas:idShort>
                                               <aas:displayName>
                                                 <aas:langStringNameType>
                                                   <aas:language>en</aas:language>
@@ -1392,7 +1392,7 @@ Property to collect all attestation of conformance properties.</aas:text>
                                                 <aas:keys>
                                                   <aas:key>
                                                     <aas:type>GlobalReference</aas:type>
-                                                    <aas:value>urn:samm:io.catenax.cbam:1.0.0#specificEmbeddedEmissionIndirect</aas:value>
+                                                    <aas:value>urn:samm:io.catenax.cbam:1.0.0#specificEmbeddedEmissionsIndirect</aas:value>
                                                   </aas:key>
                                                 </aas:keys>
                                               </aas:semanticId>
@@ -3379,14 +3379,14 @@ Property to collect all attestation of conformance properties.</aas:text>
       </aas:embeddedDataSpecifications>
     </aas:conceptDescription>
     <aas:conceptDescription>
-      <aas:idShort>pilotOrParcelNumber</aas:idShort>
+      <aas:idShort>plotOrParcelNumber</aas:idShort>
       <aas:displayName>
         <aas:langStringNameType>
           <aas:language>en</aas:language>
           <aas:text>pilot or parcel number</aas:text>
         </aas:langStringNameType>
       </aas:displayName>
-      <aas:id>urn:samm:io.catenax.cbam:1.0.0#pilotOrParcelNumber</aas:id>
+      <aas:id>urn:samm:io.catenax.cbam:1.0.0#plotOrParcelNumber</aas:id>
       <aas:embeddedDataSpecifications>
         <aas:embeddedDataSpecification>
           <aas:dataSpecification>
@@ -3409,7 +3409,7 @@ Property to collect all attestation of conformance properties.</aas:text>
               <aas:shortName>
                 <aas:langStringShortNameTypeIec61360>
                   <aas:language>en</aas:language>
-                  <aas:text>pilotOrParcelNumber</aas:text>
+                  <aas:text>plotOrParcelNumber</aas:text>
                 </aas:langStringShortNameTypeIec61360>
               </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
@@ -4598,14 +4598,14 @@ Property to collect all attestation of conformance properties.</aas:text>
       </aas:embeddedDataSpecifications>
     </aas:conceptDescription>
     <aas:conceptDescription>
-      <aas:idShort>specificEmbeddedEmissionIndirect</aas:idShort>
+      <aas:idShort>specificEmbeddedEmissionsIndirect</aas:idShort>
       <aas:displayName>
         <aas:langStringNameType>
           <aas:language>en</aas:language>
           <aas:text>specific embedded emission indirect</aas:text>
         </aas:langStringNameType>
       </aas:displayName>
-      <aas:id>urn:samm:io.catenax.cbam:1.0.0#specificEmbeddedEmissionIndirect</aas:id>
+      <aas:id>urn:samm:io.catenax.cbam:1.0.0#specificEmbeddedEmissionsIndirect</aas:id>
       <aas:embeddedDataSpecifications>
         <aas:embeddedDataSpecification>
           <aas:dataSpecification>
@@ -4628,7 +4628,7 @@ Property to collect all attestation of conformance properties.</aas:text>
               <aas:shortName>
                 <aas:langStringShortNameTypeIec61360>
                   <aas:language>en</aas:language>
-                  <aas:text>specificEmbeddedEmissionIndirect</aas:text>
+                  <aas:text>specificEmbeddedEmissionsIndirect</aas:text>
                 </aas:langStringShortNameTypeIec61360>
               </aas:shortName>
               <aas:dataType>REAL_MEASURE</aas:dataType>

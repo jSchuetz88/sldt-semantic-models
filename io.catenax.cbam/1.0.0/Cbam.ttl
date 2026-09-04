@@ -15,7 +15,7 @@
 
 :Cbam a samm:Aspect ;
    samm:preferredName "CBAM"@en ;
-   samm:properties ( :good :companyIds :requestedElements ) ;
+   samm:properties ( :good [samm:property :companyIds; samm:optional true] [samm:property :requestedElements; samm:optional true] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -125,7 +125,7 @@
 
 :BusinessTransactionDetailsEntity a samm:Entity ;
    samm:preferredName "business transaction details entity"@en ;
-   samm:properties ( :requestNetMass :requestReferencePeriodEnd :requestReferencePeriodStart :transactionReferenceDocuments ) .
+   samm:properties ( [samm:property :requestNetMass; samm:optional true] :requestReferencePeriodEnd :requestReferencePeriodStart [samm:property :transactionReferenceDocuments; samm:optional true] ) .
 
 :KeyValueEntity a samm:Entity ;
    samm:preferredName "key value entity"@en ;
@@ -212,7 +212,7 @@
 
 :TransactionReferenceDocumentLink a samm:Entity ;
    samm:preferredName "transaction reference document link"@en ;
-   samm:properties ( :refDocElement :refDocValue :refDocKey ) .
+   samm:properties ( [samm:property :refDocElement; samm:optional true] :refDocValue :refDocKey ) .
 
 :OperatorIdentificationEntity a samm:Entity ;
    samm:preferredName "operator identification entity"@en ;
@@ -220,7 +220,7 @@
 
 :InstallationEntity a samm:Entity ;
    samm:preferredName "installation entity"@en ;
-   samm:properties ( [ samm:property :installationIdentification; samm:optional true ] [ samm:property :emissionsRecords; samm:optional true ] :installationNetMass ) .
+   samm:properties ( [ samm:property :installationIdentification; samm:optional true ] [ samm:property :emissionsRecords; samm:optional true ] [ samm:property :installationNetMass; samm:optional true ] ) .
 
 :refDocElement a samm:Property ;
    samm:preferredName "reference document element"@en ;
@@ -305,11 +305,11 @@
 
 :OperatorIdsEntity a samm:Entity ;
    samm:preferredName "operator identification entity"@en ;
-   samm:properties ( :operatorBpnl :operatorCbamId :otherIds ) .
+   samm:properties ( [samm:property :operatorBpnl; samm:optional true ] [samm:property :operatorCbamId; samm:optional true ] [samm:property :otherIds; samm:optional true ] ) .
 
 :AddressEntity a samm:Entity ;
    samm:preferredName "address entity"@en ;
-   samm:properties ( [ samm:property :city; samm:optional true ] [ samm:property :street; samm:optional true ] [ samm:property ext-codes:country; samm:optional true ] ) .
+   samm:properties ( [ samm:property :city; samm:optional true ] [ samm:property :street; samm:optional true ] [ samm:property ext-codes:country; samm:payloadName "countryCode"; samm:optional true ] ) .
 
 :InstallationIdentificationEntity a samm:Entity ;
    samm:preferredName "installation identification entity"@en ;
@@ -422,11 +422,11 @@
 
 :InstallationIdsEntity a samm:Entity ;
    samm:preferredName "installation identifier entity"@en ;
-   samm:properties ( :installationCbamId :otherIds ) .
+   samm:properties ( [ samm:property :installationCbamId; samm:optional true ] [ samm:property :otherIds; samm:optional true ] ) .
 
 :InstallationAddressEntity a samm:Entity ;
    samm:preferredName "installation address entity"@en ;
-   samm:properties ( ext-codes:country :city [ samm:property :longitude; samm:optional true ] [ samm:property :latitude; samm:optional true ] [ samm:property :typeOfCoordinates; samm:optional true ] [ samm:property :pilotOrParcelNumber; samm:optional true ] [ samm:property :unLoCode; samm:optional true ] ) .
+   samm:properties ( ext-codes:country :city [ samm:property :longitude; samm:optional true ] [ samm:property :latitude; samm:optional true ] [ samm:property :typeOfCoordinates; samm:optional true ] [ samm:property :plotOrParcelNumber; samm:optional true ] [ samm:property :unLoCode; samm:optional true ] ) .
 
 :ProductionMethodEntity a samm:Entity ;
    samm:preferredName "production method entity"@en ;
@@ -442,7 +442,7 @@
 
 :IndirectEmissionsEntity a samm:Entity ;
    samm:preferredName "indirect emissions entity"@en ;
-   samm:properties ( :sourceOfEmissionFactor :emissionFactorTonnesCo2PerMwh :sourceOfEmissionFactorValue :specificEmbeddedEmissionIndirect :electricityConsumedMwhPerTonnesGood :sourceOfElectricity ) .
+   samm:properties ( :sourceOfEmissionFactor :emissionFactorTonnesCo2PerMwh :sourceOfEmissionFactorValue :specificEmbeddedEmissionsIndirect :electricityConsumedMwhPerTonnesGood :sourceOfElectricity ) .
 
 :CarbonPricePaidEntity a samm:Entity ;
    samm:preferredName "carbon price paid entity"@en ;
@@ -472,7 +472,7 @@
    samm:characteristic :FreeStringCharacteristic ;
    samm:exampleValue "01" .
 
-:pilotOrParcelNumber a samm:Property ;
+:plotOrParcelNumber a samm:Property ;
    samm:preferredName "pilot or parcel number"@en ;
    samm:description "The plot or parcel number of the location."@en ;
    samm:characteristic :FreeStringCharacteristic ;
@@ -547,7 +547,7 @@
    samm:characteristic :FreeStringCharacteristic ;
    samm:exampleValue "IEA 2022 Electricity Report" .
 
-:specificEmbeddedEmissionIndirect a samm:Property ;
+:specificEmbeddedEmissionsIndirect a samm:Property ;
    samm:preferredName "specific embedded emission indirect"@en ;
    samm:description "Value of the indirect embedded emissions, expressed in tonnes of CO₂ equivalents per tonne of product, calculated with reference to the specific production method and installation."@en ;
    samm:characteristic :FreeNumberCharacteristic ;

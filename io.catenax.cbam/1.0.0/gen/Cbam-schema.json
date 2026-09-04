@@ -46,7 +46,7 @@
             "$ref" : "#/components/schemas/FreeStringCharacteristic"
           }
         },
-        "required" : [ "refDocElement", "refDocValue", "refDocKey" ]
+        "required" : [ "refDocValue", "refDocKey" ]
       },
       "BooleanCharacteristic" : {
         "type" : "boolean",
@@ -100,8 +100,7 @@
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#otherIds",
             "$ref" : "#/components/schemas/KeyValueListCharacteristic"
           }
-        },
-        "required" : [ "operatorBpnl", "operatorCbamId", "otherIds" ]
+        }
       },
       "CountryAlpha3Trait" : {
         "type" : "string",
@@ -123,7 +122,7 @@
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#street",
             "$ref" : "#/components/schemas/FreeStringCharacteristic"
           },
-          "country" : {
+          "countryCode" : {
             "description" : "Alphabetic three-character (alpha-3) code representing a country name.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.standard_codes:1.0.0#country",
             "$ref" : "#/components/schemas/CountryAlpha3Trait"
@@ -174,8 +173,7 @@
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#otherIds",
             "$ref" : "#/components/schemas/KeyValueListCharacteristic"
           }
-        },
-        "required" : [ "installationCbamId", "otherIds" ]
+        }
       },
       "FreeNumberCharacteristic" : {
         "type" : "number",
@@ -210,9 +208,9 @@
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#typeOfCoordinates",
             "$ref" : "#/components/schemas/FreeStringCharacteristic"
           },
-          "pilotOrParcelNumber" : {
+          "plotOrParcelNumber" : {
             "description" : "The plot or parcel number of the location.",
-            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#pilotOrParcelNumber",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#plotOrParcelNumber",
             "$ref" : "#/components/schemas/FreeStringCharacteristic"
           },
           "unLoCode" : {
@@ -393,9 +391,9 @@
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#sourceOfEmissionFactorValue",
             "$ref" : "#/components/schemas/FreeStringCharacteristic"
           },
-          "specificEmbeddedEmissionIndirect" : {
+          "specificEmbeddedEmissionsIndirect" : {
             "description" : "Value of the indirect embedded emissions, expressed in tonnes of CO₂ equivalents per tonne of product, calculated with reference to the specific production method and installation.",
-            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#specificEmbeddedEmissionIndirect",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#specificEmbeddedEmissionsIndirect",
             "$ref" : "#/components/schemas/FreeNumberCharacteristic"
           },
           "electricityConsumedMwhPerTonnesGood" : {
@@ -409,7 +407,7 @@
             "$ref" : "#/components/schemas/FreeStringCharacteristic"
           }
         },
-        "required" : [ "sourceOfEmissionFactor", "emissionFactorTonnesCo2PerMwh", "sourceOfEmissionFactorValue", "specificEmbeddedEmissionIndirect", "electricityConsumedMwhPerTonnesGood", "sourceOfElectricity" ]
+        "required" : [ "sourceOfEmissionFactor", "emissionFactorTonnesCo2PerMwh", "sourceOfEmissionFactorValue", "specificEmbeddedEmissionsIndirect", "electricityConsumedMwhPerTonnesGood", "sourceOfElectricity" ]
       },
       "CurrencyTrait" : {
         "type" : "string",
@@ -527,8 +525,7 @@
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#installationNetMass",
             "$ref" : "#/components/schemas/FreeNumberCharacteristic"
           }
-        },
-        "required" : [ "installationNetMass" ]
+        }
       },
       "InstallationCharacteristic" : {
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.cbam:1.0.0#InstallationCharacteristic",
@@ -595,7 +592,7 @@
             "$ref" : "#/components/schemas/KeyValueListCharacteristic"
           }
         },
-        "required" : [ "requestNetMass", "requestReferencePeriodEnd", "requestReferencePeriodStart", "transactionReferenceDocuments" ]
+        "required" : [ "requestReferencePeriodEnd", "requestReferencePeriodStart" ]
       },
       "CnCodeTrait" : {
         "type" : "string",
@@ -687,5 +684,5 @@
       "$ref" : "#/components/schemas/RequestedElementsListCharacteristic"
     }
   },
-  "required" : [ "good", "companyIds", "requestedElements" ]
+  "required" : [ "good" ]
 }
