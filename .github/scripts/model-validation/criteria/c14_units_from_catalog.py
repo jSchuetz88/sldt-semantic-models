@@ -15,13 +15,16 @@
 # MS2-14: "units are referenced from the SAMM unit catalog whenever
 # possible".
 #
-# Never FAIL/WARN/INFO, always SKIP: whether a matching catalog unit
-# actually exists for a given quantity isn't something this script can
-# know (it doesn't load the catalog itself), so a unit that doesn't use
-# the 'unit:' prefix - or a custom samm:Unit definition - is not actually
-# evidence of a violation, just a fact to point the reviewer at. SKIP
-# (rather than WARN) keeps it from claiming a "likely violation" it can't
-# substantiate, and out of the "passing" count when nothing is found.
+# Never FAIL/WARN/SUCCESS: whether a matching catalog unit actually exists
+# for a given quantity isn't something this script can know (it doesn't
+# load the catalog itself), so nothing here is ever confirmable as a
+# genuine automated pass - not even "every unit reference already uses the
+# catalog prefix and no custom samm:Unit is defined", since that still
+# doesn't confirm the *right* catalog unit was chosen. A flagged unit is
+# SKIP (a fact to point the reviewer at, not evidence of a violation -
+# keeps it from claiming a "likely violation" it can't substantiate); the
+# "nothing to flag" case is NOTE (a fact for the reviewer, not a
+# confirmation of anything - same reasoning as MS2-15/MS2-16).
 
 from __future__ import annotations
 
@@ -31,6 +34,11 @@ from ..report import Finding
 
 ID = "MS2-14"
 TITLE = "Units reference the SAMM unit catalog (heuristic, needs human review)"
+CATEGORY = "Semantic Quality"
+# Harmless no-op today (check() below never returns FAIL/WARN, the only
+# levels that get posted) - see c09's comment on POST_COMMENT for why this
+# is still set.
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -40,15 +48,12 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
             findings.append(Finding(ID, TITLE, "SKIP", model.file,
                                      f"'{el.name}' uses unit '{el.unit}' which is not from the "
                                      f"'unit:' catalog prefix - confirm no catalog unit fits",
-                                     element=el.name))
+                                     element=el.name, line=el.line_no))
         if el.short_type == "Unit":
             findings.append(Finding(ID, TITLE, "SKIP", model.file,
                                      f"'{el.name}' defines a custom samm:Unit - confirm it does not "
-                                     f"already exist in the SAMM unit catalog", element=el.name))
+                                     f"already exist in the SAMM unit catalog", element=el.name, line=el.line_no))
     if not findings:
-        # An empty list here would otherwise fall through to ms2_check.py's
-        # "silent criterion -> synthesize a passing INFO" fallback, which
-        # would undo the point of using SKIP above.
-        findings.append(Finding(ID, TITLE, "SKIP", model.file,
+        findings.append(Finding(ID, TITLE, "NOTE", model.file,
                                  "no non-catalog unit references or custom samm:Unit definitions found"))
     return findings

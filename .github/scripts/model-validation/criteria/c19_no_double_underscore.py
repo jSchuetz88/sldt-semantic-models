@@ -12,12 +12,8 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-06: "all model elements at least contain the fields 'preferred name'
-# and 'description' in English language. The description must be
-# comprehensible. [...] style should be consistent over the whole model"
-#
-# Only presence of samm:preferredName/@en and samm:description/@en is
-# machine-checkable; comprehensibility and style consistency are not.
+# MS2-19: "payload names and property identifiers must not contain two
+# consecutive underscores ('__') at any position".
 
 from __future__ import annotations
 
@@ -25,17 +21,21 @@ from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
 
-ID = "MS2-06"
-TITLE = "preferredName and description present (English)"
+ID = "MS2-19"
+# Identifiers and payloadName values must not contain two consecutive underscores.
+TITLE = "No double underscores in identifiers/payload names"
+CATEGORY = "Naming Conventions"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
     findings = []
     for el in model.elements.values():
-        if el.preferred_name("en") is None:
+        if "__" in el.name:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"'{el.name}' is missing samm:preferredName ... @en", element=el.name))
-        if el.description("en") is None:
+                                     f"identifier '{el.name}' contains '__'", element=el.name, line=el.line_no))
+        if el.payload_name and "__" in el.payload_name:
             findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"'{el.name}' is missing samm:description ... @en", element=el.name))
+                                     f"payloadName '{el.payload_name}' contains '__'",
+                                     element=el.name, line=el.line_no))
     return findings

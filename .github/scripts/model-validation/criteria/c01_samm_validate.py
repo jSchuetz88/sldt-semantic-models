@@ -34,8 +34,13 @@ from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
 
+# Runs `samm-cli aspect <file> validate` for real. A model that fails this
+# is treated as broken at the most basic level - every other criterion is
+# skipped entirely for it.
 ID = "MS2-01"
 TITLE = "Model validates with SAMM CLI"
+CATEGORY = "Model Validation"
+POST_COMMENT = True
 
 ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
 MAX_DETAIL_LENGTH = 2000
@@ -57,5 +62,5 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     result = ctx.validation_result(model)
     if result.returncode != 0:
         detail = _clean_detail(result.stdout or result.stderr or f"exit code {result.returncode}")
-        return [Finding(ID, TITLE, "FAIL", model.file, f"samm-cli validation failed:\n{detail}")]
-    return [Finding(ID, TITLE, "INFO", model.file, "samm-cli validation passed")]
+        return [Finding(ID, TITLE, "FAIL", model.file, f"samm-cli validation failed:\n{detail}", line=1)]
+    return [Finding(ID, TITLE, "SUCCESS", model.file, "samm-cli validation passed")]

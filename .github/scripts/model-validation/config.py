@@ -18,7 +18,7 @@
 # "settings": general settings, currently just:
 #
 #   "samm_cli_version": the SAMM CLI version to download and run for
-#   MS2-01 / MS2-20 (see samm_cli.py). Single source of truth - not parsed
+#   MS2-01 / MS2-02 (see samm_cli.py). Single source of truth - not parsed
 #   out of README.md prose, so it can't silently drift if that text gets
 #   reworded, and editing the README doesn't invalidate the SAMM CLI
 #   download cache in governance.yml.
@@ -36,7 +36,7 @@
 #
 # {
 #   "settings": {
-#     "samm_cli_version": "2.11.1"
+#     "samm_cli_version": "2.12.0"
 #   },
 #   "criteria": {
 #     "MS2-19": {"blocking": false},
@@ -56,7 +56,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 DEFAULT_CONFIG_RELPATH = ".github/scripts/model-validation/config.json"
-DEFAULT_SAMM_CLI_VERSION = "2.11.1"
+DEFAULT_SAMM_CLI_VERSION = "2.12.0"
 
 
 @dataclass(frozen=True)

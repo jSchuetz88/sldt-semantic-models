@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-08: "the versioning in the URN follows semantic versioning, where
+# MS2-05: "the versioning in the URN follows semantic versioning, where
 # minor version bumps are backwards compatible and major version bumps are
 # not backwards compatible."
 #
@@ -30,8 +30,11 @@ from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
 
-ID = "MS2-08"
+ID = "MS2-05"
+# The URN version must be well-formed MAJOR.MINOR.PATCH semver and match its version folder.
 TITLE = "URN version follows semantic versioning"
+CATEGORY = "Model Validation"
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
@@ -39,7 +42,7 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     if model.version is None:
         findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                  "could not find a base ':' prefix of the form "
-                                 "<urn:samm:<namespace>:<MAJOR.MINOR.PATCH>#>"))
+                                 "<urn:samm:<namespace>:<MAJOR.MINOR.PATCH>#>", line=1))
         return findings
 
     path_parts = Path(model.file).parts
@@ -47,8 +50,8 @@ def check(model: TTLModel, ctx: Context) -> list[Finding]:
     if version_dirs and version_dirs[0] != model.version:
         findings.append(Finding(ID, TITLE, "FAIL", model.file,
                                  f"URN version '{model.version}' does not match the "
-                                 f"version folder '{version_dirs[0]}'"))
+                                 f"version folder '{version_dirs[0]}'", line=1))
     if not findings:
-        findings.append(Finding(ID, TITLE, "INFO", model.file,
+        findings.append(Finding(ID, TITLE, "SUCCESS", model.file,
                                  f"URN version '{model.version}' is well-formed and matches its folder"))
     return findings

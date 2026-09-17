@@ -1,11 +1,11 @@
 #######################################################################
-# Copyright (c) 2022 ZF Friedrichshafen AG
-# Copyright (c) 2022 T-Systems International GmbH
-# Copyright (c) 2022 Robert Bosch Manufacturing Solutions GmbH
-# Copyright (c) 2022 Siemens AG
-# Copyright (c) 2022 SAP AG
-# Copyright (c) 2022 BASF SE
-# Copyright (c) 2022 Contributors to the Eclipse Foundation
+# Copyright (c) 2022, 2023, 2024 ZF Friedrichshafen AG
+# Copyright (c) 2022, 2023, 2024 T-Systems International GmbH
+# Copyright (c) 2022, 2023, 2024 Robert Bosch Manufacturing Solutions GmbH
+# Copyright (c) 2022, 2023, 2024 Siemens AG
+# Copyright (c) 2022, 2023, 2024 SAP AG
+# Copyright (c) 2022, 2023, 2024 BASF SE
+# Copyright (c) 2022, 2023, 2024 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -18,14 +18,17 @@
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
 
+
+
 @prefix samm: <urn:samm:org.eclipse.esmf.samm:meta-model:2.1.0#> .
 @prefix samm-c: <urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#> .
+@prefix samm-e: <urn:samm:org.eclipse.esmf.samm:entity:2.1.0#> .
 @prefix unit: <urn:samm:org.eclipse.esmf.samm:unit:2.1.0#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.pcf:10.0.0#> .
-@prefix ext-uuid: <urn:samm:io.catenax.shared.uuid:2.1.0#> .
+@prefix ext-uuid: <urn:samm:io.catenax.shared.uuid:2.0.0#> .
 
 :Pcf a samm:Aspect ;
    samm:preferredName "Product (Carbon) Footprint"@en ;
@@ -37,7 +40,7 @@
 :scopeOfPcfForm a samm:Property ;
    samm:preferredName "Scope of PCF Form"@en ;
    samm:description "Connects PCF with ScopeOfPCFForm to link it to ScopeOfPCFFormCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all scope of pcf form properties."@en ;
-   samm:characteristic :ScopeOfPCFFormCollection .
+   samm:characteristic :ScopeOfPCFFormCollectionRequired .
 
 :companyAndProductInformation a samm:Property ;
    samm:preferredName "Company and Product Information"@en ;
@@ -47,7 +50,7 @@
 :pcfAssessmentAndMethodology a samm:Property ;
    samm:preferredName "PCF Assessment and Methodology"@en ;
    samm:description "Connects PCF with haspcfAssessmentAndMethodology to link it to pcfAssessmentAndMethodologyCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all pcf assessment and methodology properties."@en ;
-   samm:characteristic :pcfAssessmentAndMethodologyCollection .
+   samm:characteristic :pcfAssessmentAndMethodologyCollectionRequired .
 
 :general a samm:Property ;
    samm:preferredName "General"@en ;
@@ -62,7 +65,7 @@
 :productLifeCycleStagesAndEmissions a samm:Property ;
    samm:preferredName "Product Life Cycle Stages and Emissions"@en ;
    samm:description "Connects PCF with ProductLifeCycleStagesAndEmissions to link it to ProductLifeCycleStagesAndEmissionsCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all product life cycle stages and emissions properties."@en ;
-   samm:characteristic :ProductLifeCycleStagesAndEmissionsCollection .
+   samm:characteristic :ProductLifeCycleStagesAndEmissionsCollectionRequired .
 
 :attestationOfConformance a samm:Property ;
    samm:preferredName "Attestation of Conformance"@en ;
@@ -154,22 +157,22 @@
 :companyInformation a samm:Property ;
    samm:preferredName "Company Information"@en ;
    samm:description "Connects CompanyAndProductInformationEntity with ProductInformation to link it with ProductInformationCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all company information properties."@en ;
-   samm:characteristic :CompanyInformationCollection .
+   samm:characteristic :CompanyInformationCollectionRequired .
 
 :productInformation a samm:Property ;
    samm:preferredName "Product Information"@en ;
    samm:description "Connects CompanyAndProductInformationEntity with ProductInformation to link it with ProductInformationCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all product information properties."@en ;
-   samm:characteristic :ProductInformationCollection .
+   samm:characteristic :ProductInformationCollectionRequired .
 
 :pcfAssessmentInformation a samm:Property ;
    samm:preferredName "PCF Assessment Information"@en ;
    samm:description "Connects pcfAssessmentAndMethodologyEntity with PCFAssessmentInformation to link it with PCFAssessmentInformationCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all pcf assessment information properties."@en ;
-   samm:characteristic :PCFAssessmentInformationCollection .
+   samm:characteristic :PCFAssessmentInformationCollectionRequired .
 
 :dataSourcesAndQuality a samm:Property ;
    samm:preferredName "Data Sources and Quality"@en ;
    samm:description "Connects pcfAssessmentAndMethodologyEntity with DataSourcesAndQuality to link it with DataSourcesAndQualityCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all data sources and quality properties."@en ;
-   samm:characteristic :DataSourcesAndQualityCollection .
+   samm:characteristic :DataSourcesAndQualityCollectionRequired .
 
 :verificationAndCertificationShares a samm:Property ;
    samm:preferredName "Verification and Certification Shares"@en ;
@@ -179,7 +182,7 @@
 :pcfMethodology a samm:Property ;
    samm:preferredName "PCF Methodology"@en ;
    samm:description "Connects pcfAssessmentAndMethodologyEntity with PCFMethodology to link it with PCFMethodologyCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all pcf methodology properties."@en ;
-   samm:characteristic :PCFMethodologyCollection .
+   samm:characteristic :PCFMethodologyCollectionRequired .
 
 :comment a samm:Property ;
    samm:preferredName "Comment"@en ;
@@ -226,17 +229,17 @@
 :productionStage a samm:Property ;
    samm:preferredName "Production Stage"@en ;
    samm:description "Connects ProductLifeCycleStagesAndEmissionsEntity with ProductionStage to link it with ProductionStageCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all production stage properties."@en ;
-   samm:characteristic :ProductionStageCollection .
+   samm:characteristic :ProductionStageCollectionRequired .
 
 :distributionStage a samm:Property ;
    samm:preferredName "Distribution Stage"@en ;
    samm:description "Connects ProductLifeCycleStagesAndEmissionsEntity with DistributionStage to link it with DistributionStageCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all distribution stage properties."@en ;
-   samm:characteristic :DistributionStageCollection .
+   samm:characteristic :DistributionStageCollectionRequired .
 
 :packagingStage a samm:Property ;
    samm:preferredName "Packaging Stage"@en ;
    samm:description "Connects ProductLifeCycleStagesAndEmissionsEntity with PackagingStage to link it with PackagingStageCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all packaging stage properties."@en ;
-   samm:characteristic :PackagingStageCollection .
+   samm:characteristic :PackagingStageCollectionRequired .
 
 :attestationType a samm:Property ;
    samm:preferredName "Attestation type"@en ;
@@ -410,7 +413,7 @@
    samm:preferredName "Company IDs"@en ;
    samm:description "Company identifier according to the sharing scheme you are reporting in. It is mandatory to provide the BPNL (Business Partner Number Legal; corresponding to the company name) according to Catena-X. Each value of this set is supposed to uniquely identify the PCF Data Owner and should be in the following format: E.g. urn:BPNL000000000DWF. Additionally it is recommended to enter the name of the main domain (e.g. company.com) as a second value."@en ;
    samm:see <urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnlProperty> ;
-   samm:characteristic :IdSet ;
+   samm:characteristic :IdSetRequired ;
    samm:exampleValue "urn:BPNL000000000DWF"^^xsd:anyURI .
 
 :productNameCompany a samm:Property ;
@@ -424,7 +427,7 @@
    samm:preferredName "Product IDs"@en ;
    samm:description "A set of several relevant product identifiers can be provided including e.g. manufacturerPartID, customerPartID, GTIN, ISPN-number or any product specific identifier. For prospective PCFs, this may be a preliminary product id."@en ;
    samm:see <urn:samm:io.catenax.part_type_information:1.0.0#manufacturerPartId> ;
-   samm:characteristic :IdSet ;
+   samm:characteristic :IdSetRequired ;
    samm:exampleValue "urn:mycompany.com:product-id:401765"^^xsd:anyURI .
 
 :declaredUnitOfMeasurement a samm:Property ;
@@ -460,27 +463,27 @@
 :technology a samm:Property ;
    samm:preferredName "Technology"@en ;
    samm:description "Connects PCFAssessmentInformationEntity with Technology to link it with TechnologyCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all technology properties."@en ;
-   samm:characteristic :TechnologyCollection .
+   samm:characteristic :TechnologyCollectionRequired .
 
 :idAndVersion a samm:Property ;
    samm:preferredName "ID and Version"@en ;
    samm:description "Connects PCFAssessmentInformationEntity with IDAndVersion to link it with IDAndVersionCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all id and version properties."@en ;
-   samm:characteristic :IDAndVersionCollection .
+   samm:characteristic :IDAndVersionCollectionRequired .
 
 :boundarySpecifications a samm:Property ;
    samm:preferredName "Boundary Specifications"@en ;
    samm:description "Connects PCFAssessmentInformationEntity with BoundarySpecifications to link it with BoundarySpecificationsCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all boundary specifications properties."@en ;
-   samm:characteristic :BoundarySpecificationsCollection .
+   samm:characteristic :BoundarySpecificationsCollectionRequired .
 
 :geography a samm:Property ;
    samm:preferredName "Geography"@en ;
    samm:description "Connects PCFAssessmentInformationEntity with Geography to link it with GeographyCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all geography properties."@en ;
-   samm:characteristic :GeographyCollection .
+   samm:characteristic :GeographyCollectionRequired .
 
 :time a samm:Property ;
    samm:preferredName "Time"@en ;
    samm:description "Connects PCFAssessmentInformationEntity with Time to link it with TimeCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all time properties."@en ;
-   samm:characteristic :TimeCollection .
+   samm:characteristic :TimeCollectionRequired .
 
 :primaryDataShare a samm:Property ;
    samm:preferredName "Primary Data Share"@en ;
@@ -538,22 +541,22 @@
 :massBalancingInformation a samm:Property ;
    samm:preferredName "Mass Balancing Information"@en ;
    samm:description "Connects PCFMethodologyEntity with MassBalancingInformation to link it with MassBalancingInformationCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all mass balancing information properties."@en ;
-   samm:characteristic :MassBalancingInformationCollection .
+   samm:characteristic :MassBalancingInformationCollectionRequired .
 
 :standards a samm:Property ;
    samm:preferredName "Standards"@en ;
    samm:description "Connects PCFMethodologyEntity with Standards to link it with StandardsCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all standards information properties."@en ;
-   samm:characteristic :StandardsCollection .
+   samm:characteristic :StandardsCollectionRequired .
 
 :gwpCharacterizationFactorDetails a samm:Property ;
    samm:preferredName "GWP Characterization Factor Details"@en ;
    samm:description "Connects PCFMethodologyEntity with GWPCharacterizationFactorDetails to link it with GWPCharacterizationFactorDetailsCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all gwp characterization factor details properties."@en ;
-   samm:characteristic :GWPCharacterizationFactorDetailsCollection .
+   samm:characteristic :GWPCharacterizationFactorDetailsCollectionRequired .
 
 :allocationInForeground a samm:Property ;
    samm:preferredName "Allocation In Foreground"@en ;
    samm:description "Connects PCFMethodologyEntity with AllocationInForeground to link it with AllocationInForegroundCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all allocation in foreground properties."@en ;
-   samm:characteristic :AllocationInForegroundCollection .
+   samm:characteristic :AllocationInForegroundCollectionRequired .
 
 :pcfIncludingBiogenicUptake a samm:Property ;
    samm:preferredName "GWP total incl. bio. uptake"@en ;
@@ -1086,13 +1089,19 @@
 :crossSectoralStandards a samm:Property ;
    samm:preferredName "Cross Sectoral Standards Used"@en ;
    samm:description "Cross-sectoral standards the PCF calculation is based on (multiple entries are possible). Please note: the PCF can be calculated according to another standard than the standards which defines the communication format."@en ;
-   samm:characteristic :CrossSectoralStandardCharacteristic ;
+   samm:characteristic :CrossSectoralStandardSetRequired ;
    samm:exampleValue "ISO 14067" .
+
+:CrossSectoralStandardSet a samm-c:Set ;
+   samm:preferredName "Cross Sectoral Standards Used Set"@en ;
+   samm:description "Set of cross-sectoral standards. Each entry must be one of the allowed values."@en ;
+   samm:dataType xsd:string ;
+   samm-c:elementCharacteristic :CrossSectoralStandardCharacteristic .
 
 :productOrSectorSpecificRules a samm:Property ;
    samm:preferredName "Product or Sector Specific Rules"@en ;
    samm:description "Name the most specific rule (sector specific guidance frameworks, such as product category rules (PCR), are sets of rules how to calculate and document life cycle assessments. They provide product category specific guidance and enhance comparabiltiy between assessments of the different suppliers for the same category (sector). The same applies to Product Environmental Footprint Category Rules (PEFCR))."@en ;
-   samm:characteristic :ProductOrSectorSpecificRuleSet ;
+   samm:characteristic :ProductOrSectorSpecificRuleSetRequired ;
    samm:exampleValue "urn:tfs-initiative.com:PCR:The Product Carbon Footprint Guideline for the Chemical Industry:version:v2.0" .
 
 :ipccCharacterizationFactors a samm:Property ;
@@ -1216,3 +1225,172 @@
    samm:preferredName "Country Constraint"@en ;
    samm:description "Constraint for defining a geography country conform to ISO 3166CC as specified in the Catena-X PCF Rulebook in accordance with the technical specifications for PCF Data Exchange (Version 2.0.0) from the WBCSD (World Business Council for Sustainable Development)/ PACT initiative."@en ;
    samm:value "([A-Z]{2})" .
+
+
+#######################################################################
+# ADDED: Cardinality constraints ("at least one entry") for Collections
+# whose referenced Entity contains mandatory (non-optional) properties.
+#
+# Rationale: samm-c:Collection has no default minimum cardinality. When
+# mapped to JSON Schema, this results in an array WITHOUT "minItems",
+# so an empty array ("[]") satisfies the schema even though the
+# Property itself (the array key) is mandatory and even though the
+# Entity inside the Collection has mandatory attributes. Wrapping the
+# Collection in a samm-c:Trait with a samm-c:LengthConstraint
+# (samm-c:minValue "1") forces at least one Entity instance to be
+# present, so that instance's own mandatory properties are then
+# actually validated.
+#######################################################################
+
+:AtLeastOneEntryConstraint a samm-c:LengthConstraint ;
+   samm:preferredName "At Least One Entry Constraint"@en ;
+   samm:description "Constraint ensuring that a collection contains at least one entry. Used for collections whose referenced entity contains mandatory (non-optional) properties, or which are themselves mandatory properties of their parent entity."@en ;
+   samm-c:minValue "1"^^xsd:nonNegativeInteger .
+
+:ScopeOfPCFFormCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Scope of PCF Form Collection (required)"@en ;
+   samm:description "Requires at least one Scope of PCF Form entry, since specVersion and partialFullPcf are both mandatory."@en ;
+   samm-c:baseCharacteristic :ScopeOfPCFFormCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:pcfAssessmentAndMethodologyCollectionRequired a samm-c:Trait ;
+   samm:preferredName "PCF Assessment and Methodology Collection (required)"@en ;
+   samm:description "Requires at least one entry, since dataSourcesAndQuality is a mandatory property of this entity."@en ;
+   samm-c:baseCharacteristic :pcfAssessmentAndMethodologyCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:ProductLifeCycleStagesAndEmissionsCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Product Life Cycle Stages and Emissions Collection (required)"@en ;
+   samm:description "Requires at least one entry, since productionStage, packagingStage and distributionStage are all mandatory properties of this entity."@en ;
+   samm-c:baseCharacteristic :ProductLifeCycleStagesAndEmissionsCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:CompanyInformationCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Company Information Collection (required)"@en ;
+   samm:description "Requires at least one entry, since companyName and companyIds are both mandatory. Applies whenever the (optional) companyInformation property is provided."@en ;
+   samm-c:baseCharacteristic :CompanyInformationCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:ProductInformationCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Product Information Collection (required)"@en ;
+   samm:description "Requires at least one entry, since productNameCompany, productIds, declaredUnitOfMeasurement, declaredUnitAmount and productMassPerDeclaredUnit are all mandatory. Applies whenever the (optional) productInformation property is provided."@en ;
+   samm-c:baseCharacteristic :ProductInformationCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:PCFAssessmentInformationCollectionRequired a samm-c:Trait ;
+   samm:preferredName "PCF Assessment Information Collection (required)"@en ;
+   samm:description "Requires at least one entry, since idAndVersion, boundarySpecifications, technology, geography and time are all mandatory. Applies whenever the (optional) pcfAssessmentInformation property is provided."@en ;
+   samm-c:baseCharacteristic :PCFAssessmentInformationCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:DataSourcesAndQualityCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Data Sources and Quality Collection (required)"@en ;
+   samm:description "Requires at least one entry (may be an entry with only optional sub-attributes), since dataSourcesAndQuality itself is a mandatory property of pcfAssessmentAndMethodology."@en ;
+   samm-c:baseCharacteristic :DataSourcesAndQualityCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:PCFMethodologyCollectionRequired a samm-c:Trait ;
+   samm:preferredName "PCF Methodology Collection (required)"@en ;
+   samm:description "Requires at least one entry, since standards, gwpCharacterizationFactorDetails, allocationInForeground and massBalancingInformation are all mandatory. Applies whenever the (optional) pcfMethodology property is provided."@en ;
+   samm-c:baseCharacteristic :PCFMethodologyCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:ProductionStageCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Production Stage Collection (required)"@en ;
+   samm:description "Requires at least one entry, since pcfIncludingBiogenicUptake and pcfExcludingBiogenicUptake are both mandatory."@en ;
+   samm-c:baseCharacteristic :ProductionStageCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:DistributionStageCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Distribution Stage Collection (required)"@en ;
+   samm:description "Requires at least one entry, since distributionStageIncluded is mandatory."@en ;
+   samm-c:baseCharacteristic :DistributionStageCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:PackagingStageCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Packaging Stage Collection (required)"@en ;
+   samm:description "Requires at least one entry, since packagingEmissionsIncluded is mandatory."@en ;
+   samm-c:baseCharacteristic :PackagingStageCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:TechnologyCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Technology Collection (required)"@en ;
+   samm:description "Requires at least one entry, since ccsTechnologicalCO2CaptureIncluded is mandatory, and technology itself is a mandatory property of PCFAssessmentInformationEntity."@en ;
+   samm-c:baseCharacteristic :TechnologyCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:IDAndVersionCollectionRequired a samm-c:Trait ;
+   samm:preferredName "ID and Version Collection (required)"@en ;
+   samm:description "Requires at least one entry, since id, version, status and retroOrProspectivePcfType are all mandatory, and idAndVersion itself is a mandatory property of PCFAssessmentInformationEntity."@en ;
+   samm-c:baseCharacteristic :IDAndVersionCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:BoundarySpecificationsCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Boundary Specifications Collection (required)"@en ;
+   samm:description "Requires at least one entry, since exemptedEmissionsPercent is mandatory, and boundarySpecifications itself is a mandatory property of PCFAssessmentInformationEntity."@en ;
+   samm-c:baseCharacteristic :BoundarySpecificationsCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:GeographyCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Geography Collection (required)"@en ;
+   samm:description "Requires at least one entry, since geographyRegionOrSubregion is mandatory, and geography itself is a mandatory property of PCFAssessmentInformationEntity."@en ;
+   samm-c:baseCharacteristic :GeographyCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:TimeCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Time Collection (required)"@en ;
+   samm:description "Requires at least one entry, since referencePeriodStart, referencePeriodEnd, created and validityPeriodEnd are all mandatory, and time itself is a mandatory property of PCFAssessmentInformationEntity."@en ;
+   samm-c:baseCharacteristic :TimeCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:StandardsCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Standards Collection (required)"@en ;
+   samm:description "Requires at least one entry, since crossSectoralStandards and productOrSectorSpecificRules are both mandatory, and standards itself is a mandatory property of PCFMethodologyEntity."@en ;
+   samm-c:baseCharacteristic :StandardsCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:GWPCharacterizationFactorDetailsCollectionRequired a samm-c:Trait ;
+   samm:preferredName "GWP Characterization Factor Details Collection (required)"@en ;
+   samm:description "Requires at least one entry, since ipccCharacterizationFactors is mandatory, and gwpCharacterizationFactorDetails itself is a mandatory property of PCFMethodologyEntity."@en ;
+   samm-c:baseCharacteristic :GWPCharacterizationFactorDetailsCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:AllocationInForegroundCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Allocation In Foreground Collection (required)"@en ;
+   samm:description "Requires at least one entry, since allocationWasteIncineration is mandatory, and allocationInForeground itself is a mandatory property of PCFMethodologyEntity."@en ;
+   samm-c:baseCharacteristic :AllocationInForegroundCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:MassBalancingInformationCollectionRequired a samm-c:Trait ;
+   samm:preferredName "Mass Balancing Information Collection (required)"@en ;
+   samm:description "Requires at least one entry, since massBalancingUsed is mandatory, and massBalancingInformation itself is a mandatory property of PCFMethodologyEntity."@en ;
+   samm-c:baseCharacteristic :MassBalancingInformationCollection ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+#######################################################################
+# ADDED: Same bug class, one level deeper - mandatory Properties whose
+# Characteristic is a bare samm-c:Set/List WITHOUT a samm-c:LengthConstraint.
+# Without this fix, an empty array [] would satisfy the JSON Schema for
+# companyIds, productIds, crossSectoralStandards and
+# productOrSectorSpecificRules, even though these are mandatory
+# (non-optional) properties for which the Catena-X PCF Rulebook expects
+# at least one value (e.g. at least one BPNL, at least one standard).
+#######################################################################
+
+:IdSetRequired a samm-c:Trait ;
+   samm:preferredName "ID Set (required)"@en ;
+   samm:description "Requires at least one identifier. Used for companyIds and productIds, both of which are mandatory properties for which at least one ID (e.g. BPNL) must be provided."@en ;
+   samm-c:baseCharacteristic :IdSet ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:CrossSectoralStandardSetRequired a samm-c:Trait ;
+   samm:preferredName "Cross Sectoral Standards Used Set (required)"@en ;
+   samm:description "Requires at least one entry, since crossSectoralStandards is a mandatory property."@en ;
+   samm-c:baseCharacteristic :CrossSectoralStandardSet ;
+   samm-c:constraint :AtLeastOneEntryConstraint .
+
+:ProductOrSectorSpecificRuleSetRequired a samm-c:Trait ;
+   samm:preferredName "Product Or Sector Specific Rules Set (required)"@en ;
+   samm:description "Requires at least one entry, since productOrSectorSpecificRules is a mandatory property."@en ;
+   samm-c:baseCharacteristic :ProductOrSectorSpecificRuleSet ;
+   samm-c:constraint :AtLeastOneEntryConstraint .

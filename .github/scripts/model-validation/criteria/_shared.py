@@ -29,5 +29,6 @@ def element_findings(criterion_id: str, title: str, model: TTLModel, predicate, 
     for el in model.elements.values():
         msg = predicate(el)
         if msg:
-            findings.append(Finding(criterion_id, title, level, model.file, message_fn(el, msg), element=el.name))
+            findings.append(Finding(criterion_id, title, level, model.file, message_fn(el, msg),
+                                     element=el.name, line=el.line_no))
     return findings

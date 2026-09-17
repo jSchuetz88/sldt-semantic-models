@@ -15,11 +15,11 @@
 # MS2-15: "use constraints to make known constraints from the use case
 # explicit in the aspect model".
 #
-# Informational only (NOTE, never FAIL/WARN/SKIP/INFO): whether constraints
+# Informational only (NOTE, never FAIL/WARN/SKIP/SUCCESS): whether constraints
 # are *missing* for a given use case cannot be determined from the model
 # file alone, so this never amounts to a verdict - it surfaces what's there
 # plus an explicit "checked by reviewer" note, for the reviewer. NOTE
-# rather than INFO: INFO is reserved for a genuine automated pass, and this
+# rather than SUCCESS: SUCCESS is reserved for a genuine automated pass, and this
 # criterion never actually confirms anything.
 
 from __future__ import annotations
@@ -30,6 +30,10 @@ from ..report import Finding
 
 ID = "MS2-15"
 TITLE = "Constraints used where applicable (not automatically verifiable)"
+CATEGORY = "Semantic Quality"
+# Harmless no-op today (check() below only ever returns NOTE) - see c09's
+# comment on POST_COMMENT for why this is still set.
+POST_COMMENT = True
 
 
 def check(model: TTLModel, ctx: Context) -> list[Finding]:
