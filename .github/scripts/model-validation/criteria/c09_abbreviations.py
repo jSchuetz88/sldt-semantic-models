@@ -27,17 +27,18 @@ from __future__ import annotations
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-09"
-TITLE = "Abbreviations used only when necessary and common (not automatically verifiable)"
-CATEGORY = "Semantic Quality"
-# Harmless no-op today (check() below only ever returns SKIP, and
-# ms2_check.py only posts FAIL/WARN findings) - set for consistency with
-# every other criterion and so this doesn't need to be remembered if the
-# check ever grows a real verdict.
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-09"
+    TITLE = "Abbreviations used only when necessary and common (not automatically verifiable)"
+    CATEGORY = "Semantic Quality"
+    # Harmless no-op today (check() below only ever returns SKIP, and
+    # ms2_check.py only posts FAIL/WARN findings) - set for consistency with
+    # every other criterion and so this doesn't need to be remembered if the
+    # check ever grows a real verdict.
+    POST_COMMENT = True
 
-
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    return [Finding(ID, TITLE, "SKIP", model.file,
-                     "checked by reviewer - abbreviation necessity/commonality cannot be automatically verified")]
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        return [Finding(self.ID, self.TITLE, "SKIP", model.file,
+                         "checked by reviewer - abbreviation necessity/commonality cannot be automatically verified")]

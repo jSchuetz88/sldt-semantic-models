@@ -19,20 +19,21 @@ from __future__ import annotations
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-11"
-TITLE = "preferredName and description are not identical"
-CATEGORY = "Semantic Quality"
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-11"
+    TITLE = "preferredName and description are not identical"
+    CATEGORY = "Semantic Quality"
+    POST_COMMENT = True
 
-
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    findings = []
-    for el in model.elements.values():
-        pn = el.preferred_name("en")
-        de = el.description("en")
-        if pn is not None and pn == de:
-            findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"'{el.name}': preferredName and description are identical",
-                                     element=el.name, line=el.line_no))
-    return findings
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        findings = []
+        for el in model.elements.values():
+            pn = el.preferred_name("en")
+            de = el.description("en")
+            if pn is not None and pn == de:
+                findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
+                                         f"'{el.name}': preferredName and description are identical",
+                                         element=el.name, line=el.line_no))
+        return findings

@@ -20,19 +20,20 @@ from __future__ import annotations
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-22"
-# A property and its referenced Characteristic must not share the same name.
-TITLE = "Property and its Characteristic have different names"
-CATEGORY = "Semantic Quality"
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-22"
+    # A property and its referenced Characteristic must not share the same name.
+    TITLE = "Property and its Characteristic have different names"
+    CATEGORY = "Semantic Quality"
+    POST_COMMENT = True
 
-
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    findings = []
-    for el in model.elements.values():
-        if el.short_type == "Property" and el.characteristic and el.characteristic == el.name:
-            findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"property '{el.name}' and its characteristic share the same name",
-                                     element=el.name, line=el.line_no))
-    return findings
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        findings = []
+        for el in model.elements.values():
+            if el.short_type == "Property" and el.characteristic and el.characteristic == el.name:
+                findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
+                                         f"property '{el.name}' and its characteristic share the same name",
+                                         element=el.name, line=el.line_no))
+        return findings

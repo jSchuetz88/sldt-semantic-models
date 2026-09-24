@@ -29,29 +29,30 @@ from pathlib import Path
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-05"
-# The URN version must be well-formed MAJOR.MINOR.PATCH semver and match its version folder.
-TITLE = "URN version follows semantic versioning"
-CATEGORY = "Model Validation"
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-05"
+    # The URN version must be well-formed MAJOR.MINOR.PATCH semver and match its version folder.
+    TITLE = "URN version follows semantic versioning"
+    CATEGORY = "Model Validation"
+    POST_COMMENT = True
 
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        findings = []
+        if model.version is None:
+            findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
+                                     "could not find a base ':' prefix of the form "
+                                     "<urn:samm:<namespace>:<MAJOR.MINOR.PATCH>#>", line=1))
+            return findings
 
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    findings = []
-    if model.version is None:
-        findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                 "could not find a base ':' prefix of the form "
-                                 "<urn:samm:<namespace>:<MAJOR.MINOR.PATCH>#>", line=1))
+        path_parts = Path(model.file).parts
+        version_dirs = [p for p in path_parts if re.fullmatch(r"\d+\.\d+\.\d+", p)]
+        if version_dirs and version_dirs[0] != model.version:
+            findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
+                                     f"URN version '{model.version}' does not match the "
+                                     f"version folder '{version_dirs[0]}'", line=1))
+        if not findings:
+            findings.append(Finding(self.ID, self.TITLE, "SUCCESS", model.file,
+                                     f"URN version '{model.version}' is well-formed and matches its folder"))
         return findings
-
-    path_parts = Path(model.file).parts
-    version_dirs = [p for p in path_parts if re.fullmatch(r"\d+\.\d+\.\d+", p)]
-    if version_dirs and version_dirs[0] != model.version:
-        findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                 f"URN version '{model.version}' does not match the "
-                                 f"version folder '{version_dirs[0]}'", line=1))
-    if not findings:
-        findings.append(Finding(ID, TITLE, "SUCCESS", model.file,
-                                 f"URN version '{model.version}' is well-formed and matches its folder"))
-    return findings

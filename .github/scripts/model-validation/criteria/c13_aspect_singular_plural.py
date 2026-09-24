@@ -27,15 +27,16 @@ from __future__ import annotations
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-13"
-TITLE = "Aspect name is singular/plural depending on single Collection property (not automatically verifiable)"
-CATEGORY = "Naming Conventions"
-# Harmless no-op today (check() below only ever returns SKIP) - see c09's
-# comment on POST_COMMENT for why this is still set.
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-13"
+    TITLE = "Aspect name is singular/plural depending on single Collection property (not automatically verifiable)"
+    CATEGORY = "Naming Conventions"
+    # Harmless no-op today (check() below only ever returns SKIP) - see c09's
+    # comment on POST_COMMENT for why this is still set.
+    POST_COMMENT = True
 
-
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    return [Finding(ID, TITLE, "SKIP", model.file,
-                     "checked by reviewer - singular/plural naming cannot be automatically verified")]
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        return [Finding(self.ID, self.TITLE, "SKIP", model.file,
+                         "checked by reviewer - singular/plural naming cannot be automatically verified")]

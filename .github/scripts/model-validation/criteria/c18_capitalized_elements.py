@@ -20,20 +20,19 @@ from __future__ import annotations
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
-from ._shared import element_findings
+from . import base
 
-ID = "MS2-18"
-# Identifiers of all model elements except properties must start with a capital letter.
-TITLE = "Non-property identifiers start with a capital letter"
-CATEGORY = "Naming Conventions"
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-18"
+    # Identifiers of all model elements except properties must start with a capital letter.
+    TITLE = "Non-property identifiers start with a capital letter"
+    CATEGORY = "Naming Conventions"
+    POST_COMMENT = True
 
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        def bad(el):
+            if el.short_type == "Property" or not el.name:
+                return None
+            return None if el.name[0].isupper() else "does not start with a capital letter"
 
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    def bad(el):
-        if el.short_type == "Property" or not el.name:
-            return None
-        return None if el.name[0].isupper() else "does not start with a capital letter"
-
-    return element_findings(ID, TITLE, model, bad,
-                             lambda el, msg: f"'{el.name}' ({el.short_type}) {msg}")
+        return self.element_findings(model, bad, lambda el, msg: f"'{el.name}' ({el.short_type}) {msg}")

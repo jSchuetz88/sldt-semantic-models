@@ -23,13 +23,9 @@ from pathlib import Path
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-04"
-TITLE = "Imported models are in 'release' state"
-CATEGORY = "Model Validation"
-POST_COMMENT = True
 PREFIX_RE = re.compile(r"@prefix\s+([\w-]+):\s+<urn:[bs]amm:([\w.]+):(\d+\.\d+\.\d+)#>")
-
 
 def _parse_prefixes(ttl_path: str) -> list[dict[str, str]]:
     prefixes = []
@@ -40,7 +36,6 @@ def _parse_prefixes(ttl_path: str) -> list[dict[str, str]]:
                 prefixes.append({"prefix": m.group(1), "folder": m.group(2), "version": m.group(3)})
     return prefixes
 
-
 def _read_metadata(folder: str, version: str) -> dict | None:
     meta_path = Path(folder) / version / "metadata.json"
     if not meta_path.exists():
@@ -48,22 +43,27 @@ def _read_metadata(folder: str, version: str) -> dict | None:
     with open(meta_path) as f:
         return json.load(f)
 
+class Criterion(base.Criterion):
+    ID = "MS2-04"
+    TITLE = "Imported models are in 'release' state"
+    CATEGORY = "Model Validation"
+    POST_COMMENT = True
 
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    findings = []
-    for prefix_info in _parse_prefixes(model.file):
-        folder, version = prefix_info["folder"], prefix_info["version"]
-        if folder == model.namespace and version == model.version:
-            continue  # this is the model's own namespace, see MS2-03
-        meta = _read_metadata(folder, version)
-        if not meta:
-            findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"metadata.json not found for imported model {folder}:{version}", line=1))
-        elif meta.get("status") != "release":
-            findings.append(Finding(ID, TITLE, "FAIL", model.file,
-                                     f"imported model {folder}:{version} has status "
-                                     f"'{meta.get('status')}', expected 'release'", line=1))
-    if not findings:
-        findings.append(Finding(ID, TITLE, "SUCCESS", model.file,
-                                 "all imported/external models are in 'release' state"))
-    return findings
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        findings = []
+        for prefix_info in _parse_prefixes(model.file):
+            folder, version = prefix_info["folder"], prefix_info["version"]
+            if folder == model.namespace and version == model.version:
+                continue  # this is the model's own namespace, see MS2-03
+            meta = _read_metadata(folder, version)
+            if not meta:
+                findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
+                                         f"metadata.json not found for imported model {folder}:{version}", line=1))
+            elif meta.get("status") != "release":
+                findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
+                                         f"imported model {folder}:{version} has status "
+                                         f"'{meta.get('status')}', expected 'release'", line=1))
+        if not findings:
+            findings.append(Finding(self.ID, self.TITLE, "SUCCESS", model.file,
+                                     "all imported/external models are in 'release' state"))
+        return findings

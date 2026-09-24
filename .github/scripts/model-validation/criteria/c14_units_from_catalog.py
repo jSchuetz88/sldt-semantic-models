@@ -31,29 +31,30 @@ from __future__ import annotations
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-14"
-TITLE = "Units reference the SAMM unit catalog (heuristic, needs human review)"
-CATEGORY = "Semantic Quality"
-# Harmless no-op today (check() below never returns FAIL/WARN, the only
-# levels that get posted) - see c09's comment on POST_COMMENT for why this
-# is still set.
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-14"
+    TITLE = "Units reference the SAMM unit catalog (heuristic, needs human review)"
+    CATEGORY = "Semantic Quality"
+    # Harmless no-op today (check() below never returns FAIL/WARN, the only
+    # levels that get posted) - see c09's comment on POST_COMMENT for why this
+    # is still set.
+    POST_COMMENT = True
 
-
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    findings = []
-    for el in model.elements.values():
-        if el.unit and not el.unit.startswith("unit:"):
-            findings.append(Finding(ID, TITLE, "SKIP", model.file,
-                                     f"'{el.name}' uses unit '{el.unit}' which is not from the "
-                                     f"'unit:' catalog prefix - confirm no catalog unit fits",
-                                     element=el.name, line=el.line_no))
-        if el.short_type == "Unit":
-            findings.append(Finding(ID, TITLE, "SKIP", model.file,
-                                     f"'{el.name}' defines a custom samm:Unit - confirm it does not "
-                                     f"already exist in the SAMM unit catalog", element=el.name, line=el.line_no))
-    if not findings:
-        findings.append(Finding(ID, TITLE, "NOTE", model.file,
-                                 "no non-catalog unit references or custom samm:Unit definitions found"))
-    return findings
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        findings = []
+        for el in model.elements.values():
+            if el.unit and not el.unit.startswith("unit:"):
+                findings.append(Finding(self.ID, self.TITLE, "SKIP", model.file,
+                                         f"'{el.name}' uses unit '{el.unit}' which is not from the "
+                                         f"'unit:' catalog prefix - confirm no catalog unit fits",
+                                         element=el.name, line=el.line_no))
+            if el.short_type == "Unit":
+                findings.append(Finding(self.ID, self.TITLE, "SKIP", model.file,
+                                         f"'{el.name}' defines a custom samm:Unit - confirm it does not "
+                                         f"already exist in the SAMM unit catalog", element=el.name, line=el.line_no))
+        if not findings:
+            findings.append(Finding(self.ID, self.TITLE, "NOTE", model.file,
+                                     "no non-catalog unit references or custom samm:Unit definitions found"))
+        return findings

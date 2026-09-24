@@ -24,27 +24,28 @@ from __future__ import annotations
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-17"
-TITLE = "Properties with simple (xsd) type have an example value"
-CATEGORY = "Semantic Quality"
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-17"
+    TITLE = "Properties with simple (xsd) type have an example value"
+    CATEGORY = "Semantic Quality"
+    POST_COMMENT = True
 
-
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    findings = []
-    for el in model.elements.values():
-        if el.short_type != "Property" or not el.characteristic:
-            continue
-        characteristic = model.elements.get(el.characteristic)
-        if not characteristic or not characteristic.data_type:
-            continue  # characteristic defined elsewhere / not resolvable locally
-        if not characteristic.data_type.startswith("xsd:"):
-            continue  # complex (Entity) type, not a "simple type"
-        if not el.has_example_value:
-            findings.append(Finding(
-                ID, TITLE, "FAIL", model.file,
-                f"property '{el.name}' -> characteristic '{characteristic.name}' has simple type "
-                f"'{characteristic.data_type}' but no samm:exampleValue", element=el.name, line=el.line_no,
-            ))
-    return findings
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        findings = []
+        for el in model.elements.values():
+            if el.short_type != "Property" or not el.characteristic:
+                continue
+            characteristic = model.elements.get(el.characteristic)
+            if not characteristic or not characteristic.data_type:
+                continue  # characteristic defined elsewhere / not resolvable locally
+            if not characteristic.data_type.startswith("xsd:"):
+                continue  # complex (Entity) type, not a "simple type"
+            if not el.has_example_value:
+                findings.append(Finding(
+                    self.ID, self.TITLE, "FAIL", model.file,
+                    f"property '{el.name}' -> characteristic '{characteristic.name}' has simple type "
+                    f"'{characteristic.data_type}' but no samm:exampleValue", element=el.name, line=el.line_no,
+                ))
+        return findings

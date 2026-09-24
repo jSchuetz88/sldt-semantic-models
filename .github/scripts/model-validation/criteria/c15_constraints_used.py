@@ -27,21 +27,22 @@ from __future__ import annotations
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-15"
-TITLE = "Constraints used where applicable (not automatically verifiable)"
-CATEGORY = "Semantic Quality"
-# Harmless no-op today (check() below only ever returns NOTE) - see c09's
-# comment on POST_COMMENT for why this is still set.
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-15"
+    TITLE = "Constraints used where applicable (not automatically verifiable)"
+    CATEGORY = "Semantic Quality"
+    # Harmless no-op today (check() below only ever returns NOTE) - see c09's
+    # comment on POST_COMMENT for why this is still set.
+    POST_COMMENT = True
 
-
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    constrained = [el.name for el in model.elements.values() if el.short_type.endswith("Constraint")]
-    if constrained:
-        result = f"{len(constrained)} constraint(s) defined: {constrained}"
-    else:
-        result = ("no samm-c constraints found - if the use case has known constraints "
-                  "(ranges, patterns, lengths, ...), consider making them explicit")
-    return [Finding(ID, TITLE, "NOTE", model.file,
-                     f"{result} (checked by reviewer - not automatically verifiable)")]
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        constrained = [el.name for el in model.elements.values() if el.short_type.endswith("Constraint")]
+        if constrained:
+            result = f"{len(constrained)} constraint(s) defined: {constrained}"
+        else:
+            result = ("no samm-c constraints found - if the use case has known constraints "
+                      "(ranges, patterns, lengths, ...), consider making them explicit")
+        return [Finding(self.ID, self.TITLE, "NOTE", model.file,
+                         f"{result} (checked by reviewer - not automatically verifiable)")]

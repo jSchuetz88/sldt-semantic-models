@@ -36,36 +36,36 @@ import re
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
-
-ID = "MS2-10"
-TITLE = "Avoid redundant prefixes in property names (heuristic, needs human review)"
-CATEGORY = "Semantic Quality"
-POST_COMMENT = True
-
+from . import base
 
 def _split_camel(name: str) -> list[str]:
     return [w.lower() for w in re.findall(r"[A-Z]?[a-z0-9]+|[A-Z]+(?![a-z])", name)]
 
+class Criterion(base.Criterion):
+    ID = "MS2-10"
+    TITLE = "Avoid redundant prefixes in property names (heuristic, needs human review)"
+    CATEGORY = "Semantic Quality"
+    POST_COMMENT = True
 
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    findings = []
-    for el in model.elements.values():
-        if el.short_type not in ("Aspect", "Entity") or len(el.properties) < 2:
-            continue
-        first_words: dict[str, list[str]] = {}
-        for prop_name in el.properties:
-            prop = model.elements.get(prop_name)
-            effective_name = prop.payload_name if prop and prop.payload_name else prop_name
-            words = _split_camel(effective_name)
-            if not words:
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        findings = []
+        for el in model.elements.values():
+            if el.short_type not in ("Aspect", "Entity") or len(el.properties) < 2:
                 continue
-            first_words.setdefault(words[0], []).append(prop_name)
-        for word, props in first_words.items():
-            if len(props) >= 2:
-                findings.append(Finding(
-                    ID, TITLE, "WARN", model.file,
-                    f"properties {props} of '{el.name}' all share the prefix '{word}' - "
-                    f"consider an enclosing Entity instead (e.g. '{word}' with sub-properties)",
-                    element=el.name, line=el.line_no,
-                ))
-    return findings
+            first_words: dict[str, list[str]] = {}
+            for prop_name in el.properties:
+                prop = model.elements.get(prop_name)
+                effective_name = prop.payload_name if prop and prop.payload_name else prop_name
+                words = _split_camel(effective_name)
+                if not words:
+                    continue
+                first_words.setdefault(words[0], []).append(prop_name)
+            for word, props in first_words.items():
+                if len(props) >= 2:
+                    findings.append(Finding(
+                        self.ID, self.TITLE, "WARN", model.file,
+                        f"properties {props} of '{el.name}' all share the prefix '{word}' - "
+                        f"consider an enclosing Entity instead (e.g. '{word}' with sub-properties)",
+                        element=el.name, line=el.line_no,
+                    ))
+        return findings

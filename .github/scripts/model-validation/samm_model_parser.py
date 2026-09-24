@@ -46,7 +46,12 @@ ELEMENT_RE = re.compile(
     re.MULTILINE | re.DOTALL,
 )
 
-LANG_STRING_RE_TMPL = r'samm:{field}\s+"((?:[^"\\]|\\.)*)"@(\w+)'
+# Turtle allows both a plain quoted string literal and a triple-quoted
+# "long" string literal (the latter used for multi-line preferredName /
+# description values); a language-tagged samm:field can be either.
+LANG_STRING_RE_TMPL = (
+    r'samm:{field}\s+(?:"""(?P<triple>(?:[^"]|"(?!""))*?)"""|"(?P<single>(?:[^"\\]|\\.)*)")@(?P<lang>\w+)'
+)
 
 
 @dataclass
@@ -101,7 +106,11 @@ class TTLModel:
 
 def _extract_lang_strings(body: str, field_name: str) -> list[tuple[str, str]]:
     pattern = re.compile(LANG_STRING_RE_TMPL.format(field=field_name))
-    return [(lang, text) for text, lang in pattern.findall(body)]
+    result = []
+    for m in pattern.finditer(body):
+        text = m.group("triple") if m.group("triple") is not None else m.group("single")
+        result.append((m.group("lang"), text))
+    return result
 
 
 def _extract_single(body: str, pattern: str) -> str | None:

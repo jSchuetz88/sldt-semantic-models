@@ -15,11 +15,14 @@
 # MS2-07: "all contributors to this model are mentioned in copyright header
 # of model file".
 #
-# Only checks that a copyright header block is present at the top of the
-# file. Verifying that it actually names *every* contributor isn't
-# reliably automatable (git authorship is GitHub account names, headers
-# name companies/organizations - the two don't map 1:1), so that part is
-# left to the reviewer.
+# Verifying that the header names *every* contributor isn't reliably
+# automatable (git authorship is GitHub account names, headers name
+# companies/organizations - the two don't map 1:1). Instead, this just
+# checks for the standard "Contributors to the Eclipse Foundation" line
+# that every properly-headered model carries alongside the named
+# companies - its presence is a reliable proxy for "this header follows
+# the required format", without parsing individual holder lines (which
+# vary in year format: single year, comma lists, ranges, ...).
 
 from __future__ import annotations
 
@@ -28,21 +31,20 @@ import re
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-07"
-TITLE = "Copyright header exists"
-CATEGORY = "Formal Requirements"
-POST_COMMENT = True
-COPYRIGHT_LINE_RE = re.compile(r"#\s*Copyright\s*\(?c\)?\s+\d{4}\s+(.+?)\s*$", re.MULTILINE)
+ECLIPSE_COPYRIGHT_RE = re.compile(
+    r"#.*Copyright.*Contributors to the Eclipse Foundation", re.IGNORECASE)
 
+class Criterion(base.Criterion):
+    ID = "MS2-07"
+    TITLE = "Copyright header exists"
+    CATEGORY = "Formal Requirements"
+    POST_COMMENT = True
 
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    header_match = re.match(r"(?:#.*\n)+", model.text)
-    header = header_match.group(0) if header_match else ""
-    copyright_holders = COPYRIGHT_LINE_RE.findall(header)
-
-    if not copyright_holders:
-        return [Finding(ID, TITLE, "FAIL", model.file,
-                         "no copyright header found at the top of the file", line=1)]
-    return [Finding(ID, TITLE, "SUCCESS", model.file,
-                     f"copyright header present, lists: {copyright_holders}")]
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        if ECLIPSE_COPYRIGHT_RE.search(model.text):
+            return [Finding(self.ID, self.TITLE, "SUCCESS", model.file,
+                             "'Contributors to the Eclipse Foundation' copyright line present")]
+        return [Finding(self.ID, self.TITLE, "FAIL", model.file,
+                         "no 'Copyright ... Contributors to the Eclipse Foundation' line found in header", line=1)]

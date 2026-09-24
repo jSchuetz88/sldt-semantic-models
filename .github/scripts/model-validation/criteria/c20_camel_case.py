@@ -21,19 +21,19 @@ import re
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
-from ._shared import element_findings
+from . import base
 
-ID = "MS2-20"
-# All identifiers must use Camel-Case (letters/digits only, no other characters).
-TITLE = "Identifiers use Camel-Case"
-CATEGORY = "Naming Conventions"
-POST_COMMENT = True
 CAMEL_CASE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*$")
 
+class Criterion(base.Criterion):
+    ID = "MS2-20"
+    # All identifiers must use Camel-Case (letters/digits only, no other characters).
+    TITLE = "Identifiers use Camel-Case"
+    CATEGORY = "Naming Conventions"
+    POST_COMMENT = True
 
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    def bad(el):
-        return None if CAMEL_CASE_RE.match(el.name) else "contains characters other than letters/digits"
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        def bad(el):
+            return None if CAMEL_CASE_RE.match(el.name) else "contains characters other than letters/digits"
 
-    return element_findings(ID, TITLE, model, bad,
-                             lambda el, msg: f"identifier '{el.name}' is not Camel-Case ({msg})")
+        return self.element_findings(model, bad, lambda el, msg: f"identifier '{el.name}' is not Camel-Case ({msg})")

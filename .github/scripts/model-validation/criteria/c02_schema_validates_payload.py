@@ -28,35 +28,36 @@ import json
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-02"
-TITLE = "Generated JSON schema validates against generated example payload"
-CATEGORY = "Model Validation"
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-02"
+    TITLE = "Generated JSON schema validates against generated example payload"
+    CATEGORY = "Model Validation"
+    POST_COMMENT = True
 
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        artifacts = ctx.generated_artifacts(model)
+        if artifacts.schema_path is None or artifacts.payload_path is None:
+            level = "SKIP" if artifacts.skipped else "FAIL"
+            return [Finding(self.ID, self.TITLE, level, model.file, artifacts.error, line=1 if level == "FAIL" else None)]
 
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    artifacts = ctx.generated_artifacts(model)
-    if artifacts.schema_path is None or artifacts.payload_path is None:
-        level = "SKIP" if artifacts.skipped else "FAIL"
-        return [Finding(ID, TITLE, level, model.file, artifacts.error, line=1 if level == "FAIL" else None)]
+        try:
+            import jsonschema
+        except ImportError:
+            return [Finding(self.ID, self.TITLE, "SKIP", model.file,
+                             "schema and example payload generated successfully, but the "
+                             "'jsonschema' package is not installed so they were not cross-validated "
+                             "(pip install jsonschema)")]
 
-    try:
-        import jsonschema
-    except ImportError:
-        return [Finding(ID, TITLE, "SKIP", model.file,
-                         "schema and example payload generated successfully, but the "
-                         "'jsonschema' package is not installed so they were not cross-validated "
-                         "(pip install jsonschema)")]
+        schema = json.loads(artifacts.schema_path.read_text(encoding="utf-8"))
+        payload = json.loads(artifacts.payload_path.read_text(encoding="utf-8"))
+        try:
+            jsonschema.validate(payload, schema)
+        except jsonschema.ValidationError as e:
+            return [Finding(self.ID, self.TITLE, "FAIL", model.file,
+                             f"generated example payload does not validate against the generated "
+                             f"JSON schema: {e.message}", line=1)]
 
-    schema = json.loads(artifacts.schema_path.read_text(encoding="utf-8"))
-    payload = json.loads(artifacts.payload_path.read_text(encoding="utf-8"))
-    try:
-        jsonschema.validate(payload, schema)
-    except jsonschema.ValidationError as e:
-        return [Finding(ID, TITLE, "FAIL", model.file,
-                         f"generated example payload does not validate against the generated "
-                         f"JSON schema: {e.message}", line=1)]
-
-    return [Finding(ID, TITLE, "SUCCESS", model.file,
-                     "generated JSON schema validates against the generated example payload")]
+        return [Finding(self.ID, self.TITLE, "SUCCESS", model.file,
+                         "generated JSON schema validates against the generated example payload")]

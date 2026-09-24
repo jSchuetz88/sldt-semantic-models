@@ -27,21 +27,22 @@ from __future__ import annotations
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
+from . import base
 
-ID = "MS2-16"
-TITLE = "External standards referenced via samm:see (not automatically verifiable)"
-CATEGORY = "Semantic Quality"
-# Harmless no-op today (check() below only ever returns NOTE) - see c09's
-# comment on POST_COMMENT for why this is still set.
-POST_COMMENT = True
+class Criterion(base.Criterion):
+    ID = "MS2-16"
+    TITLE = "External standards referenced via samm:see (not automatically verifiable)"
+    CATEGORY = "Semantic Quality"
+    # Harmless no-op today (check() below only ever returns NOTE) - see c09's
+    # comment on POST_COMMENT for why this is still set.
+    POST_COMMENT = True
 
-
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    with_see = [el.name for el in model.elements.values() if el.see]
-    if with_see:
-        result = f"{len(with_see)} element(s) carry a samm:see reference: {with_see}"
-    else:
-        result = ("no samm:see references found - if this model implements/relates to an "
-                  "external standard, reference it via samm:see")
-    return [Finding(ID, TITLE, "NOTE", model.file,
-                     f"{result} (checked by reviewer - not automatically verifiable)")]
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        with_see = [el.name for el in model.elements.values() if el.see]
+        if with_see:
+            result = f"{len(with_see)} element(s) carry a samm:see reference: {with_see}"
+        else:
+            result = ("no samm:see references found - if this model implements/relates to an "
+                      "external standard, reference it via samm:see")
+        return [Finding(self.ID, self.TITLE, "NOTE", model.file,
+                         f"{result} (checked by reviewer - not automatically verifiable)")]
