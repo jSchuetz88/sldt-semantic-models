@@ -40,8 +40,8 @@
 # per file it:
 #
 #   1. Parses the file into a TTLModel (model-validation/samm_model_parser.py).
-#   2. Loads the per-criterion overrides from model-validation/config.json,
-#      if any (see model-validation/config.py).
+#   2. Loads the per-criterion overrides from config.json (one level up,
+#      in .github/scripts/), if any (see model-validation/config.py).
 #   3. Hands the model + a shared Context to every enabled criterion
 #      sub-routine registered in model-validation/criteria/, downgrading
 #      FAILs to WARN for criteria configured as non-blocking. FAIL/WARN

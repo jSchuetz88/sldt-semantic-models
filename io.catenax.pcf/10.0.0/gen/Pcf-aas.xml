@@ -1046,6 +1046,12 @@ Property to collect all id and version properties.</aas:text>
                           <aas:valueType>xs:string</aas:valueType>
                           <aas:value>ZeroToMany</aas:value>
                         </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>Test</aas:value>
+                        </aas:qualifier>
                       </aas:qualifiers>
                       <aas:orderRelevant>false</aas:orderRelevant>
                       <aas:typeValueListElement>SubmodelElementCollection</aas:typeValueListElement>
@@ -1067,6 +1073,7 @@ Property to collect all id and version properties.</aas:text>
                             </aas:keys>
                           </aas:semanticId>
                           <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>Test</aas:value>
                         </aas:property>
                       </aas:value>
                     </aas:submodelElementList>

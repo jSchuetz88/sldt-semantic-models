@@ -22,7 +22,7 @@
     "pcfAssessmentInformation" : [ {
       "idAndVersion" : [ {
         "id" : "3893bb5d-da16-4dc1-9185-11d97476c254",
-        "precedingPfIds" : [ "N" ],
+        "precedingPfIds" : [ "Test" ],
         "version" : 0,
         "status" : "Active",
         "retroOrProspectivePcfType" : "Retrospective PCF"
@@ -63,7 +63,7 @@
       } ],
       "massBalancingInformation" : [ {
         "massBalancingUsed" : true,
-        "freeAttributionInMassBalancing" : false,
+        "freeAttributionInMassBalancing" : true,
         "massBalancingCertificateScheme" : "ISCC+"
       } ]
     } ],
@@ -75,7 +75,7 @@
       "geographicalDQR" : 2.0
     } ],
     "verificationAndCertificationShares" : [ {
-      "programCertificationShare" : 73.28,
+      "programCertificationShare" : 75.83,
       "productVerificationShare3rdParty" : 0.00,
       "productVerificationShare2ndParty" : 0.00,
       "productVerificationShare1stParty" : 0.00
@@ -110,7 +110,7 @@
       "packagingAircraftGhgEmissions" : 0.2
     } ],
     "distributionStage" : [ {
-      "distributionStageIncluded" : false,
+      "distributionStageIncluded" : true,
       "distributionStagePcfIncludingBiogenicUptake" : 0.15,
       "distributionStagePcfExcludingBiogenicUptake" : 0.15,
       "distributionStageBiogenicCO2Uptake" : 0.00,

@@ -28,7 +28,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix : <urn:samm:io.catenax.pcf:10.0.0#> .
-@prefix ext-uuid: <urn:samm:io.catenax.shared.uuid:2.0.0#> .
+@prefix ext-uuid: <urn:samm:io.catenax.shared.uuid:2.1.0#> .
 
 :Pcf a samm:Aspect ;
    samm:preferredName "Product (Carbon) Footprint"@en ;
@@ -1008,7 +1008,8 @@
 :precedingPfIds a samm:Property ;
    samm:preferredName "Previous PCF (Product Carbon Footprint) Identifiers"@en ;
    samm:description "This is a list of previously submitted product footprint identifiers in submitted order, starting with the latest submitted PCF. This chain therefore reflects the history of a PCF."@en ;
-   samm:characteristic :PrecedingPfIdsCharacteristic .
+   samm:characteristic :PrecedingPfIdsCharacteristic ;
+   samm:exampleValue "Test".
 
 :exemptedEmissionsPercent a samm:Property ;
    samm:preferredName "Cut-off rule"@en ;

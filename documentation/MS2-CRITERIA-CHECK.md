@@ -10,10 +10,12 @@ This describes the automated check that runs on every pull request to verify the
 ├── workflows/
 │   └── governance.yml                the CI pipeline (3 jobs, see below)
 └── scripts/
+    ├── config.json                   per-repo settings & criterion overrides - lives here,
+    │                                 not inside model-validation/, so other scripts under
+    │                                 .github/scripts/ can share it as their config base too
     ├── ms2_check.py                  master script / CLI entry point
     └── model-validation/             the actual package
-        ├── config.json               per-repo settings & criterion overrides
-        ├── config.py                 loads config.json
+        ├── config.py                 loads ../config.json
         ├── context.py                shared state handed to every criterion (repo root,
         │                             changed files, lazily-downloaded SAMM CLI jar, plus
         │                             per-model caches for `validate` results and generated
@@ -113,7 +115,7 @@ Each `Finding` has a level:
 | MS2-21 | Naming Conventions | ✅ automated | property identifiers start lowercase |
 | MS2-22 | Formal Requirements | ✅ automated | property and its Characteristic don't share a name |
 
-## Config (`model-validation/config.json`)
+## Config (`.github/scripts/config.json`)
 
 Two sections, both optional - a missing or empty file behaves exactly like default settings for everything:
 

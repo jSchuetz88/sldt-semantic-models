@@ -12,8 +12,9 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# Loads config.json (in this same directory), the per-repo config for the
-# MS2 criteria check. Two separate sections:
+# Loads config.json from .github/scripts/ (one level up from this module -
+# shared by other scripts under .github/scripts/, not just the MS2 criteria
+# check), the per-repo config. Two separate sections:
 #
 # "settings": general settings, currently just:
 #
@@ -55,7 +56,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-DEFAULT_CONFIG_RELPATH = ".github/scripts/model-validation/config.json"
+DEFAULT_CONFIG_RELPATH = ".github/scripts/config.json"
 DEFAULT_SAMM_CLI_VERSION = "2.12.0"
 
 
