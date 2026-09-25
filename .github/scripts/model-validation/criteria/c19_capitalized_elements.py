@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-18: "the identifiers for all model elements start with a capital
+# MS2-19: "the identifiers for all model elements start with a capital
 # letter except for properties".
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-18"
+    ID = "MS2-19"
     # Identifiers of all model elements except properties must start with a capital letter.
     TITLE = "Non-property identifiers start with a capital letter"
     CATEGORY = "Naming Conventions"

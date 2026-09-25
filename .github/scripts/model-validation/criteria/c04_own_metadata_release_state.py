@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-03: "metadata.json exists with status 'release'".
+# MS2-04: "metadata.json exists with status 'release'".
 #
 # Broadened beyond the letter of that wording: a model's metadata.json
 # legitimately moves through - or ends up in - other lifecycle states too
@@ -37,7 +37,7 @@ from . import base
 VALID_STATUSES = {"release", "deprecated", "draft", "invalidated"}
 
 class Criterion(base.Criterion):
-    ID = "MS2-03"
+    ID = "MS2-04"
     TITLE = "metadata.json exists with a valid status"
     CATEGORY = "Formal Requirements"
     POST_COMMENT = True

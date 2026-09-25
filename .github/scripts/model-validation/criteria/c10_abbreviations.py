@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-09: "use abbreviations only when necessary and if these are
+# MS2-10: "use abbreviations only when necessary and if these are
 # sufficiently common".
 #
 # Not a machine-checkable criterion: whether an abbreviation is "necessary"
@@ -30,7 +30,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-09"
+    ID = "MS2-10"
     TITLE = "Abbreviations used only when necessary and common (not automatically verifiable)"
     CATEGORY = "Semantic Quality"
     # Harmless no-op today (check() below only ever returns SKIP, and

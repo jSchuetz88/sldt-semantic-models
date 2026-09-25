@@ -25,7 +25,7 @@
 #   download cache in governance.yml.
 #
 # "criteria": per-criterion overrides, keyed by criterion id
-# ("MS2-01".."MS2-22"), two independent knobs each (both default to "on"):
+# ("MS2-01".."MS2-23"), two independent knobs each (both default to "on"):
 #
 #   "enabled":  false -> the criterion is skipped entirely, no Findings at all
 #   "blocking": false -> the criterion still runs and is reported, but any

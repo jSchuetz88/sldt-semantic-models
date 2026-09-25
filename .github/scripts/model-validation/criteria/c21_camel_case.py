@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-20: "use Camel-Case".
+# MS2-21: "use Camel-Case".
 
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ from . import base
 CAMEL_CASE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9]*$")
 
 class Criterion(base.Criterion):
-    ID = "MS2-20"
+    ID = "MS2-21"
     # All identifiers must use Camel-Case (letters/digits only, no other characters).
     TITLE = "Identifiers use Camel-Case"
     CATEGORY = "Naming Conventions"

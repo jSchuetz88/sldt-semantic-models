@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-04: "all external / imported models have the state 'release'".
+# MS2-05: "all external / imported models have the state 'release'".
 
 from __future__ import annotations
 
@@ -44,7 +44,7 @@ def _read_metadata(folder: str, version: str) -> dict | None:
         return json.load(f)
 
 class Criterion(base.Criterion):
-    ID = "MS2-04"
+    ID = "MS2-05"
     TITLE = "Imported models are in 'release' state"
     CATEGORY = "Model Validation"
     POST_COMMENT = True

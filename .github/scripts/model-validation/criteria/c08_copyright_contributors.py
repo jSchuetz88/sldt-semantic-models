@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-07: "all contributors to this model are mentioned in copyright header
+# MS2-08: "all contributors to this model are mentioned in copyright header
 # of model file".
 #
 # Verifying that the header names *every* contributor isn't reliably
@@ -37,7 +37,7 @@ ECLIPSE_COPYRIGHT_RE = re.compile(
     r"#.*Copyright.*Contributors to the Eclipse Foundation", re.IGNORECASE)
 
 class Criterion(base.Criterion):
-    ID = "MS2-07"
+    ID = "MS2-08"
     TITLE = "Copyright header exists"
     CATEGORY = "Formal Requirements"
     POST_COMMENT = True

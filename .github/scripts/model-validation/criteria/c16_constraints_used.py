@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-15: "use constraints to make known constraints from the use case
+# MS2-16: "use constraints to make known constraints from the use case
 # explicit in the aspect model".
 #
 # Informational only (NOTE, never FAIL/WARN/SKIP/SUCCESS): whether constraints
@@ -30,10 +30,10 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-15"
+    ID = "MS2-16"
     TITLE = "Constraints used where applicable (not automatically verifiable)"
     CATEGORY = "Semantic Quality"
-    # Harmless no-op today (check() below only ever returns NOTE) - see c09's
+    # Harmless no-op today (check() below only ever returns NOTE) - see c10's
     # comment on POST_COMMENT for why this is still set.
     POST_COMMENT = True
 

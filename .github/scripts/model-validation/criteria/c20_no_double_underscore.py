@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-19: "payload names and property identifiers must not contain two
+# MS2-20: "payload names and property identifiers must not contain two
 # consecutive underscores ('__') at any position".
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-19"
+    ID = "MS2-20"
     # Identifiers and payloadName values must not contain two consecutive underscores.
     TITLE = "No double underscores in identifiers/payload names"
     CATEGORY = "Naming Conventions"

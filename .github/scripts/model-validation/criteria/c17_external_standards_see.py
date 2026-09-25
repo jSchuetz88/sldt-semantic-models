@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-16: "when relying on external standards, they are referenced through
+# MS2-17: "when relying on external standards, they are referenced through
 # a 'see' element".
 #
 # Informational only (NOTE, never FAIL/WARN/SKIP/SUCCESS): whether this model
@@ -30,10 +30,10 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-16"
+    ID = "MS2-17"
     TITLE = "External standards referenced via samm:see (not automatically verifiable)"
     CATEGORY = "Semantic Quality"
-    # Harmless no-op today (check() below only ever returns NOTE) - see c09's
+    # Harmless no-op today (check() below only ever returns NOTE) - see c10's
     # comment on POST_COMMENT for why this is still set.
     POST_COMMENT = True
 

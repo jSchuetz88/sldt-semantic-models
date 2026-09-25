@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-05: "the versioning in the URN follows semantic versioning, where
+# MS2-06: "the versioning in the URN follows semantic versioning, where
 # minor version bumps are backwards compatible and major version bumps are
 # not backwards compatible."
 #
@@ -32,7 +32,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-05"
+    ID = "MS2-06"
     # The URN version must be well-formed MAJOR.MINOR.PATCH semver and match its version folder.
     TITLE = "URN version follows semantic versioning"
     CATEGORY = "Model Validation"

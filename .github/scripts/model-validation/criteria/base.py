@@ -85,7 +85,7 @@ class Criterion(ABC):
         level: str = "FAIL",
     ) -> list[Finding]:
         # Shared by any criterion whose check is "flag every element where
-        # some per-element predicate fails" (e.g. c18/c20/c21's naming
+        # some per-element predicate fails" (e.g. c19/c21/c22's naming
         # rules) - runs `predicate(element)` over every element in the
         # model, and turns each truthy result into a Finding via
         # `message_fn`, tagged with this criterion's own ID/TITLE.

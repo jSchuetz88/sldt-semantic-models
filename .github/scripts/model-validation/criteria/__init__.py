@@ -30,7 +30,7 @@
 # WARN level instead of FAIL, and say so, rather than pretending to be an
 # authoritative check; criteria that can't render a verdict at all (e.g.
 # "abbreviations only when necessary" is a pure judgement call - see
-# c09_abbreviations.py) still implement ``check``, but it always returns
+# c10_abbreviations.py) still implement ``check``, but it always returns
 # the same static SKIP/NOTE regardless of file content, rather than
 # pretending to analyze something unanalyzable. FAIL is reserved for
 # criteria that are genuinely unambiguous from the text - and even those

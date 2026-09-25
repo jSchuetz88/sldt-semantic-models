@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-13: "name of aspect is singular except if it only has one property
+# MS2-14: "name of aspect is singular except if it only has one property
 # which is a Collection, List or Set. In these cases, the aspect name is
 # plural."
 #
@@ -30,10 +30,10 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-13"
+    ID = "MS2-14"
     TITLE = "Aspect name is singular/plural depending on single Collection property (not automatically verifiable)"
     CATEGORY = "Naming Conventions"
-    # Harmless no-op today (check() below only ever returns SKIP) - see c09's
+    # Harmless no-op today (check() below only ever returns SKIP) - see c10's
     # comment on POST_COMMENT for why this is still set.
     POST_COMMENT = True
 

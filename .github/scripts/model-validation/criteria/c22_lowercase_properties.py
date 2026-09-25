@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-21: "the identifier for properties starts with a small letter".
+# MS2-22: "the identifier for properties starts with a small letter".
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-21"
+    ID = "MS2-22"
     # Property identifiers must start with a lowercase letter.
     TITLE = "Property identifiers start with a lowercase letter"
     CATEGORY = "Naming Conventions"

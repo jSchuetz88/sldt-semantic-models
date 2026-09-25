@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-11: "fields preferredName and description are not the same".
+# MS2-12: "fields preferredName and description are not the same".
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-11"
+    ID = "MS2-12"
     TITLE = "preferredName and description are not identical"
     CATEGORY = "Semantic Quality"
     POST_COMMENT = True

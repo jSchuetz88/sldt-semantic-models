@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-10: "avoid redundant prefixes in property names (consider adding
+# MS2-11: "avoid redundant prefixes in property names (consider adding
 # properties to an enclosing Entity or even adapt the namespace of the
 # model elements, e.g., instead of having two properties `DismantlerId`
 # and `DismantlerName` use an Entity `Dismantler` with the properties
@@ -42,7 +42,7 @@ def _split_camel(name: str) -> list[str]:
     return [w.lower() for w in re.findall(r"[A-Z]?[a-z0-9]+|[A-Z]+(?![a-z])", name)]
 
 class Criterion(base.Criterion):
-    ID = "MS2-10"
+    ID = "MS2-11"
     TITLE = "Avoid redundant prefixes in property names (heuristic, needs human review)"
     CATEGORY = "Semantic Quality"
     POST_COMMENT = True

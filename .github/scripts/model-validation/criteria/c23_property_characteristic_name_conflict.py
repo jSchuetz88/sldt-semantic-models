@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-22: "Property and the referenced Characteristic should not have the
+# MS2-23: "Property and the referenced Characteristic should not have the
 # same name".
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-22"
+    ID = "MS2-23"
     # A property and its referenced Characteristic must not share the same name.
     TITLE = "Property and its Characteristic have different names"
     CATEGORY = "Semantic Quality"

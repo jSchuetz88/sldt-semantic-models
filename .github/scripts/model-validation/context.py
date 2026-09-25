@@ -30,6 +30,36 @@ from . import config, samm_cli
 
 
 @dataclass
+class ArtifactBuildResult:
+    # Maps artifact label (see ARTIFACT_FORMATS below) -> truncated samm-cli
+    # error message, for every format that failed to generate. Empty when
+    # every format succeeded. See Context.artifact_build_result below.
+    failures: dict[str, str]
+    skipped: bool = False
+    skip_reason: str | None = None
+
+
+# Every artifact format generate.sh also produces for a model (see its
+# `commands`/`toggles` arrays), kept in sync with that script by hand:
+# there's no single source both a shell script and this Python package can
+# read without one shelling out to the other, and generate.sh's own job
+# (keep whichever formats succeed for the real gen/ folder, warn on the
+# rest) is a different question from this criterion's (did *every* format
+# succeed at all, into a scratch directory nothing else reads). HTML is
+# generated without the Catena-X stylesheet (generate.sh's `-c`) here -
+# that flag only changes the page's look, not whether generation succeeds.
+ARTIFACT_FORMATS: list[tuple[str, list[str]]] = [
+    ("aas.xml", ["aas", "-f", "xml"]),
+    ("aasx", ["aas", "-f", "aasx"]),
+    ("schema.json", ["schema"]),
+    ("payload.json", ["json"]),
+    ("openapi.yml", ["openapi", "-b=catenax.io"]),
+    ("html", ["html"]),
+    ("parquet", ["parquet"]),
+]
+
+
+@dataclass
 class GeneratedArtifacts:
     # Result of one `aspect <file> to schema` / `to json` SAMM CLI round
     # trip for a given model - see Context.generated_artifacts below.
@@ -52,6 +82,7 @@ class Context:
     _samm_jar_resolved: bool = field(default=False, init=False, repr=False)
     _generated_artifacts: dict[str, GeneratedArtifacts] = field(default_factory=dict, init=False, repr=False)
     _validation_results: dict[str, subprocess.CompletedProcess] = field(default_factory=dict, init=False, repr=False)
+    _artifact_build_results: dict[str, ArtifactBuildResult] = field(default_factory=dict, init=False, repr=False)
 
     @property
     def samm_jar(self) -> Path | None:
@@ -136,6 +167,44 @@ class Context:
 
         result = GeneratedArtifacts(schema_path, payload_path)
         self._generated_artifacts[model.file] = result
+        return result
+
+    def artifact_build_result(self, model) -> ArtifactBuildResult:
+        # Lazily attempts (once per model file, cached for the rest of this
+        # run) every format in ARTIFACT_FORMATS via the SAMM CLI, into a
+        # throwaway temp directory - unlike generated_artifacts() above,
+        # nothing here is meant to be inspected afterwards, only whether
+        # each format's `samm-cli aspect <file> to <format>` round trip
+        # succeeded. Used by MS2-03 ("do all artifact types generate").
+        if model.file in self._artifact_build_results:
+            return self._artifact_build_results[model.file]
+
+        jar = self.samm_jar
+        if jar is None:
+            result = ArtifactBuildResult(
+                {}, skipped=True, skip_reason="SAMM CLI jar unavailable (no Java / no network)")
+            self._artifact_build_results[model.file] = result
+            return result
+
+        validation = self.validation_result(model)
+        if validation is not None and validation.returncode != 0:
+            result = ArtifactBuildResult(
+                {}, skipped=True,
+                skip_reason="model does not validate (see MS2-01) - artifact generation skipped")
+            self._artifact_build_results[model.file] = result
+            return result
+
+        out_dir = Path(tempfile.mkdtemp(prefix="ms2-build-"))
+        failures: dict[str, str] = {}
+        for label, args in ARTIFACT_FORMATS:
+            out_path = out_dir / label
+            cli_result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "to", *args, "-o", str(out_path)])
+            if cli_result.returncode != 0 or not out_path.exists():
+                detail = (cli_result.stderr or cli_result.stdout or f"exit code {cli_result.returncode}").strip()
+                failures[label] = detail[:300]
+
+        result = ArtifactBuildResult(failures)
+        self._artifact_build_results[model.file] = result
         return result
 
     def get_changed_files(self) -> list[str]:

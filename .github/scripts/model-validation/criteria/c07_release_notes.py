@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-06: "file RELEASE_NOTES.md exists and contains entries for proposed
+# MS2-07: "file RELEASE_NOTES.md exists and contains entries for proposed
 # model changes".
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-06"
+    ID = "MS2-07"
     TITLE = "RELEASE_NOTES.md exists and documents this version"
     CATEGORY = "Formal Requirements"
     POST_COMMENT = True

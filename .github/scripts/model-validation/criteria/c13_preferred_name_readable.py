@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-12: "preferredName should be human readable and follow normal
+# MS2-13: "preferredName should be human readable and follow normal
 # orthography (e.g., no camel case but normal word separation)".
 #
 # Heuristic only (WARN, not FAIL): a lowercase-to-uppercase hump can't be
@@ -32,7 +32,7 @@ from . import base
 CAMEL_HUMP_RE = re.compile(r"[a-z][A-Z]")
 
 class Criterion(base.Criterion):
-    ID = "MS2-12"
+    ID = "MS2-13"
     TITLE = "preferredName is human-readable (not Camel-Case) (heuristic, needs human review)"
     CATEGORY = "Semantic Quality"
     POST_COMMENT = True

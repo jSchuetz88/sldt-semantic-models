@@ -6,7 +6,7 @@ This describes the automated check that runs on every pull request to verify the
 
 ```text
 .github/
-├── PULL_REQUEST_TEMPLATE.md          the 22 MS2 checklist items this check implements
+├── PULL_REQUEST_TEMPLATE.md          the 23 MS2 checklist items this check implements
 ├── workflows/
 │   └── governance.yml                the CI pipeline (3 jobs, see below)
 └── scripts/
@@ -30,8 +30,9 @@ This describes the automated check that runs on every pull request to verify the
             ├── __init__.py            auto-discovers every cNN_*.py below into REGISTRY
             ├── c01_samm_validate.py
             ├── c02_schema_validates_payload.py
+            ├── c03_all_artifacts_generate.py
             ├── ...
-            └── c22_copyright_contributors.py
+            └── c23_property_characteristic_name_conflict.py
 ```
 
 ## CI pipeline (`governance.yml`)
@@ -68,15 +69,15 @@ For each file, it: parses the model, loads `config.json`, then hands the parsed 
 
 ## Criteria (`model-validation/criteria/`)
 
-Each `cNN_<slug>.py` is a self-contained sub-routine exposing `ID`, `TITLE`, `CATEGORY`, and `check(model, ctx) -> list[Finding]`. `criteria/__init__.py` builds `REGISTRY` by importing every `cNN_*.py` file in numeric order and collecting the ones that define `check`. All 22 currently do - even a criterion that's a pure judgement call and can't render any verdict (e.g. MS2-09, "abbreviations only when necessary") still has a `check` function; it just always returns the same static `SKIP`/`NOTE` Finding regardless of file content, so it still shows up as its own row in the report rather than being invisible. A `cNN_*.py` file with no `check` function at all would be excluded from `REGISTRY` entirely (not currently used by any criterion here).
+Each `cNN_<slug>.py` defines exactly one subclass of `base.Criterion` exposing `ID`, `TITLE`, `CATEGORY`, and `check(model, ctx) -> list[Finding]` - see `base.py` for the blueprint and the validation that runs at import time. `criteria/__init__.py` builds `REGISTRY` by importing every `cNN_*.py` file in numeric order and instantiating the one `base.Criterion` subclass each defines. All 23 currently implement `check` - even a criterion that's a pure judgement call and can't render any verdict (e.g. MS2-10, "abbreviations only when necessary") still has one; it just always returns the same static `SKIP`/`NOTE` Finding regardless of file content, so it still shows up as its own row in the report rather than being invisible.
 
 Optionally, a module can also set `POST_COMMENT = True` (default `False` if omitted) to have its `FAIL`/`WARN` findings included in the per-model PR checklist comment - see "PR checklist comments" below.
 
-**To add or change a criterion:** drop in (or edit) a `cNN_<slug>.py` file with `ID`, `TITLE`, `CATEGORY`, and a `check` function. Nothing else needs to change - no registry to update by hand.
+**To add or change a criterion:** drop in (or edit) a `cNN_<slug>.py` file with a `base.Criterion` subclass defining `ID`, `TITLE`, `CATEGORY`, and `check`. Nothing else needs to change - no registry to update by hand.
 
 `CATEGORY` is one of `"Model Validation"`, `"Formal Requirements"`, `"Naming Conventions"`, or `"Semantic Quality"` - see the checklist table below for which criterion is in which. It exists purely to group the report table into sections (see "Report format" below); it doesn't affect execution, blocking, or anything else.
 
-The `cNN` file prefix and the `ID = "MS2-NN"` constant inside the file are independent: the prefix only controls **execution/report order** (`REGISTRY` is built by sorting on file name), while `ID` is the criterion's actual identity (used in the report, in `config.json` overrides, and everywhere else). They happen to line up for most criteria, but don't have to - e.g. `c02_schema_validates_payload.py` carries `ID = "MS2-02"` so the JSON-schema-vs-payload check runs right after MS2-01 (both are checks on whether the model's basic artifacts are even sound), while `c20_camel_case.py` carries `ID = "MS2-20"` and runs near the end.
+The `cNN` file prefix and the `ID = "MS2-NN"` class attribute inside the file are independent: the prefix only controls **execution/report order** (`REGISTRY` is built by sorting on file name), while `ID` is the criterion's actual identity (used in the report, in `config.json` overrides, and everywhere else). They happen to line up for most criteria, but don't have to - e.g. `c03_all_artifacts_generate.py` carries `ID = "MS2-03"` so the artifact-generation check runs right after MS2-01/MS2-02 (all three are checks on whether the model's basic artifacts are even sound), while `c21_camel_case.py` carries `ID = "MS2-21"` and runs near the end.
 
 Each `Finding` has a level:
 
@@ -88,32 +89,33 @@ Each `Finding` has a level:
 | `NOTE` | ℹ️ | the criterion can never render a pass/fail verdict at all (the question isn't machine-answerable from the file alone) - a fact for the reviewer, not a confirmation of anything. Doesn't break CI (same as `SUCCESS`), but counted separately in the summary line ("N passing" vs "M for manual review") and rendered with a different icon, so it never reads as an actual automated pass |
 | `SKIP` | ➖ | couldn't be evaluated (e.g. no Java for the SAMM CLI, disabled via config), or deliberately not attempted because a prerequisite already failed (e.g. MS2-02 when the model doesn't validate) |
 
-### The 22 checklist items
+### The 23 checklist items
 
 | ID | Category | Automation | Notes |
 | --- | --- | --- | --- |
 | MS2-01 | Model Validation | ✅ automated | runs `samm-cli aspect <file> validate` for real |
 | MS2-02 | Model Validation | ✅ automated | generated JSON schema validates the generated example payload. Schema/payload come from `ctx.generated_artifacts()` (shared with any other criterion that wants them, see `context.py`), which itself skips generation (`SKIP`) if the model doesn't validate (MS2-01) - moot in the normal CI flow since MS2-01 failing already skips MS2-02 entirely, but keeps this criterion correct if ever invoked on its own |
-| MS2-03 | Formal Requirements | ✅ automated | own `metadata.json` exists with a status in `{release, deprecated, draft, invalidated}`; only `release` is a clean `SUCCESS`, the other three valid states are `WARN` ("please verify this is intentional"), anything else is `FAIL` |
-| MS2-04 | Formal Requirements | ✅ automated | imported/external models are in `release` state |
-| MS2-05 | Formal Requirements | ✅ automated | URN version is valid semver and matches its folder |
-| MS2-06 | Formal Requirements | ✅ automated | `RELEASE_NOTES.md` exists and mentions this version |
-| MS2-07 | Formal Requirements | ✅ automated (partial) | only checks a copyright header exists; matching it against actual contributors isn't reliably automatable (GitHub usernames vs. company names) |
-| MS2-08 | Formal Requirements | ✅ automated | `preferredName`/`description` present, English |
-| MS2-09 | Formal Requirements | ⛔ not automated | "abbreviations only when necessary" is a judgement call. Always `SKIP`, no analysis attempted (same pattern as MS2-13) - stays a manual review item on purpose |
-| MS2-10 | Formal Requirements | ⚠️ heuristic | redundant property-name prefixes among sibling properties of the same Aspect/Entity - flags (`WARN`), doesn't fail. Groups by `samm:payloadName` when set (falls back to the SAMM identifier), since a payload-name override can already resolve the redundancy even if the underlying SAMM identifiers still share a prefix |
-| MS2-11 | Formal Requirements | ✅ automated | `preferredName` != `description` |
-| MS2-12 | Formal Requirements | ⚠️ heuristic | `preferredName` looks Camel-Case (`WARN`, not `FAIL`) - a lowercase-to-uppercase hump can't be told apart from a genuine single term with internal capitalization (e.g. "eCommerce"), so this is a plausible but not certain violation |
-| MS2-13 | Naming Conventions | ⛔ not automated | plural aspect name required for a single Collection-valued property. Always `SKIP`, no analysis attempted (same pattern as MS2-09): English singular/plural has too many edge cases (irregular plurals not ending in "s"), and the property count itself is unreliable whenever an Aspect mixes local and externally-prefixed (imported) properties - the parser's local-reference regex silently drops the latter |
-| MS2-14 | Semantic Quality | ⚠️ heuristic | units should come from the SAMM catalog. Flagged cases are `SKIP`, never `WARN`: a non-catalog unit prefix or a custom `samm:Unit` definition is only a fact the script can point at, not evidence of a violation - it has no way to know whether a matching catalog unit actually exists for that quantity. The "nothing to flag" case is `NOTE` rather than `SUCCESS`, for the same reason: it still can't confirm the *right* catalog unit was actually chosen |
-| MS2-15 | Semantic Quality | ℹ️ informational (`NOTE`) | constraints usage - always the same static "checked by reviewer" note plus what's actually defined; whether more constraints are *needed* can't be judged from the file at all |
-| MS2-16 | Semantic Quality | ℹ️ informational (`NOTE`) | `samm:see` usage - same reasoning and treatment as MS2-15 |
-| MS2-17 | Semantic Quality | ✅ automated | simple-typed properties have an example value |
-| MS2-18 | Naming Conventions | ✅ automated | non-property identifiers start uppercase |
-| MS2-19 | Naming Conventions | ✅ automated | no `__` in identifiers/payload names |
-| MS2-20 | Naming Conventions | ✅ automated | Camel-Case identifiers |
-| MS2-21 | Naming Conventions | ✅ automated | property identifiers start lowercase |
-| MS2-22 | Formal Requirements | ✅ automated | property and its Characteristic don't share a name |
+| MS2-03 | Model Validation | ✅ automated | every artifact type `generate.sh` also produces (AAS XML, AASX, JSON schema, example JSON payload, OpenAPI spec, HTML doc, Parquet) generates successfully via `ctx.artifact_build_result()` (`context.py`), into a throwaway temp directory - a model can validate but still fail one specific format (SAMM CLI bug/limitation for that structure) |
+| MS2-04 | Formal Requirements | ✅ automated | own `metadata.json` exists with a status in `{release, deprecated, draft, invalidated}`; only `release` is a clean `SUCCESS`, the other three valid states are `WARN` ("please verify this is intentional"), anything else is `FAIL` |
+| MS2-05 | Model Validation | ✅ automated | imported/external models are in `release` state |
+| MS2-06 | Model Validation | ✅ automated | URN version is valid semver and matches its folder |
+| MS2-07 | Formal Requirements | ✅ automated | `RELEASE_NOTES.md` exists and mentions this version |
+| MS2-08 | Formal Requirements | ✅ automated (partial) | only checks a copyright header exists; matching it against actual contributors isn't reliably automatable (GitHub usernames vs. company names) |
+| MS2-09 | Semantic Quality | ✅ automated | `preferredName`/`description` present, English |
+| MS2-10 | Semantic Quality | ⛔ not automated | "abbreviations only when necessary" is a judgement call. Always `SKIP`, no analysis attempted (same pattern as MS2-14) - stays a manual review item on purpose |
+| MS2-11 | Semantic Quality | ⚠️ heuristic | redundant property-name prefixes among sibling properties of the same Aspect/Entity - flags (`WARN`), doesn't fail. Groups by `samm:payloadName` when set (falls back to the SAMM identifier), since a payload-name override can already resolve the redundancy even if the underlying SAMM identifiers still share a prefix |
+| MS2-12 | Semantic Quality | ✅ automated | `preferredName` != `description` |
+| MS2-13 | Semantic Quality | ⚠️ heuristic | `preferredName` looks Camel-Case (`WARN`, not `FAIL`) - a lowercase-to-uppercase hump can't be told apart from a genuine single term with internal capitalization (e.g. "eCommerce"), so this is a plausible but not certain violation |
+| MS2-14 | Naming Conventions | ⛔ not automated | plural aspect name required for a single Collection-valued property. Always `SKIP`, no analysis attempted (same pattern as MS2-10): English singular/plural has too many edge cases (irregular plurals not ending in "s"), and the property count itself is unreliable whenever an Aspect mixes local and externally-prefixed (imported) properties - the parser's local-reference regex silently drops the latter |
+| MS2-15 | Semantic Quality | ⚠️ heuristic | units should come from the SAMM catalog. Flagged cases are `SKIP`, never `WARN`: a non-catalog unit prefix or a custom `samm:Unit` definition is only a fact the script can point at, not evidence of a violation - it has no way to know whether a matching catalog unit actually exists for that quantity. The "nothing to flag" case is `NOTE` rather than `SUCCESS`, for the same reason: it still can't confirm the *right* catalog unit was actually chosen |
+| MS2-16 | Semantic Quality | ℹ️ informational (`NOTE`) | constraints usage - always the same static "checked by reviewer" note plus what's actually defined; whether more constraints are *needed* can't be judged from the file at all |
+| MS2-17 | Semantic Quality | ℹ️ informational (`NOTE`) | `samm:see` usage - same reasoning and treatment as MS2-16 |
+| MS2-18 | Semantic Quality | ✅ automated | simple-typed properties have an example value |
+| MS2-19 | Naming Conventions | ✅ automated | non-property identifiers start uppercase |
+| MS2-20 | Naming Conventions | ✅ automated | no `__` in identifiers/payload names |
+| MS2-21 | Naming Conventions | ✅ automated | Camel-Case identifiers |
+| MS2-22 | Naming Conventions | ✅ automated | property identifiers start lowercase |
+| MS2-23 | Semantic Quality | ✅ automated | property and its Characteristic don't share a name |
 
 ## Config (`.github/scripts/config.json`)
 
@@ -125,8 +127,8 @@ Two sections, both optional - a missing or empty file behaves exactly like defau
     "samm_cli_version": "2.15.1"
   },
   "criteria": {
-    "MS2-08": { "blocking": false },
-    "MS2-19": { "enabled": false }
+    "MS2-09": { "blocking": false },
+    "MS2-20": { "enabled": false }
   }
 }
 ```
@@ -143,7 +145,7 @@ Written to the GitHub Actions job summary (and printed to the console). Since ea
 
 Within a model's section, criteria are grouped into their `CATEGORY` (`Model Validation` / `Formal Requirements` / `Naming Conventions` / `Semantic Quality` - see the checklist table above), each its own sub-header (`##`, or `###` when nested under a per-model sub-header in the multi-file case), ordered by the lowest criterion ID it contains. Each category's table has one row per criterion: status icon, criterion ID, criterion name, and message. A criterion that produces multiple findings for the same model shows the worst icon and all messages (`<br>`-joined) in one row. Messages are wrapped in an inline code span for monospace rendering, since real line breaks aren't possible inside a Markdown table cell - collapsible `<details>` sections were tried for long multi-line output (e.g. a full samm-cli error dump) but GitHub's job-summary sanitizer strips that tag entirely, so plain inline code is what's left.
 
-The summary line above each model's table (`**Summary:** N failing, M warnings, X passing, Y for manual review, Z skipped.`) counts `SUCCESS` and `NOTE` separately: `X passing` is genuinely `SUCCESS` only, `Y for manual review` is `NOTE` only - they're kept apart on purpose so "passing" always means "an automated check actually ran and found nothing wrong", not diluted by criteria that can't render a verdict at all (MS2-09, MS2-13, MS2-15, MS2-16).
+The summary line above each model's table (`**Summary:** N failing, M warnings, X passing, Y for manual review, Z skipped.`) counts `SUCCESS` and `NOTE` separately: `X passing` is genuinely `SUCCESS` only, `Y for manual review` is `NOTE` only - they're kept apart on purpose so "passing" always means "an automated check actually ran and found nothing wrong", not diluted by criteria that can't render a verdict at all (MS2-10, MS2-14, MS2-16, MS2-17).
 
 ## PR checklist comments (`model-validation/github_comments.py`)
 

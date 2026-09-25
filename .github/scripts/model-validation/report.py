@@ -133,7 +133,7 @@ def render_markdown(findings: list[Finding], files_checked: list[str], categorie
             by_category.setdefault(categories.get(criterion_id, "Other"), []).append(criterion_id)
 
         # Categories ordered by the lowest criterion id they contain, so
-        # the report still reads roughly MS2-01 -> MS2-22 top to bottom -
+        # the report still reads roughly MS2-01 -> MS2-23 top to bottom -
         # just grouped, not fully interleaved.
         def _category_sort_key(category: str) -> str:
             return min(by_category[category])

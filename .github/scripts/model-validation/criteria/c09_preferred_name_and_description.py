@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-08: "all model elements at least contain the fields 'preferred name'
+# MS2-09: "all model elements at least contain the fields 'preferred name'
 # and 'description' in English language. The description must be
 # comprehensible. [...] style should be consistent over the whole model"
 #
@@ -27,7 +27,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-08"
+    ID = "MS2-09"
     # Every model element must have samm:preferredName and samm:description in English.
     TITLE = "preferredName and description present (English)"
     CATEGORY = "Semantic Quality"

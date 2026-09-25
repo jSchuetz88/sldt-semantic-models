@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-17: "all properties with an simple type have an example value".
+# MS2-18: "all properties with an simple type have an example value".
 #
 # Only resolvable within a single file: if a Property's Characteristic (and
 # its samm:dataType) is defined in an imported model rather than locally,
@@ -27,7 +27,7 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-17"
+    ID = "MS2-18"
     TITLE = "Properties with simple (xsd) type have an example value"
     CATEGORY = "Semantic Quality"
     POST_COMMENT = True

@@ -12,7 +12,7 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# MS2-14: "units are referenced from the SAMM unit catalog whenever
+# MS2-15: "units are referenced from the SAMM unit catalog whenever
 # possible".
 #
 # Never FAIL/WARN/SUCCESS: whether a matching catalog unit actually exists
@@ -34,11 +34,11 @@ from ..report import Finding
 from . import base
 
 class Criterion(base.Criterion):
-    ID = "MS2-14"
+    ID = "MS2-15"
     TITLE = "Units reference the SAMM unit catalog (heuristic, needs human review)"
     CATEGORY = "Semantic Quality"
     # Harmless no-op today (check() below never returns FAIL/WARN, the only
-    # levels that get posted) - see c09's comment on POST_COMMENT for why this
+    # levels that get posted) - see c10's comment on POST_COMMENT for why this
     # is still set.
     POST_COMMENT = True
 
