@@ -21,8 +21,8 @@
 # i.e. it switches branches, checks out specific commits and assumes you are on main. So please make sure you have not uncommitted change and
 # that you are on main.
 
-# Usage:
-# ./release.sh '10/01/2022' '12/15/2022'
+# Usage (run from the repository root):
+# ./scripts/release.sh '10/01/2022' '12/15/2022'
 
 HEADLINES=("Added" "Deprecated")
 STATUS=("release" "deprecated")
@@ -33,7 +33,6 @@ for i in ${!HEADLINES[@]}; do
   git whatchanged --since $1 --until $2 --pretty=format: --name-only | grep '\metadata.json$'| xargs grep -l "${STATUS[$i]}" | sed  -e "s/\metadata.json$//"
   git checkout main >/dev/null 2>&1
 done
-
 
 printf "\n## Removed\n"
 git whatchanged --since $1 --until $2 --diff-filter D --pretty="format:" --name-only | grep '\metadata.json$'| sed '/^$/d'| grep '\metadata.json$'
