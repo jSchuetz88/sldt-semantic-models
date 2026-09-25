@@ -12,19 +12,20 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# Loads config.json (in this same directory), the per-repo config for the
-# MS2 criteria check. Two separate sections:
+# Loads config.json from .github/scripts/ (one level up from this module -
+# shared by other scripts under .github/scripts/, not just the MS2 criteria
+# check), the per-repo config. Two separate sections:
 #
 # "settings": general settings, currently just:
 #
 #   "samm_cli_version": the SAMM CLI version to download and run for
-#   MS2-01 / MS2-20 (see samm_cli.py). Single source of truth - not parsed
+#   MS2-01 / MS2-02 (see samm_cli.py). Single source of truth - not parsed
 #   out of README.md prose, so it can't silently drift if that text gets
 #   reworded, and editing the README doesn't invalidate the SAMM CLI
 #   download cache in governance.yml.
 #
 # "criteria": per-criterion overrides, keyed by criterion id
-# ("MS2-01".."MS2-22"), two independent knobs each (both default to "on"):
+# ("MS2-01".."MS2-23"), two independent knobs each (both default to "on"):
 #
 #   "enabled":  false -> the criterion is skipped entirely, no Findings at all
 #   "blocking": false -> the criterion still runs and is reported, but any
@@ -36,7 +37,7 @@
 #
 # {
 #   "settings": {
-#     "samm_cli_version": "2.11.1"
+#     "samm_cli_version": "2.12.0"
 #   },
 #   "criteria": {
 #     "MS2-19": {"blocking": false},
@@ -55,8 +56,8 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-DEFAULT_CONFIG_RELPATH = ".github/scripts/model-validation/config.json"
-DEFAULT_SAMM_CLI_VERSION = "2.11.1"
+DEFAULT_CONFIG_RELPATH = ".github/scripts/config.json"
+DEFAULT_SAMM_CLI_VERSION = "2.12.0"
 
 
 @dataclass(frozen=True)

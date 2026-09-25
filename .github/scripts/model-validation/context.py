@@ -30,6 +30,36 @@ from . import config, samm_cli
 
 
 @dataclass
+class ArtifactBuildResult:
+    # Maps artifact label (see ARTIFACT_FORMATS below) -> truncated samm-cli
+    # error message, for every format that failed to generate. Empty when
+    # every format succeeded. See Context.artifact_build_result below.
+    failures: dict[str, str]
+    skipped: bool = False
+    skip_reason: str | None = None
+
+
+# Every artifact format generate.sh also produces for a model (see its
+# `commands`/`toggles` arrays), kept in sync with that script by hand:
+# there's no single source both a shell script and this Python package can
+# read without one shelling out to the other, and generate.sh's own job
+# (keep whichever formats succeed for the real gen/ folder, warn on the
+# rest) is a different question from this criterion's (did *every* format
+# succeed at all, into a scratch directory nothing else reads). HTML is
+# generated without the Catena-X stylesheet (generate.sh's `-c`) here -
+# that flag only changes the page's look, not whether generation succeeds.
+ARTIFACT_FORMATS: list[tuple[str, list[str]]] = [
+    ("aas.xml", ["aas", "-f", "xml"]),
+    ("aasx", ["aas", "-f", "aasx"]),
+    ("schema.json", ["schema"]),
+    ("payload.json", ["json"]),
+    ("openapi.yml", ["openapi", "-b=catenax.io"]),
+    ("html", ["html"]),
+    ("parquet", ["parquet"]),
+]
+
+
+@dataclass
 class GeneratedArtifacts:
     # Result of one `aspect <file> to schema` / `to json` SAMM CLI round
     # trip for a given model - see Context.generated_artifacts below.
@@ -52,12 +82,13 @@ class Context:
     _samm_jar_resolved: bool = field(default=False, init=False, repr=False)
     _generated_artifacts: dict[str, GeneratedArtifacts] = field(default_factory=dict, init=False, repr=False)
     _validation_results: dict[str, subprocess.CompletedProcess] = field(default_factory=dict, init=False, repr=False)
+    _artifact_build_results: dict[str, ArtifactBuildResult] = field(default_factory=dict, init=False, repr=False)
 
     @property
     def samm_jar(self) -> Path | None:
         # Lazily downloads (once per run) the SAMM CLI jar in the version
         # pinned in config.json (see config.py), used by the criteria
-        # that need to actually run the CLI (schema/payload generation, MS2-20).
+        # that need to actually run the CLI (schema/payload generation, MS2-02).
         if not self._samm_jar_resolved:
             version = config.load_config(self.repo_root).samm_cli_version
             self._samm_jar = samm_cli.ensure_samm_cli(version)
@@ -89,7 +120,7 @@ class Context:
         # Lazily generates (once per model file, cached for the rest of
         # this run) the JSON schema and example JSON payload via the SAMM
         # CLI's `to schema` / `to json` commands. Several criteria want to
-        # inspect these (currently MS2-20; a criterion wanting to judge
+        # inspect these (currently MS2-02; a criterion wanting to judge
         # property names on the fully-resolved payload rather than the raw
         # TTL identifiers would too) - sharing this avoids each one
         # shelling out to samm-cli separately for the same file.
@@ -138,12 +169,49 @@ class Context:
         self._generated_artifacts[model.file] = result
         return result
 
+    def artifact_build_result(self, model) -> ArtifactBuildResult:
+        # Lazily attempts (once per model file, cached for the rest of this
+        # run) every format in ARTIFACT_FORMATS via the SAMM CLI, into a
+        # throwaway temp directory - unlike generated_artifacts() above,
+        # nothing here is meant to be inspected afterwards, only whether
+        # each format's `samm-cli aspect <file> to <format>` round trip
+        # succeeded. Used by MS2-03 ("do all artifact types generate").
+        if model.file in self._artifact_build_results:
+            return self._artifact_build_results[model.file]
+
+        jar = self.samm_jar
+        if jar is None:
+            result = ArtifactBuildResult(
+                {}, skipped=True, skip_reason="SAMM CLI jar unavailable (no Java / no network)")
+            self._artifact_build_results[model.file] = result
+            return result
+
+        validation = self.validation_result(model)
+        if validation is not None and validation.returncode != 0:
+            result = ArtifactBuildResult(
+                {}, skipped=True,
+                skip_reason="model does not validate (see MS2-01) - artifact generation skipped")
+            self._artifact_build_results[model.file] = result
+            return result
+
+        out_dir = Path(tempfile.mkdtemp(prefix="ms2-build-"))
+        failures: dict[str, str] = {}
+        for label, args in ARTIFACT_FORMATS:
+            out_path = out_dir / label
+            cli_result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "to", *args, "-o", str(out_path)])
+            if cli_result.returncode != 0 or not out_path.exists():
+                detail = (cli_result.stderr or cli_result.stdout or f"exit code {cli_result.returncode}").strip()
+                failures[label] = detail[:300]
+
+        result = ArtifactBuildResult(failures)
+        self._artifact_build_results[model.file] = result
+        return result
+
     def get_changed_files(self) -> list[str]:
         # Returns every file changed on this branch compared to base_branch
-        # (not just .ttl files - used e.g. by MS2-21 to check whether
-        # RELEASE_NOTES.md was also touched). Assumes `git fetch` has
-        # already made base_branch available locally (see the checkout
-        # step in governance.yml).
+        # (not just .ttl files). Assumes `git fetch` has already made
+        # base_branch available locally (see the checkout step in
+        # governance.yml).
         #
         # Three dots, not two: `A...B` diffs against the merge-base of A
         # and B, i.e. "what did this branch change since it forked from
@@ -152,9 +220,15 @@ class Context:
         # against base_branch's current tip, which would also pick up
         # unrelated files simply because base_branch moved on without this
         # branch, misattributing them to this PR.
+        #
+        # --diff-filter=d excludes deleted paths: a matrix leg checks out a
+        # shallow copy of HEAD (see governance.yml), where a deleted file
+        # simply doesn't exist any more - parse_model() would just raise
+        # FileNotFoundError on it. Deleting a model isn't an MS2 violation
+        # to begin with, so it shouldn't get a check (or a crash) at all.
         try:
             result = subprocess.run(
-                ["git", "diff", "--name-only", f"{self.base_branch}...HEAD"],
+                ["git", "diff", "--name-only", "--diff-filter=d", f"{self.base_branch}...HEAD"],
                 capture_output=True, text=True, check=True,
             )
         except subprocess.CalledProcessError as e:

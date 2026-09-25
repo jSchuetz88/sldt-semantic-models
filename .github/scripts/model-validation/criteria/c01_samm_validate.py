@@ -33,13 +33,10 @@ import re
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
-
-ID = "MS2-01"
-TITLE = "Model validates with SAMM CLI"
+from . import base
 
 ANSI_ESCAPE_RE = re.compile(r"\x1b\[[0-9;]*m")
 MAX_DETAIL_LENGTH = 2000
-
 
 def _clean_detail(text: str) -> str:
     text = ANSI_ESCAPE_RE.sub("", text).strip()
@@ -47,15 +44,23 @@ def _clean_detail(text: str) -> str:
         text = text[:MAX_DETAIL_LENGTH] + "... (truncated)"
     return text
 
+# Runs `samm-cli aspect <file> validate` for real. A model that fails this
+# is treated as broken at the most basic level - every other criterion is
+# skipped entirely for it.
+class Criterion(base.Criterion):
+    ID = "MS2-01"
+    TITLE = "Model validates with SAMM CLI"
+    CATEGORY = "Model Validation"
+    POST_COMMENT = True
 
-def check(model: TTLModel, ctx: Context) -> list[Finding]:
-    if ctx.samm_jar is None:
-        return [Finding(ID, TITLE, "SKIP", model.file,
-                         "SAMM CLI jar unavailable (no Java / no network) - run "
-                         "`java -jar samm-cli-<version>.jar aspect <file> validate` manually")]
+    def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
+        if ctx.samm_jar is None:
+            return [Finding(self.ID, self.TITLE, "SKIP", model.file,
+                             "SAMM CLI jar unavailable (no Java / no network) - run "
+                             "`java -jar samm-cli-<version>.jar aspect <file> validate` manually")]
 
-    result = ctx.validation_result(model)
-    if result.returncode != 0:
-        detail = _clean_detail(result.stdout or result.stderr or f"exit code {result.returncode}")
-        return [Finding(ID, TITLE, "FAIL", model.file, f"samm-cli validation failed:\n{detail}")]
-    return [Finding(ID, TITLE, "INFO", model.file, "samm-cli validation passed")]
+        result = ctx.validation_result(model)
+        if result.returncode != 0:
+            detail = _clean_detail(result.stdout or result.stderr or f"exit code {result.returncode}")
+            return [Finding(self.ID, self.TITLE, "FAIL", model.file, f"samm-cli validation failed:\n{detail}", line=1)]
+        return [Finding(self.ID, self.TITLE, "SUCCESS", model.file, "samm-cli validation passed")]
