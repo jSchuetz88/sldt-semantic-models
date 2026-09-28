@@ -465,7 +465,7 @@
 
 :idAndVersion a samm:Property ;
    samm:preferredName "ID and Version"@en ;
-   samm:description "Connects PCFAssessmentInformationEntity with IDAndVersion to link it with IDAndVersionCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all id and version properties."@en ;
+   samm:description "Connects PCFAssessmentInformationEntity with IDAndVersion to link it with IdAndVersionCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all id and version properties."@en ;
    samm:characteristic :IdAndVersionTrait .
 
 :boundarySpecifications a samm:Property ;
@@ -767,7 +767,7 @@
    samm:description "Collection of Technology properties."@en ;
    samm:dataType :TechnologyEntity .
 
-:IDAndVersionCollection a samm-c:Collection ;
+:IdAndVersionCollection a samm-c:Collection ;
    samm:preferredName "ID and Version Collection"@en ;
    samm:description "Collection of ID and Version properties."@en ;
    samm:dataType :IDAndVersionEntity .
@@ -1230,73 +1230,109 @@
    samm-c:minValue "1"^^xsd:nonNegativeInteger .
 
 :IdAndVersionTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :IDAndVersionCollection ;
+   samm:preferredName "id and version trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
+   samm-c:baseCharacteristic :IdAndVersionCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :BoundarySpecificationsTrait a samm-c:Trait ;
+   samm:preferredName "boundary specifications trait trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :BoundarySpecificationsCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :TechnologyTrait a samm-c:Trait ;
+   samm:preferredName "technology trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :TechnologyCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :GeographyTrait a samm-c:Trait ;
+   samm:preferredName "geography trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :GeographyCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :TimeTrait a samm-c:Trait ;
+   samm:preferredName "time trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :TimeCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :StandardsTrait a samm-c:Trait ;
+   samm:preferredName "standards trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :StandardsCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :GwpCharacterizationFactorDetailsTrait a samm-c:Trait ;
+   samm:preferredName "gwp characterization factor details trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :GwpCharacterizationFactorDetailsCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :AllocationInForegroundTrait a samm-c:Trait ;
+   samm:preferredName "allocation in foreground trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :AllocationInForegroundCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :MassBalancingInformationTrait a samm-c:Trait ;
+   samm:preferredName "mass balancing information trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :MassBalancingInformationCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :ScopeOfPcfFormTrait a samm-c:Trait ;
+   samm:preferredName "scope of PCF form trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :ScopeOfPCFFormCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :CompanyAndProductInformationTrait a samm-c:Trait ;
+   samm:preferredName "company and product information trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :CompanyAndProductInformationCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :PcfAssessmentAndMethodologyTrait a samm-c:Trait ;
+   samm:preferredName "PCF assessment and methodology trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :pcfAssessmentAndMethodologyCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :ProductLifeCycleStagesAndEmissionsTrait a samm-c:Trait ;
+   samm:preferredName "product lifecycle stages and emissions trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :ProductLifeCycleStagesAndEmissionsCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :CompanyInformationTrait a samm-c:Trait ;
+   samm:preferredName "company information trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :CompanyInformationCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :ProductInformationTrait a samm-c:Trait ;
+   samm:preferredName "product information trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :ProductInformationCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :PcfAssessmentInformationTrait a samm-c:Trait ;
+   samm:preferredName "PCF assessment information trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :PcfAssessmentInformationCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :PcfMethodologyTrait a samm-c:Trait ;
+   samm:preferredName "PCF methodology trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :PcfMethodologyCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .
 
 :DataSourcesAndQualityTrait a samm-c:Trait ;
+   samm:preferredName "data sources and quality trait"@en ;
+   samm:description "Trait to connect characteristic with constraints."@en ;
    samm-c:baseCharacteristic :DataSourcesAndQualityCollection ;
    samm-c:constraint :MinLengthOneEntryConstraint .

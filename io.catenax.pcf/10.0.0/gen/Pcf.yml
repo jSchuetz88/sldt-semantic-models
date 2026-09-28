@@ -658,7 +658,7 @@ components:
       properties:
         idAndVersion:
           description: |-
-            Connects PCFAssessmentInformationEntity with IDAndVersion to link it with IDAndVersionCollection, establishing the semantic relationship and context between both entities.
+            Connects PCFAssessmentInformationEntity with IDAndVersion to link it with IdAndVersionCollection, establishing the semantic relationship and context between both entities.
             Property to collect all id and version properties.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.pcf:10.0.0#idAndVersion"
           $ref: "#/components/schemas/IdAndVersionTrait"

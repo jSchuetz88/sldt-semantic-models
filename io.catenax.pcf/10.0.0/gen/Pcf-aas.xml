@@ -490,7 +490,7 @@ Property to collect all pcf assessment information properties.</aas:text>
                   <aas:description>
                     <aas:langStringTextType>
                       <aas:language>en</aas:language>
-                      <aas:text>Connects PCFAssessmentInformationEntity with IDAndVersion to link it with IDAndVersionCollection, establishing the semantic relationship and context between both entities.
+                      <aas:text>Connects PCFAssessmentInformationEntity with IDAndVersion to link it with IdAndVersionCollection, establishing the semantic relationship and context between both entities.
 Property to collect all id and version properties.</aas:text>
                     </aas:langStringTextType>
                   </aas:description>
@@ -3903,7 +3903,7 @@ Property to collect all company and production information properties.</aas:text
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
                   <aas:language>en</aas:language>
-                  <aas:text>Connects PCFAssessmentInformationEntity with IDAndVersion to link it with IDAndVersionCollection, establishing the semantic relationship and context between both entities.
+                  <aas:text>Connects PCFAssessmentInformationEntity with IDAndVersion to link it with IdAndVersionCollection, establishing the semantic relationship and context between both entities.
 Property to collect all id and version properties.</aas:text>
                 </aas:langStringDefinitionTypeIec61360>
               </aas:definition>
