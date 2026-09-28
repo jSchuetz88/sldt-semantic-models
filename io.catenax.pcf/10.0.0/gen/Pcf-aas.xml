@@ -1051,7 +1051,7 @@ Property to collect all standards information properties.</aas:text>
                   </aas:value>
                 </aas:submodelElementCollection>
                 <aas:submodelElementCollection>
-                  <aas:idShort>GwpCharacterizationFactorDetails</aas:idShort>
+                  <aas:idShort>gwpCharacterizationFactorDetails</aas:idShort>
                   <aas:displayName>
                     <aas:langStringNameType>
                       <aas:language>en</aas:language>
@@ -1061,7 +1061,7 @@ Property to collect all standards information properties.</aas:text>
                   <aas:description>
                     <aas:langStringTextType>
                       <aas:language>en</aas:language>
-                      <aas:text>Connects PCFMethodologyEntity with GwpCharacterizationFactorDetails to link it with GwpCharacterizationFactorDetailsCollection, establishing the semantic relationship and context between both entities.
+                      <aas:text>Connects PCFMethodologyEntity with gwpCharacterizationFactorDetails to link it with gwpCharacterizationFactorDetailsCollection, establishing the semantic relationship and context between both entities.
 Property to collect all gwp characterization factor details properties.</aas:text>
                     </aas:langStringTextType>
                   </aas:description>
@@ -5229,14 +5229,14 @@ Property to collect all standards information properties.</aas:text>
       </aas:embeddedDataSpecifications>
     </aas:conceptDescription>
     <aas:conceptDescription>
-      <aas:idShort>GwpCharacterizationFactorDetails</aas:idShort>
+      <aas:idShort>gwpCharacterizationFactorDetails</aas:idShort>
       <aas:displayName>
         <aas:langStringNameType>
           <aas:language>en</aas:language>
           <aas:text>GWP Characterization Factor Details</aas:text>
         </aas:langStringNameType>
       </aas:displayName>
-      <aas:id>urn:samm:io.catenax.pcf:10.0.0#GwpCharacterizationFactorDetails</aas:id>
+      <aas:id>urn:samm:io.catenax.pcf:10.0.0#gwpCharacterizationFactorDetails</aas:id>
       <aas:embeddedDataSpecifications>
         <aas:embeddedDataSpecification>
           <aas:dataSpecification>
@@ -5259,14 +5259,14 @@ Property to collect all standards information properties.</aas:text>
               <aas:shortName>
                 <aas:langStringShortNameTypeIec61360>
                   <aas:language>en</aas:language>
-                  <aas:text>GwpCharacterizationFactorDetails</aas:text>
+                  <aas:text>gwpCharacterizationFactorDetails</aas:text>
                 </aas:langStringShortNameTypeIec61360>
               </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
                   <aas:language>en</aas:language>
-                  <aas:text>Connects PCFMethodologyEntity with GwpCharacterizationFactorDetails to link it with GwpCharacterizationFactorDetailsCollection, establishing the semantic relationship and context between both entities.
+                  <aas:text>Connects PCFMethodologyEntity with gwpCharacterizationFactorDetails to link it with gwpCharacterizationFactorDetailsCollection, establishing the semantic relationship and context between both entities.
 Property to collect all gwp characterization factor details properties.</aas:text>
                 </aas:langStringDefinitionTypeIec61360>
               </aas:definition>

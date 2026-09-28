@@ -372,7 +372,7 @@
 :PcfMethodologyEntity a samm:Entity ;
    samm:preferredName "PCF Methodology Entity"@en ;
    samm:description "Entity to group all pcf methodology properties."@en ;
-   samm:properties ( :standards :GwpCharacterizationFactorDetails :allocationInForeground :massBalancingInformation ) .
+   samm:properties ( :standards :gwpCharacterizationFactorDetails :allocationInForeground :massBalancingInformation ) .
 
 :PositiveEmission a samm-c:Quantifiable ;
    samm:preferredName "Positive Emission"@en ;
@@ -546,9 +546,9 @@
    samm:description "Connects PCFMethodologyEntity with Standards to link it with StandardsCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all standards information properties."@en ;
    samm:characteristic :StandardsTrait .
 
-:GwpCharacterizationFactorDetails a samm:Property ;
+:gwpCharacterizationFactorDetails a samm:Property ;
    samm:preferredName "GWP Characterization Factor Details"@en ;
-   samm:description "Connects PCFMethodologyEntity with GwpCharacterizationFactorDetails to link it with GwpCharacterizationFactorDetailsCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all gwp characterization factor details properties."@en ;
+   samm:description "Connects PCFMethodologyEntity with gwpCharacterizationFactorDetails to link it with gwpCharacterizationFactorDetailsCollection, establishing the semantic relationship and context between both entities.\nProperty to collect all gwp characterization factor details properties."@en ;
    samm:characteristic :GwpCharacterizationFactorDetailsTrait .
 
 :allocationInForeground a samm:Property ;
