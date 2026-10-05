@@ -15,7 +15,7 @@
 
 :Cbam a samm:Aspect ;
    samm:preferredName "CBAM"@en ;
-   samm:properties ( :good [samm:property :companyIds; samm:optional true] [samm:property :requestedElements; samm:optional true] ) ;
+   samm:properties ( :good [ samm:property :companyIds; samm:optional true ] [ samm:property :requestedElements; samm:optional true ] ) ;
    samm:operations ( ) ;
    samm:events ( ) .
 
@@ -49,7 +49,7 @@
 
 :GoodEntity a samm:Entity ;
    samm:preferredName "good entity"@en ;
-   samm:properties ( [ samm:property :operator; samm:optional true ] [ samm:property :businessTransactionDetails; samm:optional true ] [ samm:property :productDescription; samm:optional true] [ samm:property :productIds; samm:optional true ] :cnCode ) .
+   samm:properties ( [ samm:property :operator; samm:optional true ] [ samm:property :businessTransactionDetails; samm:optional true ] [ samm:property :productDescription; samm:optional true ] [ samm:property :productIds; samm:optional true ] :cnCode ) .
 
 :CompanyIdsEntity a samm:Entity ;
    samm:preferredName "company identifiers entity"@en ;
@@ -125,7 +125,7 @@
 
 :BusinessTransactionDetailsEntity a samm:Entity ;
    samm:preferredName "business transaction details entity"@en ;
-   samm:properties ( [samm:property :requestNetMass; samm:optional true] :requestReferencePeriodEnd :requestReferencePeriodStart [samm:property :transactionReferenceDocuments; samm:optional true] ) .
+   samm:properties ( [ samm:property :requestNetMass; samm:optional true ] :requestReferencePeriodEnd :requestReferencePeriodStart [ samm:property :transactionReferenceDocuments; samm:optional true ] ) .
 
 :KeyValueEntity a samm:Entity ;
    samm:preferredName "key value entity"@en ;
@@ -212,7 +212,7 @@
 
 :TransactionReferenceDocumentLink a samm:Entity ;
    samm:preferredName "transaction reference document link"@en ;
-   samm:properties ( [samm:property :refDocElement; samm:optional true] :refDocValue :refDocKey ) .
+   samm:properties ( [ samm:property :refDocElement; samm:optional true ] :refDocValue :refDocKey ) .
 
 :OperatorIdentificationEntity a samm:Entity ;
    samm:preferredName "operator identification entity"@en ;
@@ -253,13 +253,13 @@
 :operatorName a samm:Property ;
    samm:preferredName "operator name"@en ;
    samm:description "Name of the operator"@en ;
-   samm:characteristic :FreeStringCharacteristic ;
+   samm:characteristic :FreeTextTrait70 ;
    samm:exampleValue "Steel Example Corp." .
 
 :operatorContactEmailAddress a samm:Property ;
    samm:preferredName "operator contact email address"@en ;
    samm:description "The email address of the person that is assigned in the contact details of the operator."@en ;
-   samm:characteristic :FreeStringCharacteristic ;
+   samm:characteristic :FreeTextTrait256 ;
    samm:exampleValue "contact@steelexample.com" .
 
 :address a samm:Property ;
@@ -283,6 +283,10 @@
    samm:characteristic :FreeNumberCharacteristic ;
    samm:exampleValue "60.0"^^xsd:float .
 
+:KeyValueSingleCharacteristic a samm:Characteristic ;
+   samm:preferredName "key value single characteristic"@en ;
+   samm:dataType :KeyValueEntity .
+
 :BooleanCharacteristic a samm:Characteristic ;
    samm:preferredName "boolean characteristic"@en ;
    samm:dataType xsd:boolean .
@@ -290,6 +294,26 @@
 :OperatorIdsCharacteristic a samm:Characteristic ;
    samm:preferredName "operator identification characteristic"@en ;
    samm:dataType :OperatorIdsEntity .
+
+:FreeTextTrait512 a samm-c:Trait ;
+   samm-c:baseCharacteristic :FreeStringCharacteristic ;
+   samm-c:constraint :MaxLength512Constraint .
+
+:FreeTextTrait256 a samm-c:Trait ;
+   samm-c:baseCharacteristic :FreeStringCharacteristic ;
+   samm-c:constraint :MaxLength256Constraint .
+
+:FreeTextTrait70 a samm-c:Trait ;
+   samm-c:baseCharacteristic :FreeStringCharacteristic ;
+   samm-c:constraint :MaxLength70Constraint .
+
+:FreeTextTrait35 a samm-c:Trait ;
+   samm-c:baseCharacteristic :FreeStringCharacteristic ;
+   samm-c:constraint :MaxLength35Constraint .
+
+:FreeTextTrait15 a samm-c:Trait ;
+   samm-c:baseCharacteristic :FreeStringCharacteristic ;
+   samm-c:constraint :MaxLength15Constraint .
 
 :AddressCharacteristic a samm:Characteristic ;
    samm:preferredName "address characteristic"@en ;
@@ -305,11 +329,41 @@
 
 :OperatorIdsEntity a samm:Entity ;
    samm:preferredName "operator identification entity"@en ;
-   samm:properties ( [samm:property :operatorBpnl; samm:optional true ] [samm:property :operatorCbamId; samm:optional true ] [samm:property :otherIds; samm:optional true ] ) .
+   samm:properties ( [ samm:property :operatorBpnl; samm:optional true ] [ samm:property :operatorCbamId; samm:optional true ] [ samm:property :otherIds; samm:optional true ] ) .
+
+:MaxLength512Constraint a samm-c:LengthConstraint ;
+   samm:preferredName "max length constraint"@en ;
+   samm:description "Limits the length of a string to 512 chars"@en ;
+   samm-c:maxValue "512"^^xsd:nonNegativeInteger .
+
+:MaxLength256Constraint a samm-c:LengthConstraint ;
+   samm:preferredName "max length constraint"@en ;
+   samm:description "Limits the length of a string to 256 chars"@en ;
+   samm-c:maxValue "256"^^xsd:nonNegativeInteger .
+
+:MaxLength70Constraint a samm-c:LengthConstraint ;
+   samm:preferredName "max length constraint"@en ;
+   samm:description "Limits the length of a string to 70 chars"@en ;
+   samm-c:maxValue "70"^^xsd:nonNegativeInteger .
+
+:MaxLength35Constraint a samm-c:LengthConstraint ;
+   samm:preferredName "max length constraint"@en ;
+   samm:description "Limits the length of a string to 35 chars"@en ;
+   samm-c:maxValue "35"^^xsd:nonNegativeInteger .
+
+:MaxLength30Constraint a samm-c:LengthConstraint ;
+   samm:preferredName "max length constraint"@en ;
+   samm:description "Limits the length of a string to 30 chars"@en ;
+   samm-c:maxValue "30"^^xsd:nonNegativeInteger .
+
+:MaxLength15Constraint a samm-c:LengthConstraint ;
+   samm:preferredName "max length constraint"@en ;
+   samm:description "Limits the length of a string to 15 chars"@en ;
+   samm-c:maxValue "15"^^xsd:nonNegativeInteger .
 
 :AddressEntity a samm:Entity ;
    samm:preferredName "address entity"@en ;
-   samm:properties ( [ samm:property :city; samm:optional true ] [ samm:property :street; samm:optional true ] [ samm:property ext-codes:country; samm:payloadName "countryCode"; samm:optional true ] ) .
+   samm:properties ( [ samm:property :city; samm:optional true ] [ samm:property :street; samm:optional true ] [ samm:property ext-codes:country; samm:optional true; samm:payloadName "countryCode" ] ) .
 
 :InstallationIdentificationEntity a samm:Entity ;
    samm:preferredName "installation identification entity"@en ;
@@ -338,13 +392,13 @@
 :city a samm:Property ;
    samm:preferredName "city"@en ;
    samm:description "The city where the operator is located."@en ;
-   samm:characteristic :FreeStringCharacteristic ;
+   samm:characteristic :FreeTextTrait35 ;
    samm:exampleValue "Duisburg" .
 
 :street a samm:Property ;
    samm:preferredName "street"@en ;
    samm:description "The street where the operator is located."@en ;
-   samm:characteristic :FreeStringCharacteristic ;
+   samm:characteristic :FreeTextTrait70 ;
    samm:exampleValue "Werkstraße 1" .
 
 :installationIds a samm:Property ;
@@ -355,7 +409,7 @@
 :installationName a samm:Property ;
    samm:preferredName "installation name"@en ;
    samm:description "Name of the installation."@en ;
-   samm:characteristic :FreeStringCharacteristic ;
+   samm:characteristic :FreeTextTrait256 ;
    samm:exampleValue "Steel Manufacturing Facility - Delhi Plant" .
 
 :installationAddress a samm:Property ;
@@ -457,13 +511,13 @@
 :longitude a samm:Property ;
    samm:preferredName "longitude"@en ;
    samm:description "The longitude where the installation is located."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :LongAndLatitudeTrait ;
    samm:exampleValue "77.2197"^^xsd:float .
 
 :latitude a samm:Property ;
    samm:preferredName "latitude"@en ;
    samm:description "The latitude where the installation is located."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :LongAndLatitudeTrait ;
    samm:exampleValue "28.6139"^^xsd:float .
 
 :typeOfCoordinates a samm:Property ;
@@ -475,7 +529,7 @@
 :plotOrParcelNumber a samm:Property ;
    samm:preferredName "pilot or parcel number"@en ;
    samm:description "The plot or parcel number of the location."@en ;
-   samm:characteristic :FreeStringCharacteristic ;
+   samm:characteristic :FreeTextTrait15 ;
    samm:exampleValue "PLOT-456-INDUSTRIAL-ZONE-A" .
 
 :unLoCode a samm:Property ;
@@ -494,7 +548,7 @@
 :specificSteelMillId a samm:Property ;
    samm:preferredName "specific steel mill identifier"@en ;
    samm:description "Specific identifier of the steel mill used for the production of the good, if applicable."@en ;
-   samm:characteristic :FreeStringCharacteristic ;
+   samm:characteristic :FreeTextTrait256 ;
    samm:exampleValue "MILL-001" .
 
 :additionalInformation a samm:Property ;
@@ -544,7 +598,7 @@
 :sourceOfEmissionFactorValue a samm:Property ;
    samm:preferredName "source of emission factor value"@en ;
    samm:description "Any additional information detailing the source of the emissions value."@en ;
-   samm:characteristic :FreeStringCharacteristic ;
+   samm:characteristic :FreeTextTrait512 ;
    samm:exampleValue "IEA 2022 Electricity Report" .
 
 :specificEmbeddedEmissionsIndirect a samm:Property ;
@@ -579,7 +633,7 @@
 :descriptionAndIndicationOfLegalAct a samm:Property ;
    samm:preferredName "description and indication of legal act"@en ;
    samm:description "Reference the description of the underlying legal act according to which the carbon price was paid."@en ;
-   samm:characteristic :FreeStringCharacteristic ;
+   samm:characteristic :FreeTextTrait512 ;
    samm:exampleValue "Country ABC National Carbon Tax Act 2022" .
 
 :amountOfCarbonPricePaid a samm:Property ;
@@ -588,9 +642,14 @@
    samm:characteristic :FreeNumberCharacteristic ;
    samm:exampleValue "12000.00"^^xsd:float .
 
-:KeyValueSingleCharacteristic a samm:Characteristic ;
-   samm:preferredName "key value single characteristic"@en ;
-   samm:dataType :KeyValueEntity .
+:LongAndLatitudeTrait a samm-c:Trait ;
+   samm-c:baseCharacteristic :FreeNumberCharacteristic ;
+   samm-c:constraint :FixPointConstraint .
+
+:FixPointConstraint a samm-c:FixedPointConstraint ;
+   samm:preferredName "This constraint defines the length of valid longitude and latitude values."@en ;
+   samm-c:integer "3"^^xsd:positiveInteger ;
+   samm-c:scale "15"^^xsd:positiveInteger .
 
 :GoodCharaceristic a samm:Characteristic ;
    samm:preferredName "good characteristic"@en ;
