@@ -154,13 +154,13 @@
 :operatorNetMass a samm:Property ;
    samm:preferredName "operator net mass"@en ;
    samm:description "Net mass (in tonnes) of the CBAM-relevant good attributable to the specific request, summed over all installations belonging to the operator described in this object."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "60.0"^^xsd:float .
 
 :requestNetMass a samm:Property ;
    samm:preferredName "request net mass"@en ;
    samm:description "Net mass (tonnes) of CBAM-relevant good the request relates to (e.g., from customs). Note, value shall match the sum across all corresponding production method net mass values in the response."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "60"^^xsd:float .
 
 :requestReferencePeriodEnd a samm:Property ;
@@ -202,9 +202,13 @@
    samm:preferredName "installation characteristic"@en ;
    samm:dataType :InstallationEntity .
 
-:FreeNumberCharacteristic a samm:Characteristic ;
+:FreeFloatCharacteristic a samm:Characteristic ;
    samm:preferredName "free number characteristic"@en ;
    samm:dataType xsd:float .
+
+:FreeDecimalCharacteristic a samm:Characteristic ;
+   samm:preferredName "free number characteristic"@en ;
+   samm:dataType xsd:decimal .
 
 :DatetimeCharacteristic a samm:Characteristic ;
    samm:preferredName "datetime characteristic"@en ;
@@ -280,7 +284,7 @@
 :installationNetMass a samm:Property ;
    samm:preferredName "installation net mass"@en ;
    samm:description "Net mass (in tonnes) of the CBAM-relevant good attributable to the specific request, produced in the stated installation, calculated as the sum across all applicable production methods within that installation."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "60.0"^^xsd:float .
 
 :KeyValueSingleCharacteristic a samm:Characteristic ;
@@ -438,7 +442,7 @@
 :freeAllocationFactor a samm:Property ;
    samm:preferredName "free allocation factor"@en ;
    samm:description "The free allocation factor, expressed as tonnes of CO2​ equivalents per tonne of product, based on the specific material and energy inputs used to produce the product."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "0.6"^^xsd:float .
 
 :carbonPricePaid a samm:Property ;
@@ -512,13 +516,13 @@
    samm:preferredName "longitude"@en ;
    samm:description "The longitude where the installation is located."@en ;
    samm:characteristic :LongAndLatitudeTrait ;
-   samm:exampleValue "77.2197"^^xsd:float .
+   samm:exampleValue "77.2197"^^xsd:decimal .
 
 :latitude a samm:Property ;
    samm:preferredName "latitude"@en ;
    samm:description "The latitude where the installation is located."@en ;
    samm:characteristic :LongAndLatitudeTrait ;
-   samm:exampleValue "28.6139"^^xsd:float .
+   samm:exampleValue "28.6139"^^xsd:decimal .
 
 :typeOfCoordinates a samm:Property ;
    samm:preferredName "type of coordinates"@en ;
@@ -568,7 +572,7 @@
 :activityDataNetMass a samm:Property ;
    samm:preferredName "activity data net mass"@en ;
    samm:description "Net mass (in tonnes) of the CBAM-relevant good attributable to the specific request produced in the stated installation by the stated production method only."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "60.0"^^xsd:float .
 
 :additionalInformationDirectEmissions a samm:Property ;
@@ -580,7 +584,7 @@
 :specificEmbeddedEmissionsDirect a samm:Property ;
    samm:preferredName "specific embedded emissons direct"@en ;
    samm:description "Object deailing the indirect embedded emissions referenced to the specific production method and installation."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "1.85"^^xsd:float .
 
 :sourceOfEmissionFactor a samm:Property ;
@@ -592,7 +596,7 @@
 :emissionFactorTonnesCo2PerMwh a samm:Property ;
    samm:preferredName "emission factor tonnes CO2 per Mwh"@en ;
    samm:description "This element declares the applied emission factor for electricity, expressed as tonnes CO2 per MWh."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "0.45"^^xsd:float .
 
 :sourceOfEmissionFactorValue a samm:Property ;
@@ -604,13 +608,13 @@
 :specificEmbeddedEmissionsIndirect a samm:Property ;
    samm:preferredName "specific embedded emission indirect"@en ;
    samm:description "Value of the indirect embedded emissions, expressed in tonnes of CO₂ equivalents per tonne of product, calculated with reference to the specific production method and installation."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "0.25"^^xsd:float .
 
 :electricityConsumedMwhPerTonnesGood a samm:Property ;
    samm:preferredName "electricity consumed Mwh per tonnes good"@en ;
    samm:description "Value of the consumed electricity, expressed as MWh per tonne of good."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "0.6"^^xsd:float .
 
 :sourceOfElectricity a samm:Property ;
@@ -639,11 +643,11 @@
 :amountOfCarbonPricePaid a samm:Property ;
    samm:preferredName "amount of carbon price paid"@en ;
    samm:description "Monetary value of the paid carbon price."@en ;
-   samm:characteristic :FreeNumberCharacteristic ;
+   samm:characteristic :FreeFloatCharacteristic ;
    samm:exampleValue "12000.00"^^xsd:float .
 
 :LongAndLatitudeTrait a samm-c:Trait ;
-   samm-c:baseCharacteristic :FreeNumberCharacteristic ;
+   samm-c:baseCharacteristic :FreeDecimalCharacteristic ;
    samm-c:constraint :FixPointConstraint .
 
 :FixPointConstraint a samm-c:FixedPointConstraint ;
