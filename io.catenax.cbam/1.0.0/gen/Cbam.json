@@ -74,8 +74,8 @@
             "providerName" : "TÜV-X"
           } ],
           "activityData" : {
-            "referencePeriodEnd" : "2026-09-04T16:46:37.295+02:00",
-            "referencePeriodStart" : "2026-09-04T16:46:37.295+02:00",
+            "referencePeriodEnd" : "2026-10-05T14:38:28.262+02:00",
+            "referencePeriodStart" : "2026-10-05T14:38:28.262+02:00",
             "netMass" : 60.0
           },
           "carbonPricePaid" : [ {

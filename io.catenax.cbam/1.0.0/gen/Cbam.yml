@@ -184,6 +184,21 @@ components:
         otherIds:
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#otherIds"
           $ref: "#/components/schemas/KeyValueListCharacteristic"
+    FreeTextTrait70:
+      type: string
+      x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#FreeTextTrait70"
+      description: Limits the length of a string to 70 chars
+      maxLength: 70
+    FreeTextTrait256:
+      type: string
+      x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#FreeTextTrait256"
+      description: Limits the length of a string to 256 chars
+      maxLength: 256
+    FreeTextTrait35:
+      type: string
+      x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#FreeTextTrait35"
+      description: Limits the length of a string to 35 chars
+      maxLength: 35
     CountryAlpha3Trait:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.standard_codes:1.0.0#CountryAlpha3Trait"
@@ -196,11 +211,11 @@ components:
         city:
           description: The city where the operator is located.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#city"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait35"
         street:
           description: The street where the operator is located.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#street"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait70"
         countryCode:
           description: Alphabetic three-character (alpha-3) code representing a country
             name.
@@ -223,12 +238,12 @@ components:
         operatorName:
           description: Name of the operator
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#operatorName"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait70"
         operatorContactEmailAddress:
           description: The email address of the person that is assigned in the contact
             details of the operator.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#operatorContactEmailAddress"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait256"
         address:
           description: Object containing attributes that document the address of the
             installation.
@@ -246,9 +261,14 @@ components:
         otherIds:
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#otherIds"
           $ref: "#/components/schemas/KeyValueListCharacteristic"
-    FreeNumberCharacteristic:
+    LongAndLatitudeTrait:
       type: number
-      x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#FreeNumberCharacteristic"
+      x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#LongAndLatitudeTrait"
+    FreeTextTrait15:
+      type: string
+      x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#FreeTextTrait15"
+      description: Limits the length of a string to 15 chars
+      maxLength: 15
     InstallationAddressCharacteristic:
       x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#InstallationAddressCharacteristic"
       type: object
@@ -261,15 +281,15 @@ components:
         city:
           description: The city where the operator is located.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#city"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait35"
         longitude:
           description: The longitude where the installation is located.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#longitude"
-          $ref: "#/components/schemas/FreeNumberCharacteristic"
+          $ref: "#/components/schemas/LongAndLatitudeTrait"
         latitude:
           description: The latitude where the installation is located.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#latitude"
-          $ref: "#/components/schemas/FreeNumberCharacteristic"
+          $ref: "#/components/schemas/LongAndLatitudeTrait"
         typeOfCoordinates:
           description: "The type of coordinates: 01 GPS, 02 GNSS."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#typeOfCoordinates"
@@ -277,7 +297,7 @@ components:
         plotOrParcelNumber:
           description: The plot or parcel number of the location.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#plotOrParcelNumber"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait15"
         unLoCode:
           description: The United Nations Code for Trade and Transport Locations (UN/LOCODE)
             as defined by UNECE list.
@@ -297,7 +317,7 @@ components:
         installationName:
           description: Name of the installation.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#installationName"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait256"
         address:
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#installationAddress"
           $ref: "#/components/schemas/InstallationAddressCharacteristic"
@@ -385,7 +405,7 @@ components:
           description: "Specific identifier of the steel mill used for the production\
             \ of the good, if applicable."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#specificSteelMillId"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait256"
         additionalInformation:
           description: Any additional information that the supplier wants to provide
             with regard to the production method.
@@ -398,6 +418,9 @@ components:
       pattern: "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\\
         .[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
       x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#DatetimeCharacteristic"
+    FreeNumberCharacteristic:
+      type: number
+      x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#FreeNumberCharacteristic"
     ProductionMethodActivityDataCharacteristic:
       x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#ProductionMethodActivityDataCharacteristic"
       type: object
@@ -432,6 +455,11 @@ components:
           $ref: "#/components/schemas/FreeNumberCharacteristic"
       required:
       - specificEmbeddedEmissionsDirect
+    FreeTextTrait512:
+      type: string
+      x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#FreeTextTrait512"
+      description: Limits the length of a string to 512 chars
+      maxLength: 512
     IndirectEmissionsCharacteristic:
       x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#IndirectEmissionsCharacteristic"
       type: object
@@ -451,7 +479,7 @@ components:
           description: Any additional information detailing the source of the emissions
             value.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#sourceOfEmissionFactorValue"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait512"
         specificEmbeddedEmissionsIndirect:
           description: "Value of the indirect embedded emissions, expressed in tonnes\
             \ of CO₂ equivalents per tonne of product, calculated with reference to\
@@ -502,7 +530,7 @@ components:
           description: Reference the description of the underlying legal act according
             to which the carbon price was paid.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#descriptionAndIndicationOfLegalAct"
-          $ref: "#/components/schemas/FreeStringCharacteristic"
+          $ref: "#/components/schemas/FreeTextTrait512"
         amountOfCarbonPricePaid:
           description: Monetary value of the paid carbon price.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.cbam:1.0.0#amountOfCarbonPricePaid"
