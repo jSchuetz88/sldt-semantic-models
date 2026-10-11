@@ -200,7 +200,7 @@
    samm:preferredName "Total carbon content"@en ;
    samm:description "Total carbon content"@en ;
    samm:characteristic :PositiveEmissionsTrait ;
-   samm:exampleValue "0.52"^^xsd:decimal .
+   samm:exampleValue "-0.52"^^xsd:decimal .
 
 :fossilCarbonContent a samm:Property ;
    samm:preferredName "Fossil Carbon Content"@en ;
