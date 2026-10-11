@@ -64,15 +64,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-# The package directory is named "model-validation" (matching the naming of
-# .github/actions/model-validation), which is not a valid Python identifier,
+# The package directory is named "model-validation", which is not a valid Python identifier,
 # so it can't be the target of a static `from model-validation import ...`
 # statement - it has to be loaded dynamically instead.
 _pkg = importlib.import_module("model-validation")
 criteria = importlib.import_module("model-validation.criteria")
 report = importlib.import_module("model-validation.report")
 Context = importlib.import_module("model-validation.context").Context
-parse_model = importlib.import_module("model-validation.samm_model_parser").parse_model
+samm_model_parser = importlib.import_module("model-validation.samm_model_parser")
 config_module = importlib.import_module("model-validation.config")
 github_comments = importlib.import_module("model-validation.github_comments")
 
@@ -129,7 +128,17 @@ def main() -> int:
     all_findings: list[report.Finding] = []
     for ttl_file in ttl_files_to_check:
         print(f"\n=== MS2 criteria for {ttl_file} ===")
-        model = parse_model(ttl_file)
+        try:
+            model = samm_model_parser.parse_model(ttl_file)
+        except samm_model_parser.TurtleSyntaxError as e:
+            # Not even valid Turtle - gated the same way as a model failing
+            # samm-cli validate (see below): only MS2-01's FAIL is reported.
+            ms2_01 = next(c for c in criteria.REGISTRY if c.id == "MS2-01")
+            finding = report.Finding(ms2_01.id, ms2_01.title, "FAIL", ttl_file, f"not valid Turtle: {e}", line=1)
+            all_findings.append(finding)
+            report.print_console([finding])
+            github_comments.post_checklist_comment(ttl_file, [finding])
+            continue
 
         # If the model doesn't even validate against SAMM (MS2-01), don't
         # bother running the rest of the criteria on it - naming
@@ -158,7 +167,7 @@ def main() -> int:
             if model_invalid and criterion.id != "MS2-01":
                 # Not even reported as SKIP: an invalid model makes every
                 # other criterion moot, so only MS2-01's own FAIL shows up
-                # for this model at all - no 21 additional SKIP rows to
+                # for this model at all - no SKIP row for every other criterion to
                 # scroll past.
                 print(f"{criterion.id} not evaluated - model does not validate against SAMM CLI (see MS2-01)")
                 continue

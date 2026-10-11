@@ -31,12 +31,13 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         findings = []
-        for el in model.elements.values():
-            if "__" in el.name:
+        for el in model.elements:
+            if el.name and "__" in el.name:
                 findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
                                          f"identifier '{el.name}' contains '__'", element=el.name, line=el.line_no))
-            if el.payload_name and "__" in el.payload_name:
+            payload_name = el.get("payloadName")
+            if payload_name and "__" in payload_name.text:
                 findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
-                                         f"payloadName '{el.payload_name}' contains '__'",
-                                         element=el.name, line=el.line_no))
+                                         f"payloadName '{payload_name.text}' contains '__'",
+                                         element=el.label, line=el.line_no))
         return findings

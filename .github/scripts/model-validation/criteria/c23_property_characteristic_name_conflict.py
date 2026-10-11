@@ -31,8 +31,8 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         findings = []
-        for el in model.elements.values():
-            if el.short_type == "Property" and el.characteristic and el.characteristic == el.name:
+        for el in model.elements:
+            if el.is_a("Property") and el.get("characteristic") == el.name:
                 findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
                                          f"property '{el.name}' and its characteristic share the same name",
                                          element=el.name, line=el.line_no))

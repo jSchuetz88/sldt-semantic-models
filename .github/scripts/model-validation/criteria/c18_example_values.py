@@ -34,18 +34,19 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         findings = []
-        for el in model.elements.values():
-            if el.short_type != "Property" or not el.characteristic:
+        for el in model.elements:
+            if not el.is_a("Property"):
                 continue
-            characteristic = model.elements.get(el.characteristic)
-            if not characteristic or not characteristic.data_type:
+            characteristic = model.resolve(el.get("characteristic"))
+            if characteristic is None:
                 continue  # characteristic defined elsewhere / not resolvable locally
-            if not characteristic.data_type.startswith("xsd:"):
-                continue  # complex (Entity) type, not a "simple type"
-            if not el.has_example_value:
+            data_type = characteristic.get("dataType")
+            if not isinstance(data_type, str) or not data_type.startswith("xsd:"):
+                continue  # no dataType, or complex (Entity) type - not a "simple type"
+            if el.get("exampleValue") is None:
                 findings.append(Finding(
                     self.ID, self.TITLE, "FAIL", model.file,
-                    f"property '{el.name}' -> characteristic '{characteristic.name}' has simple type "
-                    f"'{characteristic.data_type}' but no samm:exampleValue", element=el.name, line=el.line_no,
+                    f"property '{el.label}' -> characteristic '{characteristic.label}' has simple type "
+                    f"'{data_type}' but no samm:exampleValue", element=el.label, line=el.line_no,
                 ))
         return findings

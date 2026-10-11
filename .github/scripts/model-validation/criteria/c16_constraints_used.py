@@ -38,7 +38,7 @@ class Criterion(base.Criterion):
     POST_COMMENT = True
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
-        constrained = [el.name for el in model.elements.values() if el.short_type.endswith("Constraint")]
+        constrained = [el.label for el in model.elements if el.type and el.type.endswith("Constraint")]
         if constrained:
             result = f"{len(constrained)} constraint(s) defined: {constrained}"
         else:

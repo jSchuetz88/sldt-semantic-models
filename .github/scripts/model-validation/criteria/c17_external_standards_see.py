@@ -38,7 +38,7 @@ class Criterion(base.Criterion):
     POST_COMMENT = True
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
-        with_see = [el.name for el in model.elements.values() if el.see]
+        with_see = [el.label for el in model.elements if el.get_all("see")]
         if with_see:
             result = f"{len(with_see)} element(s) carry a samm:see reference: {with_see}"
         else:

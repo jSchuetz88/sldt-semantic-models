@@ -90,9 +90,9 @@ class Criterion(ABC):
         # model, and turns each truthy result into a Finding via
         # `message_fn`, tagged with this criterion's own ID/TITLE.
         findings = []
-        for el in model.elements.values():
+        for el in model.elements:
             msg = predicate(el)
             if msg:
                 findings.append(Finding(self.ID, self.TITLE, level, model.file,
-                                         message_fn(el, msg), element=el.name, line=el.line_no))
+                                         message_fn(el, msg), element=el.label, line=el.line_no))
         return findings

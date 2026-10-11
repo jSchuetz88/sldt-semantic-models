@@ -87,7 +87,7 @@ class Context:
     def samm_jar(self) -> Path | None:
         # Lazily downloads (once per run) the SAMM CLI jar in the version
         # pinned in config.json (see config.py), used by the criteria
-        # that need to actually run the CLI (schema/payload generation, MS2-02).
+        # that need to actually run the CLI (MS2-01 validation, MS2-02 schema/payload, MS2-03 artifacts).
         if not self._samm_jar_resolved:
             version = config.load_config(self.repo_root).samm_cli_version
             self._samm_jar = samm_cli.ensure_samm_cli(version)

@@ -21,7 +21,8 @@ This describes the automated check that runs on every pull request to verify the
         │                             per-model caches for `validate` results and generated
         │                             JSON schema/example payload - see below)
         ├── samm_cli.py                downloads/runs the SAMM CLI jar
-        ├── samm_model_parser.py       lightweight Turtle/SAMM parser (no RDF library)
+        ├── samm_model_parser.py       Turtle parser (no RDF library): every element as
+        │                             a block, queried via el.is_a(...) / el.get(...)
         ├── report.py                  Finding type + Markdown table rendering
         ├── github_comments.py         posts/updates one PR checklist comment per
         │                             model, for criteria with POST_COMMENT = True
@@ -103,7 +104,7 @@ Each `Finding` has a level:
 | MS2-11 | Semantic Quality | ⚠️ heuristic | redundant property-name prefixes among sibling properties of the same Aspect/Entity - flags (`WARN`), doesn't fail. Groups by `samm:payloadName` when set (falls back to the SAMM identifier), since a payload-name override can already resolve the redundancy even if the underlying SAMM identifiers still share a prefix |
 | MS2-12 | Semantic Quality | ✅ automated | `preferredName` != `description` |
 | MS2-13 | Semantic Quality | ⚠️ heuristic | `preferredName` looks Camel-Case (`WARN`, not `FAIL`) - a lowercase-to-uppercase hump can't be told apart from a genuine single term with internal capitalization (e.g. "eCommerce"), so this is a plausible but not certain violation |
-| MS2-14 | Naming Conventions | ⛔ not automated | plural aspect name required for a single Collection-valued property. Always `SKIP`, no analysis attempted (same pattern as MS2-10): English singular/plural has too many edge cases (irregular plurals not ending in "s"), and the property count itself is unreliable whenever an Aspect mixes local and externally-prefixed (imported) properties - the parser's local-reference regex silently drops the latter |
+| MS2-14 | Naming Conventions | ⛔ not automated | plural aspect name required for a single Collection-valued property. Always `SKIP`, no analysis attempted (same pattern as MS2-10): English singular/plural has too many edge cases (irregular plurals not ending in "s") |
 | MS2-15 | Semantic Quality | ⚠️ heuristic | units should come from the SAMM catalog. Flagged cases are `SKIP`, never `WARN`: a non-catalog unit prefix or a custom `samm:Unit` definition is only a fact the script can point at, not evidence of a violation - it has no way to know whether a matching catalog unit actually exists for that quantity. The "nothing to flag" case is `NOTE` rather than `SUCCESS`, for the same reason: it still can't confirm the *right* catalog unit was actually chosen |
 | MS2-16 | Semantic Quality | ℹ️ informational (`NOTE`) | constraints usage - always the same static "checked by reviewer" note plus what's actually defined; whether more constraints are *needed* can't be judged from the file at all |
 | MS2-17 | Semantic Quality | ℹ️ informational (`NOTE`) | `samm:see` usage - same reasoning and treatment as MS2-16 |
@@ -121,7 +122,7 @@ Two sections, both optional - a missing or empty file behaves exactly like defau
 ```json
 {
   "settings": {
-    "samm_cli_version": "2.15.1"
+    "samm_cli_version": "2.16.0"
   },
   "criteria": {
     "MS2-09": { "blocking": false },
@@ -130,7 +131,7 @@ Two sections, both optional - a missing or empty file behaves exactly like defau
 }
 ```
 
-- **`settings.samm_cli_version`** - the SAMM CLI version to download and run (MS2-01/MS2-02). Single source of truth; deliberately *not* parsed out of `README.md` prose, so it can't silently drift and doesn't invalidate the SAMM CLI cache on unrelated README edits.
+- **`settings.samm_cli_version`** - the SAMM CLI version to download and run (MS2-01/MS2-02/MS2-03). Single source of truth; deliberately *not* parsed out of `README.md` prose, so it can't silently drift and doesn't invalidate the SAMM CLI cache on unrelated README edits.
 - **`criteria.<ID>.enabled`** (default `true`) - set to `false` to skip a criterion entirely (shows as `SKIP`/➖, no further detail).
 - **`criteria.<ID>.blocking`** (default `true`) - set to `false` to keep a criterion running and reporting, but downgrade any `FAIL` it produces to `WARN` so it no longer breaks the `ms2-criteria-gate` check. Still a MUST per the PR template, just not (yet) enforced automatically.
 
@@ -142,7 +143,7 @@ Written to the GitHub Actions job summary (and printed to the console). Since ea
 
 Within a model's section, criteria are grouped into their `CATEGORY` (`Model Validation` / `Formal Requirements` / `Naming Conventions` / `Semantic Quality` - see the checklist table above), each its own sub-header (`##`, or `###` when nested under a per-model sub-header in the multi-file case), ordered by the lowest criterion ID it contains. Each category's table has one row per criterion: status icon, criterion ID, criterion name, and message. A criterion that produces multiple findings for the same model shows the worst icon and all messages (`<br>`-joined) in one row. Messages are wrapped in an inline code span for monospace rendering, since real line breaks aren't possible inside a Markdown table cell - collapsible `<details>` sections were tried for long multi-line output (e.g. a full samm-cli error dump) but GitHub's job-summary sanitizer strips that tag entirely, so plain inline code is what's left.
 
-The summary line above each model's table (`**Summary:** N failing, M warnings, X passing, Y for manual review, Z skipped.`) counts `SUCCESS` and `NOTE` separately: `X passing` is genuinely `SUCCESS` only, `Y for manual review` is `NOTE` only - they're kept apart on purpose so "passing" always means "an automated check actually ran and found nothing wrong", not diluted by criteria that can't render a verdict at all (MS2-10, MS2-14, MS2-16, MS2-17).
+The summary line above each model's table (`**Summary:** N failing, M warnings, X passing, Y for manual review, Z skipped.`) counts `SUCCESS` and `NOTE` separately: `X passing` is genuinely `SUCCESS` only, `Y for manual review` is `NOTE` only - they're kept apart on purpose so "passing" always means "an automated check actually ran and found nothing wrong", not diluted by criteria that can't render a verdict at all (MS2-16, MS2-17, and MS2-15 when it has nothing to flag). MS2-10 and MS2-14 can't render a verdict either, but report `SKIP` and are therefore counted under `Z skipped`, not under `Y for manual review`.
 
 ## PR checklist comments (`model-validation/github_comments.py`)
 
@@ -174,6 +175,6 @@ python .github/scripts/ms2_check.py
 python .github/scripts/ms2_check.py --file io.catenax.batch/4.0.0/Batch.ttl
 ```
 
-Run from the repository root. MS2-01/MS2-02 need Java on `PATH` to run the SAMM CLI; without it they report `SKIP` rather than failing the whole run. MS2-02's JSON-schema-vs-payload cross-validation additionally needs the `jsonschema` Python package (`pip install jsonschema`) - without it, schema and payload still get generated, just not cross-validated.
+Run from the repository root. MS2-01/MS2-02/MS2-03 need Java on `PATH` to run the SAMM CLI; without it they report `SKIP` rather than failing the whole run. MS2-02's JSON-schema-vs-payload cross-validation additionally needs the `jsonschema` Python package (`pip install jsonschema`) - without it, schema and payload still get generated, just not cross-validated.
 
 That graceful `SKIP` only covers Java itself being absent - a legitimate, expected state for a local machine. If Java *is* present but the SAMM CLI jar still can't be downloaded (`samm_cli.py`'s `ensure_samm_cli`), that's left to raise and crash the run instead of being swallowed into a `SKIP`. In CI, Java is guaranteed via `actions/setup-java` (see `governance.yml`), so a download failure there means the CI environment itself is broken (e.g. GitHub releases unreachable) - a genuine job failure that needs a re-trigger, not a model-related `SKIP` buried in the report.

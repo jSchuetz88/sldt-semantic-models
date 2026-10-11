@@ -34,7 +34,7 @@ from __future__ import annotations
 import re
 
 from ..context import Context
-from ..samm_model_parser import TTLModel
+from ..samm_model_parser import Element, TTLModel
 from ..report import Finding
 from . import base
 
@@ -49,13 +49,18 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         findings = []
-        for el in model.elements.values():
-            if el.short_type not in ("Aspect", "Entity") or len(el.properties) < 2:
+        for el in model.elements:
+            if not (el.is_a("Aspect") or el.is_a("Entity")):
+                continue
+            # samm:properties ( :a [ samm:property :b ; samm:optional true ] ext:c )
+            properties = [p.get("property") if isinstance(p, Element) else p for p in el.get("properties") or []]
+            if len(properties) < 2:
                 continue
             first_words: dict[str, list[str]] = {}
-            for prop_name in el.properties:
-                prop = model.elements.get(prop_name)
-                effective_name = prop.payload_name if prop and prop.payload_name else prop_name
+            for prop_name in properties:
+                prop = model.element(prop_name)
+                payload_name = prop.get("payloadName") if prop else None
+                effective_name = payload_name.text if payload_name else prop_name.rsplit(":", 1)[-1]
                 words = _split_camel(effective_name)
                 if not words:
                     continue

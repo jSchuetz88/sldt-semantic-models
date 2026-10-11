@@ -17,8 +17,8 @@
 # plural."
 #
 # Not a machine-checkable criterion: singular/plural in English has too
-# many edge cases (irregular plurals, property counts skewed by imported
-# properties, ...) to decide reliably from the file alone. Doesn't attempt
+# many edge cases (irregular plurals not ending in "s", ...) to decide
+# reliably from the file alone. Doesn't attempt
 # any analysis; always reports the same static SKIP note that this item
 # needs manual review.
 

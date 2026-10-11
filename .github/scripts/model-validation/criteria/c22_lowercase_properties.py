@@ -30,7 +30,7 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         def bad(el):
-            if el.short_type != "Property" or not el.name:
+            if el.name is None or not el.is_a("Property"):
                 return None
             return None if el.name[0].islower() else "does not start with a lowercase letter"
 

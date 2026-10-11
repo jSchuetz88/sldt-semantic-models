@@ -24,14 +24,24 @@
 # SKIP (a fact to point the reviewer at, not evidence of a violation -
 # keeps it from claiming a "likely violation" it can't substantiate); the
 # "nothing to flag" case is NOTE (a fact for the reviewer, not a
-# confirmation of anything - same reasoning as MS2-15/MS2-16).
+# confirmation of anything - same reasoning as MS2-16/MS2-17).
 
 from __future__ import annotations
+
+import re
 
 from ..context import Context
 from ..samm_model_parser import TTLModel
 from ..report import Finding
 from . import base
+
+# The unit catalog's namespace - bound to whatever prefix name the model
+# chooses ("unit:", "samm-u:", ...), so the prefix is resolved, not compared.
+UNIT_CATALOG_RE = re.compile(r"urn:[bs]amm:[\w.]+:unit:\d+\.\d+\.\d+#")
+
+def _from_catalog(model: TTLModel, unit: str) -> bool:
+    prefix = unit.split(":", 1)[0] if ":" in unit else None
+    return prefix is not None and UNIT_CATALOG_RE.fullmatch(model.prefixes.get(prefix, "")) is not None
 
 class Criterion(base.Criterion):
     ID = "MS2-15"
@@ -44,16 +54,17 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         findings = []
-        for el in model.elements.values():
-            if el.unit and not el.unit.startswith("unit:"):
+        for el in model.elements:
+            unit = el.get("unit")
+            if isinstance(unit, str) and not _from_catalog(model, unit):
                 findings.append(Finding(self.ID, self.TITLE, "SKIP", model.file,
-                                         f"'{el.name}' uses unit '{el.unit}' which is not from the "
-                                         f"'unit:' catalog prefix - confirm no catalog unit fits",
-                                         element=el.name, line=el.line_no))
-            if el.short_type == "Unit":
+                                         f"'{el.label}' uses unit '{unit}' which is not from the "
+                                         f"SAMM unit catalog - confirm no catalog unit fits",
+                                         element=el.label, line=el.line_no))
+            if el.is_a("Unit"):
                 findings.append(Finding(self.ID, self.TITLE, "SKIP", model.file,
-                                         f"'{el.name}' defines a custom samm:Unit - confirm it does not "
-                                         f"already exist in the SAMM unit catalog", element=el.name, line=el.line_no))
+                                         f"'{el.label}' defines a custom samm:Unit - confirm it does not "
+                                         f"already exist in the SAMM unit catalog", element=el.label, line=el.line_no))
         if not findings:
             findings.append(Finding(self.ID, self.TITLE, "NOTE", model.file,
                                      "no non-catalog unit references or custom samm:Unit definitions found"))

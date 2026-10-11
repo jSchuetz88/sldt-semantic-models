@@ -34,6 +34,8 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         def bad(el):
+            if el.name is None:
+                return None
             return None if CAMEL_CASE_RE.match(el.name) else "contains characters other than letters/digits"
 
         return self.element_findings(model, bad, lambda el, msg: f"identifier '{el.name}' is not Camel-Case ({msg})")

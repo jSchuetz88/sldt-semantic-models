@@ -39,12 +39,12 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         findings = []
-        for el in model.elements.values():
-            pn = el.preferred_name("en")
+        for el in model.elements:
+            pn = el.text("preferredName")
             if pn and " " not in pn and CAMEL_HUMP_RE.search(pn):
                 findings.append(Finding(self.ID, self.TITLE, "WARN", model.file,
-                                         f"preferredName '{pn}' of '{el.name}' looks Camel-Case, "
+                                         f"preferredName '{pn}' of '{el.label}' looks Camel-Case, "
                                          f"expected normal word separation - confirm it isn't a "
                                          f"genuine single term with internal capitalization",
-                                         element=el.name, line=el.line_no))
+                                         element=el.label, line=el.line_no))
         return findings

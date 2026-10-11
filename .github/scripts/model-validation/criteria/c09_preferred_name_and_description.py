@@ -35,13 +35,13 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         findings = []
-        for el in model.elements.values():
-            if el.preferred_name("en") is None:
+        for el in model.elements:
+            if el.text("preferredName") is None:
                 findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
-                                         f"'{el.name}' is missing samm:preferredName ... @en",
-                                         element=el.name, line=el.line_no))
-            if el.description("en") is None:
+                                         f"'{el.label}' is missing samm:preferredName ... @en",
+                                         element=el.label, line=el.line_no))
+            if el.text("description") is None:
                 findings.append(Finding(self.ID, self.TITLE, "FAIL", model.file,
-                                         f"'{el.name}' is missing samm:description ... @en",
-                                         element=el.name, line=el.line_no))
+                                         f"'{el.label}' is missing samm:description ... @en",
+                                         element=el.label, line=el.line_no))
         return findings

@@ -25,16 +25,22 @@ from ..samm_model_parser import TTLModel
 from ..report import Finding
 from . import base
 
-PREFIX_RE = re.compile(r"@prefix\s+([\w-]+):\s+<urn:[bs]amm:([\w.]+):(\d+\.\d+\.\d+)#>")
+# A prefix URI pointing at another model in this repo, e.g.
+# "urn:samm:io.catenax.shared.uuid:2.0.0#" -> folder + version. SAMM's own
+# meta-model/characteristic/unit namespaces ("urn:samm:org.eclipse.esmf.samm:
+# meta-model:2.1.0#") don't match, since their version isn't directly after
+# the namespace.
+MODEL_URN_RE = re.compile(r"urn:[bs]amm:([\w.]+):(\d+\.\d+\.\d+)#")
 
-def _parse_prefixes(ttl_path: str) -> list[dict[str, str]]:
-    prefixes = []
-    with open(ttl_path) as f:
-        for line in f:
-            m = PREFIX_RE.search(line)
-            if m:
-                prefixes.append({"prefix": m.group(1), "folder": m.group(2), "version": m.group(3)})
-    return prefixes
+def _imported_models(model: TTLModel) -> list[tuple[str, str]]:
+    # Reuses the prefixes the parser already extracted (model.prefixes)
+    # instead of re-reading the file with a stricter regex of its own.
+    imported = []
+    for uri in model.prefixes.values():
+        m = MODEL_URN_RE.fullmatch(uri)
+        if m:
+            imported.append((m.group(1), m.group(2)))
+    return imported
 
 def _read_metadata(folder: str, version: str) -> dict | None:
     meta_path = Path(folder) / version / "metadata.json"
@@ -51,10 +57,9 @@ class Criterion(base.Criterion):
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
         findings = []
-        for prefix_info in _parse_prefixes(model.file):
-            folder, version = prefix_info["folder"], prefix_info["version"]
+        for folder, version in _imported_models(model):
             if folder == model.namespace and version == model.version:
-                continue  # this is the model's own namespace, see MS2-03
+                continue  # this is the model's own namespace, see MS2-04
             try:
                 meta = _read_metadata(folder, version)
             except json.JSONDecodeError as e:
