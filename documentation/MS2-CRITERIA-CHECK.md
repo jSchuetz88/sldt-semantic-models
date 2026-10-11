@@ -2,6 +2,42 @@
 
 This describes the automated check that runs on every pull request to verify the MS2 checklist items from [`PULL_REQUEST_TEMPLATE.md`](../.github/PULL_REQUEST_TEMPLATE.md) against the changed Aspect Models. It complements, but does not replace, the manual MS2 review described in [`GOVERNANCE.md`](GOVERNANCE.md) - some checklist items are objectively checkable (Camel-Case, semantic versioning, `metadata.json` state, ...), others require human judgement and stay manual (see the "Automation" column in the criteria table below).
 
+## Overview
+
+What happens once the check is triggered by a pull request:
+
+```mermaid
+flowchart TD
+    S1["1. Detect changed .ttl files, one matrix job per file"]
+    C01{"2. MS2-01: valid SAMM?<br/>samm-cli validate"}
+    F["MS2-01 FAIL only, remaining criteria not evaluated"]
+    S3["3. Parse .ttl, every element as a block"]
+
+    MV["Model Validation<br/>MS2-02, 03, 05, 06"]
+    FR["Formal Requirements<br/>MS2-04, 07, 08"]
+    NC["Naming Conventions<br/>MS2-14, 19, 20, 21, 22"]
+    SQ["Semantic Quality<br/>MS2-09, 10, 11, 12, 13, 15, 16, 17, 18, 23"]
+
+    J["4. Merge findings"]
+    S5["5. Post FAIL and WARN as PR comment"]
+    S6["6. Write report to job summary"]
+    Q{"Any FAIL?"}
+    R1["Job fails"]
+    R0["Job passes"]
+    G["7. Summary Check: fails if any matrix job failed"]
+
+    S1 --> C01
+    C01 -- no --> F --> S5
+    C01 -- yes --> S3
+    S3 --> MV & FR & NC & SQ
+    MV & FR & NC & SQ --> J
+    J --> S5 --> S6 --> Q
+    Q -- yes --> R1 --> G
+    Q -- no --> R0 --> G
+```
+
+The four categories are independent of each other - none depends on another's result. Each step is detailed in the sections below: the jobs in [CI pipeline](#ci-pipeline-governanceyml), the MS2-01 gate in [The master script](#the-master-script-ms2_checkpy), the categories in [The 23 checklist items](#the-23-checklist-items), and steps 5-6 in [Report format](#report-format) and [PR checklist comments](#pr-checklist-comments-model-validationgithub_commentspy).
+
 ## Where everything lives
 
 ```text
@@ -63,7 +99,7 @@ Single CLI entry point, run two different ways by `governance.yml` (see the file
 
 For each file, it: parses the model, loads `config.json`, then hands the parsed model plus a shared `Context` to every enabled criterion in `criteria.REGISTRY`, downgrading `FAIL` to `WARN` for criteria configured as non-blocking, collects all findings, prints them, writes the Markdown report to the job summary, and exits non-zero if anything is still `FAIL`.
 
-**MS2-01 gates every other criterion for a model.** Before running the registry, the master script checks `ctx.validation_result(model)` (`samm-cli aspect <file> validate`) once. If the model doesn't validate, MS2-01 reports its own `FAIL` as usual, but every other criterion is skipped entirely for that model - not run, and not even shown as a `SKIP` row. A model that fails `samm-cli validate` is broken at the most basic level (its Turtle/SAMM structure doesn't hold up), so naming conventions, example values, etc. on top of that are noise, not signal; the report for such a model shows only the single MS2-01 `FAIL` line. This is purely about the *model's* validity - if the SAMM CLI jar itself can't be obtained (see "Running locally" below), that's a different, infrastructure-level failure and is not swallowed into a per-model `SKIP` at all.
+**MS2-01 gates every other criterion for a model.** Before running the registry, the master script checks `ctx.validation_result(model)` (`samm-cli aspect <file> validate`) once. If the model doesn't validate, MS2-01 reports its own `FAIL` as usual, but every other criterion is skipped entirely for that model - not run, and not even shown as a `SKIP` row. A model that fails `samm-cli validate` is broken at the most basic level (its Turtle/SAMM structure doesn't hold up), so naming conventions, example values, etc. on top of that are noise, not signal; the report for such a model shows only the single MS2-01 `FAIL` line. This is purely about the *model's* validity - if the SAMM CLI jar itself can't be obtained (see "Running locally" below), that's a different, infrastructure-level failure and is not swallowed into a per-model `SKIP` at all. A file that isn't even syntactically valid Turtle (`samm_model_parser.TurtleSyntaxError`) is handled the same way: a single MS2-01 `FAIL` with the parser's line number, nothing else.
 
 ## Criteria (`model-validation/criteria/`)
 
