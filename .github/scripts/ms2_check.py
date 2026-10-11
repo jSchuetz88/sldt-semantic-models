@@ -16,35 +16,30 @@
 # Master script for the MS2 criteria check (see .github/PULL_REQUEST_TEMPLATE.md).
 #
 # This is the single entry point triggered by CI on every pull request (see
-# .github/workflows/governance.yml, which runs it three ways):
+# .github/workflows/governance.yml, which runs it two ways):
 #
 #   --list-changed-files      -> used once by the "detect-changed-models" job
 #                                 to build the per-model check matrix (prints
 #                                 a JSON array of changed .ttl files)
-#   --list-all-changed-files  -> used once by the same job to also hand every
-#                                 changed file (not just .ttl) to each matrix
-#                                 leg, so they don't each need to compute
-#                                 their own git diff (see --changed-files)
 #   --file <path>              -> used by each matrix leg of the
 #                                 "ms2-criteria-check" job to check exactly
 #                                 one model, so each model gets its own check
-#                                 mark in the PR UI. Combined with
-#                                 --changed-files, a leg needs no git history
-#                                 at all - just a shallow checkout.
-#   --changed-files <json>     -> supplies the full changed-files list (see
-#                                 --list-all-changed-files above) instead of
-#                                 computing it locally via git diff
+#                                 mark in the PR UI. Needs no git history at
+#                                 all - just a shallow checkout.
 #
 # Run without any of these, it auto-detects and checks every changed .ttl
 # file in one go via its own git diff (useful for local runs). Either way,
 # per file it:
 #
 #   1. Parses the file into a TTLModel (model-validation/samm_model_parser.py).
-#   2. Loads the per-criterion overrides from model-validation/config.json,
-#      if any (see model-validation/config.py).
+#   2. Loads the per-criterion overrides from config.json (one level up,
+#      in .github/scripts/), if any (see model-validation/config.py).
 #   3. Hands the model + a shared Context to every enabled criterion
 #      sub-routine registered in model-validation/criteria/, downgrading
-#      FAILs to WARN for criteria configured as non-blocking.
+#      FAILs to WARN for criteria configured as non-blocking. FAIL/WARN
+#      findings from criteria that opt in via POST_COMMENT (see
+#      criteria/__init__.py) are collected and posted as a single PR
+#      checklist comment per model (model-validation/github_comments.py).
 #   4. Collects all Findings, prints/reports them, and fails the job if any
 #      criterion reports a FAIL-level finding.
 #
@@ -69,16 +64,16 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-# The package directory is named "model-validation" (matching the naming of
-# .github/actions/model-validation), which is not a valid Python identifier,
+# The package directory is named "model-validation", which is not a valid Python identifier,
 # so it can't be the target of a static `from model-validation import ...`
 # statement - it has to be loaded dynamically instead.
 _pkg = importlib.import_module("model-validation")
 criteria = importlib.import_module("model-validation.criteria")
 report = importlib.import_module("model-validation.report")
 Context = importlib.import_module("model-validation.context").Context
-parse_model = importlib.import_module("model-validation.samm_model_parser").parse_model
+samm_model_parser = importlib.import_module("model-validation.samm_model_parser")
 config_module = importlib.import_module("model-validation.config")
+github_comments = importlib.import_module("model-validation.github_comments")
 
 
 def parse_args() -> argparse.Namespace:
@@ -105,19 +100,6 @@ def parse_args() -> argparse.Namespace:
              "else is printed. Used by the detect-changed-models job to build "
              "the per-model check matrix.",
     )
-    parser.add_argument(
-        "--list-all-changed-files",
-        action="store_true",
-        help="Print every changed file (not just .ttl) as a JSON array and "
-             "exit. Used by the detect-changed-models job to feed --changed-files.",
-    )
-    parser.add_argument(
-        "--changed-files",
-        help="JSON array of every file changed in this PR (not just .ttl), as "
-             "produced by --list-all-changed-files. When given, a matrix leg "
-             "doesn't need to compute this itself via git diff, so it doesn't "
-             "need repo history - just the files at HEAD.",
-    )
     return parser.parse_args()
 
 
@@ -132,28 +114,31 @@ def main() -> int:
         print(json.dumps(ttl_files))
         return 0
 
-    if args.list_all_changed_files:
-        print(json.dumps(ctx.get_changed_files()))
-        return 0
-
     config = config_module.load_config(repo_root)
     _warn_about_unknown_criteria(config)
+    categories = {criterion.id: criterion.category for criterion in criteria.REGISTRY}
 
-    # A matrix leg that already knows the full changed-files list (passed by
-    # the detect-changed-models job) doesn't need to compute its own git diff
-    # - and with it, doesn't need repo history at all, just a shallow checkout.
-    ctx.changed_files = json.loads(args.changed_files) if args.changed_files else ctx.get_changed_files()
     ttl_files_to_check = args.files or ctx.get_changed_ttl_files()
 
     if not ttl_files_to_check:
         print("No .ttl files changed - nothing to check for MS2 criteria.")
-        _write_step_summary(report.render_markdown([], []))
+        _write_step_summary(report.render_markdown([], [], categories))
         return 0
 
     all_findings: list[report.Finding] = []
     for ttl_file in ttl_files_to_check:
         print(f"\n=== MS2 criteria for {ttl_file} ===")
-        model = parse_model(ttl_file)
+        try:
+            model = samm_model_parser.parse_model(ttl_file)
+        except samm_model_parser.TurtleSyntaxError as e:
+            # Not even valid Turtle - gated the same way as a model failing
+            # samm-cli validate (see below): only MS2-01's FAIL is reported.
+            ms2_01 = next(c for c in criteria.REGISTRY if c.id == "MS2-01")
+            finding = report.Finding(ms2_01.id, ms2_01.title, "FAIL", ttl_file, f"not valid Turtle: {e}", line=1)
+            all_findings.append(finding)
+            report.print_console([finding])
+            github_comments.post_checklist_comment(ttl_file, [finding])
+            continue
 
         # If the model doesn't even validate against SAMM (MS2-01), don't
         # bother running the rest of the criteria on it - naming
@@ -163,6 +148,18 @@ def main() -> int:
         # MS2-01 happening to run first in REGISTRY order.
         validation = ctx.validation_result(model) if ctx.samm_jar else None
         model_invalid = validation is not None and validation.returncode != 0
+
+        # Every artifact type (schema, payload, AAS, ...) is generated once
+        # here, before any criterion runs - criteria only read the result
+        # via ctx.artifacts(model) instead of each shelling out to samm-cli
+        # for the same file again.
+        if not model_invalid:
+            ctx.generate_artifacts(model)
+
+        # Findings from POST_COMMENT-enabled criteria, collected across the
+        # whole model and posted as a single PR checklist comment after the
+        # loop below - see github_comments.post_checklist_comment.
+        comment_findings: list[report.Finding] = []
 
         for criterion in criteria.REGISTRY:
             if not config.is_enabled(criterion.id):
@@ -177,7 +174,7 @@ def main() -> int:
             if model_invalid and criterion.id != "MS2-01":
                 # Not even reported as SKIP: an invalid model makes every
                 # other criterion moot, so only MS2-01's own FAIL shows up
-                # for this model at all - no 21 additional SKIP rows to
+                # for this model at all - no SKIP row for every other criterion to
                 # scroll past.
                 print(f"{criterion.id} not evaluated - model does not validate against SAMM CLI (see MS2-01)")
                 continue
@@ -187,24 +184,28 @@ def main() -> int:
                 # A criterion that only flags problems (and stays silent
                 # when there's nothing to flag) still needs a row in the
                 # report table, so treat "nothing reported" as a pass.
-                findings = [report.Finding(criterion.id, criterion.title, "INFO", ttl_file, "no issues found")]
+                findings = [report.Finding(criterion.id, criterion.title, "SUCCESS", ttl_file, "no issues found")]
             if not config.is_blocking(criterion.id):
                 for finding in findings:
                     if finding.level == "FAIL":
                         finding.level = "WARN"
                         finding.message += " (non-blocking: downgraded from FAIL via " \
                                             f"{config_module.DEFAULT_CONFIG_RELPATH})"
+            if criterion.post_comment:
+                comment_findings.extend(f for f in findings if f.level in ("FAIL", "WARN"))
             all_findings.extend(findings)
             report.print_console(findings)
 
-    markdown = report.render_markdown(all_findings, ttl_files_to_check)
+        github_comments.post_checklist_comment(ttl_file, comment_findings)
+
+    markdown = report.render_markdown(all_findings, ttl_files_to_check, categories)
     _write_step_summary(markdown)
 
     if report.has_failures(all_findings):
         print("\nMS2 criteria check FAILED - see FAIL entries above.")
         return 1
 
-    print("\nMS2 criteria check passed (WARN/INFO entries may still need human review).")
+    print("\nMS2 criteria check passed (WARN/SUCCESS entries may still need human review).")
     return 0
 
 
