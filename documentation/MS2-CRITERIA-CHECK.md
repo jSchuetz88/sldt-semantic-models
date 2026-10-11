@@ -39,14 +39,12 @@ This describes the automated check that runs on every pull request to verify the
 
 The pipeline is split into three jobs specifically so that **every changed model gets its own check mark** in the PR UI, while still having one reliable, fixed-name check to mark as *required* in branch protection:
 
-1. **`detect-changed-models`** - the only job that checks out full repository history. Runs `git diff origin/main...HEAD` (three dots: diffs against the merge-base, i.e. what *this branch* changed since it forked from `main`, independent of whatever landed on `main` afterwards) to find every changed file. Outputs two lists as job outputs:
-   - `files`: just the changed `.ttl` files - becomes the matrix below
-   - `all_files`: every changed file - handed to each matrix leg so they don't each need to recompute a diff (see next job)
+1. **`detect-changed-models`** - the only job that checks out full repository history. Runs `git diff origin/main...HEAD` (three dots: diffs against the merge-base, i.e. what *this branch* changed since it forked from `main`, independent of whatever landed on `main` afterwards) to find every changed `.ttl` file. Outputs them as the `files` job output, which becomes the matrix below.
 
 2. **`ms2-criteria-check`** - a matrix job, one run per entry in `files`. Each run is named `Check MS2 Criteria (<path>)`, so each changed model shows up as its own, separately visible check. Each leg:
-   - does a **shallow** checkout (`fetch-depth: 1`) - no repo history needed, since it already got the full changed-files list from `detect-changed-models` via `--changed-files`
+   - does a **shallow** checkout (`fetch-depth: 1`) - no repo history needed, since it checks exactly the one file handed in via the matrix and computes no git diff of its own
    - restores/saves the SAMM CLI jar from an `actions/cache` entry keyed on a hash of `config.json` (where the pinned SAMM CLI version lives), so only the first leg per version actually downloads the ~110 MB jar
-   - runs `ms2_check.py --file <path> --changed-files <json>` for that one model
+   - runs `ms2_check.py --file <path>` for that one model
 
    This job is deliberately **not** the one you mark as a required status check: its name (and how many runs of it exist) varies per PR depending on which models changed, and GitHub branch protection can only pin down fixed, known check names.
 
@@ -54,13 +52,12 @@ The pipeline is split into three jobs specifically so that **every changed model
 
 ## The master script (`ms2_check.py`)
 
-Single CLI entry point, run three different ways by `governance.yml` (see the file's own header comment for the exact flags):
+Single CLI entry point, run two different ways by `governance.yml` (see the file's own header comment for the exact flags):
 
 | Mode | Used by | What it does |
 | --- | --- | --- |
 | `--list-changed-files` | `detect-changed-models` | prints the changed `.ttl` files as JSON, nothing else |
-| `--list-all-changed-files` | `detect-changed-models` | prints *every* changed file as JSON (feeds `--changed-files`) |
-| `--file <path> --changed-files <json>` | each `ms2-criteria-check` matrix leg | checks exactly one model, no git diff needed |
+| `--file <path>` | each `ms2-criteria-check` matrix leg | checks exactly one model, no git diff needed |
 | (no flags) | local/manual runs | auto-detects and checks every changed `.ttl` file via its own `git diff` |
 
 For each file, it: parses the model, loads `config.json`, then hands the parsed model plus a shared `Context` to every enabled criterion in `criteria.REGISTRY`, downgrading `FAIL` to `WARN` for criteria configured as non-blocking, collects all findings, prints them, writes the Markdown report to the job summary, and exits non-zero if anything is still `FAIL`.

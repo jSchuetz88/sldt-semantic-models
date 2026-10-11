@@ -77,7 +77,6 @@ class GeneratedArtifacts:
 class Context:
     repo_root: Path
     base_branch: str
-    changed_files: list[str] = field(default_factory=list)
     _samm_jar: Path | None = field(default=None, init=False, repr=False)
     _samm_jar_resolved: bool = field(default=False, init=False, repr=False)
     _generated_artifacts: dict[str, GeneratedArtifacts] = field(default_factory=dict, init=False, repr=False)
