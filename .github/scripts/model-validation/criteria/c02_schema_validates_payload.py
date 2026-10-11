@@ -15,11 +15,11 @@
 # MS2-02: "generated json schema validates against example json payload".
 #
 # The JSON schema and example payload themselves come from
-# ctx.generated_artifacts() (see context.py), which runs the SAMM CLI's
-# `aspect <file> to schema` / `aspect <file> to json` commands (same ones
-# as generate.sh) and caches the result per model file - shared with any
-# other criterion that wants the same generated artifacts. This criterion
-# just cross-validates them with the `jsonschema` package if installed.
+# ctx.artifacts() (see context.py), generated once per model by
+# ms2_check.py's main loop before any criterion runs - shared with MS2-03
+# and any other criterion that wants the generated artifacts. This
+# criterion just cross-validates them with the `jsonschema` package if
+# installed.
 
 from __future__ import annotations
 
@@ -37,10 +37,14 @@ class Criterion(base.Criterion):
     POST_COMMENT = True
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
-        artifacts = ctx.generated_artifacts(model)
-        if artifacts.schema_path is None or artifacts.payload_path is None:
-            level = "SKIP" if artifacts.skipped else "FAIL"
-            return [Finding(self.ID, self.TITLE, level, model.file, artifacts.error, line=1 if level == "FAIL" else None)]
+        artifacts = ctx.artifacts(model)
+        if artifacts.skipped:
+            return [Finding(self.ID, self.TITLE, "SKIP", model.file, artifacts.skip_reason)]
+
+        for label in ("schema.json", "payload.json"):
+            if label in artifacts.failures:
+                return [Finding(self.ID, self.TITLE, "FAIL", model.file,
+                                 f"{label} generation failed: {artifacts.failures[label]}", line=1)]
 
         try:
             import jsonschema
@@ -48,10 +52,10 @@ class Criterion(base.Criterion):
             return [Finding(self.ID, self.TITLE, "SKIP", model.file,
                              "schema and example payload generated successfully, but the "
                              "'jsonschema' package is not installed so they were not cross-validated "
-                             "(pip install jsonschema)")]
+                             "(pip install jsonschema==4.26.0)")]
 
-        schema = json.loads(artifacts.schema_path.read_text(encoding="utf-8"))
-        payload = json.loads(artifacts.payload_path.read_text(encoding="utf-8"))
+        schema = json.loads(artifacts.paths["schema.json"].read_text(encoding="utf-8"))
+        payload = json.loads(artifacts.paths["payload.json"].read_text(encoding="utf-8"))
         try:
             jsonschema.validate(payload, schema)
         except jsonschema.ValidationError as e:

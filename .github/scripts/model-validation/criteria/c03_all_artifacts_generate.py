@@ -19,10 +19,10 @@
 # AASX, JSON schema, example JSON payload, OpenAPI spec, HTML doc,
 # Parquet) - typically a SAMM CLI bug/limitation for that particular
 # model structure rather than anything wrong with the model itself, but
-# still something the PR should surface before merge. See
-# ctx.artifact_build_result() (context.py) for the actual generation,
-# which runs into a throwaway temp directory - this criterion only cares
-# whether every format's round trip succeeded, not the output itself.
+# still something the PR should surface before merge. The generation
+# itself happens once per model in ms2_check.py's main loop (see
+# Context.generate_artifacts) - this criterion only reads ctx.artifacts()
+# and cares whether every format succeeded, not about the output itself.
 
 from __future__ import annotations
 
@@ -38,7 +38,7 @@ class Criterion(base.Criterion):
     POST_COMMENT = True
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:
-        result = ctx.artifact_build_result(model)
+        result = ctx.artifacts(model)
         if result.skipped:
             return [Finding(self.ID, self.TITLE, "SKIP", model.file, result.skip_reason)]
 

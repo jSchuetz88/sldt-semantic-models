@@ -34,6 +34,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+
       - name: Fetch main branch
         run: git fetch origin main
 
@@ -80,14 +84,22 @@ jobs:
           distribution: 'temurin'
           java-version: '25'
 
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+
       - name: Cache SAMM CLI
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .SAMMCLI
           key: samm-cli-${{ hashFiles('.github/scripts/config.json') }}
 
+      # Each pin is the newest version approved by the Eclipse Dash license
+      # tool (https://github.com/eclipse-dash/dash-licenses) - newer
+      # rpds-py / typing-extensions releases are still "restricted" there.
+      # Re-run Dash before bumping any of these.
       - name: Install Python dependencies
-        run: pip install jsonschema
+        run: pip install jsonschema==4.26.0 rpds-py==0.30.0 typing-extensions==4.15.0
 
       - name: Run MS2 criteria check
         env:

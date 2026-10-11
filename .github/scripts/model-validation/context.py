@@ -29,25 +29,13 @@ from pathlib import Path
 from . import config, samm_cli
 
 
-@dataclass
-class ArtifactBuildResult:
-    # Maps artifact label (see ARTIFACT_FORMATS below) -> truncated samm-cli
-    # error message, for every format that failed to generate. Empty when
-    # every format succeeded. See Context.artifact_build_result below.
-    failures: dict[str, str]
-    skipped: bool = False
-    skip_reason: str | None = None
-
-
 # Every artifact format generate.sh also produces for a model (see its
 # `commands`/`toggles` arrays), kept in sync with that script by hand:
 # there's no single source both a shell script and this Python package can
-# read without one shelling out to the other, and generate.sh's own job
-# (keep whichever formats succeed for the real gen/ folder, warn on the
-# rest) is a different question from this criterion's (did *every* format
-# succeed at all, into a scratch directory nothing else reads). HTML is
-# generated without the Catena-X stylesheet (generate.sh's `-c`) here -
-# that flag only changes the page's look, not whether generation succeeds.
+# read without one shelling out to the other. Unlike generate.sh, these go
+# into a scratch directory nothing gets committed from. HTML is generated
+# without the Catena-X stylesheet (generate.sh's `-c`) here - that flag
+# only changes the page's look, not whether generation succeeds.
 ARTIFACT_FORMATS: list[tuple[str, list[str]]] = [
     ("aas.xml", ["aas", "-f", "xml"]),
     ("aasx", ["aas", "-f", "aasx"]),
@@ -60,17 +48,22 @@ ARTIFACT_FORMATS: list[tuple[str, list[str]]] = [
 
 
 @dataclass
-class GeneratedArtifacts:
-    # Result of one `aspect <file> to schema` / `to json` SAMM CLI round
-    # trip for a given model - see Context.generated_artifacts below.
-    schema_path: Path | None
-    payload_path: Path | None
-    error: str | None = None
-    # True when generation was deliberately not attempted (no jar, or the
-    # model doesn't validate) - as opposed to being attempted and failing.
-    # Callers use this to report SKIP instead of FAIL for the former: it's
-    # not evidence of anything wrong with *this* criterion's own check.
+class Artifacts:
+    # Every format in ARTIFACT_FORMATS, generated once per model by
+    # Context.generate_artifacts (called from ms2_check.py's main loop
+    # before any criterion runs) - criteria only read this, so each
+    # `samm-cli aspect <file> to <format>` runs exactly once per model.
+    #
+    # paths: artifact label -> generated file, for every format that
+    # succeeded. failures: artifact label -> truncated samm-cli error, for
+    # every format that didn't. A label is always in exactly one of them -
+    # unless `skipped`, where generation was deliberately not attempted
+    # (no jar) and both are empty; callers report SKIP rather than FAIL for
+    # that, as it's no evidence of anything wrong with the model.
+    paths: dict[str, Path] = field(default_factory=dict)
+    failures: dict[str, str] = field(default_factory=dict)
     skipped: bool = False
+    skip_reason: str | None = None
 
 
 @dataclass
@@ -79,15 +72,14 @@ class Context:
     base_branch: str
     _samm_jar: Path | None = field(default=None, init=False, repr=False)
     _samm_jar_resolved: bool = field(default=False, init=False, repr=False)
-    _generated_artifacts: dict[str, GeneratedArtifacts] = field(default_factory=dict, init=False, repr=False)
     _validation_results: dict[str, subprocess.CompletedProcess] = field(default_factory=dict, init=False, repr=False)
-    _artifact_build_results: dict[str, ArtifactBuildResult] = field(default_factory=dict, init=False, repr=False)
+    _artifacts: dict[str, Artifacts] = field(default_factory=dict, init=False, repr=False)
 
     @property
     def samm_jar(self) -> Path | None:
         # Lazily downloads (once per run) the SAMM CLI jar in the version
         # pinned in config.json (see config.py), used by the criteria
-        # that need to actually run the CLI (MS2-01 validation, MS2-02 schema/payload, MS2-03 artifacts).
+        # that need to actually run the CLI (MS2-01 validation, artifact generation for MS2-02/MS2-03).
         if not self._samm_jar_resolved:
             version = config.load_config(self.repo_root).samm_cli_version
             self._samm_jar = samm_cli.ensure_samm_cli(version)
@@ -97,8 +89,7 @@ class Context:
     def validation_result(self, model) -> subprocess.CompletedProcess | None:
         # Lazily runs (once per model file, cached for the rest of this
         # run) `samm-cli aspect <file> validate`. Shared between MS2-01
-        # (which reports it directly) and generated_artifacts() /
-        # ms2_check.py's main loop (which skip further work entirely for a
+        # (which reports it directly) and ms2_check.py's main loop (which skip further work entirely for a
         # model that doesn't even validate - no point generating artifacts
         # from, or checking naming conventions on, a model that's already
         # known to be broken). Returns None if the jar itself is
@@ -115,96 +106,36 @@ class Context:
         self._validation_results[model.file] = result
         return result
 
-    def generated_artifacts(self, model) -> GeneratedArtifacts:
-        # Lazily generates (once per model file, cached for the rest of
-        # this run) the JSON schema and example JSON payload via the SAMM
-        # CLI's `to schema` / `to json` commands. Several criteria want to
-        # inspect these (currently MS2-02; a criterion wanting to judge
-        # property names on the fully-resolved payload rather than the raw
-        # TTL identifiers would too) - sharing this avoids each one
-        # shelling out to samm-cli separately for the same file.
-        #
-        # schema_path/payload_path being None always comes with `error` set;
-        # `skipped` tells the caller whether that's because generation was
-        # deliberately not attempted (SKIP-worthy) or genuinely failed
-        # (FAIL-worthy) - see the `skipped` field's own comment.
-        if model.file in self._generated_artifacts:
-            return self._generated_artifacts[model.file]
-
+    def generate_artifacts(self, model) -> Artifacts:
+        # Generates every format in ARTIFACT_FORMATS for `model` into a
+        # fresh temp directory and keeps the result for artifacts() below.
+        # Called once per model by ms2_check.py's main loop - only for a
+        # model that validates, since nothing gets checked on any other.
         jar = self.samm_jar
         if jar is None:
-            result = GeneratedArtifacts(
-                None, None, "SAMM CLI jar unavailable (no Java / no network)", skipped=True)
-            self._generated_artifacts[model.file] = result
-            return result
-
-        validation = self.validation_result(model)
-        if validation is not None and validation.returncode != 0:
-            result = GeneratedArtifacts(
-                None, None, "model does not validate (see MS2-01) - schema/payload generation skipped",
-                skipped=True)
-            self._generated_artifacts[model.file] = result
+            result = Artifacts(skipped=True, skip_reason="SAMM CLI jar unavailable (no Java / no network)")
+            self._artifacts[model.file] = result
             return result
 
         out_dir = Path(tempfile.mkdtemp(prefix="ms2-artifacts-"))
-        schema_path = out_dir / "schema.json"
-        payload_path = out_dir / "payload.json"
-
-        schema_result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "to", "schema", "-o", str(schema_path)])
-        if schema_result.returncode != 0 or not schema_path.exists():
-            result = GeneratedArtifacts(
-                None, None, f"JSON schema generation failed: {schema_result.stderr.strip()[:300]}")
-            self._generated_artifacts[model.file] = result
-            return result
-
-        payload_result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "to", "json", "-o", str(payload_path)])
-        if payload_result.returncode != 0 or not payload_path.exists():
-            result = GeneratedArtifacts(
-                schema_path, None, f"example JSON payload generation failed: {payload_result.stderr.strip()[:300]}")
-            self._generated_artifacts[model.file] = result
-            return result
-
-        result = GeneratedArtifacts(schema_path, payload_path)
-        self._generated_artifacts[model.file] = result
-        return result
-
-    def artifact_build_result(self, model) -> ArtifactBuildResult:
-        # Lazily attempts (once per model file, cached for the rest of this
-        # run) every format in ARTIFACT_FORMATS via the SAMM CLI, into a
-        # throwaway temp directory - unlike generated_artifacts() above,
-        # nothing here is meant to be inspected afterwards, only whether
-        # each format's `samm-cli aspect <file> to <format>` round trip
-        # succeeded. Used by MS2-03 ("do all artifact types generate").
-        if model.file in self._artifact_build_results:
-            return self._artifact_build_results[model.file]
-
-        jar = self.samm_jar
-        if jar is None:
-            result = ArtifactBuildResult(
-                {}, skipped=True, skip_reason="SAMM CLI jar unavailable (no Java / no network)")
-            self._artifact_build_results[model.file] = result
-            return result
-
-        validation = self.validation_result(model)
-        if validation is not None and validation.returncode != 0:
-            result = ArtifactBuildResult(
-                {}, skipped=True,
-                skip_reason="model does not validate (see MS2-01) - artifact generation skipped")
-            self._artifact_build_results[model.file] = result
-            return result
-
-        out_dir = Path(tempfile.mkdtemp(prefix="ms2-build-"))
-        failures: dict[str, str] = {}
+        result = Artifacts()
         for label, args in ARTIFACT_FORMATS:
             out_path = out_dir / label
             cli_result = samm_cli.run_samm_cli(jar, ["aspect", model.file, "to", *args, "-o", str(out_path)])
             if cli_result.returncode != 0 or not out_path.exists():
                 detail = (cli_result.stderr or cli_result.stdout or f"exit code {cli_result.returncode}").strip()
-                failures[label] = detail[:300]
+                result.failures[label] = detail[:300]
+            else:
+                result.paths[label] = out_path
 
-        result = ArtifactBuildResult(failures)
-        self._artifact_build_results[model.file] = result
+        self._artifacts[model.file] = result
         return result
+
+    def artifacts(self, model) -> Artifacts:
+        # The artifacts generate_artifacts() already produced for `model`.
+        # Never generates anything itself - a criterion asking for them
+        # before the main loop generated them is a bug in the caller.
+        return self._artifacts[model.file]
 
     def get_changed_files(self) -> list[str]:
         # Returns every file changed on this branch compared to base_branch

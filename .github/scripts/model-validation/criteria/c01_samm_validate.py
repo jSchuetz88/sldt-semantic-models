@@ -21,10 +21,10 @@
 # parsed out of README.md - see config.py's module comment for why.
 #
 # The actual `validate` run lives in ctx.validation_result() (see
-# context.py), shared with generated_artifacts() and ms2_check.py's main
-# loop, which both skip further work entirely for a model that fails here
-# - there's no point generating schema/payload or checking naming
-# conventions on a model that's already known to be broken.
+# context.py), shared with ms2_check.py's main loop, which skips further
+# work entirely for a model that fails here - there's no point generating
+# artifacts or checking naming conventions on a model that's already
+# known to be broken.
 
 from __future__ import annotations
 

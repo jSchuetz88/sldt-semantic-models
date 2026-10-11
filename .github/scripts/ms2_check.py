@@ -149,6 +149,13 @@ def main() -> int:
         validation = ctx.validation_result(model) if ctx.samm_jar else None
         model_invalid = validation is not None and validation.returncode != 0
 
+        # Every artifact type (schema, payload, AAS, ...) is generated once
+        # here, before any criterion runs - criteria only read the result
+        # via ctx.artifacts(model) instead of each shelling out to samm-cli
+        # for the same file again.
+        if not model_invalid:
+            ctx.generate_artifacts(model)
+
         # Findings from POST_COMMENT-enabled criteria, collected across the
         # whole model and posted as a single PR checklist comment after the
         # loop below - see github_comments.post_checklist_comment.
