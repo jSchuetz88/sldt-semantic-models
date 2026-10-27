@@ -21,20 +21,22 @@ on:
 jobs:
   # Determines which .ttl models changed in this PR, so the next job can
   # check each one as its own matrix leg (own check mark in the PR UI).
-  # This is the only job that needs full repo history: it also hands the
-  # full changed-files list to every matrix leg below, so those don't each
-  # need to recompute it (and don't need repo history themselves either).
+  # This is the only job that needs full repo history (for the git diff
+  # against main) - the matrix legs below get their file handed in.
   detect-changed-models:
     runs-on: ubuntu-latest
     name: Detect Changed Models
     outputs:
       files: ${{ steps.list.outputs.files }}
-      all_files: ${{ steps.list-all.outputs.files }}
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
 
       - name: Fetch main branch
         run: git fetch origin main
@@ -42,12 +44,9 @@ jobs:
       - name: List changed .ttl files
         id: list
         run: |
-          echo "files=$(python .github/scripts/ms2_check.py --list-changed-files --base-branch origin/main)" >> "$GITHUB_OUTPUT"
-
-      - name: List all changed files
-        id: list-all
-        run: |
-          echo "files=$(python .github/scripts/ms2_check.py --list-all-changed-files --base-branch origin/main)" >> "$GITHUB_OUTPUT"
+          set -euo pipefail
+          files=$(python .github/scripts/ms2_check.py --list-changed-files --base-branch origin/main)
+          echo "files=$files" >> "$GITHUB_OUTPUT"
 
   # One job run per changed model - shows up as its own check mark, e.g.
   # "Check MS2 Criteria (io.catenax.batch/4.0.0/Batch.ttl)". Do NOT mark
@@ -55,14 +54,20 @@ jobs:
   # runs of it exist) varies per PR depending on which models changed, so
   # branch protection can't pin it down. Use ms2-criteria-gate for that.
   #
-  # Each leg gets the full changed-files list from detect-changed-models
-  # instead of computing its own git diff, so it needs no repo history at
-  # all - just a shallow checkout of the files at HEAD. The SAMM CLI jar
+  # Each leg checks exactly the one file handed in via the matrix and
+  # computes no git diff of its own, so it needs no repo history at all -
+  # just a shallow checkout of the files at HEAD. The SAMM CLI jar
   # is cached across legs/runs instead of every leg downloading it fresh.
   ms2-criteria-check:
     needs: detect-changed-models
     if: needs.detect-changed-models.outputs.files != '[]'
     runs-on: ubuntu-latest
+    # Only this job needs it (least privilege): posts/updates one PR
+    # checklist comment per model listing FAIL/WARN findings from criteria
+    # with POST_COMMENT = True (see model-validation/github_comments.py).
+    permissions:
+      contents: read
+      pull-requests: write
     strategy:
       fail-fast: false
       matrix:
@@ -70,29 +75,41 @@ jobs:
     name: Check MS2 Criteria (${{ matrix.ttl_file }})
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-java@8df1039502a15bceb9433410b1a100fbe190c53b # v4.5.0
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '25'
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
 
       - name: Cache SAMM CLI
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .SAMMCLI
-          key: samm-cli-${{ hashFiles('.github/scripts/model-validation/config.json') }}
+          key: samm-cli-${{ hashFiles('.github/scripts/config.json') }}
 
+      # Each pin is the newest version approved by the Eclipse Dash license
+      # tool (https://github.com/eclipse-dash/dash-licenses) - newer
+      # rpds-py / typing-extensions releases are still "restricted" there.
+      # Re-run Dash before bumping any of these.
       - name: Install Python dependencies
-        run: pip install jsonschema
+        run: pip install jsonschema==4.26.0 rpds-py==0.30.0 typing-extensions==4.15.0
 
       - name: Run MS2 criteria check
+        env:
+          # Only used by criteria with POST_COMMENT = True, to post/update
+          # one PR checklist comment per model (see
+          # model-validation/github_comments.py).
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TTL_FILE: ${{ matrix.ttl_file }}
         run: |
-          python .github/scripts/ms2_check.py \
-            --file "${{ matrix.ttl_file }}" \
-            --changed-files '${{ needs.detect-changed-models.outputs.all_files }}'
+          python .github/scripts/ms2_check.py --file "$TTL_FILE"
 
   # Fixed-name summary of the matrix above - this is the one to configure
   # as a required status check in branch protection. Always runs (even
@@ -107,8 +124,14 @@ jobs:
     steps:
       - name: Evaluate matrix result
         run: |
+          detect_result="${{ needs.detect-changed-models.result }}"
           result="${{ needs.ms2-criteria-check.result }}"
+          echo "detect-changed-models result: $detect_result"
           echo "ms2-criteria-check matrix result: $result"
+          if [ "$detect_result" = "failure" ] || [ "$detect_result" = "cancelled" ]; then
+            echo "Change detection failed, so MS2 criteria could not be evaluated."
+            exit 1
+          fi
           if [ "$result" = "failure" ] || [ "$result" = "cancelled" ]; then
             echo "At least one model failed its MS2 criteria check."
             exit 1

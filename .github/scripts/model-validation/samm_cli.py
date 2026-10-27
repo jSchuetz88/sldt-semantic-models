@@ -14,12 +14,10 @@
 #######################################################################
 # Helper around the SAMM CLI jar.
 #
-# Mirrors the download logic already used in
-# ``.github/actions/model-validation/index.js`` and the command set already
-# used in ``generate.sh`` (``aspect <file> validate`` / ``aspect <file> to
-# schema`` / ``aspect <file> to json``), just ported to Python so the MS2
-# criteria that need the CLI (validation, JSON schema vs. example payload)
-# can shell out to it too.
+# Mirrors the download logic and the command set already used in
+# ``scripts/generate.sh`` (``aspect <file> validate`` / ``aspect <file> to
+# <format>``), just ported to Python so the MS2 criteria that need the CLI
+# (MS2-01 validation, artifact generation for MS2-02/MS2-03) can shell out to it too.
 
 from __future__ import annotations
 
