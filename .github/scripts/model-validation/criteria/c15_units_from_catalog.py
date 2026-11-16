@@ -12,19 +12,12 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-15: "units are referenced from the SAMM unit catalog whenever
 # possible".
 #
-# Never FAIL/WARN/SUCCESS: whether a matching catalog unit actually exists
-# for a given quantity isn't something this script can know (it doesn't
-# load the catalog itself), so nothing here is ever confirmable as a
-# genuine automated pass - not even "every unit reference already uses the
-# catalog prefix and no custom samm:Unit is defined", since that still
-# doesn't confirm the *right* catalog unit was chosen. A flagged unit is
-# SKIP (a fact to point the reviewer at, not evidence of a violation -
-# keeps it from claiming a "likely violation" it can't substantiate); the
-# "nothing to flag" case is NOTE (a fact for the reviewer, not a
-# confirmation of anything - same reasoning as MS2-16/MS2-17).
+# Lists unit references outside the SAMM unit catalog and custom samm:Unit
+# definitions for the reviewer (SKIP); otherwise reports a NOTE.
 
 from __future__ import annotations
 
@@ -47,9 +40,6 @@ class Criterion(base.Criterion):
     ID = "MS2-15"
     TITLE = "Units reference the SAMM unit catalog (heuristic, needs human review)"
     CATEGORY = "Semantic Quality"
-    # Harmless no-op today (check() below never returns FAIL/WARN, the only
-    # levels that get posted) - see c10's comment on POST_COMMENT for why this
-    # is still set.
     POST_COMMENT = True
 
     def check(self, model: TTLModel, ctx: Context) -> list[Finding]:

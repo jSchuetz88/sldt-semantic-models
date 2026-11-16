@@ -12,8 +12,12 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-07: "file RELEASE_NOTES.md exists and contains entries for proposed
 # model changes".
+#
+# Checks that the namespace's RELEASE_NOTES.md exists and contains an entry
+# '[<version>]' for this model version.
 
 from __future__ import annotations
 
@@ -44,9 +48,5 @@ class Criterion(base.Criterion):
             return [Finding(self.ID, self.TITLE, "WARN", model.file,
                              f"{release_notes} has no entry mentioning '[{model.version}]'", line=1)]
 
-        # An entry for this version is enough on its own - whether
-        # RELEASE_NOTES.md itself was touched in this PR used to be checked
-        # separately, but that only ever produced a near-duplicate warning
-        # alongside the one above without adding real signal.
         return [Finding(self.ID, self.TITLE, "SUCCESS", model.file,
                          f"{release_notes} mentions version {model.version}")]

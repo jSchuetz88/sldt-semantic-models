@@ -12,14 +12,11 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-02: "generated json schema validates against example json payload".
 #
-# The JSON schema and example payload themselves come from
-# ctx.artifacts() (see context.py), generated once per model by
-# ms2_check.py's main loop before any criterion runs - shared with MS2-03
-# and any other criterion that wants the generated artifacts. This
-# criterion just cross-validates them with the `jsonschema` package if
-# installed.
+# Validates the generated example JSON payload against the generated JSON
+# schema.
 
 from __future__ import annotations
 

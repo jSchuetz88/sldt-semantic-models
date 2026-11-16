@@ -12,7 +12,10 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-22: "the identifier for properties starts with a small letter".
+#
+# Checks that property identifiers start with a lowercase letter.
 
 from __future__ import annotations
 

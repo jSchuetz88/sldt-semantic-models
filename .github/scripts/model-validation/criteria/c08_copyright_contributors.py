@@ -12,17 +12,13 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-08: "all contributors to this model are mentioned in copyright header
 # of model file".
 #
-# Verifying that the header names *every* contributor isn't reliably
-# automatable (git authorship is GitHub account names, headers name
-# companies/organizations - the two don't map 1:1). Instead, this just
-# checks for the standard "Contributors to the Eclipse Foundation" line
-# that every properly-headered model carries alongside the named
-# companies - its presence is a reliable proxy for "this header follows
-# the required format", without parsing individual holder lines (which
-# vary in year format: single year, comma lists, ranges, ...).
+# Checks that the file contains the copyright line "Copyright ... Contributors
+# to the Eclipse Foundation". Whether all contributors are named is left to
+# the reviewer.
 
 from __future__ import annotations
 

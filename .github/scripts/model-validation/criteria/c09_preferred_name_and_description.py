@@ -12,12 +12,14 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-09: "all model elements at least contain the fields 'preferred name'
 # and 'description' in English language. The description must be
 # comprehensible. [...] style should be consistent over the whole model"
 #
-# Only presence of samm:preferredName/@en and samm:description/@en is
-# machine-checkable; comprehensibility and style consistency are not.
+# Checks that every model element has samm:preferredName and
+# samm:description in English. Comprehensibility and style are left to the
+# reviewer.
 
 from __future__ import annotations
 

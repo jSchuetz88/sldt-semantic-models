@@ -12,7 +12,11 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-05: "all external / imported models have the state 'release'".
+#
+# Checks that every model imported via a prefix has a metadata.json with
+# status 'release'.
 
 from __future__ import annotations
 
@@ -26,15 +30,10 @@ from ..report import Finding
 from . import base
 
 # A prefix URI pointing at another model in this repo, e.g.
-# "urn:samm:io.catenax.shared.uuid:2.0.0#" -> folder + version. SAMM's own
-# meta-model/characteristic/unit namespaces ("urn:samm:org.eclipse.esmf.samm:
-# meta-model:2.1.0#") don't match, since their version isn't directly after
-# the namespace.
+# "urn:samm:io.catenax.shared.uuid:2.0.0#" -> folder + version.
 MODEL_URN_RE = re.compile(r"urn:[bs]amm:([\w.]+):(\d+\.\d+\.\d+)#")
 
 def _imported_models(model: TTLModel) -> list[tuple[str, str]]:
-    # Reuses the prefixes the parser already extracted (model.prefixes)
-    # instead of re-reading the file with a stricter regex of its own.
     imported = []
     for uri in model.prefixes.values():
         m = MODEL_URN_RE.fullmatch(uri)

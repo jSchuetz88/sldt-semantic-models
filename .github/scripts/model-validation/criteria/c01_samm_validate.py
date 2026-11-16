@@ -12,19 +12,13 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-01: "the model validates with the SAMM SDS SDK in the version
 # specified in the Readme.md of this repository by the time of the MS2
 # check".
 #
-# Deviates from the letter of that wording: the version actually comes
-# from config.json's "settings.samm_cli_version" key (see config.py), not
-# parsed out of README.md - see config.py's module comment for why.
-#
-# The actual `validate` run lives in ctx.validation_result() (see
-# context.py), shared with ms2_check.py's main loop, which skips further
-# work entirely for a model that fails here - there's no point generating
-# artifacts or checking naming conventions on a model that's already
-# known to be broken.
+# Runs `samm-cli aspect <file> validate` with the SAMM CLI version from
+# config.json. A model failing this is not checked against any other criterion.
 
 from __future__ import annotations
 
@@ -44,9 +38,6 @@ def _clean_detail(text: str) -> str:
         text = text[:MAX_DETAIL_LENGTH] + "... (truncated)"
     return text
 
-# Runs `samm-cli aspect <file> validate` for real. A model that fails this
-# is treated as broken at the most basic level - every other criterion is
-# skipped entirely for it.
 class Criterion(base.Criterion):
     ID = "MS2-01"
     TITLE = "Model validates with SAMM CLI"

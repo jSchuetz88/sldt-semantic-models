@@ -12,7 +12,10 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-21: "use Camel-Case".
+#
+# Checks that all identifiers use Camel-Case.
 
 from __future__ import annotations
 

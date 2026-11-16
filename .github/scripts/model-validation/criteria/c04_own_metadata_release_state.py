@@ -12,17 +12,12 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-04: "metadata.json exists with status 'release'".
 #
-# Broadened beyond the letter of that wording: a model's metadata.json
-# legitimately moves through - or ends up in - other lifecycle states too
-# (e.g. a PR whose whole point is deprecating a model). Any of
-# VALID_STATUSES is accepted as a genuine state (not a FAIL) - still
-# catches real typos like "deprecate" (missing the 'd') since those aren't
-# in the set either - but only "release" is a clean pass; the other valid
-# states are surfaced as WARN ("please verify"), since a model landing in
-# this PR with e.g. status "draft" or "deprecated" is usually intentional
-# but still worth a reviewer's second look.
+# Checks that the model's own metadata.json exists and has a valid lifecycle
+# status (release, deprecated, draft, invalidated). 'release' passes, the
+# other states are reported as WARN.
 
 from __future__ import annotations
 

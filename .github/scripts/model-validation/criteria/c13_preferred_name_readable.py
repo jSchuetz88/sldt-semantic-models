@@ -12,13 +12,11 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-13: "preferredName should be human readable and follow normal
 # orthography (e.g., no camel case but normal word separation)".
 #
-# Heuristic only (WARN, not FAIL): a lowercase-to-uppercase hump can't be
-# told apart from a genuine single established term that happens to use
-# internal capitalization (e.g. "eCommerce", "iPhone"), so this is a
-# plausible but not certain violation.
+# Flags samm:preferredName values that look like Camel-Case (WARN).
 
 from __future__ import annotations
 

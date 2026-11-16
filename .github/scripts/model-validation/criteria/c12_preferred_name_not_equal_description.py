@@ -12,7 +12,10 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-12: "fields preferredName and description are not the same".
+#
+# Checks that samm:preferredName and samm:description differ.
 
 from __future__ import annotations
 

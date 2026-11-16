@@ -74,6 +74,9 @@ class Context:
     _samm_jar_resolved: bool = field(default=False, init=False, repr=False)
     _validation_results: dict[str, subprocess.CompletedProcess] = field(default_factory=dict, init=False, repr=False)
     _artifacts: dict[str, Artifacts] = field(default_factory=dict, init=False, repr=False)
+    # .ttl files that already exist on base_branch and are modified on this
+    # branch (MS2-25). None = not determined in this run.
+    modified_ttl_files: list[str] | None = None
 
     @property
     def samm_jar(self) -> Path | None:
@@ -81,8 +84,8 @@ class Context:
         # pinned in config.json (see config.py), used by the criteria
         # that need to actually run the CLI (MS2-01 validation, artifact generation for MS2-02/MS2-03).
         if not self._samm_jar_resolved:
-            version = config.load_config(self.repo_root).samm_cli_version
-            self._samm_jar = samm_cli.ensure_samm_cli(version)
+            cfg = config.load_config(self.repo_root)
+            self._samm_jar = samm_cli.ensure_samm_cli(cfg.samm_cli_version, cfg.samm_cli_sha256)
             self._samm_jar_resolved = True
         return self._samm_jar
 
@@ -174,3 +177,16 @@ class Context:
 
     def get_changed_ttl_files(self) -> list[str]:
         return [f for f in self.get_changed_files() if f.endswith(".ttl")]
+
+    def get_modified_ttl_files(self) -> list[str]:
+        # Like get_changed_ttl_files(), but only files that already existed
+        # at the merge-base and were modified (--diff-filter=M).
+        try:
+            result = subprocess.run(
+                ["git", "diff", "--name-only", "--diff-filter=M", f"{self.base_branch}...HEAD"],
+                capture_output=True, text=True, check=True,
+            )
+        except subprocess.CalledProcessError as e:
+            print(f"Error running git diff: {e}", file=sys.stderr)
+            raise
+        return [f for f in result.stdout.splitlines() if f.endswith(".ttl")]

@@ -21,11 +21,17 @@
 #   --list-changed-files      -> used once by the "detect-changed-models" job
 #                                 to build the per-model check matrix (prints
 #                                 a JSON array of changed .ttl files)
+#   --list-modified-files     -> also used by "detect-changed-models": prints
+#                                 the subset of those that already existed on
+#                                 the base branch (existing versions being
+#                                 overwritten, see MS2-25)
 #   --file <path>              -> used by each matrix leg of the
 #                                 "ms2-criteria-check" job to check exactly
 #                                 one model, so each model gets its own check
 #                                 mark in the PR UI. Needs no git history at
-#                                 all - just a shallow checkout.
+#                                 all - just a shallow checkout. Gets the
+#                                 --list-modified-files result via
+#                                 --modified-files.
 #
 # Run without any of these, it auto-detects and checks every changed .ttl
 # file in one go via its own git diff (useful for local runs). Either way,
@@ -51,6 +57,7 @@
 # Usage (run from the repository root):
 #     python .github/scripts/ms2_check.py [--base-branch origin/main]
 #     python .github/scripts/ms2_check.py --list-changed-files
+#     python .github/scripts/ms2_check.py --list-modified-files
 #     python .github/scripts/ms2_check.py --file path/to/Model.ttl
 
 from __future__ import annotations
@@ -100,6 +107,18 @@ def parse_args() -> argparse.Namespace:
              "else is printed. Used by the detect-changed-models job to build "
              "the per-model check matrix.",
     )
+    parser.add_argument(
+        "--list-modified-files",
+        action="store_true",
+        help="Print the .ttl files that already existed on the base branch and "
+             "were modified on this branch as a JSON array and exit. Used by the "
+             "detect-changed-models job, handed to each matrix leg via --modified-files.",
+    )
+    parser.add_argument(
+        "--modified-files",
+        default=None,
+        help="JSON array as printed by --list-modified-files (used by MS2-25).",
+    )
     return parser.parse_args()
 
 
@@ -113,6 +132,15 @@ def main() -> int:
         _write_step_summary(report.render_detected_models(ttl_files))
         print(json.dumps(ttl_files))
         return 0
+
+    if args.list_modified_files:
+        print(json.dumps(ctx.get_modified_ttl_files()))
+        return 0
+
+    if args.modified_files is not None:
+        ctx.modified_ttl_files = json.loads(args.modified_files)
+    elif not args.files:
+        ctx.modified_ttl_files = ctx.get_modified_ttl_files()
 
     config = config_module.load_config(repo_root)
     _warn_about_unknown_criteria(config)

@@ -12,8 +12,11 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-23: "Property and the referenced Characteristic should not have the
 # same name".
+#
+# Checks that a property's identifier differs from its characteristic's.
 
 from __future__ import annotations
 

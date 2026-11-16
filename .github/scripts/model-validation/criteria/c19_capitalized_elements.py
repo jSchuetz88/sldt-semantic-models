@@ -12,8 +12,11 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-19: "the identifiers for all model elements start with a capital
 # letter except for properties".
+#
+# Checks that all non-property identifiers start with an uppercase letter.
 
 from __future__ import annotations
 

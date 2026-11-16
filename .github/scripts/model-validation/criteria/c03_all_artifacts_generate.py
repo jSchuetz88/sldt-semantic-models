@@ -12,17 +12,11 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-03: "all artifact types generate successfully".
 #
-# A model can validate (MS2-01) but still fail to generate one of the
-# artifact types generate.sh also produces for a released model (AAS XML,
-# AASX, JSON schema, example JSON payload, OpenAPI spec, HTML doc,
-# Parquet) - typically a SAMM CLI bug/limitation for that particular
-# model structure rather than anything wrong with the model itself, but
-# still something the PR should surface before merge. The generation
-# itself happens once per model in ms2_check.py's main loop (see
-# Context.generate_artifacts) - this criterion only reads ctx.artifacts()
-# and cares whether every format succeeded, not about the output itself.
+# Checks that every artifact type (AAS XML, AASX, JSON schema, example
+# payload, OpenAPI, HTML, Parquet) can be generated from the model.
 
 from __future__ import annotations
 

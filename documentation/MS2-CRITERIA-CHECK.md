@@ -69,19 +69,21 @@ The four categories are independent of each other - none depends on another's re
             ├── c02_schema_validates_payload.py
             ├── c03_all_artifacts_generate.py
             ├── ...
-            └── c23_property_characteristic_name_conflict.py
+            ├── c23_property_characteristic_name_conflict.py
+            ├── c24_no_catenax_id_property.py
+            └── c25_no_version_overwrite.py
 ```
 
 ## CI pipeline (`governance.yml`)
 
 The pipeline is split into three jobs specifically so that **every changed model gets its own check mark** in the PR UI, while still having one reliable, fixed-name check to mark as *required* in branch protection:
 
-1. **`detect-changed-models`** - the only job that checks out full repository history. Runs `git diff origin/main...HEAD` (three dots: diffs against the merge-base, i.e. what *this branch* changed since it forked from `main`, independent of whatever landed on `main` afterwards) to find every changed `.ttl` file. Outputs them as the `files` job output, which becomes the matrix below.
+1. **`detect-changed-models`** - the only job that checks out full repository history. Runs `git diff origin/main...HEAD` (three dots: diffs against the merge-base, i.e. what *this branch* changed since it forked from `main`, independent of whatever landed on `main` afterwards) to find every changed `.ttl` file. Outputs them as the `files` job output, which becomes the matrix below. A second diff with `--diff-filter=M` outputs the subset that already existed on `main` (existing versions being overwritten) as `modified`, used by MS2-25.
 
 2. **`ms2-criteria-check`** - a matrix job, one run per entry in `files`. Each run is named `Check MS2 Criteria (<path>)`, so each changed model shows up as its own, separately visible check. Each leg:
    - does a **shallow** checkout (`fetch-depth: 1`) - no repo history needed, since it checks exactly the one file handed in via the matrix and computes no git diff of its own
    - restores/saves the SAMM CLI jar from an `actions/cache` entry keyed on a hash of `config.json` (where the pinned SAMM CLI version lives), so only the first leg per version actually downloads the ~110 MB jar
-   - runs `ms2_check.py --file <path>` for that one model
+   - runs `ms2_check.py --file <path> --modified-files <json>` for that one model
 
    This job is deliberately **not** the one you mark as a required status check: its name (and how many runs of it exist) varies per PR depending on which models changed, and GitHub branch protection can only pin down fixed, known check names.
 
@@ -95,6 +97,8 @@ Single CLI entry point, run two different ways by `governance.yml` (see the file
 | --- | --- | --- |
 | `--list-changed-files` | `detect-changed-models` | prints the changed `.ttl` files as JSON, nothing else |
 | `--file <path>` | each `ms2-criteria-check` matrix leg | checks exactly one model, no git diff needed |
+| `--list-modified-files` | `detect-changed-models` | prints the changed `.ttl` files that already existed on `main` as JSON |
+| `--modified-files <json>` | each `ms2-criteria-check` matrix leg | the `--list-modified-files` result, so MS2-25 needs no git history; without it (and with `--file`) MS2-25 reports `SKIP` |
 | (no flags) | local/manual runs | auto-detects and checks every changed `.ttl` file via its own `git diff` |
 
 For each file, it: parses the model, loads `config.json`, then hands the parsed model plus a shared `Context` to every enabled criterion in `criteria.REGISTRY`, downgrading `FAIL` to `WARN` for criteria configured as non-blocking, collects all findings, prints them, writes the Markdown report to the job summary, and exits non-zero if anything is still `FAIL`.
@@ -150,6 +154,8 @@ Each `Finding` has a level:
 | MS2-21 | Naming Conventions | ✅ automated | Camel-Case identifiers |
 | MS2-22 | Naming Conventions | ✅ automated | property identifiers start lowercase |
 | MS2-23 | Semantic Quality | ✅ automated | property and its Characteristic don't share a name |
+| MS2-24 | Naming Conventions | ✅ automated | property identifier / `payloadName` is not `catenaXId` in any spelling (compared case-insensitively, ignoring non-alphanumeric characters) |
+| MS2-25 | Model Validation | ✅ automated | an existing model version (`.ttl` that already exists on `main`) must not be modified - every change needs a new version folder. Hard `FAIL` |
 
 ## Config (`.github/scripts/config.json`)
 
@@ -158,7 +164,8 @@ Two sections, both optional - a missing or empty file behaves exactly like defau
 ```json
 {
   "settings": {
-    "samm_cli_version": "2.16.0"
+    "samm_cli_version": "2.16.0",
+    "samm_cli_sha256": "f3f0900e9c9001d4dc97c5b04534dcb02ba2c0c3991339e4830d3d8b014efdcd"
   },
   "criteria": {
     "MS2-09": { "blocking": false },
@@ -168,6 +175,7 @@ Two sections, both optional - a missing or empty file behaves exactly like defau
 ```
 
 - **`settings.samm_cli_version`** - the SAMM CLI version to download and run (MS2-01/MS2-02/MS2-03). Single source of truth; deliberately *not* parsed out of `README.md` prose, so it can't silently drift and doesn't invalidate the SAMM CLI cache on unrelated README edits.
+- **`settings.samm_cli_sha256`** - SHA-256 of the `samm-cli-<version>.jar` release asset. Required whenever `samm_cli_version` is set; a downloaded or cached jar with a different hash aborts the run (also in `scripts/generate.sh`). When bumping the version, take the hash from the asset's `digest` on the GitHub release (or `shasum -a 256` of the downloaded jar).
 - **`criteria.<ID>.enabled`** (default `true`) - set to `false` to skip a criterion entirely (shows as `SKIP`/➖, no further detail).
 - **`criteria.<ID>.blocking`** (default `true`) - set to `false` to keep a criterion running and reporting, but downgrade any `FAIL` it produces to `WARN` so it no longer breaks the `ms2-criteria-gate` check. Still a MUST per the PR template, just not (yet) enforced automatically.
 
@@ -211,6 +219,6 @@ python .github/scripts/ms2_check.py
 python .github/scripts/ms2_check.py --file io.catenax.batch/4.0.0/Batch.ttl
 ```
 
-Run from the repository root. MS2-01/MS2-02/MS2-03 need Java on `PATH` to run the SAMM CLI; without it they report `SKIP` rather than failing the whole run. MS2-02's JSON-schema-vs-payload cross-validation additionally needs the `jsonschema` Python package (`pip install jsonschema==4.26.0 rpds-py==0.30.0 typing-extensions==4.15.0`, same versions as CI) - without it, schema and payload still get generated, just not cross-validated.
+Run from the repository root. MS2-01/MS2-02/MS2-03 need Java on `PATH` to run the SAMM CLI; without it they report `SKIP` rather than failing the whole run. MS2-02's JSON-schema-vs-payload cross-validation additionally needs the `jsonschema` Python package (versions as pinned in `.github/scripts/requirements.txt`; that file only carries hashes for the CI platform, Linux x86_64 / Python 3.13, and is kept up to date by Dependabot) - without it, schema and payload still get generated, just not cross-validated.
 
 That graceful `SKIP` only covers Java itself being absent - a legitimate, expected state for a local machine. If Java *is* present but the SAMM CLI jar still can't be downloaded (`samm_cli.py`'s `ensure_samm_cli`), that's left to raise and crash the run instead of being swallowed into a `SKIP`. In CI, Java is guaranteed via `actions/setup-java` (see `governance.yml`), so a download failure there means the CI environment itself is broken (e.g. GitHub releases unreachable) - a genuine job failure that needs a re-trigger, not a model-related `SKIP` buried in the report.

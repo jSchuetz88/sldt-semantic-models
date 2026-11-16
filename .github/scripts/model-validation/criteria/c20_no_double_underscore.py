@@ -12,8 +12,11 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-20: "payload names and property identifiers must not contain two
 # consecutive underscores ('__') at any position".
+#
+# Checks that identifiers and samm:payloadName values contain no '__'.
 
 from __future__ import annotations
 

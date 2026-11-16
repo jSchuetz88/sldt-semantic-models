@@ -12,14 +12,13 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
+
 # MS2-06: "the versioning in the URN follows semantic versioning, where
 # minor version bumps are backwards compatible and major version bumps are
 # not backwards compatible."
 #
-# Only the MAJOR.MINOR.PATCH *format* of the URN (and that it matches the
-# version folder it lives in) is machine-checkable here; whether a given
-# bump is actually backwards-compatible requires comparing the model
-# content against the previous version and is left to the reviewer.
+# Checks that the URN version is MAJOR.MINOR.PATCH and matches the model's
+# version folder. Backwards compatibility is left to the reviewer.
 
 from __future__ import annotations
 
