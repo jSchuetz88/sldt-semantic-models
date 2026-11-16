@@ -58,7 +58,7 @@
    samm:characteristic :OperationCharacteristic .
 
 :characteristics a samm:Property ;
-   samm:preferredName "Characteristics"@en ;
+   samm:preferredName "Characteristics Stasb"@en ;
    samm:description "Characteristics of the battery, such as the warranty and the physical dimensions."@en ;
    samm:characteristic :CharacteristicsElement .
 

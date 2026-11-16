@@ -1,0 +1,10 @@
+{
+  "globalAssetId" : "urn:uuid:7ce6C7a8-ec2E-52DE-2bfF-5faBEC1BCDeC",
+  "cryptoMaterials" : [ {
+    "name" : "ecuIdentityCsr",
+    "type" : "certificateSigningRequest",
+    "value" : "-----BEGIN CERTIFICATE REQUEST-----\\nMIIBtzCCAT0CAQAwgZ8xDTALBgNVBCsMBDIwMjUxEzARBgNVBAgMClByb2R1Y3Rp...yVXgPMvdmc33ot8=\\n-----END CERTIFICATE REQUEST-----",
+    "format" : "pkcs10",
+    "encoding" : "rfc7468"
+  } ]
+}

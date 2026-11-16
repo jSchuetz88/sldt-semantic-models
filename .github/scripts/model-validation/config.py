@@ -12,19 +12,24 @@
 #
 # SPDX-License-Identifier: CC-BY-4.0
 #######################################################################
-# Loads config.json (in this same directory), the per-repo config for the
-# MS2 criteria check. Two separate sections:
+# Loads config.json from .github/scripts/ (one level up from this module -
+# shared by other scripts under .github/scripts/, not just the MS2 criteria
+# check), the per-repo config. Two separate sections:
 #
 # "settings": general settings, currently just:
 #
 #   "samm_cli_version": the SAMM CLI version to download and run for
-#   MS2-01 / MS2-20 (see samm_cli.py). Single source of truth - not parsed
+#   MS2-01 / MS2-02 / MS2-03 (see samm_cli.py). Single source of truth - not parsed
 #   out of README.md prose, so it can't silently drift if that text gets
 #   reworded, and editing the README doesn't invalidate the SAMM CLI
 #   download cache in governance.yml.
 #
+#   "samm_cli_sha256": SHA-256 of the samm-cli-<version>.jar release asset.
+#   Required whenever samm_cli_version is set; the downloaded (or cached)
+#   jar is rejected if its hash doesn't match.
+#
 # "criteria": per-criterion overrides, keyed by criterion id
-# ("MS2-01".."MS2-22"), two independent knobs each (both default to "on"):
+# ("MS2-01".."MS2-25"), two independent knobs each (both default to "on"):
 #
 #   "enabled":  false -> the criterion is skipped entirely, no Findings at all
 #   "blocking": false -> the criterion still runs and is reported, but any
@@ -36,7 +41,8 @@
 #
 # {
 #   "settings": {
-#     "samm_cli_version": "2.11.1"
+#     "samm_cli_version": "2.16.0",
+#     "samm_cli_sha256": "f3f0900e9c9001d4dc97c5b04534dcb02ba2c0c3991339e4830d3d8b014efdcd"
 #   },
 #   "criteria": {
 #     "MS2-19": {"blocking": false},
@@ -55,9 +61,9 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-DEFAULT_CONFIG_RELPATH = ".github/scripts/model-validation/config.json"
-DEFAULT_SAMM_CLI_VERSION = "2.11.1"
-
+DEFAULT_CONFIG_RELPATH = ".github/scripts/config.json"
+DEFAULT_SAMM_CLI_VERSION = "2.16.0"
+DEFAULT_SAMM_CLI_SHA256 = "f3f0900e9c9001d4dc97c5b04534dcb02ba2c0c3991339e4830d3d8b014efdcd"
 
 @dataclass(frozen=True)
 class CriterionOverride:
@@ -69,6 +75,7 @@ class CriterionOverride:
 class Config:
     overrides: dict[str, CriterionOverride] = field(default_factory=dict)
     samm_cli_version: str = DEFAULT_SAMM_CLI_VERSION
+    samm_cli_sha256: str = DEFAULT_SAMM_CLI_SHA256
 
     def for_criterion(self, criterion_id: str) -> CriterionOverride:
         return self.overrides.get(criterion_id, CriterionOverride())
@@ -88,6 +95,12 @@ def load_config(repo_root: Path, path: str = DEFAULT_CONFIG_RELPATH) -> Config:
     raw = json.loads(config_path.read_text(encoding="utf-8")) or {}
     settings = raw.get("settings") or {}
     samm_cli_version = settings.get("samm_cli_version") or DEFAULT_SAMM_CLI_VERSION
+    samm_cli_sha256 = settings.get("samm_cli_sha256")
+    if not samm_cli_sha256:
+        if samm_cli_version != DEFAULT_SAMM_CLI_VERSION:
+            raise ValueError(f"{path}: settings.samm_cli_sha256 is required for "
+                             f"samm_cli_version {samm_cli_version}")
+        samm_cli_sha256 = DEFAULT_SAMM_CLI_SHA256
 
     overrides = {}
     for criterion_id, criterion_settings in (raw.get("criteria") or {}).items():
@@ -96,4 +109,4 @@ def load_config(repo_root: Path, path: str = DEFAULT_CONFIG_RELPATH) -> Config:
             enabled=bool(criterion_settings.get("enabled", True)),
             blocking=bool(criterion_settings.get("blocking", True)),
         )
-    return Config(overrides, samm_cli_version)
+    return Config(overrides, samm_cli_version, samm_cli_sha256.lower())

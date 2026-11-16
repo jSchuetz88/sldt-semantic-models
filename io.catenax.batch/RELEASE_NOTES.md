@@ -6,6 +6,12 @@ All notable changes to this model will be documented in this file.
 
 - moved to new namespace from `io.catenax.batch` to `io.catenax.industry_core.batch`
 
+## [5.0.0] 26.09
+
+### Changed
+
+XXX
+
 ## [4.0.0] 26.03
 
 ### Changed
