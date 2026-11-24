@@ -40,8 +40,8 @@ jobs:
       - name: Generate artifacts for new models
         run: |
           LOGS="$RUNNER_TEMP/gen-logs"; mkdir -p "$LOGS"
-          OK="$RUNNER_TEMP/ok.md"; FAIL="$RUNNER_TEMP/fail.md"; NA="$RUNNER_TEMP/na.md"
-          : > "$OK"; : > "$FAIL"; : > "$NA"
+          OK="$RUNNER_TEMP/ok.md"; FAIL="$RUNNER_TEMP/fail.md"
+          : > "$OK"; : > "$FAIL"
 
           # Turn CLI output into a single markdown table cell
           to_cell() {
@@ -50,6 +50,8 @@ jobs:
               | awk 'NR>1{printf "<br>"} {printf "%s", $0}'
           }
 
+          # Collect all models first, so the total is known for the progress counter
+          models=()
           while IFS= read -r file; do
             metadata_file="$(dirname "$file")/metadata.json"
             if [ ! -f "$metadata_file" ]; then
@@ -58,21 +60,28 @@ jobs:
             fi
             # Only models with status "release"
             grep -q "release" "$metadata_file" || continue
+            models+=("$file")
+          done < <(find . -type f -name "*.ttl" | sort)
 
+          total=${#models[@]}
+          count=0
+          for file in "${models[@]}"; do
+            count=$((count + 1))
             mkdir -p "$(dirname "$file")/gen"
             model="${file#./}"
             log="$LOGS/$(echo "$model" | tr '/' '_').log"
 
             rc=0
             bash ./.scripts/generate.sh "$file" < /dev/null > "$log" 2>&1 || rc=$?
-            echo "::group::$model"; cat "$log"; echo "::endgroup::"
+            echo "::group::[$count/$total] $model"; cat "$log"; echo "::endgroup::"
 
             failed="$(sed -n "s/.*could not generate '\([^']*\)' artifact.*/\1/p" "$log" | awk '!s[$0]++' | paste -sd, - | sed 's/,/, /g')"
 
+            # Models without an aspect (shared models) only need to validate
+            grep -qE 'a[[:space:]]+(samm|bamm):Aspect([^A-Za-z]|$)' "$file" || failed=""
+
             if [ "$rc" -eq 0 ] && [ -z "$failed" ]; then
               echo "| ✅ | \`$model\` |" >> "$OK"
-            elif ! grep -qE 'a[[:space:]]+(samm|bamm):Aspect([^A-Za-z]|$)' "$file"; then
-              echo "| ➖ | \`$model\` | all | Model has no aspect, artefacts cannot be generated |" >> "$NA"
             else
               if [ "$rc" -eq 0 ]; then
                 what="$failed"
@@ -84,7 +93,7 @@ jobs:
               fi
               echo "| ❌ | \`$model\` | $what | ${msg:-see log} |" >> "$FAIL"
             fi
-          done < <(find . -type f -name "*.ttl" | sort)
+          done
 
       - name: Add and commit new artifacts
         run: |
@@ -104,7 +113,7 @@ jobs:
         if: ${{ !cancelled() }}
         run: |
           ok=$(wc -l < "$RUNNER_TEMP/ok.md" | tr -d ' ')
-          fail=$(cat "$RUNNER_TEMP/fail.md" "$RUNNER_TEMP/na.md" | wc -l | tr -d ' ')
+          fail=$(wc -l < "$RUNNER_TEMP/fail.md" | tr -d ' ')
           cli=$(jq -r '.settings.samm_cli_version' .github/src/config.json)
           {
             echo "# Report"
@@ -117,9 +126,9 @@ jobs:
             echo "## Failed"
             echo
             if [ "$fail" -gt 0 ]; then
-              echo "| | Model | What failed | Reason |"
+              echo "| | Model | What failed | Message |"
               echo "|---|---|---|---|"
-              cat "$RUNNER_TEMP/fail.md" "$RUNNER_TEMP/na.md"
+              cat "$RUNNER_TEMP/fail.md"
             else
               echo "None"
             fi
