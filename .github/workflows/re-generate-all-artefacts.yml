@@ -105,8 +105,16 @@ jobs:
         run: |
           ok=$(wc -l < "$RUNNER_TEMP/ok.md" | tr -d ' ')
           fail=$(cat "$RUNNER_TEMP/fail.md" "$RUNNER_TEMP/na.md" | wc -l | tr -d ' ')
+          cli=$(jq -r '.settings.samm_cli_version' .github/src/config.json)
           {
-            echo "# Failed ($fail)"
+            echo "# Report"
+            echo
+            echo "- **Date:** $(date -u '+%Y-%m-%d %H:%M UTC')"
+            echo "- **SAMM CLI version:** $cli"
+            echo "- **Models failed:** $fail"
+            echo "- **Models success:** $ok"
+            echo
+            echo "## Failed"
             echo
             if [ "$fail" -gt 0 ]; then
               echo "| | Model | What failed | Reason |"
@@ -116,7 +124,7 @@ jobs:
               echo "None"
             fi
             echo
-            echo "# Success ($ok)"
+            echo "## Success"
             echo
             if [ "$ok" -gt 0 ]; then
               echo "| | Model |"
