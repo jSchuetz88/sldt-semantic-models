@@ -88,7 +88,7 @@ components:
       - unit:month
       - unit:year
     IntegerValueCharacteristic:
-      type: number
+      type: integer
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#IntegerValueCharacteristic"
       description: The value of the specified timeUnit as an integer value
     TimeValueCharacteristic:
@@ -99,11 +99,13 @@ components:
         timeUnit:
           description: Specifies the unit in which the time is represented
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#timeUnit"
-          $ref: "#/components/schemas/TimeUnitEnum"
+          allOf:
+          - $ref: "#/components/schemas/TimeUnitEnum"
         value:
           description: The amount of timeUnits considered
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#value"
-          $ref: "#/components/schemas/IntegerValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IntegerValueCharacteristic"
       required:
       - timeUnit
       - value
@@ -116,15 +118,18 @@ components:
         communicationMode:
           description: Specification of the communication mode
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#communicationMode"
-          $ref: "#/components/schemas/CommunicationModeEnum"
+          allOf:
+          - $ref: "#/components/schemas/CommunicationModeEnum"
         versionDataModel:
           description: Specifies the used version of the data model
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#versionDataModel"
-          $ref: "#/components/schemas/BpnCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BpnCharacteristic"
         timeValue:
           description: A time Value property
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#timeValue"
-          $ref: "#/components/schemas/TimeValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/TimeValueCharacteristic"
       required:
       - communicationMode
       - versionDataModel

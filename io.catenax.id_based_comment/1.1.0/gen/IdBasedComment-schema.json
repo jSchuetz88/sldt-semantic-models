@@ -66,67 +66,93 @@
     "commentId" : {
       "description" : "The Comment ID uniquely identifies the entity within the business relationship between a customer and its supplier.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#commentId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "objectId" : {
       "description" : "The ID of the object to which the comment belongs.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#objectId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "author" : {
       "description" : "The E-Mail address of the creator who wrote the comment. In case comment creator wants to stay anonymous, show BPNL in app which is sent the comment along.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#author",
-      "$ref" : "#/components/schemas/AuthorCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/AuthorCharacteristic"
+      } ]
     },
     "postedAt" : {
       "description" : "Point in time when the comment was created.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#postedAt",
-      "$ref" : "#/components/schemas/Timestamp"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Timestamp"
+      } ]
     },
     "changedAt" : {
       "description" : "Point in time when the comment was last changed.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#changedAt",
-      "$ref" : "#/components/schemas/Timestamp"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Timestamp"
+      } ]
     },
     "commentText" : {
       "description" : "Text up to 5.000 characters in format \"UTF-8\" will be shared.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#commentText",
-      "$ref" : "#/components/schemas/CommentTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CommentTrait"
+      } ]
     },
     "commentType" : {
       "description" : "Type of a comment to indicate a priority.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#commentType",
-      "$ref" : "#/components/schemas/CommentTypeCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CommentTypeCharacteristic"
+      } ]
     },
     "requestDelete" : {
       "description" : "Indicates that the deletion of the comment is requested by sender incl. all of it's history.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#requestDelete",
-      "$ref" : "#/components/schemas/Boolean"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Boolean"
+      } ]
     },
     "listOfReferenceDates" : {
       "description" : "Point in time the comment belongs to.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#listOfReferenceDates",
-      "$ref" : "#/components/schemas/ListOfReferenceDatesCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ListOfReferenceDatesCharacteristic"
+      } ]
     },
     "objectType" : {
       "description" : "Aspect Model which the comment refers to. The value MUST consist of the Catena-X aspect model unique identifier of the referenced data model without a version.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#objectType",
-      "$ref" : "#/components/schemas/ObjectTypeCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ObjectTypeCharacteristic"
+      } ]
     },
     "simulationId" : {
       "description" : "The simulation ID uniquely identifies a simulation scenario. All aspects that belong to the same simulation scenario share a simulation ID",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#simulationId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "customer" : {
       "description" : "The Business Partner Number Legal Entity (BPNL) of the party requesting materials from a supplier.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#customer",
-      "$ref" : "#/components/schemas/BpnlTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BpnlTrait"
+      } ]
     },
     "supplier" : {
       "description" : "The Business Partner Number Legal Entity (BPNL) of the party providing materials to a customer.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_comment:1.1.0#supplier",
-      "$ref" : "#/components/schemas/BpnlTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BpnlTrait"
+      } ]
     }
   },
   "required" : [ "commentId", "objectId", "objectType", "customer", "supplier" ]

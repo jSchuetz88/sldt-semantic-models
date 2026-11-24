@@ -96,25 +96,30 @@ components:
           description: "RFQ-Identification: digital address of the sender (e.g.token,\
             \ IP address, link, user account)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#rfqSource"
-          $ref: "#/components/schemas/SourceCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SourceCharacteristic"
         rfqId:
           description: "RFQ-Identification: internal identifier in user account"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#rfqId"
-          $ref: "#/components/schemas/IdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IdCharacteristic"
         rfqName:
           description: "RFQ-Identification: name for the request for user account\
             \ management (usually name of the product to be manufactured)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#rfqName"
-          $ref: "#/components/schemas/NameCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/NameCharacteristic"
         rfqDateTime:
           description: "RFQ-Identification: date and time of the request in user account"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#rfqDateTime"
-          $ref: "#/components/schemas/DateTimeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DateTimeCharacteristic"
         rfqVersion:
           description: "RFQ-Identification: version of this request in case there\
             \ were any changes"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#rfqVersion"
-          $ref: "#/components/schemas/RFQVersionCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RFQVersionCharacteristic"
       required:
       - rfqSource
       - rfqId
@@ -146,20 +151,24 @@ components:
         fileType:
           description: "RFQ-Configuration: file format"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#fileType"
-          $ref: "#/components/schemas/FileTypeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FileTypeCharacteristic"
         filePath:
           description: 'path or address to the file '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#filePath"
-          $ref: "#/components/schemas/FilePathCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FilePathCharacteristic"
         fileName:
           description: name of the file
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#fileName"
-          $ref: "#/components/schemas/FileNameCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FileNameCharacteristic"
         fileObject:
           description: "the file object itself, in case this could be sent via the\
             \ API"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#fileObject"
-          $ref: "#/components/schemas/FileObjectCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FileObjectCharacteristic"
       required:
       - fileType
       - filePath
@@ -208,15 +217,18 @@ components:
         value:
           description: value to detail the part material item
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#value"
-          $ref: "#/components/schemas/ValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ValueCharacteristic"
         valueType:
           description: value type to specify the value of the property
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#valueType"
-          $ref: "#/components/schemas/ValueTypeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ValueTypeCharacteristic"
         propertyName:
           description: name of the property
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#propertyName"
-          $ref: "#/components/schemas/PropertyNameCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PropertyNameCharacteristic"
       required:
       - value
       - valueType
@@ -231,17 +243,20 @@ components:
           description: specific process step identifier within the level of detail.
             Must be unique! (this is the identifier to reference to)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#processStepIdentifier"
-          $ref: "#/components/schemas/ProcessStepIdentifierCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ProcessStepIdentifierCharacteristic"
         subProcessSteps:
           description: list of specific process step identifiers for the next level
             of detail (reference from the SetOfProcessSteps list)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#subProcessSteps"
-          $ref: "#/components/schemas/SetOfSubProcessStepsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfSubProcessStepsCharacteristic"
         processProperties:
           description: "property related to the specified process, e.g. for coloring,\
             \ the property would be the color: black "
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#processProperties"
-          $ref: "#/components/schemas/SetOfProcessPropertyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfProcessPropertyCharacteristic"
       required:
       - processStepIdentifier
       - subProcessSteps
@@ -262,15 +277,18 @@ components:
         value:
           description: value to detail the part material item
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#value"
-          $ref: "#/components/schemas/ValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ValueCharacteristic"
         valueType:
           description: value type to specify the value of the property
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#valueType"
-          $ref: "#/components/schemas/ValueTypeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ValueTypeCharacteristic"
         propertyName:
           description: name of the property
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#propertyName"
-          $ref: "#/components/schemas/PropertyNameCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PropertyNameCharacteristic"
       required:
       - value
       - valueType
@@ -289,11 +307,13 @@ components:
             \ name, value and value type, like name= density, value=2.7, type=g/m3\
             \ or name= chemical term, value=AlMgMn, type=periodic table"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#materialProperties"
-          $ref: "#/components/schemas/SetMaterialPropertiesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetMaterialPropertiesCharacteristic"
         materialFamily:
           description: definition of material family for preselection
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#materialFamily"
-          $ref: "#/components/schemas/PartMaterialGroupCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PartMaterialGroupCharacteristic"
       required:
       - materialProperties
       - materialFamily
@@ -315,11 +335,13 @@ components:
         quantityNumber:
           description: The number of objects related to the measurement unit
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#quantityNumber"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         measurementUnit:
           description: Unit of Measurement for the quantity of serialized objects
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#measurementUnit"
-          $ref: "#/components/schemas/UnitReference"
+          allOf:
+          - $ref: "#/components/schemas/UnitReference"
       required:
       - quantityNumber
       - measurementUnit
@@ -332,17 +354,20 @@ components:
         partId:
           description: "RFQ-PartConfiguration: identifier of the part from CAD File"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#partId"
-          $ref: "#/components/schemas/PartIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PartIdCharacteristic"
         partName:
           description: "RFQ-PartConfiguration: name of the part in CAD file. In case\
             \ the CAD file has only one part, this could also be the file name."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#partName"
-          $ref: "#/components/schemas/PartNameCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PartNameCharacteristic"
         manufacturingDomain:
           description: "RFQ-PartConfiguration: domain of required process (e.g. subtractive\
             \ manufacturing, additive manufacturing, assembly)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#manufacturingDomain"
-          $ref: "#/components/schemas/ManufacturingDomainCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ManufacturingDomainCharacteristic"
         processes:
           description: "RFQ-PartConfiguration: list of processes related to the manufacturing\
             \ domain (subtractive Manufacturing: milling, drilling, surface treatment;\
@@ -350,27 +375,32 @@ components:
             \ assembly: welding,...).These process steps might also be hierarchical\
             \ (milling:roughing, milling:finishing,..."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#processes"
-          $ref: "#/components/schemas/SetOfProcessStepsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfProcessStepsCharacteristic"
         generalTolerance:
           description: "RFQ-PartConfiguration: selection of defined tolerance classes"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#generalTolerance"
-          $ref: "#/components/schemas/GeneralToleranceCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/GeneralToleranceCharacteristic"
         additionalRequirements:
           description: "RFQ-PartConfiguration: specific requirements e.g. to guarantee\
             \ quality, like premium quality check or standard quality check or test\
             \ part required (makes only sense for batch)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#additionalRequirements"
-          $ref: "#/components/schemas/AdditionalQualityRequirementsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/AdditionalQualityRequirementsCharacteristic"
         material:
           description: "RFQ-PartConfiguration: material definition with further information"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#material"
-          $ref: "#/components/schemas/MaterialCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialCharacteristic"
         partQuantity:
           description: "RFQ-PartConfiguration: Quantity of which the part item is\
             \ assembled into the parent item (within the CAD File). In general it\
             \ is '1' for serialized parts."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#partQuantity"
-          $ref: "#/components/schemas/PartQuantityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PartQuantityCharacteristic"
       required:
       - partId
       - partName
@@ -397,20 +427,24 @@ components:
         fileType:
           description: "RFQ-Configuration: file format"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#fileType"
-          $ref: "#/components/schemas/FileTypeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FileTypeCharacteristic"
         filePath:
           description: 'path or address to the file '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#filePath"
-          $ref: "#/components/schemas/FilePathCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FilePathCharacteristic"
         fileName:
           description: name of the file
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#fileName"
-          $ref: "#/components/schemas/FileNameCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FileNameCharacteristic"
         fileObject:
           description: "the file object itself, in case this could be sent via the\
             \ API"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#fileObject"
-          $ref: "#/components/schemas/FileObjectCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FileObjectCharacteristic"
       required:
       - fileType
       - filePath
@@ -424,11 +458,13 @@ components:
         quantityNumber:
           description: The number of objects related to the measurement unit
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#quantityNumber"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         measurementUnit:
           description: Unit of Measurement for the quantity of serialized objects
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#measurementUnit"
-          $ref: "#/components/schemas/UnitReference"
+          allOf:
+          - $ref: "#/components/schemas/UnitReference"
       required:
       - quantityNumber
       - measurementUnit
@@ -441,34 +477,41 @@ components:
           description: "RFQ-Configuration: CAD file as geometry definition, e.g. step\
             \ file"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#cadFile"
-          $ref: "#/components/schemas/FileCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FileCharacteristic"
         parts:
           description: "RFQ-Configuration: list of parts contained in the CAD file"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#parts"
-          $ref: "#/components/schemas/SetOfPartsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfPartsCharacteristic"
         firstDeliveryDate:
           description: "RFQ-Configuration: Date of desired, first, but not must delivery"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#firstDeliveryDate"
-          $ref: "#/components/schemas/DeliveryDateCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DeliveryDateCharacteristic"
         lastDeliveryDate:
           description: "RFQ-Configuration: date of required and last acceptable delivery"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#lastDeliveryDate"
-          $ref: "#/components/schemas/DeliveryDateCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DeliveryDateCharacteristic"
         additionalComments:
           description: "RFQ-Configuration: placeholder for any kind of additional\
             \ comments"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#additionalComments"
-          $ref: "#/components/schemas/CommentCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CommentCharacteristic"
         additionalFiles:
           description: "RFQ-Configuration: in case there are additional documents\
             \ or files to share (like e.g. technical drawings)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#additionalFiles"
-          $ref: "#/components/schemas/SetOfFilesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfFilesCharacteristic"
         orderQuantity:
           description: "RFQ-Configuration: quantity at all, valid for complete order\
             \ (usually number of products to be ordered)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#orderQuantity"
-          $ref: "#/components/schemas/OrderQuantityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OrderQuantityCharacteristic"
       required:
       - cadFile
       - parts
@@ -518,40 +561,48 @@ components:
         senderName:
           description: "RFQ-Sender: name of the sender"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#senderName"
-          $ref: "#/components/schemas/SenderNameCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SenderNameCharacteristic"
         senderAddress:
           description: "RFQ-Sender: BPDM/ or fill in by the customer, address of sender"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#senderAddress"
-          $ref: "#/components/schemas/SenderAddressCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SenderAddressCharacteristic"
         senderCompanyName:
           description: "RFQ-Sender: BPDM/ or fill in by the customer, company name\
             \ of sender"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#senderCompanyName"
-          $ref: "#/components/schemas/SenderCompanyNameCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SenderCompanyNameCharacteristic"
         senderEMail:
           description: "RFQ-Sender: BPDM/ or fill in by the customer, e-mail address\
             \ of sender"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#senderEMail"
-          $ref: "#/components/schemas/SenderEMailCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SenderEMailCharacteristic"
         senderPhoneNumber:
           description: "RFQ-Sender: BPDM/ or fill in by the customer, phone number\
             \ of sender"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#senderPhoneNumber"
-          $ref: "#/components/schemas/SenderPhoneNumberCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SenderPhoneNumberCharacteristic"
         senderAccountAddress:
           description: "RFQ-Sender: BPDM/ or fill in by the customer, address of sender\
             \ for account"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#senderAccountAddress"
-          $ref: "#/components/schemas/SenderAccountAddressCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SenderAccountAddressCharacteristic"
         senderDeliveryAddress:
           description: "RFQ-Sender: BPDM/ or fill in by the customer, address of sender\
             \ for delivery"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#senderDeliveryAddress"
-          $ref: "#/components/schemas/SenderDeliveryAddressCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SenderDeliveryAddressCharacteristic"
         deliveryRequirements:
           description: "RFQ-Sender: filled by customer, any kind of delivery requirements"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#deliveryRequirements"
-          $ref: "#/components/schemas/DeliveryRequirementsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DeliveryRequirementsCharacteristic"
       required:
       - senderName
       - senderAddress
@@ -593,7 +644,8 @@ components:
           description: "Unique ID identifying the message. The purpose of the ID is\
             \ to uniquely identify a single message, therefore it MUST not be reused."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.message_header:1.0.0#messageId"
-          $ref: "#/components/schemas/UuidCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/UuidCharacteristic"
         context:
           description: |-
             Information about the context the message should be considered in.
@@ -604,25 +656,29 @@ components:
             Versioning only refers to major versions in both default and fallback cases.
             Note: The version of the message's header is specified in the version field.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.message_header:1.0.0#context"
-          $ref: "#/components/schemas/ContextCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ContextCharacteristic"
         sentDateTime:
           description: Time zone aware timestamp holding the date and the time the
             message was sent by the sending party. The value MUST be formatted according
             to the ISO 8601 standard
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.message_header:1.0.0#sentDateTime"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         senderBpn:
           description: The Business Partner Number of the sending party. The value
             MUST be a valid BPN. BPNA and BPNS are not allowed. Applicable constraints
             are defined in the corresponding standard
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.message_header:1.0.0#senderBpn"
-          $ref: "#/components/schemas/BpnCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BpnCharacteristic"
         receiverBpn:
           description: The Business Partner Number of the receiving party. The value
             MUST be a valid BPN. BPNA and BPNS are not allowed. Applicable constraints
             are defined in the corresponding standard.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.message_header:1.0.0#receiverBpn"
-          $ref: "#/components/schemas/BpnCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BpnCharacteristic"
         expectedResponseBy:
           description: Time zone aware timestamp holding the date and time by which
             the sending party expects a certain type of response from the receiving
@@ -631,18 +687,21 @@ components:
             making use of it. The value MUST be formatted according to the ISO 8601
             standard
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.message_header:1.0.0#expectedResponseBy"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         relatedMessageId:
           description: Unique ID identifying a message somehow related to the current
             one
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.message_header:1.0.0#relatedMessageId"
-          $ref: "#/components/schemas/UuidCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/UuidCharacteristic"
         version:
           description: The unique identifier of the aspect model defining the structure
             and the semantics of the message's header. The version number should reflect
             the versioning schema of aspect models in Catena-X.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.message_header:1.0.0#version"
-          $ref: "#/components/schemas/VersionCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VersionCharacteristic"
       required:
       - messageId
       - context
@@ -660,20 +719,24 @@ components:
           description: all properties necessary for identification of the request
             for quotation
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#rfqIdentification"
-          $ref: "#/components/schemas/RFQIdentificationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RFQIdentificationCharacteristic"
         rfqConfiguration:
           description: all information to configure a request for quotation
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#rfqConfiguration"
-          $ref: "#/components/schemas/RFQConfigurationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RFQConfigurationCharacteristic"
         rfqSender:
           description: "all data about sender of request for quotation, important\
             \ for offer and delivery"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#rfqSender"
-          $ref: "#/components/schemas/RFQSenderCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RFQSenderCharacteristic"
         cxHeader:
           description: header information by Catena-X
           x-samm-aspect-model-urn: "urn:samm:io.catenax.request_for_quotation:2.0.0#cxHeader"
-          $ref: "#/components/schemas/CXHeaderCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CXHeaderCharacteristic"
       required:
       - rfqIdentification
       - rfqConfiguration

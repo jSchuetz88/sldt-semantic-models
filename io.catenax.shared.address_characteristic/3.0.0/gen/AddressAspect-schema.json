@@ -24,17 +24,23 @@
           "technicalKey" : {
             "description" : "Technical key of a thoroughfare. As specified by BPDM, this can be a \"STREET\" or a different type.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfareTechnicalKey",
-            "$ref" : "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a thoroughfare, e.g. name of a street.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfareValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "number" : {
             "description" : "Number of a thoroughfare. As used differently in international context, this number can contain both numerical and alphanumerical values.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfareNumber",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value", "number" ]
@@ -61,12 +67,16 @@
           "technicalKey" : {
             "description" : "Technical key of a locality.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#localityTechnicalKey",
-            "$ref" : "#/components/schemas/LocalityTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LocalityTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a locality, e.g. name of a city (\"Mannheim\").",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#localityValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value" ]
@@ -93,12 +103,16 @@
           "technicalKey" : {
             "description" : "Technical key of a premise.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#premiseTechnicalKey",
-            "$ref" : "#/components/schemas/PremiseTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PremiseTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a premise, e.g. name or designation of a particular site.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#premiseValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value" ]
@@ -125,12 +139,16 @@
           "technicalKey" : {
             "description" : "Technical key of a postal delivery point.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postalDeliveryPointTechnicalKey",
-            "$ref" : "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a postal delivery point, e.g. designation of a gate.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postalDeliveryPointValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value" ]
@@ -157,7 +175,9 @@
           "shortName" : {
             "description" : "The short variation of the name of the country.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#countryShortName",
-            "$ref" : "#/components/schemas/CountryTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountryTrait"
+            } ]
           }
         },
         "required" : [ "shortName" ]
@@ -190,12 +210,16 @@
           "value" : {
             "description" : "The value of a post code.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postCodeValue",
-            "$ref" : "#/components/schemas/PostCodeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostCodeTrait"
+            } ]
           },
           "technicalKey" : {
             "description" : "The technical key of a post code.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postCodeTechnicalKey",
-            "$ref" : "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
+            } ]
           }
         },
         "required" : [ "value", "technicalKey" ]
@@ -216,32 +240,44 @@
           "thoroughfare" : {
             "description" : "Street or thorough road name.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfare",
-            "$ref" : "#/components/schemas/ThoroughfareCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ThoroughfareCharacteristic"
+            } ]
           },
           "locality" : {
             "description" : "Locality belonging to an address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#locality",
-            "$ref" : "#/components/schemas/LocalityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LocalityCharacteristic"
+            } ]
           },
           "premise" : {
             "description" : "Premise of an address, e.g. a specific \"BUILDING\" but can also be used for naming a particular site.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#premise",
-            "$ref" : "#/components/schemas/PremiseCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PremiseCharacteristic"
+            } ]
           },
           "postalDeliveryPoint" : {
             "description" : "Delivery point, e.g. designation of a gate.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postalDeliveryPoint",
-            "$ref" : "#/components/schemas/PostalDeliveryPointCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalDeliveryPointCharacteristic"
+            } ]
           },
           "country" : {
             "description" : "Country of an address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#country",
-            "$ref" : "#/components/schemas/CountryCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountryCharacteristic"
+            } ]
           },
           "postCode" : {
             "description" : "Postal code of the address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postCode",
-            "$ref" : "#/components/schemas/PostCodeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostCodeCharacteristic"
+            } ]
           }
         },
         "required" : [ "thoroughfare", "locality", "country", "postCode" ]
@@ -252,7 +288,9 @@
     "address" : {
       "description" : "The address of the data provider.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#address",
-      "$ref" : "#/components/schemas/PostalAddress"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PostalAddress"
+      } ]
     }
   },
   "required" : [ "address" ]

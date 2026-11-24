@@ -1,32 +1,30 @@
 {
+  "vehicleStatus" : {
+    "mileage" : 123456,
+    "ageInMonth" : 42
+  },
+  "vehicleData" : {
+    "vehicleType" : "SUV",
+    "numberOfDriveAxle" : 2,
+    "energySourceCode" : "0002",
+    "powerKW" : 145,
+    "grossVehicleWeightKG" : -31408.0
+  },
   "history" : [ {
-    "drivingStyle" : 45.5,
+    "percentage" : 23.5,
     "trailerUse" : true,
     "cityDriving" : true,
-    "percentage" : 23.5,
+    "drivingStyle" : 45.5,
     "hilliness" : 75.2,
-    "curviness" : 6E+1
+    "curviness" : 60.0
   } ],
-  "vehicleData" : {
-    "numberOfDriveAxle" : 2,
-    "powerKW" : 145,
-    "energySourceCode" : "Unbekannt",
-    "vehicleType" : "Limousine",
-    "grossVehicleWeightKG" : -1.7976931348623157E308
-  },
   "future" : [ {
-    "futureScenarioId" : 1,
     "futureScenario" : [ {
-      "drivingStyle" : 45.5,
-      "cityDriving" : true,
-      "trailerUse" : true,
-      "curviness" : 6E+1,
+      "curviness" : 60.0,
       "hilliness" : 75.2,
+      "drivingStyle" : 45.5,
       "percentage" : 23.5
-    } ]
-  } ],
-  "vehicleStatus" : {
-    "ageInMonth" : 42,
-    "mileage" : 123456
-  }
+    } ],
+    "futureScenarioId" : 1
+  } ]
 }

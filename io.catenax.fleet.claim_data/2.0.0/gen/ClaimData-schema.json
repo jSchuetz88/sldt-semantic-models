@@ -40,7 +40,7 @@
         "description" : "Describes a Property which contains the date and time with an optional timezone."
       },
       "MileageCounter" : {
-        "type" : "number",
+        "type" : "integer",
         "minimum" : 0,
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#MileageCounter",
         "description" : "The mileage counter of the car."
@@ -71,23 +71,29 @@
           "workShopId" : {
             "description" : "OEM-specific identifier for a workshop.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#workShopId",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "latitude" : {
             "description" : "Latitude property for GPS coordinates.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#latitude",
-            "$ref" : "#/components/schemas/LatitudeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LatitudeTrait"
+            } ]
           },
           "longitude" : {
             "description" : "Longitude property for GPS coordinates.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#longitude",
-            "$ref" : "#/components/schemas/LongitudeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LongitudeTrait"
+            } ]
           }
         },
         "required" : [ "workShopId" ]
       },
       "AmountOfReplacedPartsCharacteristic" : {
-        "type" : "number",
+        "type" : "integer",
         "minimum" : 0,
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#AmountOfReplacedPartsCharacteristic",
         "description" : "counter for non-serial parts"
@@ -105,27 +111,37 @@
           "catenaXSparePartId" : {
             "description" : "Catena-X ID of the spare part that was put into the vehicle.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#catenaXSparePartId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "sparePartName" : {
             "description" : "Spare part name of this part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#sparePartName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "sparePartNumber" : {
             "description" : "Internal spare part number of the part. A spare part number is NOT unique.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#sparePartNumber",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "sparePartSerialNumber" : {
             "description" : "Serial number of the spare part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#sparePartSerialNumber",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "sparePartSupplierId" : {
             "description" : "A unique identifier for the spare part supplier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#sparePartSupplierId",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           }
         }
       },
@@ -145,52 +161,72 @@
           "amountOfReplacedParts" : {
             "description" : "counter for non-serial parts which have been replaced",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#amountOfReplacedParts",
-            "$ref" : "#/components/schemas/AmountOfReplacedPartsCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/AmountOfReplacedPartsCharacteristic"
+            } ]
           },
           "catenaXClaimPartId" : {
             "description" : "Catena-X ID of the part that is involved in the claim.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#catenaXClaimPartId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "isPartCausal" : {
             "description" : "Flag is set to true if part was causing the problem-otherwise false.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#isPartCausal",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "isPartReplaced" : {
             "description" : "Flag is set to true if part was replaced-otherwise false.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#isPartReplaced",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "partName" : {
             "description" : "Part name of this part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#partName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "partNumber" : {
             "description" : "Internal part number of the part. A part number is NOT unique.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#partNumber",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "partTreatment" : {
             "description" : "Describes what happened to this part in the claim.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#partTreatment",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "serialNumber" : {
             "description" : "Serial number of the part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#serialNumber",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "spareParts" : {
             "description" : "The spare parts that were built into the vehicle.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#spareParts",
-            "$ref" : "#/components/schemas/SparePartsList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SparePartsList"
+            } ]
           },
           "supplierId" : {
             "description" : "Specific ID of the supplier that manufactured the part that was put out - available if known",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#supplierId",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           }
         }
       },
@@ -210,7 +246,9 @@
           "sessionId" : {
             "description" : "A oem-specific session identifier that is unique in this company.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#sessionId",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           }
         },
         "required" : [ "sessionId" ]
@@ -231,77 +269,107 @@
           "recordStatus" : {
             "description" : "The record operation enumeration can be used to realize delta update concept.\nDelta update concept means:\n- You transfer an initial load of data\n- After the first week only the delta to the initial load is transferred\n\n\nThe record status describes whether this record is:\n- new=>This record is transferred the first time\n- update=> Some properties of this record have changed compared to a previous transfer\n- delete=> This record was transferred in the initial load or in a previous delta update, but is not used any more and therefore it should be deleted on data consumer side\n- same=> This record was transferred in the initial load or in a previous delta update",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#recordStatus",
-            "$ref" : "#/components/schemas/RecordStatusEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/RecordStatusEnumeration"
+            } ]
           },
           "anonymizedVIN" : {
             "description" : "OEM-specific hashed VIN. Unique within OEM.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#anonymizedVIN",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "catenaXQualityTaskId" : {
             "description" : "The fully anonymous and unique Catena-X ID of this quality task. This id is unique inside Catena-X data space.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#catenaXQualityTaskId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "catenaXVehicleId" : {
             "description" : "A unique identifier for the vehicle in the Catena-X data space.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#catenaXVehicleId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "claimId" : {
             "description" : "Claim ID: Unique for each OEM",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#claimId",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "countryCode" : {
             "description" : "Country code in  ISO 3166-1 alpha-3 codes where this session took place",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#countryCode",
-            "$ref" : "#/components/schemas/CountryCodeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountryCodeTrait"
+            } ]
           },
           "customerComment" : {
             "description" : "short description of the claim from customer view",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#customerComment",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "damageCode" : {
             "description" : "OEM-specific damage code",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#damageCode",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "repairCountryCode" : {
             "description" : "Country code where this repair took place.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#repairCountryCode",
-            "$ref" : "#/components/schemas/CountryCodeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountryCodeTrait"
+            } ]
           },
           "repairDate" : {
             "description" : "references the date when claim was initially reported",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#repairDate",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "repairMileage" : {
             "description" : "mileage of the car when the claim was reported",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#repairMileage",
-            "$ref" : "#/components/schemas/MileageCounter"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MileageCounter"
+            } ]
           },
           "technicianComment" : {
             "description" : "short description of the claim from the technicians",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#technicianComment",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "workshop" : {
             "description" : "Groups workshop-related properties",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#workshop",
-            "$ref" : "#/components/schemas/WorkshopCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/WorkshopCharacteristic"
+            } ]
           },
           "listOfParts" : {
             "description" : "a list of parts which will be replaced or repaired",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#listOfParts",
-            "$ref" : "#/components/schemas/PartsListCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartsListCharacteristic"
+            } ]
           },
           "listOfDiagnosticSessions" : {
             "description" : "A list of diagnostic sessions linked to this claim.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#listOfDiagnosticSessions",
-            "$ref" : "#/components/schemas/DiagnosticSessionsList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DiagnosticSessionsList"
+            } ]
           }
         },
         "required" : [ "claimId" ]
@@ -322,17 +390,23 @@
           "selectionCriteria" : {
             "description" : "Describes the selection criteria a Catena-X data provider has applied to create this data set.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#selectionCriteria",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "selectionStart" : {
             "description" : "Describes the starting point for providing records in this data set.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#selectionStart",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "selectionEnd" : {
             "description" : "Describes the end point for providing records in this data set.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#selectionEnd",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "selectionCriteria" ]
@@ -343,12 +417,16 @@
     "listOfClaims" : {
       "description" : "A list of customer complaints or workshop repairs that belong to one or more quality tasks.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#listOfClaims",
-      "$ref" : "#/components/schemas/ClaimList"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ClaimList"
+      } ]
     },
     "metaInformation" : {
       "description" : "This meta information is valid for all entries in this data set. The meta information is used to tell the data consumer which selection criteria were applied by the data provider. ",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.fleet.claim_data:2.0.0#metaInformation",
-      "$ref" : "#/components/schemas/MetaCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MetaCharacteristic"
+      } ]
     }
   },
   "required" : [ "listOfClaims" ]

@@ -25,12 +25,16 @@
           "materialDemandId" : {
             "description" : "The Material Demand ID uniquely identifies the material demand the supplier requests an update for within the business relationship between the customer and its supplier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_request_for_update:1.0.0#materialDemandId",
-            "$ref" : "#/components/schemas/UUIDv4IdTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UUIDv4IdTrait"
+            } ]
           },
           "changedAt" : {
             "description" : "Point in time of the last update known to the requesting business partner. If the requested entity has been changed more recently, the requested party should resend the data. If the changedAt property is not given, the latest entity should be send without precondition.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_request_for_update:1.0.0#changedAt",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           }
         },
         "required" : [ "materialDemandId" ]
@@ -52,12 +56,16 @@
           "capacityGroupId" : {
             "description" : "The Capacity Group ID uniquely identifies the capacity group the supplier requests an update for within the business relationship between the supplier and its customer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_request_for_update:1.0.0#capacityGroupId",
-            "$ref" : "#/components/schemas/UUIDv4IdTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UUIDv4IdTrait"
+            } ]
           },
           "changedAt" : {
             "description" : "Point in time of the last update known to the requesting business partner. If the requested entity has been changed more recently, the requested party should resend the data. If the changedAt property is not given, the latest entity should be send without precondition.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_request_for_update:1.0.0#changedAt",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           }
         },
         "required" : [ "capacityGroupId" ]
@@ -77,12 +85,16 @@
     "weekBasedMaterialDemand" : {
       "description" : "Material demands the supplier requests an update for.\nIf within the array, no specific ID (array empty), than an update of all IDs is requested).",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_request_for_update:1.0.0#weekBasedMaterialDemand",
-      "$ref" : "#/components/schemas/WeekBasedMaterialDemandCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/WeekBasedMaterialDemandCharacteristic"
+      } ]
     },
     "weekBasedCapacityGroup" : {
       "description" : "Capacity groups the customer requests an update for.\nIf within the array, no specific ID (array empty), than an update of all IDs is requested).",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.id_based_request_for_update:1.0.0#weekBasedCapacityGroup",
-      "$ref" : "#/components/schemas/WeekBasedCapacityGroupCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/WeekBasedCapacityGroupCharacteristic"
+      } ]
     }
   }
 }

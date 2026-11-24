@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/SingleLevelUsageAsPlanned"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        parentItems:
+          type: array
+          items:
+            $ref: "#/components/schemas/SingleLevelUsageAsPlanned"
     QuantityValueCharacteristic:
       type: number
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#QuantityValueCharacteristic"
@@ -148,12 +149,14 @@ components:
         value:
           description: The quantity value associated with the unit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         unit:
           description: "The unit of an item. Common units may be related to mass,\
             \ count, linear, area, volume or misc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#itemUnit"
-          $ref: "#/components/schemas/ItemUnitEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/ItemUnitEnumeration"
       required:
       - value
       - unit
@@ -187,11 +190,13 @@ components:
         validTo:
           description: End date of validity period.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#validTo"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         validFrom:
           description: Start date and time of validity period.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#validFrom"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
     ParentData:
       description: globalAssetId and meta data of the parent part.
       x-samm-aspect-model-urn: "urn:samm:io.catenax.industry_core.single_level_usage_as_planned:3.0.0#ParentData"
@@ -201,31 +206,37 @@ components:
           description: Quantity of which the child part will be assembled into or
             used in the parent part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.industry_core.single_level_usage_as_planned:3.0.0#quantity"
-          $ref: "#/components/schemas/ItemQuantityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ItemQuantityCharacteristic"
         createdOn:
           description: Timestamp when the relation between the parent part and the
             child part was created
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#createdOn"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         businessPartner:
           description: The supplier of the given child item.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#businessPartner"
-          $ref: "#/components/schemas/BpnlTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnlTrait"
         globalAssetId:
           description: The fully anonymous ID in the dataspace of the part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         lastModifiedOn:
           description: Timestamp when the assembly or usage relationship between parent
             part and child part was last modified.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#lastModifiedOn"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         validityPeriod:
           description: |-
             The period of time during which the parent-child relation is valid. This relates to whether a child part can be built into or used in the production of the parent part at a given time.
             If no validity period is given the relation is considered valid at any point in time.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#validityPeriod"
-          $ref: "#/components/schemas/ValidityPeriodCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ValidityPeriodCharacteristic"
       required:
       - quantity
       - createdOn
@@ -260,7 +271,8 @@ components:
           description: "Set of parent parts, in which the given child object will\
             \ be assembled into or used (one structural level up)."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.industry_core.single_level_usage_as_planned:3.0.0#parentItems"
-          $ref: "#/components/schemas/SetOfParentItemsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfParentItemsCharacteristic"
         customers:
           description: |-
             A list of all customers of this item. If the parent items in which this item is assembled into are known, they should be listed as well.
@@ -268,11 +280,13 @@ components:
             For serialized items the list should contain only one customer with one parent item.
             As different subsets of a batch might be sold to different customers this is a list.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#customers"
-          $ref: "#/components/schemas/ListOfCustomers"
+          allOf:
+          - $ref: "#/components/schemas/ListOfCustomers"
         globalAssetId:
           description: The fully anonymous ID in the dataspace of the part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - parentItems
       - customers

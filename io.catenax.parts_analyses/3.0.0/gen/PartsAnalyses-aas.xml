@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<aas:environment xmlns:aas="https://admin-shell.io/aas/3/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://admin-shell.io/aas/3/0 AAS.xsd">
+<aas:environment xmlns:aas="https://admin-shell.io/aas/3/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://admin-shell.io/aas/3/1 AAS.xsd">
   <aas:assetAdministrationShells>
     <aas:assetAdministrationShell>
       <aas:idShort>defaultAdminShell</aas:idShort>
@@ -13,6 +13,7 @@
       <aas:id>urn:samm:io.catenax.parts_analyses:3.0.0#PartsAnalyses</aas:id>
       <aas:assetInformation>
         <aas:assetKind>Type</aas:assetKind>
+        <aas:globalAssetId>urn:samm:io.catenax.parts_analyses:3.0.0#PartsAnalyses</aas:globalAssetId>
       </aas:assetInformation>
       <aas:submodels>
         <aas:reference>
@@ -68,15 +69,46 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#PartsAnalysesList</aas:value>
+                <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#listOfPartAnalyses</aas:value>
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>OneToMany</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>Stainless steel</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:orderRelevant>false</aas:orderRelevant>
+          <aas:semanticIdListElement>
+            <aas:type>ExternalReference</aas:type>
+            <aas:keys>
+              <aas:key>
+                <aas:type>GlobalReference</aas:type>
+                <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#PartAnalysis</aas:value>
+              </aas:key>
+            </aas:keys>
+          </aas:semanticIdListElement>
           <aas:typeValueListElement>SubmodelElementCollection</aas:typeValueListElement>
           <aas:value>
             <aas:submodelElementCollection>
-              <aas:idShort>listOfPartAnalyses</aas:idShort>
               <aas:displayName>
                 <aas:langStringNameType>
                   <aas:language>en</aas:language>
@@ -89,6 +121,15 @@
                   <aas:text>A list of several part analyses</aas:text>
                 </aas:langStringTextType>
               </aas:description>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#PartAnalysis</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
               <aas:value>
                 <aas:property>
                   <aas:idShort>recordStatus</aas:idShort>
@@ -107,7 +148,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>update</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>update</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>anonymizedVIN</aas:idShort>
@@ -126,7 +191,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>One</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>3747429FGH382923934abcf74682</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>3747429FGH382923934abcf74682</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>catenaXPartId</aas:idShort>
@@ -145,7 +234,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>urn:uuid:580d3adf-1981-44a0-a214-13d6ceed9000</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>urn:uuid:580d3adf-1981-44a0-a214-13d6ceed9000</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>catenaXQualityTaskId</aas:idShort>
@@ -164,7 +277,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>430f56d3-1234-1234-1234-abc123456789</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>430f56d3-1234-1234-1234-abc123456789</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>isDefect</aas:idShort>
@@ -183,7 +320,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>true</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:boolean</aas:valueType>
+                  <aas:value>true</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>manufacturerAnalysisID</aas:idShort>
@@ -202,7 +363,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>TIER-647439403403</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>TIER-647439403403</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>manufacturerPartName</aas:idShort>
@@ -221,7 +406,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>Gear box housing sub-assembly</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>Gear box housing sub-assembly</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>manufacturerPartNumber</aas:idShort>
@@ -240,7 +449,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>FZ206460050202212</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>FZ206460050202212</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>manufacturerSerialNumber</aas:idShort>
@@ -259,7 +492,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>GBH3232434535454545-3534535</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>GBH3232434535454545-3534535</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>parentAnalysisID</aas:idShort>
@@ -278,7 +535,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>OE-43673473438</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>OE-43673473438</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>parentPartNumber</aas:idShort>
@@ -297,7 +578,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>12345</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>12345</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>parentSerialNumber</aas:idShort>
@@ -316,7 +621,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ECU20646005020221</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>ECU20646005020221</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>resultsDescription</aas:idShort>
@@ -335,7 +664,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>Corrosion on component xyz in steering motor</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>Corrosion on component xyz in steering motor</aas:value>
                 </aas:property>
                 <aas:property>
                   <aas:idShort>status</aas:idShort>
@@ -354,7 +707,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>new</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>new</aas:value>
                 </aas:property>
                 <aas:submodelElementList>
                   <aas:idShort>listOfAddtionalInformation</aas:idShort>
@@ -375,15 +752,46 @@
                     <aas:keys>
                       <aas:key>
                         <aas:type>GlobalReference</aas:type>
-                        <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#AdditionalInformationList</aas:value>
+                        <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#listOfAddtionalInformation</aas:value>
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToMany</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>Stainless steel</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:orderRelevant>false</aas:orderRelevant>
+                  <aas:semanticIdListElement>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#AdditionalInformation</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticIdListElement>
                   <aas:typeValueListElement>SubmodelElementCollection</aas:typeValueListElement>
                   <aas:value>
                     <aas:submodelElementCollection>
-                      <aas:idShort>listOfAddtionalInformation</aas:idShort>
                       <aas:displayName>
                         <aas:langStringNameType>
                           <aas:language>en</aas:language>
@@ -396,6 +804,15 @@
                           <aas:text>You can use this key:value list for additional properties that were not defined in this aspect model.</aas:text>
                         </aas:langStringTextType>
                       </aas:description>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#AdditionalInformation</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
                       <aas:value>
                         <aas:property>
                           <aas:idShort>key</aas:idShort>
@@ -414,7 +831,31 @@
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>Steel quality</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>Steel quality</aas:value>
                         </aas:property>
                         <aas:property>
                           <aas:idShort>value</aas:idShort>
@@ -433,7 +874,31 @@
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>Stainless steel</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>Stainless steel</aas:value>
                         </aas:property>
                       </aas:value>
                     </aas:submodelElementCollection>
@@ -457,6 +922,38 @@
               <aas:text>This meta information is valid for all entries in this data set. The meta information is used to tell the data consumer which selection criteria were applied by the data provider. </aas:text>
             </aas:langStringTextType>
           </aas:description>
+          <aas:semanticId>
+            <aas:type>ExternalReference</aas:type>
+            <aas:keys>
+              <aas:key>
+                <aas:type>GlobalReference</aas:type>
+                <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#MetaInformation</aas:value>
+              </aas:key>
+            </aas:keys>
+          </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>ZeroToOne</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>2023-12-31T23:59:59</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:value>
             <aas:property>
               <aas:idShort>selectionCriteria</aas:idShort>
@@ -475,7 +972,31 @@
                   </aas:key>
                 </aas:keys>
               </aas:semanticId>
+              <aas:qualifiers>
+                <aas:qualifier>
+                  <aas:semanticId>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticId>
+                  <aas:kind>TemplateQualifier</aas:kind>
+                  <aas:type>SMT/Cardinality</aas:type>
+                  <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>One</aas:value>
+                </aas:qualifier>
+                <aas:qualifier>
+                  <aas:kind>TemplateQualifier</aas:kind>
+                  <aas:type>SMT/ExampleValue</aas:type>
+                  <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>Data set is the result of all Claims where Claim.repairDate is in the range from selectionStartTimestamp to selectionEndTimestamp, supplier is Smith Corporation and supplier component is acceleration sensor</aas:value>
+                </aas:qualifier>
+              </aas:qualifiers>
               <aas:valueType>xs:string</aas:valueType>
+              <aas:value>Data set is the result of all Claims where Claim.repairDate is in the range from selectionStartTimestamp to selectionEndTimestamp, supplier is Smith Corporation and supplier component is acceleration sensor</aas:value>
             </aas:property>
             <aas:property>
               <aas:idShort>selectionStart</aas:idShort>
@@ -494,7 +1015,31 @@
                   </aas:key>
                 </aas:keys>
               </aas:semanticId>
+              <aas:qualifiers>
+                <aas:qualifier>
+                  <aas:semanticId>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticId>
+                  <aas:kind>TemplateQualifier</aas:kind>
+                  <aas:type>SMT/Cardinality</aas:type>
+                  <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>ZeroToOne</aas:value>
+                </aas:qualifier>
+                <aas:qualifier>
+                  <aas:kind>TemplateQualifier</aas:kind>
+                  <aas:type>SMT/ExampleValue</aas:type>
+                  <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>2023-01-01T00:00:00</aas:value>
+                </aas:qualifier>
+              </aas:qualifiers>
               <aas:valueType>xs:string</aas:valueType>
+              <aas:value>2023-01-01T00:00:00</aas:value>
             </aas:property>
             <aas:property>
               <aas:idShort>selectionEnd</aas:idShort>
@@ -513,7 +1058,31 @@
                   </aas:key>
                 </aas:keys>
               </aas:semanticId>
+              <aas:qualifiers>
+                <aas:qualifier>
+                  <aas:semanticId>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticId>
+                  <aas:kind>TemplateQualifier</aas:kind>
+                  <aas:type>SMT/Cardinality</aas:type>
+                  <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>ZeroToOne</aas:value>
+                </aas:qualifier>
+                <aas:qualifier>
+                  <aas:kind>TemplateQualifier</aas:kind>
+                  <aas:type>SMT/ExampleValue</aas:type>
+                  <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>2023-12-31T23:59:59</aas:value>
+                </aas:qualifier>
+              </aas:qualifiers>
               <aas:valueType>xs:string</aas:valueType>
+              <aas:value>2023-12-31T23:59:59</aas:value>
             </aas:property>
           </aas:value>
         </aas:submodelElementCollection>
@@ -544,7 +1113,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -556,12 +1125,6 @@
                   <aas:text>Parts Analysis</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>PartsAnalyses</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
                   <aas:language>en</aas:language>
@@ -589,7 +1152,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -601,12 +1164,6 @@
                   <aas:text>Record status</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>recordStatus</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -632,7 +1189,7 @@ The record status describes whether this record is:
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#RecordStatusEnumeration:_new11507a0e</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -644,7 +1201,7 @@ The record status describes whether this record is:
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#RecordStatusEnumeration:_update2937013f</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -656,7 +1213,7 @@ The record status describes whether this record is:
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#RecordStatusEnumeration:_delete61975955</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -668,7 +1225,7 @@ The record status describes whether this record is:
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#RecordStatusEnumeration:_same0967115f</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -697,7 +1254,7 @@ The record status describes whether this record is:
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -709,12 +1266,6 @@ The record status describes whether this record is:
                   <aas:text>Anonymized VIN</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>anonymizedVIN</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -743,7 +1294,7 @@ The record status describes whether this record is:
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -755,12 +1306,6 @@ The record status describes whether this record is:
                   <aas:text>Catena-X Part ID</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>catenaXPartId</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -789,7 +1334,7 @@ The record status describes whether this record is:
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -801,12 +1346,6 @@ The record status describes whether this record is:
                   <aas:text>Quality Task ID</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>catenaXQualityTaskId</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -835,7 +1374,7 @@ The record status describes whether this record is:
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -847,12 +1386,6 @@ The record status describes whether this record is:
                   <aas:text>Part defect flag</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>isDefect</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>BOOLEAN</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -881,7 +1414,7 @@ The record status describes whether this record is:
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -893,12 +1426,6 @@ The record status describes whether this record is:
                   <aas:text>Manufacturer Analysis ID</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>manufacturerAnalysisID</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -927,7 +1454,7 @@ The record status describes whether this record is:
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -939,12 +1466,6 @@ The record status describes whether this record is:
                   <aas:text>Manufacturer part name</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>manufacturerPartName</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -973,7 +1494,7 @@ The record status describes whether this record is:
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -985,12 +1506,6 @@ The record status describes whether this record is:
                   <aas:text>Manufacturer part number</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>manufacturerPartNumber</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1019,7 +1534,7 @@ The record status describes whether this record is:
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1031,12 +1546,6 @@ The record status describes whether this record is:
                   <aas:text>Manufacturer serial number</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>manufacturerSerialNumber</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1065,7 +1574,7 @@ The record status describes whether this record is:
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1077,12 +1586,6 @@ The record status describes whether this record is:
                   <aas:text>Customer Analysis ID</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>parentAnalysisID</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1113,7 +1616,7 @@ If the manufacturer is TIER2 supplier -> parent level is TIER1 supplier.</aas:te
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1125,12 +1628,6 @@ If the manufacturer is TIER2 supplier -> parent level is TIER1 supplier.</aas:te
                   <aas:text>Parent part number</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>parentPartNumber</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1162,7 +1659,7 @@ A parent part number is NOT unique: All parent parts of the same kind share the 
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1174,12 +1671,6 @@ A parent part number is NOT unique: All parent parts of the same kind share the 
                   <aas:text>Parent serial number</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>parentSerialNumber</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1211,7 +1702,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1223,12 +1714,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>Several results of analysis</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>resultsDescription</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1257,7 +1742,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1269,12 +1754,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>Status</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>status</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1290,7 +1769,7 @@ A parent serial number is unique: With the serial number the produced part can b
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#StatusCharacteristic:_new11507a0e</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1302,7 +1781,7 @@ A parent serial number is unique: With the serial number the produced part can b
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#StatusCharacteristic:_inprogress248280e9</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1314,7 +1793,7 @@ A parent serial number is unique: With the serial number the produced part can b
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#StatusCharacteristic:_completed4ddb3e96</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1326,7 +1805,7 @@ A parent serial number is unique: With the serial number the produced part can b
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.parts_analyses:3.0.0#StatusCharacteristic:_closedc3eefb58</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1355,7 +1834,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1367,12 +1846,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>Key</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>key</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1401,7 +1874,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1413,12 +1886,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>Value</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>value</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1447,7 +1914,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1459,12 +1926,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>Additional information list</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>listOfAddtionalInformation</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1493,7 +1954,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1505,12 +1966,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>List Of several Part Analyses</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>listOfPartAnalyses</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1539,7 +1994,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1551,12 +2006,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>Selection criteria</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>selectionCriteria</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1585,7 +2034,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1597,12 +2046,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>Selection start timestamp</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>selectionStart</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1631,7 +2074,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1643,12 +2086,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>Selection end timestamp</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>selectionEnd</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1677,7 +2114,7 @@ A parent serial number is unique: With the serial number the produced part can b
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1689,12 +2126,6 @@ A parent serial number is unique: With the serial number the produced part can b
                   <aas:text>Meta information</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>metaInformation</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>

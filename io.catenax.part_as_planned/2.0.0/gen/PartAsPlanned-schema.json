@@ -35,17 +35,23 @@
           "manufacturerPartId" : {
             "description" : "Part ID as assigned by the manufacturer of the part. The Part ID identifies the part in the manufacturer`s dataspace. The Part ID references a specific version of a part. The version number must be included in the Part ID if it is available.\n\nThe Part ID does not reference a specific instance of a part and must not be confused with the serial number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#manufacturerPartId",
-            "$ref" : "#/components/schemas/PartIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartIdCharacteristic"
+            } ]
           },
           "nameAtManufacturer" : {
             "description" : "Name of the part as assigned by the manufacturer",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#nameAtManufacturer",
-            "$ref" : "#/components/schemas/PartNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartNameCharacteristic"
+            } ]
           },
           "classification" : {
             "description" : "The classification of the part type according to STEP standard definition",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#classification",
-            "$ref" : "#/components/schemas/ClassificationEnumerationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ClassificationEnumerationCharacteristic"
+            } ]
           }
         },
         "required" : [ "manufacturerPartId", "nameAtManufacturer", "classification" ]
@@ -75,22 +81,30 @@
           "catenaXsiteId" : {
             "description" : "The identifier of the site according to Catena-X BPDM. The catenaXsiteId must be a valid Catena-X BPN. The BPN is a unique, unchangeable identifier for Business Partners / company locations from foundation to closure, regardless of the different business relationships / structures between or within the Business Partners or company locations.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#catenaXsiteId",
-            "$ref" : "#/components/schemas/BpnsCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnsCharacteristic"
+            } ]
           },
           "function" : {
             "description" : "The function of the site in relation to the part(i.e. the activity within the value chain of the part that is performed at the site)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#function",
-            "$ref" : "#/components/schemas/FunctionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FunctionCharacteristic"
+            } ]
           },
           "functionValidFrom" : {
             "description" : "Timestamp, from when the site has the specified function for the given part",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#functionValidFrom",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "functionValidUntil" : {
             "description" : "Timestamp, until when the site has the specified function for the given part",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#functionValidUntil",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           }
         },
         "required" : [ "catenaXsiteId", "function" ]
@@ -110,17 +124,23 @@
     "catenaXId" : {
       "description" : "The fully anonymous Catena-X ID of the serialized part, valid for the Catena-X dataspace.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#catenaXId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "partTypeInformation" : {
       "description" : "The part type from which the serialized part has been instantiated",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#partTypeInformation",
-      "$ref" : "#/components/schemas/PartTypeInformationCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PartTypeInformationCharacteristic"
+      } ]
     },
     "partSitesInformationAsPlanned" : {
       "description" : "A site is a delimited geographical area where a legal entity does business(geographical address with geo coordinates).A site always has a primary physical address. It is possible that further physical addresses are specified for the site. P.O. box details are only possible in addition to the physical address. A site has a 1:n relation to addresses, means at least 1 address is necessary and multiple addresses are possible.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#partSitesInformationAsPlanned",
-      "$ref" : "#/components/schemas/partSitesInformationAsPlannedCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/partSitesInformationAsPlannedCharacteristic"
+      } ]
     }
   },
   "required" : [ "catenaXId", "partTypeInformation" ]

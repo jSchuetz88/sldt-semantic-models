@@ -47,27 +47,37 @@
           "name" : {
             "description" : "Name assigned to the cryptographic material.\r\n\r\nThis property may be used to indicate the security service  provided by the cryptographic material and the usage or application it is associated with.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.crypto_material:1.0.0#name",
-            "$ref" : "#/components/schemas/NameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NameCharacteristic"
+            } ]
           },
           "type" : {
             "description" : "Type of cryptographic material.\r\n\r\nProvided cryptographic material must have one of the following types:\r\n- symmetric key\r\n- private key\r\n- public key\r\n- digital certificate\r\n- certificate signing request\r\n- secret material",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.crypto_material:1.0.0#type",
-            "$ref" : "#/components/schemas/TypeEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TypeEnumeration"
+            } ]
           },
           "value" : {
             "description" : "Value of cryptographic material in the format and encoding specified in the respective properties.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.crypto_material:1.0.0#value",
-            "$ref" : "#/components/schemas/ValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ValueCharacteristic"
+            } ]
           },
           "format" : {
             "description" : "Format of cryptographic material.\r\n\r\nProvided cryptographic material must have one of the following formats:\r\n- PKCS#1\r\n- PKCS#8\r\n- PKCS#10\r\n- raw\r\n- subjectPublicKeyInfo\r\n- X.509v3",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.crypto_material:1.0.0#format",
-            "$ref" : "#/components/schemas/FormatEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FormatEnumeration"
+            } ]
           },
           "encoding" : {
             "description" : "Encoding of cryptographic material.\r\n\r\nProvided cryptographic material must have one of the following encodings:\r\n- Base64\r\n- HEX\r\n- RFC 7468",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.crypto_material:1.0.0#encoding",
-            "$ref" : "#/components/schemas/EncodingEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/EncodingEnumeration"
+            } ]
           }
         },
         "required" : [ "name", "type", "value", "format", "encoding" ]
@@ -87,12 +97,16 @@
     "globalAssetId" : {
       "description" : "The fully anonymous ID in the dataspace of the part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "cryptoMaterials" : {
       "description" : "Set of one or more instances of cryptographic material associated with a unique instance of a serialized part or just-in-sequence part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.crypto_material:1.0.0#cryptoMaterials",
-      "$ref" : "#/components/schemas/CryptoMaterialsSet"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CryptoMaterialsSet"
+      } ]
     }
   },
   "required" : [ "globalAssetId", "cryptoMaterials" ]

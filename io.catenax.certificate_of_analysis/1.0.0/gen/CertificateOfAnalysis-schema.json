@@ -34,22 +34,30 @@
           "issueDate" : {
             "description" : "the date and timestamp of issuing this certificate",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#issueDate",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "isConformWithSpecification" : {
             "description" : "In the case that any of the properties that are part of the Certificate of Analysis violates the defined upper or lower limit this property should be set to false.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#isConformWithSpecification",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "supplierOrderId" : {
             "description" : "This is the order number on the supplier side that is given by e.g., the supplier's enterprise resource planning system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.delivery_information:2.0.0#supplierOrderId",
-            "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            } ]
           },
           "customerOrderId" : {
             "description" : "This is the order number on the customer side that can be given by e.g., the customer's enterprise resource planning system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.delivery_information:2.0.0#customerOrderId",
-            "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            } ]
           }
         },
         "required" : [ "issueDate" ],
@@ -86,12 +94,16 @@
           "methodStandard" : {
             "description" : "Reference to the standard that described the method.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#methodStandard",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "methodDescription" : {
             "description" : "This field should be used to describe the method or provide additional information to the referenced norm.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#methodDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "methodDescription" ]
@@ -104,42 +116,58 @@
           "name" : {
             "description" : "The name of the property",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#name",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "description" : {
             "description" : "This field should be used to describe the property.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#description",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "value" : {
             "description" : "The result of the analysis for this specific property.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#value",
-            "$ref" : "#/components/schemas/ValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of measure used for the property value and specification limits. This can be omitted for non-numerical properties, e.g. Boolean.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#unit",
-            "$ref" : "#/components/schemas/UnitReference"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UnitReference"
+            } ]
           },
           "lowerLimit" : {
             "description" : "The lower limit of the specification with a boundary condition of \"At least\".\nValues below that limit are considered out of specification. Values exactly at the limit are considered in specification.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#lowerLimit",
-            "$ref" : "#/components/schemas/ValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ValueCharacteristic"
+            } ]
           },
           "upperLimit" : {
             "description" : "The upper limit of the specification with a boundary condition of \"At most\".\nValues above that limit are considered out of specification. Values exactly at the limit are considered in specification.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#upperLimit",
-            "$ref" : "#/components/schemas/ValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ValueCharacteristic"
+            } ]
           },
           "dataType" : {
             "description" : "The data type of the properties value and limits. The data type should specify how the string value should be type casted or interpreted.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#dataType",
-            "$ref" : "#/components/schemas/DataTypeEnumerationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DataTypeEnumerationCharacteristic"
+            } ]
           },
           "method" : {
             "description" : "A set of methods that describe how the part was tested",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#method",
-            "$ref" : "#/components/schemas/MethodSet"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MethodSet"
+            } ]
           }
         },
         "required" : [ "name", "description", "value", "dataType" ]
@@ -171,17 +199,23 @@
           "nameAtManufacturer" : {
             "description" : "Name of the part as assigned by the manufacturer",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#nameAtManufacturer",
-            "$ref" : "#/components/schemas/PartNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartNameCharacteristic"
+            } ]
           },
           "manufacturerPartId" : {
             "description" : "Part ID as assigned by the manufacturer of the part. The Part ID identifies the part in the manufacturer`s dataspace. The Part ID references a specific version of a part. The version number must be included in the Part ID if it is available.\n\nThe Part ID does not reference a specific instance of a part and must not be confused with the serial number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.part_as_planned:2.0.0#manufacturerPartId",
-            "$ref" : "#/components/schemas/PartIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartIdCharacteristic"
+            } ]
           },
           "customerPartId" : {
             "description" : "Part ID as assigned by the customer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#customerPartId",
-            "$ref" : "#/components/schemas/PartIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartIdCharacteristic"
+            } ]
           }
         },
         "required" : [ "nameAtManufacturer", "manufacturerPartId" ]
@@ -205,12 +239,16 @@
           "key" : {
             "description" : "The key of a local identifier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.batch:3.0.1#key",
-            "$ref" : "#/components/schemas/KeyTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/KeyTrait"
+            } ]
           },
           "value" : {
             "description" : "The value of an identifier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.batch:3.0.1#value",
-            "$ref" : "#/components/schemas/ValueCharacteristic0"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ValueCharacteristic0"
+            } ]
           }
         },
         "required" : [ "key", "value" ]
@@ -262,12 +300,16 @@
           "catenaXsiteId" : {
             "description" : "The identifier of the site according to Catena-X BPDM. The catenaXsiteId must be a valid Catena-X BPN. The BPN is a unique, unchangeable identifier for Business Partners / company locations from foundation to closure, regardless of the different business relationships / structures between or within the Business Partners or company locations.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_site_information_as_built:2.0.0#catenaXsiteId",
-            "$ref" : "#/components/schemas/BpnsTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnsTrait"
+            } ]
           },
           "function" : {
             "description" : "The function of the site in relation to the part(i.e. the activity within the value chain of the part that is performed at the site)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_site_information_as_built:2.0.0#function",
-            "$ref" : "#/components/schemas/FunctionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FunctionCharacteristic"
+            } ]
           }
         },
         "required" : [ "catenaXsiteId", "function" ]
@@ -289,17 +331,23 @@
           "date" : {
             "description" : "Timestamp of the manufacturing date as the final step in production process(e.g. final quality check, ready-for-shipment event)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.batch:3.0.1#date",
-            "$ref" : "#/components/schemas/DateTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTrait"
+            } ]
           },
           "country" : {
             "description" : "Country code where the part was manufactured",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.batch:3.0.1#country",
-            "$ref" : "#/components/schemas/ProductionCountryCodeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ProductionCountryCodeTrait"
+            } ]
           },
           "sites" : {
             "description" : "A site is a delimited geographical area where a legal entity does business(geographical address with geo coordinates).A site always has a primary physical address. It is possible that further physical addresses are specified for the site. P.O. box details are only possible in addition to the physical address. A site has a 1:n relation to addresses, means at least 1 address is necessary and multiple addresses are possible.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_site_information_as_built:2.0.0#sites",
-            "$ref" : "#/components/schemas/SitesCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SitesCharacteristic"
+            } ]
           }
         },
         "required" : [ "date" ]
@@ -318,22 +366,30 @@
           "localIdentifiers" : {
             "description" : "A local identifier enables identification of a part in a specific dataspace, but is not unique in Catena-X dataspace. Multiple local identifiers may exist.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.batch:3.0.1#localIdentifiers",
-            "$ref" : "#/components/schemas/LocalIdentifierCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LocalIdentifierCharacteristic"
+            } ]
           },
           "catenaXId" : {
             "description" : "The fully anonymous Catena-X ID of the batch, valid for the Catena-X dataspace.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.batch:3.0.1#catenaXId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "manufacturingInformation" : {
             "description" : "Information from manufacturing process, such as manufacturing date and manufacturing country",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.batch:3.0.1#manufacturingInformation",
-            "$ref" : "#/components/schemas/ManufacturingCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ManufacturingCharacteristic"
+            } ]
           },
           "expiryDate" : {
             "description" : "The expiry date of the material.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#expiryDate",
-            "$ref" : "#/components/schemas/DateCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateCharacteristic"
+            } ]
           }
         },
         "required" : [ "localIdentifiers", "catenaXId", "manufacturingInformation" ]
@@ -344,32 +400,44 @@
     "customer" : {
       "description" : "The customer as a BPNL reference.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#customer",
-      "$ref" : "#/components/schemas/BpnlTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BpnlTrait"
+      } ]
     },
     "supplier" : {
       "description" : "The supplier (manufacturer) as a BPNL reference.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#supplier",
-      "$ref" : "#/components/schemas/BpnlTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BpnlTrait"
+      } ]
     },
     "certificateMetaData" : {
       "description" : "Meta data about this certificate",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#certificateMetaData",
-      "$ref" : "#/components/schemas/CertificateMetaDataCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CertificateMetaDataCharacteristic"
+      } ]
     },
     "materialProperties" : {
       "description" : "A set of material properties containing the specification and the actual material analysis measurement results.\n\nThe properties may vary based on the material type as well as the agreed specification of the material and the analysis between the customer and manufacturer (supplier).",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#materialProperties",
-      "$ref" : "#/components/schemas/MaterialPropertiesSet"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MaterialPropertiesSet"
+      } ]
     },
     "productTypeInformation" : {
       "description" : "Product type related information",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#productTypeInformation",
-      "$ref" : "#/components/schemas/ProductTypeInformationCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ProductTypeInformationCharacteristic"
+      } ]
     },
     "productInstanceInformation" : {
       "description" : "Product instance related information, in the case of Certificate of Analysis a product instance refers to a batch.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.certificate_of_analysis:1.0.0#productInstanceInformation",
-      "$ref" : "#/components/schemas/ProductInstanceInformationCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ProductInstanceInformationCharacteristic"
+      } ]
     }
   },
   "required" : [ "customer", "supplier", "certificateMetaData", "materialProperties", "productTypeInformation", "productInstanceInformation" ]

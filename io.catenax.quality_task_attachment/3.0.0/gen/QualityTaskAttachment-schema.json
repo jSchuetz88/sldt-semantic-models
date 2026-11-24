@@ -24,22 +24,30 @@
           "variableName" : {
             "description" : "The name of the column",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#variableName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "dataType" : {
             "description" : "The data type of the data contained in the column",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#dataType",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "unit" : {
             "description" : "The unit of the data contained in the column (used for numeric values)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#unit",
-            "$ref" : "#/components/schemas/UnitReference"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UnitReference"
+            } ]
           },
           "variableDescription" : {
             "description" : "A description of the data contained in the column",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#variableDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "variableName", "dataType", "unit" ]
@@ -60,23 +68,29 @@
           "decimalSeperator" : {
             "description" : "Enumeration types to be used for the decimal separators",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#decimalSeperator",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "delimiter" : {
             "description" : "Indicates whether a semicolon, comma or tab is used as a delimiter between data points",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#delimiter",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "variablesProperty" : {
             "description" : "A list describing the variables contained in the file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#variablesProperty",
-            "$ref" : "#/components/schemas/Variables"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Variables"
+            } ]
           }
         },
         "required" : [ "variablesProperty" ]
       },
       "SizeInKb" : {
-        "type" : "number",
+        "type" : "integer",
         "minimum" : 1,
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#SizeInKb",
         "description" : "Indicates the size of the file"
@@ -101,17 +115,23 @@
           "namespace" : {
             "description" : "The namespace of a Catena-X semantic model",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#namespace",
-            "$ref" : "#/components/schemas/NamespaceTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NamespaceTrait"
+            } ]
           },
           "ttlFile" : {
             "description" : "The name of the .ttl-file of the Catena-X semantic model",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#ttlFile",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "modelVersion" : {
             "description" : "The version of a Catena-X semantic model",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#modelVersion",
-            "$ref" : "#/components/schemas/ModelVersionTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ModelVersionTrait"
+            } ]
           }
         },
         "required" : [ "namespace", "ttlFile" ]
@@ -124,37 +144,51 @@
           "fileName" : {
             "description" : "The name of the described file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#fileName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "schema" : {
             "description" : "schema definition for file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#schema",
-            "$ref" : "#/components/schemas/schemaCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/schemaCharacteristic"
+            } ]
           },
           "filePath" : {
             "description" : "Indicates where the file is located within the ZIP-folder",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#filePath",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "sizeInKbProperty" : {
             "description" : "Indicates the size of the file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#sizeInKbProperty",
-            "$ref" : "#/components/schemas/SizeInKb"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SizeInKb"
+            } ]
           },
           "fileDescription" : {
             "description" : "A description of the file content",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#fileDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "fileExtension" : {
             "description" : "Indicates which file format the file has",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#fileExtension",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "relatedModelType" : {
             "description" : "Indicates which aspect model these additional files are to be added to",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#relatedModelType",
-            "$ref" : "#/components/schemas/RelatedModelTypeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/RelatedModelTypeCharacteristic"
+            } ]
           }
         },
         "required" : [ "fileName", "filePath", "sizeInKbProperty", "fileDescription", "fileExtension" ]
@@ -184,17 +218,23 @@
     "files" : {
       "description" : "A list of files within the ZIP-folder, which are needed for a specific quality task",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#files",
-      "$ref" : "#/components/schemas/ListOfFiles"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ListOfFiles"
+      } ]
     },
     "qualityTaskAttachmentId" : {
       "description" : "A unique identifier for a specific Quality Task Attachment",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.quality_task_attachment:3.0.0#qualityTaskAttachmentId",
-      "$ref" : "#/components/schemas/UniqueID"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UniqueID"
+      } ]
     },
     "qualityTaskId" : {
       "description" : "A unique quality task identifier within this data-space.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quality_core:1.0.0#qualityTaskId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     }
   },
   "required" : [ "files", "qualityTaskAttachmentId", "qualityTaskId" ]

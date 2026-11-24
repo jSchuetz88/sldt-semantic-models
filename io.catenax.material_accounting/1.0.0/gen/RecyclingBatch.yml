@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/RecyclingBatch"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        recyclingBatchId:
+          type: array
+          items:
+            $ref: "#/components/schemas/RecyclingBatch"
     Text:
       type: string
       x-samm-aspect-model-urn: "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Text"
@@ -105,7 +106,7 @@ components:
       x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#MassCharacteristic"
       description: Characteric for mass data (in kg).
     VolumeCharacteristic:
-      type: number
+      type: integer
       minimum: 1
       x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#VolumeCharacteristic"
       description: Characteristic describing the volume.
@@ -118,21 +119,25 @@ components:
         containerWeight:
           description: Empty weight of the container based on the scale display
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#containerWeight"
-          $ref: "#/components/schemas/MassCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MassCharacteristic"
         containerVolume:
           description: Volume of the container type according to AVAL
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#containerVolume"
-          $ref: "#/components/schemas/VolumeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VolumeCharacteristic"
         containerDescription:
           description: Standardized description of the container type according to
             AVAL.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#containerDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         containerTypeId:
           description: Standardized number for the container type which contains compositions
             / components / materials according to AVAL
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#containerTypeId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - containerWeight
       - containerVolume
@@ -194,44 +199,54 @@ components:
         startTimestamp:
           description: Start of the specific process step.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#startTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         endTimestamp:
           description: End of the specific process step.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#endTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         inputNetMass:
           description: Incoming net weight in the specific process step.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#inputNetMass"
-          $ref: "#/components/schemas/MassCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MassCharacteristic"
         outputNetMass:
           description: Outgoing net weight of the specific process step.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#outputNetMass"
-          $ref: "#/components/schemas/MassCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MassCharacteristic"
         measurementType:
           description: Measuring instrument for material share/weight determination.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#measurementType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         measurementTimestamp:
           description: timestamp of the specific time of measurement.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#measurementTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         processLoss:
           description: Weight of loss within the specific childProcessStep.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#processLoss"
-          $ref: "#/components/schemas/MassCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MassCharacteristic"
         weighingSlip:
           description: Official document that records the result of weighing (of composition
             / components / materials) on a scale.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#weighingSlip"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         lossType:
           description: Specification of loss within the specific process step.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#lossType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         childProcessType:
           description: Type of child process.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#childProcessType"
-          $ref: "#/components/schemas/ChildProcessEnum"
+          allOf:
+          - $ref: "#/components/schemas/ChildProcessEnum"
       required:
       - startTimestamp
       - endTimestamp
@@ -309,21 +324,25 @@ components:
           description: Process that is used to handle waste according to the choosen
             strategy.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#treatmentProcedure"
-          $ref: "#/components/schemas/DisposalCodeEnum"
+          allOf:
+          - $ref: "#/components/schemas/DisposalCodeEnum"
         mechanicalRecycling:
           description: Materials that have undergone mechanical recycling (true or
             false).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#mechanicalRecycling"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         chemicalRecycling:
           description: Materials that have undergone chemical recycling (true or false).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#chemicalRecycling"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         processType:
           description: "The process reflects the current processing phase in the reverse\
             \ chain of a vehicle, its composition, components, and materials."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#processType"
-          $ref: "#/components/schemas/ProcessTypeEnum"
+          allOf:
+          - $ref: "#/components/schemas/ProcessTypeEnum"
       required:
       - treatmentProcedure
       - mechanicalRecycling
@@ -364,15 +383,18 @@ components:
         actorNumber:
           description: Operating number of the actor.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#actorNumber"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         actorRole:
           description: Type of the actor in the recycling process.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#actorRole"
-          $ref: "#/components/schemas/ActorRoleEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/ActorRoleEnumeration"
         bpnsProperty:
           description: Property based on a BPNS.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnsProperty"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
       required:
       - actorNumber
       - actorRole
@@ -392,11 +414,13 @@ components:
           description: Identifier for the transport of compositions / components /
             materials between two actors.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#transferId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         bpnsProperty:
           description: Property based on a BPNS.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnsProperty"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
       required:
       - transferId
       - bpnsProperty
@@ -425,35 +449,43 @@ components:
         recyclingBatchId:
           description: Identifier of the recycling batch.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#recyclingBatchId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         container:
           description: Properties of a container.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#container"
-          $ref: "#/components/schemas/ContainerCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ContainerCharacteristic"
         childProcessSteps:
           description: List of child process steps performed on the recycling batch.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#childProcessSteps"
-          $ref: "#/components/schemas/ChildProcessStepsList"
+          allOf:
+          - $ref: "#/components/schemas/ChildProcessStepsList"
         processInformation:
           description: Single Entity of process information.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#processInformation"
-          $ref: "#/components/schemas/ProcessInformationSingleEntity"
+          allOf:
+          - $ref: "#/components/schemas/ProcessInformationSingleEntity"
         receiver:
           description: Receiver of the RecyclingBatch.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#receiver"
-          $ref: "#/components/schemas/ActorSingleEntity"
+          allOf:
+          - $ref: "#/components/schemas/ActorSingleEntity"
         sender:
           description: Sender of the RecyclingBatch.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#sender"
-          $ref: "#/components/schemas/ActorSingleEntity"
+          allOf:
+          - $ref: "#/components/schemas/ActorSingleEntity"
         operator:
           description: Operator of the transport process.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_accounting:1.0.0#operator"
-          $ref: "#/components/schemas/OperatorSingleEntity"
+          allOf:
+          - $ref: "#/components/schemas/OperatorSingleEntity"
         globalAssetId:
           description: The fully anonymous ID in the dataspace of the part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - recyclingBatchId
       - container

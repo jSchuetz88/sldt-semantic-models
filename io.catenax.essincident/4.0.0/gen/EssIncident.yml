@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/EssIncident"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        productCommodity:
+          type: array
+          items:
+            $ref: "#/components/schemas/EssIncident"
     Text:
       type: string
       x-samm-aspect-model-urn: "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Text"
@@ -195,16 +196,19 @@ components:
           description: "Technical key of a thoroughfare. As specified by BPDM, this\
             \ can be a \"STREET\" or a different type."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfareTechnicalKey"
-          $ref: "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
         value:
           description: "Value of a thoroughfare, e.g. name of a street."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfareValue"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         number:
           description: "Number of a thoroughfare. As used differently in international\
             \ context, this number can contain both numerical and alphanumerical values."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfareNumber"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - technicalKey
       - value
@@ -236,11 +240,13 @@ components:
         technicalKey:
           description: Technical key of a locality.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#localityTechnicalKey"
-          $ref: "#/components/schemas/LocalityTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalityTechnicalKeyCharacteristic"
         value:
           description: "Value of a locality, e.g. name of a city (\"Mannheim\")."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#localityValue"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - technicalKey
       - value
@@ -274,12 +280,14 @@ components:
         technicalKey:
           description: Technical key of a premise.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#premiseTechnicalKey"
-          $ref: "#/components/schemas/PremiseTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PremiseTechnicalKeyCharacteristic"
         value:
           description: "Value of a premise, e.g. name or designation of a particular\
             \ site."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#premiseValue"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - technicalKey
       - value
@@ -309,11 +317,13 @@ components:
         technicalKey:
           description: Technical key of a postal delivery point.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postalDeliveryPointTechnicalKey"
-          $ref: "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
         value:
           description: "Value of a postal delivery point, e.g. designation of a gate."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postalDeliveryPointValue"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - technicalKey
       - value
@@ -339,7 +349,8 @@ components:
         shortName:
           description: The short variation of the name of the country.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#countryShortName"
-          $ref: "#/components/schemas/CountryTrait"
+          allOf:
+          - $ref: "#/components/schemas/CountryTrait"
       required:
       - shortName
     CountryCharacteristic:
@@ -371,11 +382,13 @@ components:
         value:
           description: The value of a post code.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postCodeValue"
-          $ref: "#/components/schemas/PostCodeTrait"
+          allOf:
+          - $ref: "#/components/schemas/PostCodeTrait"
         technicalKey:
           description: The technical key of a post code.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postCodeTechnicalKey"
-          $ref: "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
       required:
       - value
       - technicalKey
@@ -396,28 +409,34 @@ components:
         thoroughfare:
           description: Street or thorough road name.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfare"
-          $ref: "#/components/schemas/ThoroughfareCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ThoroughfareCharacteristic"
         locality:
           description: Locality belonging to an address.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#locality"
-          $ref: "#/components/schemas/LocalityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalityCharacteristic"
         premise:
           description: "Premise of an address, e.g. a specific \"BUILDING\" but can\
             \ also be used for naming a particular site."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#premise"
-          $ref: "#/components/schemas/PremiseCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PremiseCharacteristic"
         postalDeliveryPoint:
           description: "Delivery point, e.g. designation of a gate."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postalDeliveryPoint"
-          $ref: "#/components/schemas/PostalDeliveryPointCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PostalDeliveryPointCharacteristic"
         country:
           description: Country of an address.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#country"
-          $ref: "#/components/schemas/CountryCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CountryCharacteristic"
         postCode:
           description: Postal code of the address.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postCode"
-          $ref: "#/components/schemas/PostCodeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PostCodeCharacteristic"
       required:
       - thoroughfare
       - locality
@@ -475,11 +494,13 @@ components:
         longitude:
           description: Longitude information for geographic coordinates.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#longitude"
-          $ref: "#/components/schemas/LongitudeTrait"
+          allOf:
+          - $ref: "#/components/schemas/LongitudeTrait"
         latitude:
           description: Latitude information for geographic coordinates.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#latitude"
-          $ref: "#/components/schemas/LatitudeTrait"
+          allOf:
+          - $ref: "#/components/schemas/LatitudeTrait"
       required:
       - longitude
       - latitude
@@ -517,163 +538,199 @@ components:
           description: Free-text description for commodity of a product affected by
             an incident in the context of ESS (Environmental and Social Standards)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#productCommodity"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         productDescription:
           description: 'Description of product or component affected by an incident
             in the context of ESS (Environmental and Social Standards) '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#productDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         rawMaterial:
           description: Raw material that causes an incident in the context of ESS
             (Environmental and Social Standards)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#rawMaterial"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         industry:
           description: Industry / Branch that causes the incident
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#industry"
-          $ref: "#/components/schemas/IndustryCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IndustryCharacteristic"
         incidentCategory:
           description: Environmental and social standards related incident category
             according to Supply Chain Due Diligence Act
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentCategory"
-          $ref: "#/components/schemas/IncidentCategoryCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IncidentCategoryCharacteristic"
         incidentSubcategory:
           description: Subcategory of an incident Category
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentSubcategory"
-          $ref: "#/components/schemas/IncidentSubcategories"
+          allOf:
+          - $ref: "#/components/schemas/IncidentSubcategories"
         incidentSubject:
           description: Title/ subject of an incident in the context of ESS (Environmental
             and Social Standards)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentSubject"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         incidentExternalSubject:
           description: Replaces Incident Subject for external communication
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentExternalSubject"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         incidentDescription:
           description: Full text description of an incident in the context of ESS
             (Environmental and Social Standards)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         incidentExternalNotes:
           description: Incident description for external communication
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentExternalNotes"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         incidentAttachment:
           description: Picture(s) about the reported incident in the context of ESS
             (Environmental and Social Standards)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentAttachment"
-          $ref: "#/components/schemas/ResourcePath"
+          allOf:
+          - $ref: "#/components/schemas/ResourcePath"
         systemDate:
           description: System created timestamp when the incident in the context of
             ESS (Environmental and Social Standards) was issued and saved
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#systemDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         incidentDate:
           description: Date and time information when an incident in the context of
             ESS (Environmental and Social Standards) occurred
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         incidentId:
           description: Unique identifier for an incident in the context of ESS (Environmental
             and Social Standards)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         masterOpCoId:
           description: Incident ID that has been checked and validated. In case of
             duplicates the "parent" incident ID will be used as Master Operating Company
             Incident ID.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#masterOpCoId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         incidentDisplayId:
           description: Human readable format of Incident ID
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentDisplayId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         incidentStatusInformation:
           description: "Status of incident progress, default value = new"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentStatusInformation"
-          $ref: "#/components/schemas/IncidentStatusCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IncidentStatusCharacteristic"
         incidentShareFlag:
           description: "Flag, that can be set to true in order to request to publish\
             \ the incident, default value is false"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentShareFlag"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         subCaseOpCoIds:
           description: Incident Ids that belong to a Master Operating Company Incident
             Id
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#subCaseOpCoIds"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         incidentSystemId:
           description: System Id that defines the tenant
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#incidentSystemId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         essOriginatorCompanyName:
           description: Name of a company / an organisation that is the originator
             of an incident in the context of ESS (Environmental and Social Standards)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essOriginatorCompanyName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         essOriginatorAddress:
           description: 'Address of ESS Originator '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essOriginatorAddress"
-          $ref: "#/components/schemas/PostalAddress"
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
         essOriginatorBpnL:
           description: BPN-L ID of the company that causes the incident
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essOriginatorBpnL"
-          $ref: "#/components/schemas/BpnlCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BpnlCharacteristic"
         essOriginatorBpnS:
           description: BPN-S ID of the company that causes the incident
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essOriginatorBpnS"
-          $ref: "#/components/schemas/BpnsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BpnsCharacteristic"
         essOriginatorBpnA:
           description: BPN-A ID of the company that causes the incident
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essOriginatorBpnA"
-          $ref: "#/components/schemas/BpnaCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BpnaCharacteristic"
         essOriginatorCoordinates:
           description: Exact geographic position of an incident in the context of
             ESS (Environmental and Social Standards)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essOriginatorCoordinates"
-          $ref: "#/components/schemas/EssOriginatorCoordinatesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/EssOriginatorCoordinatesCharacteristic"
         essIncidentIssuerFirstName:
           description: First name of ESS incident issuer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essIncidentIssuerFirstName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         essIncidentIssuerEmailAddress:
           description: Email address of ESS incident issuer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essIncidentIssuerEmailAddress"
-          $ref: "#/components/schemas/ContactMailTrait"
+          allOf:
+          - $ref: "#/components/schemas/ContactMailTrait"
         essIncidentIssuerPhoneNo:
           description: Phone number of ESS incident issuer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essIncidentIssuerPhoneNo"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         flagAnonymous:
           description: Flag that Incident issuer wants to be anonymous
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#flagAnonymous"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         essIncidentIssuerId:
           description: System generated unique identifier of incident issuer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essIncidentIssuerId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         essIncidentIssuerAddress:
           description: "Simple form of an address which can belong to a person, organisation,\
             \ company etc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essIncidentIssuerAddress"
-          $ref: "#/components/schemas/PostalAddress"
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
         essIncidentIssuerLastName:
           description: Last name of ESS incident Issuer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essIncidentIssuerLastName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         essOriginatorCountrySubdivision:
           description: Region within a country of ESS Originator
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essOriginatorCountrySubdivision"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         essIncidentIssuerCountrySubdivision:
           description: Region within a country of ESS Incident Issuer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essIncidentIssuerCountrySubdivision"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         essIncidentModerator:
           description: Business Partner who moderates the clearing of an ESS incident
           x-samm-aspect-model-urn: "urn:samm:io.catenax.essincident:4.0.0#essIncidentModerator"
-          $ref: "#/components/schemas/EssIncidentModeratorCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/EssIncidentModeratorCharacteristic"
       required:
       - productDescription
       - incidentCategory

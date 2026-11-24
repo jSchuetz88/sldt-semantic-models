@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/QualityTask"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        listOfQualityTasks:
+          type: array
+          items:
+            $ref: "#/components/schemas/QualityTask"
     RecordStatusEnumeration:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#RecordStatusEnumeration"
@@ -164,15 +165,18 @@ components:
         cxBusinessPartnerNumber:
           description: The Catena-X business partner number for this company.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#cxBusinessPartnerNumber"
-          $ref: "#/components/schemas/BpnlTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnlTrait"
         name:
           description: Name of the company
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#name"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         email:
           description: An email address.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.contact_information:3.0.0#email"
-          $ref: "#/components/schemas/EMailTrait"
+          allOf:
+          - $ref: "#/components/schemas/EMailTrait"
       required:
       - cxBusinessPartnerNumber
     ListOfCompanies:
@@ -201,40 +205,49 @@ components:
             \ deleted on data consumer side\n- same=> This record was transferred\
             \ in the initial load or in a previous delta update"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#recordStatus"
-          $ref: "#/components/schemas/RecordStatusEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/RecordStatusEnumeration"
         creationDate:
           description: Timestamp when this qTask was created
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#creationDate"
-          $ref: "#/components/schemas/Date"
+          allOf:
+          - $ref: "#/components/schemas/Date"
         component:
           description: The component that should be investigated in this qTask.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#component"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         dataDeletion:
           description: What should be done with the data after this qTask is closed
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#dataDeletion"
-          $ref: "#/components/schemas/DataDeletionEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/DataDeletionEnumeration"
         description:
           description: Description what should be done in this qTask
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#description"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         qualityTaskId:
           description: A unique quality task identifier within the Catena-X dataspace.
             The unique id uses the Catena-X UUID trait.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#qualityTaskId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         status:
           description: Status of this quality task
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#status"
-          $ref: "#/components/schemas/StatusCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StatusCharacteristic"
         title:
           description: Working title for this qTask
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#title"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         listOfCompanies:
           description: A list of companies involved in this quality task
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#listOfCompanies"
-          $ref: "#/components/schemas/ListOfCompanies"
+          allOf:
+          - $ref: "#/components/schemas/ListOfCompanies"
       required:
       - qualityTaskId
     QualityTaskList:
@@ -252,17 +265,20 @@ components:
           description: Describes the selection criteria a Catena-X data provider has
             applied to create this data set.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#selectionCriteria"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         selectionStart:
           description: Describes the starting point for providing records in this
             data set.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#selectionStart"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         selectionEnd:
           description: Describes the end point for providing records in this data
             set.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#selectionEnd"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - selectionCriteria
     QualityTask:
@@ -273,13 +289,15 @@ components:
         listOfQualityTasks:
           description: Property for the list of quality tasks.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#listOfQualityTasks"
-          $ref: "#/components/schemas/QualityTaskList"
+          allOf:
+          - $ref: "#/components/schemas/QualityTaskList"
         metaInformation:
           description: 'This meta information is valid for all entries in this data
             set. The meta information is used to tell the data consumer which selection
             criteria were applied by the data provider. '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.quality_task:2.0.0#metaInformation"
-          $ref: "#/components/schemas/MetaCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MetaCharacteristic"
       required:
       - listOfQualityTasks
   responses:

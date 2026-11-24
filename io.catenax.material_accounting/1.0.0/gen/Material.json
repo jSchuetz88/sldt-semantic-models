@@ -1,16 +1,16 @@
 {
-  "materialStatus" : "shredded",
-  "materialClassification" : {
-    "classificationStandard" : "VDA 231-106",
-    "materialCategory" : "1",
-    "materialGroup" : "1.1",
-    "materialSubgroup" : "1.1.1"
-  },
-  "physicalState" : "solid",
-  "materialFormat" : "Crushed Material / Flakes",
-  "rangeOfUncertainty" : "+/-10%",
-  "wasteCode" : "16 01 99",
-  "globalAssetId" : "urn:uuid:013c9DcB-bBF1-1e25-9f9d-36FdFBB3d7F1",
   "thermalCharacterization" : "Burning point",
-  "chemicalCharacterization" : "LiOH"
+  "chemicalCharacterization" : "LiOH",
+  "physicalState" : "liquid",
+  "materialFormat" : "Crushed Material / Flakes",
+  "materialStatus" : "shredded",
+  "rangeOfUncertainty" : "+/-10%",
+  "materialClassification" : {
+    "materialSubgroup" : "1.1.1",
+    "materialGroup" : "1.1",
+    "materialCategory" : "1",
+    "classificationStandard" : "IMDS"
+  },
+  "wasteCode" : "16 01 99",
+  "globalAssetId" : "f4be8eAb-D032-F640-c370-CdCAF07B8297"
 }

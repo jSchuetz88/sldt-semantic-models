@@ -1,8 +1,8 @@
 {
+  "communicationMode" : "synchronous",
   "versionDataModel" : "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0",
   "timeValue" : {
-    "value" : 12,
-    "timeUnit" : "unit:secondUnitOfTime"
-  },
-  "communicationMode" : "synchronous"
+    "timeUnit" : "unit:secondUnitOfTime",
+    "value" : 12
+  }
 }

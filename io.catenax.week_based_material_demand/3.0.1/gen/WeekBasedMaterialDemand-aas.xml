@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<aas:environment xmlns:aas="https://admin-shell.io/aas/3/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://admin-shell.io/aas/3/0 AAS.xsd">
+<aas:environment xmlns:aas="https://admin-shell.io/aas/3/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://admin-shell.io/aas/3/1 AAS.xsd">
   <aas:assetAdministrationShells>
     <aas:assetAdministrationShell>
       <aas:idShort>defaultAdminShell</aas:idShort>
@@ -13,6 +13,7 @@
       <aas:id>urn:samm:io.catenax.week_based_material_demand:3.0.1#WeekBasedMaterialDemand</aas:id>
       <aas:assetInformation>
         <aas:assetKind>Type</aas:assetKind>
+        <aas:globalAssetId>urn:samm:io.catenax.week_based_material_demand:3.0.1#WeekBasedMaterialDemand</aas:globalAssetId>
       </aas:assetInformation>
       <aas:submodels>
         <aas:reference>
@@ -66,7 +67,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>One</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>0157ba42-d2a8-4e28-8565-7b07830c1110</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:string</aas:valueType>
+          <aas:value>0157ba42-d2a8-4e28-8565-7b07830c1110</aas:value>
         </aas:property>
         <aas:submodelElementList>
           <aas:idShort>demandSeries</aas:idShort>
@@ -87,15 +112,46 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandSeriesSet</aas:value>
+                <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#demandSeries</aas:value>
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>OneToMany</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>BPNS8888888888XX</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:orderRelevant>false</aas:orderRelevant>
+          <aas:semanticIdListElement>
+            <aas:type>ExternalReference</aas:type>
+            <aas:keys>
+              <aas:key>
+                <aas:type>GlobalReference</aas:type>
+                <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandSeries</aas:value>
+              </aas:key>
+            </aas:keys>
+          </aas:semanticIdListElement>
           <aas:typeValueListElement>SubmodelElementCollection</aas:typeValueListElement>
           <aas:value>
             <aas:submodelElementCollection>
-              <aas:idShort>demandSeries</aas:idShort>
               <aas:displayName>
                 <aas:langStringNameType>
                   <aas:language>en</aas:language>
@@ -108,6 +164,15 @@
                   <aas:text>The demands for a dedicated material in a given time period of a given demand rate, distinguished by their demand location and demand category.</aas:text>
                 </aas:langStringTextType>
               </aas:description>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandSeries</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
               <aas:value>
                 <aas:property>
                   <aas:idShort>customerLocation</aas:idShort>
@@ -126,7 +191,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>One</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>BPNS8888888888XX</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>BPNS8888888888XX</aas:value>
                 </aas:property>
                 <aas:submodelElementCollection>
                   <aas:idShort>demandCategory</aas:idShort>
@@ -142,6 +231,38 @@
                       <aas:text>Type of demand for this demand series.</aas:text>
                     </aas:langStringTextType>
                   </aas:description>
+                  <aas:semanticId>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandCategoryType</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>One</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>"Default"@en</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:value>
                     <aas:property>
                       <aas:idShort>demandCategoryCode</aas:idShort>
@@ -160,7 +281,31 @@
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>0001</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>0001</aas:value>
                     </aas:property>
                     <aas:multiLanguageProperty>
                       <aas:idShort>demandCategoryName</aas:idShort>
@@ -185,6 +330,29 @@
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>"Default"@en</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                     </aas:multiLanguageProperty>
                   </aas:value>
                 </aas:submodelElementCollection>
@@ -207,15 +375,46 @@
                     <aas:keys>
                       <aas:key>
                         <aas:type>GlobalReference</aas:type>
-                        <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandDateSeries</aas:value>
+                        <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#demands</aas:value>
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>OneToMany</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>2023-10-09</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:orderRelevant>false</aas:orderRelevant>
+                  <aas:semanticIdListElement>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#Demand</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticIdListElement>
                   <aas:typeValueListElement>SubmodelElementCollection</aas:typeValueListElement>
                   <aas:value>
                     <aas:submodelElementCollection>
-                      <aas:idShort>demands</aas:idShort>
                       <aas:displayName>
                         <aas:langStringNameType>
                           <aas:language>en</aas:language>
@@ -228,6 +427,15 @@
                           <aas:text>A time series with a specified demand rate along a given time period to describe the demand values for this demand series.</aas:text>
                         </aas:langStringTextType>
                       </aas:description>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#Demand</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
                       <aas:value>
                         <aas:property>
                           <aas:idShort>demand</aas:idShort>
@@ -246,7 +454,31 @@
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>1000</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:decimal</aas:valueType>
+                          <aas:value>1000</aas:value>
                         </aas:property>
                         <aas:property>
                           <aas:idShort>pointInTime</aas:idShort>
@@ -265,7 +497,31 @@
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>2023-10-09</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:date</aas:valueType>
+                          <aas:value>2023-10-09</aas:value>
                         </aas:property>
                       </aas:value>
                     </aas:submodelElementCollection>
@@ -288,7 +544,31 @@
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>BPNS8888888888XX</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>BPNS8888888888XX</aas:value>
                 </aas:property>
               </aas:value>
             </aas:submodelElementCollection>
@@ -311,7 +591,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>One</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>BPNL8888888888XX</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:string</aas:valueType>
+          <aas:value>BPNL8888888888XX</aas:value>
         </aas:property>
         <aas:property>
           <aas:idShort>supplier</aas:idShort>
@@ -330,7 +634,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>One</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>BPNL6666666666YY</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:string</aas:valueType>
+          <aas:value>BPNL6666666666YY</aas:value>
         </aas:property>
         <aas:property>
           <aas:idShort>unitOfMeasure</aas:idShort>
@@ -349,7 +677,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>ZeroToOne</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>unit:piece</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:string</aas:valueType>
+          <aas:value>unit:piece</aas:value>
         </aas:property>
         <aas:property>
           <aas:idShort>materialNumberCustomer</aas:idShort>
@@ -368,7 +720,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>One</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>MNR-7307-AU340474.002</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:string</aas:valueType>
+          <aas:value>MNR-7307-AU340474.002</aas:value>
         </aas:property>
         <aas:property>
           <aas:idShort>materialNumberSupplier</aas:idShort>
@@ -387,7 +763,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>ZeroToOne</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>MNR-8101-ID146955.001</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:string</aas:valueType>
+          <aas:value>MNR-8101-ID146955.001</aas:value>
         </aas:property>
         <aas:property>
           <aas:idShort>materialDescriptionCustomer</aas:idShort>
@@ -406,7 +806,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>One</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>Spark Plug</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:string</aas:valueType>
+          <aas:value>Spark Plug</aas:value>
         </aas:property>
         <aas:property>
           <aas:idShort>changedAt</aas:idShort>
@@ -425,7 +849,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>One</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>2023-11-05T08:15:30.123-05:00</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:dateTime</aas:valueType>
+          <aas:value>2023-11-05T08:15:30.123-05:00</aas:value>
         </aas:property>
         <aas:property>
           <aas:idShort>materialGlobalAssetId</aas:idShort>
@@ -444,7 +892,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>ZeroToOne</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>urn:uuid:48878d48-6f1d-47f5-8ded-a441d0d879df</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:string</aas:valueType>
+          <aas:value>urn:uuid:48878d48-6f1d-47f5-8ded-a441d0d879df</aas:value>
         </aas:property>
         <aas:property>
           <aas:idShort>unitOfMeasureIsOmitted</aas:idShort>
@@ -463,7 +935,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>One</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>false</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:boolean</aas:valueType>
+          <aas:value>false</aas:value>
         </aas:property>
         <aas:property>
           <aas:idShort>materialDemandIsInactive</aas:idShort>
@@ -482,7 +978,31 @@
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>One</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>true</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:boolean</aas:valueType>
+          <aas:value>true</aas:value>
         </aas:property>
       </aas:submodelElements>
     </aas:submodel>
@@ -511,7 +1031,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -523,12 +1043,6 @@
                   <aas:text>Material Demand</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>WeekBasedMaterialDemand</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
                   <aas:language>en</aas:language>
@@ -556,7 +1070,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -568,12 +1082,6 @@
                   <aas:text>Material Demand ID</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialDemandId</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -602,7 +1110,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -614,12 +1122,6 @@
                   <aas:text>Customer Location</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>customerLocation</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -648,7 +1150,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -660,12 +1162,6 @@
                   <aas:text>Demand Category Code</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>demandCategoryCode</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -694,7 +1190,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -706,12 +1202,6 @@
                   <aas:text>Demand Category Name</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>demandCategoryName</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -727,7 +1217,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandCategoryCharacteristic:_demandCategoryNameDefaultendemandCategoryCode0001b758432e</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -739,7 +1229,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandCategoryCharacteristic:_demandCategoryNameAfter-SalesendemandCategoryCodeA1S1b8bc2bcc</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -751,7 +1241,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandCategoryCharacteristic:_demandCategoryNameSeriesendemandCategoryCodeSR9937c60c78</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -763,7 +1253,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandCategoryCharacteristic:_demandCategoryNamePhase-InPeriodendemandCategoryCodePI015e562a1b</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -775,7 +1265,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandCategoryCharacteristic:_demandCategoryNameSingleOrderendemandCategoryCodeOS01d5d81c21</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -787,7 +1277,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandCategoryCharacteristic:_demandCategoryNameSmallSeriesendemandCategoryCodeOI012b111660</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -799,7 +1289,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandCategoryCharacteristic:_demandCategoryNameExtraordinaryDemandendemandCategoryCodeED01b7567be1</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -811,7 +1301,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.week_based_material_demand:3.0.1#DemandCategoryCharacteristic:_demandCategoryNamePhase-OutPeriodendemandCategoryCodePO011ea1afd4</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -840,7 +1330,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -852,12 +1342,6 @@
                   <aas:text>Demand Category</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>demandCategory</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -886,7 +1370,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -898,12 +1382,6 @@
                   <aas:text>Demand</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>demand</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>INTEGER_MEASURE</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -932,7 +1410,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -944,12 +1422,6 @@
                   <aas:text>Point in Time</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>pointInTime</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -978,7 +1450,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -990,12 +1462,6 @@
                   <aas:text>Demands</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>demands</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1024,7 +1490,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1036,12 +1502,6 @@
                   <aas:text>Expected Supplier Location</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>expectedSupplierLocation</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1070,7 +1530,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1082,12 +1542,6 @@
                   <aas:text>Demand Series</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>demandSeries</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1116,7 +1570,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1128,12 +1582,6 @@
                   <aas:text>Customer</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>customer</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1162,7 +1610,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1174,12 +1622,6 @@
                   <aas:text>Supplier</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>supplier</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1208,7 +1650,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1220,12 +1662,6 @@
                   <aas:text>Unit of Measure</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>unitOfMeasure</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1241,7 +1677,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitpiece01a980f8</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1253,7 +1689,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitset6f4f8cf3</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1265,7 +1701,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitpair12e1f916</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1277,7 +1713,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitpage107ecdf7</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1289,7 +1725,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitcycle5c7b5b64</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1301,7 +1737,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitkilowattHour7018b8c9</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1313,7 +1749,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitgramce42823b</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1325,7 +1761,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitkilogram9b350950</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1337,7 +1773,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unittonneMetricTon16100ac3</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1349,7 +1785,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unittonUsOrShortTonUkoruse158a90d</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1361,7 +1797,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitounceAvoirdupois840f56e4</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1373,7 +1809,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitpoundaf44c2e3</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1385,7 +1821,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitmetre9f12288f</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1397,7 +1833,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitcentimetre33ee188f</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1409,7 +1845,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitkilometrea94ec223</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1421,7 +1857,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitinch2db05d40</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1433,7 +1869,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitfoot0d55d1dd</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1445,7 +1881,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unityard9d3f6b26</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1457,7 +1893,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitsquareCentimetre76b11bd6</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1469,7 +1905,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitsquareMetre02c7359b</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1481,7 +1917,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitsquareInch8790e769</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1493,7 +1929,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitsquareFootb2004e87</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1505,7 +1941,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitsquareYard30790f48</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1517,7 +1953,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitcubicCentimetre0962a818</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1529,7 +1965,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitcubicMetre40584bcd</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1541,7 +1977,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitcubicInch3c177bcd</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1553,7 +1989,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitcubicFoot7d648983</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1565,7 +2001,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitcubicYardd7c27042</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1577,7 +2013,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitlitred47a3c44</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1589,7 +2025,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitmillilitre5a6d6945</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1601,7 +2037,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unithectolitre425d817d</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1613,7 +2049,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitsecondUnitOfTime680941f6</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1625,7 +2061,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitminuteUnitOfTimec73e28e5</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1637,7 +2073,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unithourUnitOfTime9d32dc94</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1649,7 +2085,7 @@
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.quantity:2.0.0#ItemUnitEnumeration:_unitdaydcf42281</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1678,7 +2114,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1690,12 +2126,6 @@
                   <aas:text>Customer Material Number</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialNumberCustomer</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1724,7 +2154,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1736,12 +2166,6 @@
                   <aas:text>Supplier Material Number</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialNumberSupplier</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1770,7 +2194,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1782,12 +2206,6 @@
                   <aas:text>Customer Material Description</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialDescriptionCustomer</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1816,7 +2234,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1828,12 +2246,6 @@
                   <aas:text>Changed At</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>changedAt</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1862,7 +2274,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1874,12 +2286,6 @@
                   <aas:text>UUID of the Part Type Twin</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialGlobalAssetId</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1908,7 +2314,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1920,12 +2326,6 @@
                   <aas:text>Unit Of Measure Is Omitted</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>unitOfMeasureIsOmitted</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>BOOLEAN</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1954,7 +2354,7 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1966,12 +2366,6 @@
                   <aas:text>Material Demand Is Inactive</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialDemandIsInactive</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>BOOLEAN</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>

@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/DeliveryInformation"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        positions:
+          type: array
+          items:
+            $ref: "#/components/schemas/DeliveryInformation"
     OrderIdCharacteristic:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#OrderIdCharacteristic"
@@ -115,19 +116,22 @@ components:
           description: "This is the order number on the supplier side that is given\
             \ by e.g., the supplier's enterprise resource planning system."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#supplierOrderId"
-          $ref: "#/components/schemas/OrderIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OrderIdCharacteristic"
         customerOrderId:
           description: "This is the order number on the customer side that can be\
             \ given by e.g., the customer's enterprise resource planning system."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#customerOrderId"
-          $ref: "#/components/schemas/OrderIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OrderIdCharacteristic"
         customerOrderPositionId:
           description: "This is an identifier for the position of an order defined\
             \ by the customer. It's not a technical identifier, such as an UUID. This\
             \ identifier is used within the business context when talking about the\
             \ position."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#customerOrderPositionId"
-          $ref: "#/components/schemas/OrderPositionIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OrderPositionIdCharacteristic"
       required:
       - customerOrderId
       - customerOrderPositionId
@@ -185,12 +189,14 @@ components:
         value:
           description: The quantity value associated with the unit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:2.0.0#quantityValue"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         unit:
           description: "The unit of an item. Common units may be related to mass,\
             \ count, linear, area, volume or misc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:2.0.0#itemUnit"
-          $ref: "#/components/schemas/ItemUnitEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/ItemUnitEnumeration"
       required:
       - value
       - unit
@@ -222,13 +228,15 @@ components:
             production site) or when the products arrive (or will arrive) at the destination
             location of the delivery (i.e. customer's production site).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#dateTimeOfEvent"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         eventType:
           description: Event type describes whether the mentioned timeOfEvent refers
             to a departure or arrival and provides the status of the delivery (estimated
             or actual).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#eventType"
-          $ref: "#/components/schemas/EventTypeEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/EventTypeEnumeration"
       required:
       - dateTimeOfEvent
       - eventType
@@ -263,11 +271,13 @@ components:
         bpnaProperty:
           description: Property based on a BPNA.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnaProperty"
-          $ref: "#/components/schemas/BpnaTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnaTrait"
         bpnsProperty:
           description: Property based on a BPNS.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnsProperty"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
       required:
       - bpnsProperty
     TransitLocationsCharacteristic:
@@ -281,12 +291,14 @@ components:
           description: 'Origin refers to the starting point or the location from which
             the items are being shipped to the customer. '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#origin"
-          $ref: "#/components/schemas/LocationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocationCharacteristic"
         destination:
           description: Destination refers to the final endpoint or intended location
             where the items are meant to arrive (i.e. customer factory).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#destination"
-          $ref: "#/components/schemas/LocationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocationCharacteristic"
       required:
       - origin
       - destination
@@ -321,32 +333,38 @@ components:
         deliveryQuantity:
           description: Amount of items of a delivery between a supplier and a customer.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#deliveryQuantity"
-          $ref: "#/components/schemas/QuantityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityCharacteristic"
         lastUpdatedOnDateTime:
           description: Date and time at which the delivery has been updated by the
             data provider. Date and time are set according to the timezone.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#lastUpdatedOnDateTime"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         transitEvents:
           description: Transit dates provide date and time of departure and date and
             time of arrival for a specific delivery. Date and time are set according
             to the timezone.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#transitEvents"
-          $ref: "#/components/schemas/TransitEventsTrait"
+          allOf:
+          - $ref: "#/components/schemas/TransitEventsTrait"
         transitLocations:
           description: Physical locations of the origin and destination.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#transitLocations"
-          $ref: "#/components/schemas/TransitLocationsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/TransitLocationsCharacteristic"
         trackingNumber:
           description: "Is a unique alphanumeric code assigned to a shipment by a\
             \ logistics service provider, allowing it to be monitored and traced throughout\
             \ its journey between origin and destination."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#trackingNumber"
-          $ref: "#/components/schemas/TrackingNumberCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/TrackingNumberCharacteristic"
         incoterm:
           description: Incoterm which is assigned to a delivery.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#incoterm"
-          $ref: "#/components/schemas/IncotermEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/IncotermEnumeration"
       required:
       - deliveryQuantity
       - lastUpdatedOnDateTime
@@ -372,13 +390,15 @@ components:
           description: The order position reference contains information to identify
             a position within an order.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#orderPositionReference"
-          $ref: "#/components/schemas/OrderPositionReferenceCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OrderPositionReferenceCharacteristic"
         deliveries:
           description: Deliveries are referred to the deliveries of an order position.
             One order position can be split into multiple deliveries. One delivery
             can have a different origin and destination than another delivery.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#deliveries"
-          $ref: "#/components/schemas/DeliverySet"
+          allOf:
+          - $ref: "#/components/schemas/DeliverySet"
       required:
       - deliveries
     PositionsSet:
@@ -413,11 +433,13 @@ components:
             \ no order position reference is given, then there is only one position\
             \ containing all estimated deliveries of the item."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#positions"
-          $ref: "#/components/schemas/PositionsSet"
+          allOf:
+          - $ref: "#/components/schemas/PositionsSet"
         materialGlobalAssetId:
           description: Identifier used uniquely to identify part type twin.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.delivery_information:2.0.0#materialGlobalAssetId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - positions
       - materialGlobalAssetId

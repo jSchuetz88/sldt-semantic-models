@@ -1,18 +1,26 @@
 {
+  "rfqIdentification" : {
+    "source" : "https://maasportal.mendixcloud.com/",
+    "id" : "Drehteil_02_0815",
+    "name" : "Drehteil",
+    "dateTime" : "2023-10-24T14:48:54.709Z"
+  },
   "rfqConfiguration" : {
-    "firstDeliveryDate" : "2023-10-24",
-    "additionalFiles" : { },
     "cadFile" : { },
-    "additionalComments" : "this is a prototype, recommendations towards design for manufacturing are highly welcome",
+    "cadFileType" : "STEP, stl, jt",
     "parts" : {
-      "generalTolerance" : "ISO 2768-1 (m), Rough DIN ISO 2768 cL, Medium DIN ISO 2768 mK, Fine DIN ISO 2768 fH",
-      "additionalQualityRequirements" : "premium quality check, standard quality check",
+      "partId" : "Drehteil",
+      "partName" : "Drehteil",
       "manufacturingDomain" : "additive manufacturing",
+      "manufacturingMethod" : "milling, powder bed fusion, welding,...",
+      "billOfProcess" : { },
       "postProcesses" : {
         "postProcessGroup" : "heat treatment, surface treatment, surface finishing...",
-        "postProcessProperty" : "black (for colouring)",
-        "postProcessType" : "stress relieving, sandblasting, colouring"
+        "postProcessType" : "stress relieving, sandblasting, colouring",
+        "postProcessProperty" : "black (for colouring)"
       },
+      "generalTolerance" : "ISO 2768-1 (m), Rough DIN ISO 2768 cL, Medium DIN ISO 2768 mK, Fine DIN ISO 2768 fH",
+      "additionalQualityRequirements" : "premium quality check, standard quality check",
       "testPartRequired" : false,
       "quantity" : {
         "quantityNumber" : 2.5,
@@ -20,54 +28,46 @@
       },
       "material" : {
         "materialItems" : {
-          "type" : "density g/cm3",
-          "value" : "2.7"
+          "value" : "2.7",
+          "type" : "density g/cm3"
         },
         "materialGroup" : "aluminum, steel, ..."
-      },
-      "partId" : "Drehteil",
-      "billOfProcess" : { },
-      "manufacturingMethod" : "milling, powder bed fusion, welding,...",
-      "partName" : "Drehteil"
+      }
     },
     "billOfMaterial" : {
-      "catenaXId" : "urn:uuid:055c1128-0375-47c8-98de-7cf802c3241d",
       "childItems" : [ {
-        "catenaXId" : "urn:uuid:055c1128-0375-47c8-98de-7cf802c3241d",
+        "createdOn" : "2022-02-03T14:48:54.709Z",
         "quantity" : {
           "quantityNumber" : 2.5,
           "measurementUnit" : "unit:litre"
         },
-        "createdOn" : "2022-02-03T14:48:54.709Z",
-        "businessPartner" : "BPNL50096894aNXY",
-        "lastModifiedOn" : "2022-02-03T14:48:54.709Z"
-      } ]
+        "lastModifiedOn" : "2022-02-03T14:48:54.709Z",
+        "catenaXId" : "urn:uuid:055c1128-0375-47c8-98de-7cf802c3241d",
+        "businessPartner" : "BPNL50096894aNXY"
+      } ],
+      "catenaXId" : "urn:uuid:055c1128-0375-47c8-98de-7cf802c3241d"
     },
-    "cadFileType" : "STEP, stl, jt",
-    "lastDeliveryDate" : "2023-12-24"
-  },
-  "rfqIdentification" : {
-    "name" : "Drehteil",
-    "dateTime" : "2023-10-24T14:48:54.709Z",
-    "source" : "https://maasportal.mendixcloud.com/",
-    "id" : "Drehteil_02_0815"
-  },
-  "cxHeader" : {
-    "context" : "manufacturing as a service",
-    "senderBpn" : "BPNL50096894aNXY",
-    "messageId" : "urn:uuid:4683Ae7E-4ACE-B828-a8BD-bFF0Ecc6EdcB",
-    "recipientBpn" : "BPNL50096894aNXY",
-    "sentDateTime" : "2023-10-24T14:48:54.709Z",
-    "version" : "1.0.1"
+    "firstDeliveryDate" : "2023-10-24",
+    "lastDeliveryDate" : "2023-12-24",
+    "additionalComments" : "this is a prototype, recommendations towards design for manufacturing are highly welcome",
+    "additionalFiles" : { }
   },
   "rfqSender" : {
-    "deliveryRequirements" : "no plastic for packaging",
     "senderName" : "John Doe",
     "senderAddress" : "Sunstreet 1, 5555 Sunstate",
-    "senderPhoneNumber" : "555 123456",
+    "senderCompanyName" : "ManufactureEnterprise",
     "senderEMail" : "johndoe@sunny.com",
-    "senderDeliveryAddress" : "Mystreet 1, 1234 Mystate",
+    "senderPhoneNumber" : "555 123456",
     "senderAccountAddress" : "Accountstreet 1, 1234 Accountstate",
-    "senderCompanyName" : "ManufactureEnterprise"
+    "senderDeliveryAddress" : "Mystreet 1, 1234 Mystate",
+    "deliveryRequirements" : "no plastic for packaging"
+  },
+  "cxHeader" : {
+    "senderBpn" : "BPNL50096894aNXY",
+    "recipientBpn" : "BPNL50096894aNXY",
+    "context" : "manufacturing as a service",
+    "messageId" : "c83adEE8-63fD-AEce-AD3d-FEd7EBF2f8E8",
+    "sentDateTime" : "2023-10-24T14:48:54.709Z",
+    "version" : "1.0.1"
   }
 }

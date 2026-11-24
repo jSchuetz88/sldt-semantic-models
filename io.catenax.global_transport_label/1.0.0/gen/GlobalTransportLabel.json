@@ -1,102 +1,102 @@
 {
   "shipFrom" : {
-    "bpnsProperty" : "BPNS0123456789ZZ",
-    "supplierId" : "eOMtThyhVNLWUZNRcBaQKxI",
+    "supplierId" : "pTswh0",
     "address" : {
+      "thoroughfare" : {
+        "technicalKey" : "STREET",
+        "value" : "Bernstrasse",
+        "number" : "45"
+      },
       "locality" : {
-        "value" : "Mannheim",
-        "technicalKey" : "BLOCK"
+        "technicalKey" : "CITY",
+        "value" : "Mannheim"
+      },
+      "premise" : {
+        "technicalKey" : "OTHER",
+        "value" : "Werk 1"
+      },
+      "postalDeliveryPoint" : {
+        "technicalKey" : "OTHER",
+        "value" : "Tor 1"
       },
       "country" : {
-        "shortName" : ""
+        "shortName" : "PB-WNK"
       },
       "postCode" : {
         "value" : "98765-4321",
         "technicalKey" : "CEDEX"
-      },
+      }
+    },
+    "bpnsProperty" : "BPNS0123456789ZZ"
+  },
+  "shipTo" : {
+    "unloadingPoint" : "013/RAMP",
+    "internalDestination" : "15/WH4",
+    "address" : {
       "thoroughfare" : {
+        "technicalKey" : "STREET",
         "value" : "Bernstrasse",
-        "number" : "45",
-        "technicalKey" : "STREET"
+        "number" : "45"
+      },
+      "locality" : {
+        "technicalKey" : "CITY",
+        "value" : "Mannheim"
       },
       "premise" : {
-        "value" : "Werk 1",
-        "technicalKey" : "BUILDING"
+        "technicalKey" : "OTHER",
+        "value" : "Werk 1"
       },
       "postalDeliveryPoint" : {
-        "value" : "Tor 1",
-        "technicalKey" : "INTERURBAN_DELIVERY_POINT"
+        "technicalKey" : "OTHER",
+        "value" : "Tor 1"
+      },
+      "country" : {
+        "shortName" : "PB-WNK"
+      },
+      "postCode" : {
+        "value" : "98765-4321",
+        "technicalKey" : "CEDEX"
       }
-    }
+    },
+    "bpnaProperty" : "BPNA0123456789ZZ"
+  },
+  "labelType" : "M",
+  "customerReference1" : {
+    "deliveryNoteNumber" : "12345678",
+    "supplierNumber" : "987654321"
   },
   "customerSpecificRouting" : "Route 66",
   "logisticsReference" : {
+    "expectedTimeOfArrival" : "2023-10-27",
     "netWeight" : 700.0,
     "grossWeight" : 850.0,
     "itemQuantityProperty" : {
       "value" : 20.0,
       "unit" : "unit:piece"
-    },
-    "expectedTimeOfArrival" : "2023-10-27"
-  },
-  "customerReference1" : {
-    "deliveryNoteNumber" : "12345678",
-    "supplierNumber" : "987654321"
+    }
   },
   "contentDescription" : {
-    "catenaXId" : "c2801472-5f87-41a7-9a25-b0939c4e0dff",
     "customerPartNumber" : "GFS-123-554-747",
-    "customerPartDescription" : "yedUsFwdkelQbxeTeQOvaScfqIOOmaa",
-    "safetyRelevantPart" : true
+    "customerPartDescription" : "R45k5VPQ",
+    "safetyRelevantPart" : false,
+    "catenaXId" : "c2801472-5f87-41a7-9a25-b0939c4e0dff"
+  },
+  "packageId" : {
+    "licencePlate" : "1J 123456789 000000010",
+    "dataIdentifier" : "1J"
   },
   "customerReference2" : {
     "packagingTypeCode" : "0009PAL",
-    "hardwareRevision" : "HC11",
-    "softwareRevision" : "SV 1.1",
-    "numberOfInnerPackageItems" : "40",
     "dateCategoryInformation" : [ {
       "dateCategory" : "E",
       "date" : "2016-01-14"
     } ],
-    "partRevision" : "EC11",
-    "batchNumber" : "0335434567"
+    "batchNumber" : "0335434567",
+    "numberOfInnerPackageItems" : "40",
+    "hardwareRevision" : "HC11",
+    "softwareRevision" : "SV 1.1",
+    "partRevision" : "EC11"
   },
-  "customerReference3" : [ "VLhpfQGTMDYpsBZxvfBoeygjb", "UMaAIKKIkknjWEXJUfPxxQHeWKEJ" ],
-  "labelType" : "M",
-  "packageId" : {
-    "licencePlate" : "1J 123456789 000000010",
-    "dataIdentifier" : "J"
-  },
-  "optionalInformation" : [ "JxkyvRnL", "RYtGKbgicZaHCBRQDSx" ],
-  "shipTo" : {
-    "bpnaProperty" : "BPNA0123456789ZZ",
-    "address" : {
-      "locality" : {
-        "value" : "Mannheim",
-        "technicalKey" : "BLOCK"
-      },
-      "country" : {
-        "shortName" : ""
-      },
-      "postCode" : {
-        "value" : "98765-4321",
-        "technicalKey" : "CEDEX"
-      },
-      "thoroughfare" : {
-        "value" : "Bernstrasse",
-        "number" : "45",
-        "technicalKey" : "STREET"
-      },
-      "premise" : {
-        "value" : "Werk 1",
-        "technicalKey" : "BUILDING"
-      },
-      "postalDeliveryPoint" : {
-        "value" : "Tor 1",
-        "technicalKey" : "INTERURBAN_DELIVERY_POINT"
-      }
-    },
-    "unloadingPoint" : "013/RAMP",
-    "internalDestination" : "15/WH4"
-  }
+  "optionalInformation" : [ ],
+  "customerReference3" : [ ]
 }

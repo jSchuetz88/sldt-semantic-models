@@ -1,34 +1,23 @@
 {
   "failurePatternDefinition" : [ {
-    "timestampExpression" : {
-      "timestampPropertyName" : "productionDate",
-      "timestampInsideOperator" : "after",
-      "timestampValue" : "2024-01-01T00:00:00",
-      "referenceToAspectModel" : {
-        "ttlFile" : "Vehicles.ttl",
-        "modelVersion" : "2.1.0",
-        "nameSpace" : "io.catenax.fleet.claim_data"
-      }
-    },
-    "expressionConnector" : "AND",
     "stringExpression" : {
       "stringPropertyName" : "vehicleSeries",
       "stringInsideOperator" : "equal",
       "stringValue" : "EA189",
       "referenceToAspectModel" : {
+        "nameSpace" : "io.catenax.fleet.vehicles",
         "ttlFile" : "Vehicles.ttl",
-        "modelVersion" : "2.1.0",
-        "nameSpace" : "io.catenax.fleet.claim_data"
+        "modelVersion" : "2.1.0"
       }
     },
     "booleanExpression" : {
+      "booleanPropertyName" : "ecuList_dtcs_isMilOn",
       "booleanInsideOperator" : "equal",
       "booleanValue" : true,
-      "booleanPropertyName" : "ecuList_dtcs_isMilOn",
       "referenceToAspectModel" : {
+        "nameSpace" : "io.catenax.fleet.vehicles",
         "ttlFile" : "Vehicles.ttl",
-        "modelVersion" : "2.1.0",
-        "nameSpace" : "io.catenax.fleet.claim_data"
+        "modelVersion" : "2.1.0"
       }
     },
     "subExpressionList" : [ {
@@ -37,52 +26,22 @@
         "timestampInsideOperator" : "after",
         "timestampValue" : "2024-01-01T00:00:00",
         "referenceToAspectModel" : {
+          "nameSpace" : "io.catenax.fleet.vehicles",
           "ttlFile" : "Vehicles.ttl",
-          "modelVersion" : "2.1.0",
-          "nameSpace" : "io.catenax.fleet.claim_data"
-        }
-      },
-      "expressionConnector" : "AND",
-      "stringExpression" : {
-        "stringPropertyName" : "vehicleSeries",
-        "stringInsideOperator" : "equal",
-        "stringValue" : "EA189",
-        "referenceToAspectModel" : {
-          "ttlFile" : "Vehicles.ttl",
-          "modelVersion" : "2.1.0",
-          "nameSpace" : "io.catenax.fleet.claim_data"
-        }
-      },
-      "booleanExpression" : {
-        "booleanInsideOperator" : "equal",
-        "booleanValue" : true,
-        "booleanPropertyName" : "ecuList_dtcs_isMilOn",
-        "referenceToAspectModel" : {
-          "ttlFile" : "Vehicles.ttl",
-          "modelVersion" : "2.1.0",
-          "nameSpace" : "io.catenax.fleet.claim_data"
+          "modelVersion" : "2.1.0"
         }
       },
       "numericExpression" : {
         "numericPropertyName" : "repairMileage",
+        "numericInsideOperator" : "higher",
         "numericValue" : 100.0,
-        "numericInsideOperator" : "equal",
         "referenceToAspectModel" : {
+          "nameSpace" : "io.catenax.fleet.vehicles",
           "ttlFile" : "Vehicles.ttl",
-          "modelVersion" : "2.1.0",
-          "nameSpace" : "io.catenax.fleet.claim_data"
+          "modelVersion" : "2.1.0"
         }
-      }
-    } ],
-    "numericExpression" : {
-      "numericPropertyName" : "repairMileage",
-      "numericValue" : 100.0,
-      "numericInsideOperator" : "equal",
-      "referenceToAspectModel" : {
-        "ttlFile" : "Vehicles.ttl",
-        "modelVersion" : "2.1.0",
-        "nameSpace" : "io.catenax.fleet.claim_data"
-      }
-    }
+      },
+      "expressionConnector" : "AND"
+    } ]
   } ]
 }

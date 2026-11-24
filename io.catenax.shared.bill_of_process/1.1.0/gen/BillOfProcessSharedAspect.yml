@@ -96,15 +96,18 @@ components:
         lowerValue:
           description: Lower border of a value range item
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#lowerValue"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
         upperValue:
           description: Upper border for a value range item
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#upperValue"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
         name:
           description: Name of the parameter
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#name"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
       required:
       - lowerValue
       - upperValue
@@ -122,15 +125,18 @@ components:
         lowerLimit:
           description: The lower direct limit of the tolerance
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#lowerLimit"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
         upperLimit:
           description: Upper direct limit of the tolerance
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#upperLimit"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
         name:
           description: Name of the parameter
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#name"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
       required:
       - lowerLimit
       - upperLimit
@@ -150,29 +156,35 @@ components:
         name:
           description: Name of the parameter
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#name"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
         value:
           description: Value of the parameter
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#value"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
         semanticReference:
           description: Reference to a semantic namespace in which the type of the
             parameter is defined
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#semanticReference"
-          $ref: "#/components/schemas/SemanticListCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SemanticListCharacteristic"
         parameterKey:
           description: "Enumeration that is used to distinguish whether the parameter\
             \ has no value, has a value, has a value range or has a value with tolerances"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#parameterKey"
-          $ref: "#/components/schemas/ParameterKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ParameterKeyCharacteristic"
         valueRangeList:
           description: List with value ranges for a parameter
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#valueRangeList"
-          $ref: "#/components/schemas/ValueRangeList"
+          allOf:
+          - $ref: "#/components/schemas/ValueRangeList"
         tolerances:
           description: 'Tolerances for a parameter '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#tolerances"
-          $ref: "#/components/schemas/TolerancesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/TolerancesCharacteristic"
       required:
       - name
       - semanticReference
@@ -192,7 +204,8 @@ components:
           description: 'List of subsequent process step which can be executed in any
             order '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#successor"
-          $ref: "#/components/schemas/ProcessStepIdentifierList"
+          allOf:
+          - $ref: "#/components/schemas/ProcessStepIdentifierList"
       required:
       - successor
     PrecedenceElementList:
@@ -209,7 +222,8 @@ components:
         precedenceElements:
           description: List process steps that must be executed in parallel
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#precedenceElements"
-          $ref: "#/components/schemas/PrecedenceElementList"
+          allOf:
+          - $ref: "#/components/schemas/PrecedenceElementList"
       required:
       - precedenceElements
     PrecedenceRelationCharacteristic:
@@ -241,42 +255,49 @@ components:
         processStepIdentifier:
           description: Unique identifier for a concrete process step
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#processStepIdentifier"
-          $ref: "#/components/schemas/ProcessStepIdentifierList"
+          allOf:
+          - $ref: "#/components/schemas/ProcessStepIdentifierList"
         inputParameters:
           description: Optional list of parameters that are required to execute the
             corresponding process step
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#inputParameters"
-          $ref: "#/components/schemas/ParameterList"
+          allOf:
+          - $ref: "#/components/schemas/ParameterList"
         outputParameters:
           description: Optional list of parameters that are returned from the process
             step and can be used as inputParameters for subsequent steps
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#outputParameters"
-          $ref: "#/components/schemas/ParameterList"
+          allOf:
+          - $ref: "#/components/schemas/ParameterList"
         precedenceRelation:
           description: "List of alternative process steps from which the manufacturer\
             \ has to select exactly one step to be executed. In case of no alternative\
             \ process step, the list features only one element. In case of the last\
             \ element, the property is not used, since the process step has no successor"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#precedenceRelation"
-          $ref: "#/components/schemas/PrecedenceRelationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PrecedenceRelationCharacteristic"
         childProcessSteps:
           description: "List of child processes that need to be executed to complete\
             \ the parent process step. It enables the expression of hierarchies between\
             \ capabilities, e.g. a transport capability needs to execute at least\
             \ a pick, a move and a place capability"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#childProcessSteps"
-          $ref: "#/components/schemas/ProcessStepIdentifierList"
+          allOf:
+          - $ref: "#/components/schemas/ProcessStepIdentifierList"
         processStepType:
           description: "Distinguishes process steps based on whether there are the\
             \ first or last process step to be executed, or if they are a subprocess\
             \ step, which subdivides a higher-level process step into smaller process\
             \ steps"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#processStepType"
-          $ref: "#/components/schemas/ProcessStepTypeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ProcessStepTypeCharacteristic"
         capabilityId:
           description: Locally unique identifier for a capability.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.1.0#capabilityId"
-          $ref: "#/components/schemas/IdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IdCharacteristic"
       required:
       - processStepIdentifier
       - processStepType
@@ -309,29 +330,34 @@ components:
             \ contains all process steps that are required to manufacture the product,\
             \ specified with the bill of process  "
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#process"
-          $ref: "#/components/schemas/ProcessStepsList"
+          allOf:
+          - $ref: "#/components/schemas/ProcessStepsList"
         productVersion:
           description: Version of the product whose manufacturing steps are specified
             with the bill of process. It can for example specify a concrete variant
             of a product
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#productVersion"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
         productName:
           description: Name of the product whose production steps are specified within
             the bill of process
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#productName"
-          $ref: "#/components/schemas/StringCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/StringCharacteristic"
         billOfProcessIdentification:
           description: Unique identifier for a bill of process that can be used to
             reference instances of the bill of process
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#billOfProcessIdentification"
-          $ref: "#/components/schemas/BillOfProcessIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BillOfProcessIdCharacteristic"
         version:
           description: The unique identifier of the aspect model defining the structure
             and the semantics of the message's header. The version number should reflect
             the versioning schema of aspect models in Catena-X.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.message_header:3.0.0#version"
-          $ref: "#/components/schemas/SemanticVersioningTrait"
+          allOf:
+          - $ref: "#/components/schemas/SemanticVersioningTrait"
       required:
       - process
       - productVersion
@@ -346,7 +372,8 @@ components:
         billOfProcessModel:
           description: Property containing the the bill of process model
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.1.0#billOfProcessModel"
-          $ref: "#/components/schemas/BillOfProcessCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BillOfProcessCharacteristic"
       required:
       - billOfProcessModel
   responses:

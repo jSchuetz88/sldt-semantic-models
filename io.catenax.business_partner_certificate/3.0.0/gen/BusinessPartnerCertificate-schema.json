@@ -24,12 +24,16 @@
           "certificateType" : {
             "description" : "Type of the certificate as defined on the document,valid types are registered at BPN metadatacontroller",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#certificateType",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "certificateVersion" : {
             "description" : "Version of the certificate as defined on the document, usually the specific version of a certification standard",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#certificateVersion",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "certificateType" ]
@@ -56,12 +60,16 @@
           "enclosedSiteBpn" : {
             "description" : "The Business Partner Number (BPN) of an enclosed site",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#enclosedSiteBpn",
-            "$ref" : "#/components/schemas/BpnsTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnsTrait"
+            } ]
           },
           "areaOfApplication" : {
             "description" : "Details on which areas / application types a certificate is valid for a company and/or site.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#areaOfApplication",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "enclosedSiteBpn" ]
@@ -88,12 +96,16 @@
           "issuerName" : {
             "description" : "Name of the Issuer i.e. Certifying Authority.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#issuerName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "issuerBpn" : {
             "description" : "The Business Partner Number (BPN) of the Issuer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#issuerBpn",
-            "$ref" : "#/components/schemas/BpnlTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnlTrait"
+            } ]
           }
         },
         "required" : [ "issuerName" ]
@@ -112,12 +124,16 @@
           "validatorName" : {
             "description" : "The optional name of the data service provider who validated the given certificate",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#validatorName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "validatorBpn" : {
             "description" : "The Business Partner Number (BPN) of the data service provider who validated the given certificate",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#validatorBpn",
-            "$ref" : "#/components/schemas/BpnlTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnlTrait"
+            } ]
           }
         }
       },
@@ -150,22 +166,30 @@
           "creationDate" : {
             "description" : "The creation date of the document.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#creationDate",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "documentID" : {
             "description" : "The id of the certificate document as stored by the data service provider.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#documentID",
-            "$ref" : "#/components/schemas/DocumentIdCharaccteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DocumentIdCharaccteristic"
+            } ]
           },
           "contentType" : {
             "description" : "The content type of the document.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#contentType",
-            "$ref" : "#/components/schemas/MimeType"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MimeType"
+            } ]
           },
           "contentBase64" : {
             "description" : "The data is encoded using the Base64 encoding scheme, which converts binary data into a string of ASCII characters. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#contentBase64",
-            "$ref" : "#/components/schemas/ContentBase64Characteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ContentBase64Characteristic"
+            } ]
           }
         },
         "required" : [ "creationDate", "documentID", "contentType", "contentBase64" ]
@@ -176,62 +200,86 @@
     "businessPartnerNumber" : {
       "description" : "The Business Partner Number (BPN) of the certified legal entity .",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#businessPartnerNumber",
-      "$ref" : "#/components/schemas/BpnlTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BpnlTrait"
+      } ]
     },
     "type" : {
       "description" : "Type of the certificate as defined on the document like IS09001, IATF 16949 or other",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#type",
-      "$ref" : "#/components/schemas/CertificateTypeCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CertificateTypeCharacteristic"
+      } ]
     },
     "registrationNumber" : {
       "description" : "Registration number of the certificate as defined on the certificate",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#registrationNumber",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "areaOfApplication" : {
       "description" : "Details on which areas / application types a certificate is valid for a company and/or site.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#areaOfApplication",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "enclosedSites" : {
       "description" : "Additional sites covered by the certificate, which can be either the Business Partner Number Site (BPNS) or Business Partner Number Address (BPNA)",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#enclosedSites",
-      "$ref" : "#/components/schemas/EnclosedSitesCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/EnclosedSitesCharacteristic"
+      } ]
     },
     "validFrom" : {
       "description" : "Valid from date as defined on the certificate.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#validFrom",
-      "$ref" : "#/components/schemas/Date"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Date"
+      } ]
     },
     "validUntil" : {
       "description" : "Valid valid until as defined on the certificate. If certificate never expires value until expected to be 9999-12-31",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#validUntil",
-      "$ref" : "#/components/schemas/Date"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Date"
+      } ]
     },
     "issuer" : {
       "description" : "The BPN of the issuing authority e.g. TUEV Sued ",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#issuer",
-      "$ref" : "#/components/schemas/IssuerCharacteristics"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/IssuerCharacteristics"
+      } ]
     },
     "trustLevel" : {
       "description" : "The trust level of the given certificate - none,low, high, trusted",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#trustLevel",
-      "$ref" : "#/components/schemas/TrustLevelValue"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/TrustLevelValue"
+      } ]
     },
     "validator" : {
       "description" : "The Business Partner Number (BPN) of the data service provider who validates the given certificate.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#validator",
-      "$ref" : "#/components/schemas/TrustValidatorCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/TrustValidatorCharacteristic"
+      } ]
     },
     "uploader" : {
       "description" : "The Business Partner Number (BPN) of the business partner who originally provided the certifcate data or document.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#uploader",
-      "$ref" : "#/components/schemas/BpnlTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BpnlTrait"
+      } ]
     },
     "document" : {
       "description" : "The content and ID of the document.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.business_partner_certificate:3.0.0#document",
-      "$ref" : "#/components/schemas/DocumentCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/DocumentCharacteristic"
+      } ]
     }
   },
   "required" : [ "businessPartnerNumber", "type", "registrationNumber", "validFrom", "validUntil", "trustLevel", "document" ]

@@ -31,22 +31,30 @@
           "website" : {
             "description" : "Website of the contact.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.contact_information:1.0.0#website",
-            "$ref" : "#/components/schemas/WebsiteCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/WebsiteCharacteristic"
+            } ]
           },
           "phoneNumber" : {
             "description" : "Phone number with country and area code",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.contact_information:1.0.0#phoneNumber",
-            "$ref" : "#/components/schemas/PhoneNumberTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PhoneNumberTrait"
+            } ]
           },
           "email" : {
             "description" : "An email address",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.contact_information:1.0.0#email",
-            "$ref" : "#/components/schemas/EMailTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/EMailTrait"
+            } ]
           },
           "faxNumber" : {
             "description" : "Fax number with country and area code",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.contact_information:1.0.0#faxNumber",
-            "$ref" : "#/components/schemas/PhoneNumberTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PhoneNumberTrait"
+            } ]
           }
         }
       }
@@ -56,7 +64,9 @@
     "contactProperty" : {
       "description" : "Property describing contact information for an organization",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.contact_information:1.0.0#contactProperty",
-      "$ref" : "#/components/schemas/ContactCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ContactCharacteristic"
+      } ]
     }
   },
   "required" : [ "contactProperty" ]

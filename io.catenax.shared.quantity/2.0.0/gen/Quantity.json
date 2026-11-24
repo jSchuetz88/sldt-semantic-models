@@ -1,27 +1,23 @@
 {
-  "volumeProperty" : {
+  "massProperty" : {
     "value" : 20.0,
-    "unit" : "unit:cubicMetre"
+    "unit" : "unit:kilogram"
   },
-  "itemQuantityProperty" : {
+  "linearProperty" : {
     "value" : 20.0,
-    "unit" : "unit:piece"
+    "unit" : "unit:millimetre"
   },
   "areaProperty" : {
     "value" : 20.0,
     "unit" : "unit:squareCentimetre"
   },
+  "volumeProperty" : {
+    "value" : 20.0,
+    "unit" : "unit:litre"
+  },
   "countProperty" : {
     "value" : 20.0,
     "unit" : "unit:piece"
-  },
-  "massProperty" : {
-    "value" : 20.0,
-    "unit" : "unit:gram"
-  },
-  "linearProperty" : {
-    "value" : 20.0,
-    "unit" : "unit:millimetre"
   },
   "timeProperty" : {
     "value" : 20.0,
@@ -30,5 +26,9 @@
   "miscProperty" : {
     "value" : 20.0,
     "unit" : "unit:kilowattHour"
+  },
+  "itemQuantityProperty" : {
+    "value" : 20.0,
+    "unit" : "unit:piece"
   }
 }

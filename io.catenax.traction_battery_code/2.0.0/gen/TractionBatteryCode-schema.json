@@ -24,17 +24,23 @@
           "tractionBatteryCode" : {
             "description" : "Traction Battery Code identifying a single traction battery component like a pack, module or cell. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.traction_battery_code:2.0.0#tractionBatteryCode",
-            "$ref" : "#/components/schemas/TractionBatteryCodeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TractionBatteryCodeTrait"
+            } ]
           },
           "subcomponents" : {
             "description" : "Subcomponents of the component, if applicable. The relationship between traction battery codes are as follows:\n\nIf this traction battery code is given for a cell subcomponents are not required. \nIf this traction battery code is given for a battery module a list of cells are required to be registered as subcomponents.\nIf this traction battery code is given for a battery pack a list of modules are required to be registered as subcomponents (containing each a list of cell subcomponents respectively).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.traction_battery_code:2.0.0#subcomponents",
-            "$ref" : "#/components/schemas/ComponentList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ComponentList"
+            } ]
           },
           "productType" : {
             "description" : "The type of the battery component, e.g. a pack, a module or a cell.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.traction_battery_code:2.0.0#productType",
-            "$ref" : "#/components/schemas/ComponentTypeCharacterstic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ComponentTypeCharacterstic"
+            } ]
           }
         },
         "required" : [ "tractionBatteryCode", "productType" ]
@@ -53,17 +59,23 @@
     "tractionBatteryCode" : {
       "description" : "Traction Battery Code identifying a single traction battery component like a pack, module or cell. ",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.traction_battery_code:2.0.0#tractionBatteryCode",
-      "$ref" : "#/components/schemas/TractionBatteryCodeTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/TractionBatteryCodeTrait"
+      } ]
     },
     "subcomponents" : {
       "description" : "Subcomponents of the component, if applicable. The relationship between traction battery codes are as follows:\n\nIf this traction battery code is given for a cell subcomponents are not required. \nIf this traction battery code is given for a battery module a list of cells are required to be registered as subcomponents.\nIf this traction battery code is given for a battery pack a list of modules are required to be registered as subcomponents (containing each a list of cell subcomponents respectively).",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.traction_battery_code:2.0.0#subcomponents",
-      "$ref" : "#/components/schemas/ComponentList"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ComponentList"
+      } ]
     },
     "productType" : {
       "description" : "The type of the battery component, e.g. a pack, a module or a cell.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.traction_battery_code:2.0.0#productType",
-      "$ref" : "#/components/schemas/ComponentTypeCharacterstic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ComponentTypeCharacterstic"
+      } ]
     }
   },
   "required" : [ "tractionBatteryCode", "productType" ]

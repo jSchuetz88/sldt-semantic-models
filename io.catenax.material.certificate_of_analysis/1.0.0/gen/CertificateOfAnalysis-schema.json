@@ -27,22 +27,6 @@
         "x-samm-aspect-model-urn" : "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Language",
         "description" : "Describes a Property containing a language according to ISO 639-1, for example \"de\"."
       },
-      "CertificateOfAnalysisLink" : {
-        "description" : "Represents the link of the certificate of analysis document usually supplied via paper or digitally as PDF",
-        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#CertificateOfAnalysisLink",
-        "type" : "object",
-        "properties" : {
-          "link" : {
-            "description" : "HTTP(S) address according to RFC 3986",
-            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#link",
-            "$ref" : "#/components/schemas/ResourcePath"
-          }
-        },
-        "required" : [ "link" ],
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/CertificateOfAnalysisAbstractEntity"
-        } ]
-      },
       "PayloadCharacteristic" : {
         "type" : "string",
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#PayloadCharacteristic",
@@ -56,10 +40,30 @@
           "payload" : {
             "description" : "Base64-encoded string of PDF file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#payload",
-            "$ref" : "#/components/schemas/PayloadCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PayloadCharacteristic"
+            } ]
           }
         },
         "required" : [ "payload" ],
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/CertificateOfAnalysisAbstractEntity"
+        } ]
+      },
+      "CertificateOfAnalysisLink" : {
+        "description" : "Represents the link of the certificate of analysis document usually supplied via paper or digitally as PDF",
+        "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#CertificateOfAnalysisLink",
+        "type" : "object",
+        "properties" : {
+          "link" : {
+            "description" : "HTTP(S) address according to RFC 3986",
+            "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#link",
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ResourcePath"
+            } ]
+          }
+        },
+        "required" : [ "link" ],
         "allOf" : [ {
           "$ref" : "#/components/schemas/CertificateOfAnalysisAbstractEntity"
         } ]
@@ -77,22 +81,30 @@
           "format" : {
             "description" : "Identifier of the format of the payload.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#format",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "formatVersion" : {
             "description" : "Corresponding version identifier of the given format.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#formatVersion",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "formatLink" : {
             "description" : "URL to the format definition file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#formatLink",
-            "$ref" : "#/components/schemas/ResourcePath"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ResourcePath"
+            } ]
           },
           "payloadPreFormatted" : {
             "description" : "Base64-encoded string of data according to format",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#payloadPreFormatted",
-            "$ref" : "#/components/schemas/PayloadPreFormattedCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PayloadPreFormattedCharacteristic"
+            } ]
           }
         },
         "required" : [ "format", "formatVersion", "formatLink", "payloadPreFormatted" ],
@@ -108,17 +120,23 @@
           "issueDate" : {
             "description" : "Issue date of Certificate of Analysis",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#issueDate",
-            "$ref" : "#/components/schemas/IssueDateCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/IssueDateCharacteristic"
+            } ]
           },
           "issueVersion" : {
             "description" : "Versioning information of the Certificate of Analysis",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#issueVersion",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "language" : {
             "description" : "ISO-639-1 code of language",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#language",
-            "$ref" : "#/components/schemas/Language"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Language"
+            } ]
           }
         },
         "required" : [ "language" ]
@@ -147,22 +165,30 @@
           "format" : {
             "description" : "Identifier of the format of the payload.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#format",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "formatVersion" : {
             "description" : "Corresponding version identifier of the given format.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#formatVersion",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "formatLink" : {
             "description" : "URL to the format definition file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#formatLink",
-            "$ref" : "#/components/schemas/ResourcePath"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ResourcePath"
+            } ]
           },
           "payloadPreFormatted" : {
             "description" : "Base64-encoded string of data according to format",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#payloadPreFormatted",
-            "$ref" : "#/components/schemas/PayloadPreFormattedCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PayloadPreFormattedCharacteristic"
+            } ]
           }
         },
         "required" : [ "format", "formatVersion", "formatLink", "payloadPreFormatted" ],
@@ -176,17 +202,23 @@
     "certificateOfAnalysisLink" : {
       "description" : "Property that references the link representation of the Certificate of Analysis.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#hasCertificateOfAnalysisLink",
-      "$ref" : "#/components/schemas/CertificateOfAnalysisLinkCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CertificateOfAnalysisLinkCharacteristic"
+      } ]
     },
     "certificateOfAnalysisBinary" : {
       "description" : "Property that references the binary representation of the Certificate of Analysis.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#hasCertificateOfAnalysisBinary",
-      "$ref" : "#/components/schemas/CertificateOfAnalysisBinaryCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CertificateOfAnalysisBinaryCharacteristic"
+      } ]
     },
     "certificateOfAnalysisPreFormatted" : {
       "description" : "Property that references the pre formatted representation of the Certificate of Analysis.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.certificate_of_analysis:1.0.0#hasCertificateOfAnalysisSheetPreFormatted",
-      "$ref" : "#/components/schemas/CertificateOfAnalysisPreFormattedCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CertificateOfAnalysisPreFormattedCharacteristic"
+      } ]
     }
   },
   "required" : [ "certificateOfAnalysisLink", "certificateOfAnalysisBinary", "certificateOfAnalysisPreFormatted" ]

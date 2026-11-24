@@ -1,38 +1,32 @@
 {
-  "safetyDataSheetBinary" : [ {
-    "language" : "de",
-    "issueDate" : "2023-03-28",
-    "payload" : "3ZXRqhY=",
-    "issueVersion" : "8.1",
-    "previousVersion" : "8.0",
-    "applicableToCountry" : [ {
-      "name" : "Germany",
-      "alpha3Code" : "DEU"
-    } ]
-  } ],
   "safetyDataSheetLink" : [ {
     "link" : "https://sds.basf.com/view?bi=000001002234&material=000000000050719761&language=en&supplier=&salesOrg=D050&sbgv=SDS_GEN_GB",
-    "language" : "de",
-    "issueDate" : "2023-03-28",
     "issueVersion" : "8.1",
     "previousVersion" : "8.0",
+    "language" : "de",
     "applicableToCountry" : [ {
-      "name" : "Germany",
-      "alpha3Code" : "DEU"
+      "alpha3Code" : "DEU",
+      "name" : "Germany"
+    } ],
+    "issueDate" : "2023-03-28"
+  } ],
+  "safetyDataSheetBinary" : [ {
+    "payload" : "3ZXRqhY=",
+    "language" : "de",
+    "applicableToCountry" : [ {
+      "alpha3Code" : "DEU",
+      "name" : "Germany"
     } ]
   } ],
   "safetyDataSheetPreFormatted" : [ {
-    "previousVersion" : "8.0",
     "format" : "sdscom-xml",
+    "formatVersion" : "5.4",
+    "preFormattedPayload" : "MkU6w4pf/JDae+tYIgQAtCsp",
     "formatLink" : "https://github.com/esdscom/sdscom-xml/blob/master/SDSComXML.xsd",
     "language" : "de",
-    "issueDate" : "2023-03-28",
-    "formatVersion" : "5.4",
-    "issueVersion" : "8.1",
-    "preFormattedPayload" : "MkU6w4pf/JDae+tYIgQAtCsp",
     "applicableToCountry" : [ {
-      "name" : "Germany",
-      "alpha3Code" : "DEU"
+      "alpha3Code" : "DEU",
+      "name" : "Germany"
     } ]
   } ]
 }

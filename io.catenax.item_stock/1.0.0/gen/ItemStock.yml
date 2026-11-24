@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/ItemStock"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        positions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ItemStock"
     OrderIdCharacteristic:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#OrderIdCharacteristic"
@@ -115,19 +116,22 @@ components:
           description: "This is the order number on the supplier side that is given\
             \ by e.g., the supplier's enterprise resource planning system."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#supplierOrderId"
-          $ref: "#/components/schemas/OrderIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OrderIdCharacteristic"
         customerOrderId:
           description: "This is the order number on the customer side that can be\
             \ given by e.g., the customer's enterprise resource planning system."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#customerOrderId"
-          $ref: "#/components/schemas/OrderIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OrderIdCharacteristic"
         customerOrderPositionId:
           description: "This is an identifier for the position of an order defined\
             \ by the customer. It's not a technical identifier, such as an UUID. This\
             \ identifier is used within the business context when talking about the\
             \ position."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#customerOrderPositionId"
-          $ref: "#/components/schemas/OrderPositionIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OrderPositionIdCharacteristic"
       required:
       - customerOrderId
       - customerOrderPositionId
@@ -191,12 +195,14 @@ components:
         value:
           description: The quantity value associated with the unit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:1.0.0#quantityValue"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         unit:
           description: "The unit of an item. Common units may be related to mass,\
             \ count, linear, area, volume or misc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:1.0.0#itemUnit"
-          $ref: "#/components/schemas/ItemUnitEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/ItemUnitEnumeration"
       required:
       - value
       - unit
@@ -232,24 +238,28 @@ components:
             \ stocks \"from a supplier ready to be shipped to a certain customer\"\
             , the stock may refer to an order position of a customer."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#quantityOnAllocatedStock"
-          $ref: "#/components/schemas/QuantityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityCharacteristic"
         stockLocationBPNS:
           description: BPNS identifying the site the stock is located at. One stock
             has always one location.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#stockLocationBPNS"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
         isBlocked:
           description: |-
             A set of finished items that are located on the blocked stock area, quarantine area, etc. waiting to be released.
 
             Example: Stock is in review and not released due to customer complaint regarding a recent batch.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#isBlocked"
-          $ref: "#/components/schemas/IsBlockedCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IsBlockedCharacteristic"
         stockLocationBPNA:
           description: BPNA identifying the address the stock is located at. One stock
             has always one location.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#stockLocationBPNA"
-          $ref: "#/components/schemas/BpnaTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnaTrait"
       required:
       - quantityOnAllocatedStock
       - stockLocationBPNS
@@ -275,18 +285,21 @@ components:
           description: The order position reference contains information to identify
             a position within an order.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#orderPositionReference"
-          $ref: "#/components/schemas/OrderPositionReferenceCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OrderPositionReferenceCharacteristic"
         lastUpdatedOnDateTime:
           description: Date and time at which the position has been updated by the
             supplier's systems. Date and time are set according to a timezone.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#lastUpdatedOnDateTime"
-          $ref: "#/components/schemas/DateTimeStamp"
+          allOf:
+          - $ref: "#/components/schemas/DateTimeStamp"
         allocatedStocks:
           description: Stocks that have been already allocated to the customer or
             delivered by a specific supplier. An allocated stock always refers to
             a stock location.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#allocatedStocks"
-          $ref: "#/components/schemas/AllocatedStockCollection"
+          allOf:
+          - $ref: "#/components/schemas/AllocatedStockCollection"
       required:
       - lastUpdatedOnDateTime
       - allocatedStocks
@@ -338,7 +351,8 @@ components:
             \ one position.\n\nIn case there is no item on stock, positions MUST be\
             \ empty."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#positions"
-          $ref: "#/components/schemas/PositionsCollection"
+          allOf:
+          - $ref: "#/components/schemas/PositionsCollection"
         materialNumberCustomer:
           description: "Material identifier as assigned by customer. This material\
             \ number identifies the material (as planned) in customer's database.\
@@ -346,21 +360,25 @@ components:
             \ an own number, the materialNumberSupplier should be set in this field,\
             \ too."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#materialNumberCustomer"
-          $ref: "#/components/schemas/MaterialNumberCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialNumberCharacteristic"
         materialGlobalAssetId:
           description: Material identifier used uniquely to identify the Material
             (e.g. PartAsPlanned).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#materialGlobalAssetId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         materialNumberSupplier:
           description: Material identifier as assigned by supplier. This material
             number identifies the material (as planned) in supplier's database.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#materialNumberSupplier"
-          $ref: "#/components/schemas/MaterialNumberCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialNumberCharacteristic"
         direction:
           description: Direction of the stock from data provider perspective.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.item_stock:1.0.0#direction"
-          $ref: "#/components/schemas/DirectionCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DirectionCharacteristic"
       required:
       - positions
       - materialNumberCustomer

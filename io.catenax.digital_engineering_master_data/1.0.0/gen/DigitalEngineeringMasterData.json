@@ -1,61 +1,60 @@
 {
-  "digitalMasterDataID" : "urn:uuid:48878d48-6f1d-47f5-8ded-a441d0d879df",
   "engineering" : {
+    "requirementInformation" : {
+      "reqIfName" : "Plastic deformation of the bogie",
+      "reqIfType" : "Functional",
+      "version" : {
+        "versionNumber" : "2.0.0",
+        "versionId" : "EabDaF3F-9d1b-f9A2-1529-6CB9854a67dE"
+      },
+      "description" : "GnHcH",
+      "creationDate" : "2026-11-24T12:36:23.000Z",
+      "author" : "Lisa Dräxlmaier GmbH",
+      "foreignId" : "3.1.1",
+      "longname" : "Plastic deformation of the bogie",
+      "metadata" : [ {
+        "key" : "ExpectedFinalization",
+        "value" : "2025-11-30T00:00:00.000+02:00",
+        "metadataDescription" : "Timestamp of the expected finalization of the requirement"
+      } ],
+      "specification" : [ "https://www.prostep.org/fileadmin/prod-pay-download-8c1d/Recommendation_ReqIF_V2.2.pdf" ],
+      "versionPredecessor" : {
+        "versionPredecessorNumber" : "1.4.5",
+        "versionPredecessorId" : "urn:uuid:Aec8f1Ae-5b5E-FeeE-D9B3-9ccB88E7d782"
+      }
+    },
+    "softwareData" : {
+      "securityAndEncryptionStandards" : "AES-256, TLS 1.2, Secure Boot",
+      "signatureSign" : "SH",
+      "softwareVersion" : "v3.2.1"
+    },
     "mechanicsData" : {
+      "materialData" : {
+        "density" : 7850.0,
+        "materialDescription" : "6Ltuf",
+        "materialID" : "type: IMDS ID: 123456789",
+        "thermalExpansionCoefficient" : -28424.2
+      },
       "geometryData" : {
+        "reference2DCADDrawing" : "urn:samm:io.catenax.2dm:a2f115cd-b9dd-4c5d-94c1-52fdf5b99a88",
+        "reference3DCADDrawing" : "urn:samm:io.catenax.3dm:a2f115cd-b9dd-4c5d-94c1-52fdf5b99a88",
         "boundingBox" : {
           "boundingBoxPropertyLenght" : 120.0,
           "boundingBoxPropertyWidth" : 45.0,
           "boundingBoxPropertyHeight" : 30.0
         },
-        "surfaceArea" : 200.0,
-        "weightedWeightTolerance" : 1.0374021E9,
-        "reference2DCADDrawing" : "urn:samm:io.catenax.2dm:a2f115cd-b9dd-4c5d-94c1-52fdf5b99a88",
-        "calculatedWeightTolerance" : 1.970794E9,
+        "boundingSphere" : 315.0,
         "calculatedWeight" : 2.35,
-        "estimatedWeightTolerance" : -8.868281E8,
+        "calculatedWeightTolerance" : 3818.0,
+        "centerOfGravity" : [ "150.2, 75.6, 20.1" ],
+        "estimatedWeight" : 2.35,
+        "estimatedWeightTolerance" : -72583.4,
+        "momentOfInertia" : 0.045,
+        "surfaceArea" : 200.0,
         "volume" : 400.0,
         "weightedWeight" : 2.35,
-        "estimatedWeight" : 2.35,
-        "reference3DCADDrawing" : "urn:samm:io.catenax.3dm:a2f115cd-b9dd-4c5d-94c1-52fdf5b99a88",
-        "momentOfInertia" : 0.045,
-        "centerOfGravity" : [ "150.2, 75.6, 20.1" ],
-        "boundingSphere" : 315.0
-      },
-      "materialData" : {
-        "thermalExpansionCoefficient" : -2.600191E38,
-        "density" : 7850.0,
-        "materialID" : "type: IMDS ID: 123456789",
-        "materialDescription" : "yedUsFwdkelQbxeTeQOvaScfqIOOmaa"
+        "weightedWeightTolerance" : -44545.4
       }
-    },
-    "requirementInformation" : {
-      "foreignId" : "3.1.1",
-      "longname" : "Plastic deformation of the bogie",
-      "versionPredecessor" : {
-        "versionPredecessorNumber" : "1.4.5",
-        "versionPredecessorId" : "urn:uuid:b6A38C2c-6b82-a07E-C46B-1a3FCC6804Ee"
-      },
-      "reqIfName" : "Plastic deformation of the bogie",
-      "reqIfType" : "Functional",
-      "metadata" : [ {
-        "value" : "2025-11-30T00:00:00.000+02:00",
-        "metadataDescription" : "Timestamp of the expected finalization of the requirement",
-        "key" : "ExpectedFinalization"
-      } ],
-      "author" : "Lisa Dräxlmaier GmbH",
-      "description" : "eOMtThyhVNLWUZNRcBaQKxI",
-      "specification" : [ "https://www.prostep.org/fileadmin/prod-pay-download-8c1d/Recommendation_ReqIF_V2.2.pdf" ],
-      "creationDate" : "2026-01-26T14:36:26.422Z",
-      "version" : {
-        "versionNumber" : "2.0.0",
-        "versionId" : "7F8D2Dc2-4C6f-a609-eeE1-436De54fB98C"
-      }
-    },
-    "softwareData" : {
-      "signatureSign" : "SH",
-      "securityAndEncryptionStandards" : "AES-256, TLS 1.2, Secure Boot",
-      "softwareVersion" : "v3.2.1"
     },
     "electronicsData" : {
       "diagnosticsAndErrorCodes" : "P0420 - Catalyst System Efficiency Below Threshold",
@@ -63,30 +62,31 @@
     }
   },
   "basicdata" : {
-    "notes" : {
-      "noteProperty" : [ "JxkyvRnL" ],
-      "timestamp" : "2026-01-26T14:36:26.437Z"
-    },
-    "releaseDate" : "2025-01-10T14:30:00",
-    "description" : "Injection-molded front bumper with integrated sensor mounts",
+    "validTo" : "2025-01-10T14:30:00",
     "validFrom" : "2025-01-10T14:30:00",
+    "supplier" : "BPNL6666666666YY",
+    "supersededVersion" : "V3.0",
+    "successorPart" : "urn:samm:io.catenax.dmd:a2f115cd-b9dd-4c5d-94c1-52fdf5b99a88",
+    "releaseDate" : "2025-01-10T14:30:00",
+    "partNumber" : "145SGG01.1",
+    "notes" : {
+      "noteProperty" : [ "RCZmlW4BXP" ],
+      "timestamp" : "2026-11-24T12:36:23.000Z"
+    },
+    "nomenclature" : "Head Unit",
+    "description" : "Injection-molded front bumper with integrated sensor mounts",
+    "category" : "Exterior",
+    "status" : "Approved",
     "version" : {
       "versionNumber" : "3.1.0",
-      "versionID" : "D8eadD57-eD20-3D80-9171-eAFCfDcd8AbC"
-    },
-    "supersededVersion" : "V3.0",
-    "nomenclature" : "Head Unit",
-    "supplier" : "BPNL6666666666YY",
-    "successorPart" : "urn:samm:io.catenax.dmd:a2f115cd-b9dd-4c5d-94c1-52fdf5b99a88",
-    "partNumber" : "145SGG01.1",
-    "category" : "Body & Structure",
-    "validTo" : "2025-01-10T14:30:00",
-    "status" : "In Progress"
+      "versionID" : "AB3928a5-AAb7-2F32-7B95-bC9B59DcA6fb"
+    }
   },
+  "digitalMasterDataID" : "urn:uuid:48878d48-6f1d-47f5-8ded-a441d0d879df",
   "complianceData" : {
-    "statutoryFeatures" : [ "REACH, RoHS, ISO 26262, DBL 5307.10" ],
-    "homologationApprovalNumber" : "RYtGKbgicZaHCBRQDSx",
+    "homologationApprovalNumber" : "zcr",
+    "safetyRelevant" : true,
     "safetyRelevantFeatures" : [ "X" ],
-    "safetyRelevant" : true
+    "statutoryFeatures" : [ "REACH, RoHS, ISO 26262, DBL 5307.10" ]
   }
 }

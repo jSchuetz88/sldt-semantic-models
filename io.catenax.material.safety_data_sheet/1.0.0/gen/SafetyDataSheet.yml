@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/SafetyDataSheet"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        hasSafetyDataSheetLink:
+          type: array
+          items:
+            $ref: "#/components/schemas/SafetyDataSheet"
     ResourcePath:
       type: string
       format: uri
@@ -125,11 +126,13 @@ components:
           description: Country code consisting of three capital letters according
             to ISO 3166.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#hasAlpha3Code"
-          $ref: "#/components/schemas/Alpha3CodeTrait"
+          allOf:
+          - $ref: "#/components/schemas/Alpha3CodeTrait"
         name:
           description: Country name.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#label"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - alpha3Code
       - name
@@ -164,19 +167,23 @@ components:
         format:
           description: Identifier of the format of the payload.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#format"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         formatVersion:
           description: Corresponding version identifier of the given format
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#formatVersion"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         preFormattedPayload:
           description: Base64-encoded string of data according to format
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#preFormattedPayload"
-          $ref: "#/components/schemas/PreFormattedPayloadCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PreFormattedPayloadCharacteristic"
         formatLink:
           description: URL to the format definition file
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#formatLink"
-          $ref: "#/components/schemas/ResourcePath"
+          allOf:
+          - $ref: "#/components/schemas/ResourcePath"
       required:
       - format
       - formatVersion
@@ -192,7 +199,8 @@ components:
         link:
           description: HTTP(S) address according to RFC 3986
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#link"
-          $ref: "#/components/schemas/ResourcePath"
+          allOf:
+          - $ref: "#/components/schemas/ResourcePath"
       required:
       - link
       allOf:
@@ -212,7 +220,8 @@ components:
         payload:
           description: Base64-encoded string of PDF file
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#payload"
-          $ref: "#/components/schemas/PayloadCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PayloadCharacteristic"
       required:
       - payload
       allOf:
@@ -228,24 +237,29 @@ components:
         issueVersion:
           description: Versioning information of the Safety Data Sheet
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#issueVersion"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         previousVersion:
           description: Versioning information of the previous SDS
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#previousVersion"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         language:
           description: ISO-639-1 code of language
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#language"
-          $ref: "#/components/schemas/Language"
+          allOf:
+          - $ref: "#/components/schemas/Language"
         applicableToCountry:
           description: Relationship between the Safety Data Sheet and the country
             to which it applies for.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#applicableToCountry"
-          $ref: "#/components/schemas/CountryTrait"
+          allOf:
+          - $ref: "#/components/schemas/CountryTrait"
         issueDate:
           description: Issue date of Safety Data Sheet
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#issueDate"
-          $ref: "#/components/schemas/IssueDateCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IssueDateCharacteristic"
       required:
       - language
       - applicableToCountry
@@ -281,17 +295,20 @@ components:
           description: Property that references the link representation of the Safety
             Data Sheet.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#hasSafetyDataSheetLink"
-          $ref: "#/components/schemas/SafetyDataSheetLinkList"
+          allOf:
+          - $ref: "#/components/schemas/SafetyDataSheetLinkList"
         safetyDataSheetBinary:
           description: Property that references the binary representation of the Safety
             Data Sheet.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#hasSafetyDataSheetBinary"
-          $ref: "#/components/schemas/SafetyDataSheetBinaryList"
+          allOf:
+          - $ref: "#/components/schemas/SafetyDataSheetBinaryList"
         safetyDataSheetPreFormatted:
           description: Property that references the pre formatted representation of
             the Safety Data Sheet.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material.safety_data_sheet:1.0.0#hasSafetyDataSheetPreFormatted"
-          $ref: "#/components/schemas/SafetyDataSheetPreFormattedList"
+          allOf:
+          - $ref: "#/components/schemas/SafetyDataSheetPreFormattedList"
       required:
       - safetyDataSheetLink
       - safetyDataSheetBinary

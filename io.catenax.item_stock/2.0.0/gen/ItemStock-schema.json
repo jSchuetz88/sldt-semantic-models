@@ -23,17 +23,23 @@
           "supplierOrderId" : {
             "description" : "This is the order number on the supplier side that is given by e.g., the supplier's enterprise resource planning system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#supplierOrderId",
-            "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            } ]
           },
           "customerOrderId" : {
             "description" : "This is the order number on the customer side that can be given by e.g., the customer's enterprise resource planning system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#customerOrderId",
-            "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            } ]
           },
           "customerOrderPositionId" : {
             "description" : "This is an identifier for the position of an order defined by the customer. It's not a technical identifier, such as an UUID. This identifier is used within the business context when talking about the position.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#customerOrderPositionId",
-            "$ref" : "#/components/schemas/OrderPositionIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderPositionIdCharacteristic"
+            } ]
           }
         },
         "required" : [ "customerOrderId", "customerOrderPositionId" ]
@@ -58,12 +64,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of an item. Common units may be related to mass, count, linear, area, volume or misc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#itemUnit",
-            "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -99,27 +109,37 @@
           "quantityOnAllocatedStock" : {
             "description" : "This is the quantity of the material on stock. In case of stocks \"from a supplier ready to be shipped to a certain customer\", the stock may refer to an order position of a customer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#quantityOnAllocatedStock",
-            "$ref" : "#/components/schemas/QuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityCharacteristic"
+            } ]
           },
           "stockLocationBPNS" : {
             "description" : "BPNS identifying the site the stock is located at. One stock has always one location.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#stockLocationBPNS",
-            "$ref" : "#/components/schemas/BpnsTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnsTrait"
+            } ]
           },
           "isBlocked" : {
             "description" : "A set of finished items that are located on the blocked stock area, quarantine area, etc. waiting to be released.\n\nExample: Stock is in review and not released due to customer complaint regarding a recent batch.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#isBlocked",
-            "$ref" : "#/components/schemas/IsBlockedCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/IsBlockedCharacteristic"
+            } ]
           },
           "stockLocationBPNA" : {
             "description" : "BPNA identifying the address the stock is located at. One stock has always one location.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#stockLocationBPNA",
-            "$ref" : "#/components/schemas/BpnaTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnaTrait"
+            } ]
           },
           "lastUpdatedOnDateTime" : {
             "description" : "Date and time at which the position has been updated by the reporting partner's system. Date and time are set according to a timezone.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#lastUpdatedOnDateTime",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           }
         },
         "required" : [ "quantityOnAllocatedStock", "stockLocationBPNS", "isBlocked", "stockLocationBPNA", "lastUpdatedOnDateTime" ]
@@ -141,12 +161,16 @@
           "orderPositionReference" : {
             "description" : "The order position reference contains information to identify a position within an order.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#orderPositionReference",
-            "$ref" : "#/components/schemas/OrderPositionReferenceCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderPositionReferenceCharacteristic"
+            } ]
           },
           "allocatedStocks" : {
             "description" : "Stocks that have been already allocated to the customer or delivered by a specific supplier. An allocated stock always refers to a stock location.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#allocatedStocks",
-            "$ref" : "#/components/schemas/AllocatedStockSet"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/AllocatedStockSet"
+            } ]
           }
         },
         "required" : [ "allocatedStocks" ]
@@ -178,17 +202,23 @@
     "positions" : {
       "description" : "In case of a supplier's stocks for a customer, these stocks may reference the order position for that they have been produced. \nIn case of a customer's stock delivered by a supplier, there is exactly one position.\n\nIn case there is no item on stock, positions MUST be empty.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#positions",
-      "$ref" : "#/components/schemas/PositionsSet"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PositionsSet"
+      } ]
     },
     "materialGlobalAssetId" : {
       "description" : "Identifier used uniquely to identify part type twin.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#materialGlobalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "direction" : {
       "description" : "Direction of the stock from data provider perspective.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.item_stock:2.0.0#direction",
-      "$ref" : "#/components/schemas/DirectionCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/DirectionCharacteristic"
+      } ]
     }
   },
   "required" : [ "positions", "materialGlobalAssetId", "direction" ]

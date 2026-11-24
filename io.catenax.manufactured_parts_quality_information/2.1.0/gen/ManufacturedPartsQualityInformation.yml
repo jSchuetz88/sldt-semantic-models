@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/ManufacturedPartsQualityInformation"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        listOfManufacturedParts:
+          type: array
+          items:
+            $ref: "#/components/schemas/ManufacturedPartsQualityInformation"
     RecordStatusEnumeration:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#RecordStatusEnumeration"
@@ -129,7 +130,7 @@ components:
         Only one property in a semantic entity should be a uniqueID. Unique IDs can
         be used to link a data set with other semantic models.
     PositiveNumber:
-      type: number
+      type: integer
       minimum: 1
       x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#PositiveNumber"
       description: This Characteristic describes a positive number. 0 is not included.
@@ -159,11 +160,13 @@ components:
         key:
           description: Key identifier for this additional information
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#key"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         value:
           description: Value for this additional information
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#value"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - key
       - value
@@ -192,49 +195,58 @@ components:
             \ deleted on data consumer side\n- same=> This record was transferred\
             \ in the initial load or in a previous delta update"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#recordStatus"
-          $ref: "#/components/schemas/RecordStatusEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/RecordStatusEnumeration"
         batchId:
           description: "Manufacturer-specific batch identifier: In which batch was\
             \ this part manufactured"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#batchId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         catenaXPartId:
           description: The fully anonymous and unique Catena-X ID of this part. This
             id is unique inside Catena-X data space.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#catenaXPartId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         catenaXQualityTaskId:
           description: The fully anonymous and unique Catena-X ID of this quality
             task. This id is unique inside Catena-X data space.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#catenaXQualityTaskId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         hasBeenReworked:
           description: Indicator whether this part was reworked during manufacturing
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#hasBeenReworked"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         manufacturerPartName:
           description: "Part name given from  the manufacturer or supplier of this\
             \ part, component, sub component or raw material. A manufacturer part\
             \ name is NOT unique: All parts of the same kind share the same part name."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#manufacturerPartName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         manufacturerPartNumber:
           description: "Part number given from  the manufacturer or supplier of this\
             \ part, component, sub component or raw material. A manufacturer part\
             \ number is NOT unique: All parts of the same kind share the same part\
             \ number."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#manufacturerPartNumber"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         manufacturerSerialNumber:
           description: "Serial number given from the manufacturer or supplier of this\
             \ part, component, sub component. A manufacturer serial number is unique:\
             \ With the serial number the produced part can be traced within the manufacturer."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#manufacturerSerialNumber"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         numberOfConductedEOLTests:
           description: Number how often this part went through the EOL test
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#numberOfConductedEOLTests"
-          $ref: "#/components/schemas/PositiveNumber"
+          allOf:
+          - $ref: "#/components/schemas/PositiveNumber"
         parentPartNumber:
           description: |-
             Internal part number of the analysed part.
@@ -242,7 +254,8 @@ components:
             If the manufacturer is a TIER2 supplier -> parent level is TIER1 supplier.
             A parent part number is NOT unique: All parent parts of the same kind share the same parent part number.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#parentPartNumber"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         parentSerialNumber:
           description: |-
             Serial number of the analysed part.
@@ -250,36 +263,44 @@ components:
             If the manufacturer is a TIER2 supplier -> parent level is TIER1 supplier.
             A parent serial number is unique: With the serial number the produced part can be traced within the parent company.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#parentSerialNumber"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         plantCatenaXId:
           description: "Unique Catena-X plant identifier, also called BPNS."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#plantCatenaXId"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
         plantCountryCode:
           description: "Country code of the plant, where the vehicle was produced."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#plantCountryCode"
-          $ref: "#/components/schemas/CountryCodeTrait"
+          allOf:
+          - $ref: "#/components/schemas/CountryCodeTrait"
         plantDescription:
           description: Long name of the production plant of the vehicle
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#plantDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         plantIdentifier:
           description: Plant id of the final assembly of the vehicle
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#plantIdentifier"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         productionDate:
           description: Date of production for this specific part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#productionDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         productionLine:
           description: On which production line was this part produced
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#productionLine"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         additionalInformation:
           description: You can use this key:value list for additional properties that
             were not defined in this aspect model.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#additionalInformation"
-          $ref: "#/components/schemas/ListOfAdditionalInformation"
+          allOf:
+          - $ref: "#/components/schemas/ListOfAdditionalInformation"
       required:
       - catenaXQualityTaskId
     ManufacturedPartsList:
@@ -297,17 +318,20 @@ components:
           description: Describes the selection criteria a Catena-X data provider has
             applied to create this data set.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#selectionCriteria"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         selectionStart:
           description: Describes the starting point for providing records in this
             data set.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#selectionStart"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         selectionEnd:
           description: Describes the end point for providing records in this data
             set.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#selectionEnd"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - selectionCriteria
     ManufacturedPartsQualityInformation:
@@ -319,13 +343,15 @@ components:
         listOfManufacturedParts:
           description: A list of manufactured parts and their properties
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#listOfManufacturedParts"
-          $ref: "#/components/schemas/ManufacturedPartsList"
+          allOf:
+          - $ref: "#/components/schemas/ManufacturedPartsList"
         metaInformation:
           description: 'This meta information is valid for all entries in this data
             set. The meta information is used to tell the data consumer which selection
             criteria were applied by the data provider. '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufactured_parts_quality_information:2.1.0#metaInformation"
-          $ref: "#/components/schemas/MetaCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MetaCharacteristic"
       required:
       - listOfManufacturedParts
   responses:

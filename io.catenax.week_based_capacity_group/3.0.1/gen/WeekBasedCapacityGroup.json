@@ -1,40 +1,40 @@
 {
+  "capacityGroupId" : "0157ba42-d2a8-4e28-8565-7b07830c1110",
+  "name" : "Spark Plugs on drilling machine for car model XYZ",
+  "supplierLocations" : [ "BPNS8888888888XX" ],
+  "customer" : "BPNL8888888888XX",
+  "supplier" : "BPNL6666666666YY",
   "unitOfMeasure" : "unit:piece",
   "linkedDemandSeries" : [ {
-    "loadFactor" : 3.5,
     "materialNumberCustomer" : "MNR-7307-AU340474.002",
     "materialNumberSupplier" : "MNR-8101-ID146955.001",
     "customerLocation" : "BPNS8888888888XX",
     "demandCategory" : {
       "demandCategoryCode" : "0001"
-    }
+    },
+    "loadFactor" : 3.5
   } ],
-  "linkedCapacityGroups" : [ "be4d8470-2de6-43d2-b5f8-2e5d3eebf3fd" ],
-  "unitOfMeasureIsOmitted" : false,
-  "capacityGroupIsInactive" : true,
-  "demandVolatilityParameters" : {
-    "startReferenceDateTime" : "2024-01-10T12:00:00.320Z",
-    "rollingHorizonAlertThresholds" : [ {
-      "sequenceNumber" : 1,
-      "absoluteNegativeDeviation" : 1E+2,
-      "subhorizonLength" : 4,
-      "relativeNegativeDeviation" : 0.3,
-      "absolutePositiveDeviation" : 1E+2,
-      "relativePositiveDeviation" : 0.2
-    } ],
-    "measurementInterval" : 4
-  },
-  "supplier" : "BPNL6666666666YY",
-  "name" : "Spark Plugs on drilling machine for car model XYZ",
-  "supplierLocations" : [ "BPNS8888888888XX" ],
   "capacities" : [ {
     "pointInTime" : "2022-08-01",
-    "agreedCapacity" : 1.8E+3,
-    "actualCapacity" : 1E+3,
-    "maximumCapacity" : 2E+3,
-    "deltaProductionResult" : 4E+2
+    "actualCapacity" : 1000,
+    "maximumCapacity" : 2000,
+    "deltaProductionResult" : 400,
+    "agreedCapacity" : 1800
   } ],
   "changedAt" : "2023-03-10T12:27:11.320Z",
-  "capacityGroupId" : "0157ba42-d2a8-4e28-8565-7b07830c1110",
-  "customer" : "BPNL8888888888XX"
+  "linkedCapacityGroups" : [ "be4d8470-2de6-43d2-b5f8-2e5d3eebf3fd" ],
+  "unitOfMeasureIsOmitted" : false,
+  "demandVolatilityParameters" : {
+    "startReferenceDateTime" : "2024-01-10T12:00:00.320Z",
+    "measurementInterval" : 4,
+    "rollingHorizonAlertThresholds" : [ {
+      "sequenceNumber" : 1,
+      "subhorizonLength" : 4,
+      "relativePositiveDeviation" : 0.2,
+      "relativeNegativeDeviation" : 0.3,
+      "absolutePositiveDeviation" : 100.0,
+      "absoluteNegativeDeviation" : 100.0
+    } ]
+  },
+  "capacityGroupIsInactive" : true
 }

@@ -1,23 +1,19 @@
 {
   "certificateOfAnalysisLink" : [ {
     "link" : "https://www.company.com/coa/240242892.pdf",
-    "language" : "de",
     "issueDate" : "2023-03-28",
-    "issueVersion" : "8.1"
+    "issueVersion" : "8.1",
+    "language" : "de"
   } ],
   "certificateOfAnalysisBinary" : [ {
-    "language" : "de",
-    "issueDate" : "2023-03-28",
-    "payload" : "ZU9NdFRoeWhWTkxXVVpOUmNCYVFLeEk=",
-    "issueVersion" : "8.1"
+    "payload" : "T0tB",
+    "language" : "de"
   } ],
   "certificateOfAnalysisPreFormatted" : {
-    "payloadPreFormatted" : "eWVkVXNGd2RrZWxRYnhlVGVRT3ZhU2NmcUlPT21hYQ==",
     "format" : "json",
-    "formatLink" : "https://github.com/material-identity/CoA-schemas/blob/main/schema.json",
-    "language" : "de",
-    "issueDate" : "2023-03-28",
     "formatVersion" : "1.1.0",
-    "issueVersion" : "8.1"
+    "formatLink" : "https://github.com/material-identity/CoA-schemas/blob/main/schema.json",
+    "payloadPreFormatted" : "cElQZFI=",
+    "language" : "de"
   }
 }

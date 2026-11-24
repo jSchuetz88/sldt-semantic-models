@@ -45,57 +45,79 @@
     "vehicleCondition" : {
       "description" : "Condition of the actual vehicle.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#vehicleCondition",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "driveType" : {
       "description" : "Drive type of a vehicle according enumeration.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#driveType",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "modelIdentifier" : {
       "description" : "OEM-specific model identifier or OEM-specific project name.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#modelIdentifier",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "vehicleSeries" : {
       "description" : "Series information of the vehicle model that needs to be processed.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#vehicleSeries",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "oem" : {
       "description" : "Original equipment manufacturer.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#oem",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "emptyWeight" : {
       "description" : "The empty weight of the vehicle in kg as specified.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#emptyWeight",
-      "$ref" : "#/components/schemas/MassCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MassCharacteristic"
+      } ]
     },
     "productionDate" : {
       "description" : "Production date of the vehicle.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#productionDate",
-      "$ref" : "#/components/schemas/Date"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Date"
+      } ]
     },
     "vehicleType" : {
       "description" : "A vehicle type is a classification of a vehicle based on its design, construction, and purpose.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#vehicleType",
-      "$ref" : "#/components/schemas/VehicleTypeEnum"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/VehicleTypeEnum"
+      } ]
     },
     "anonymizedVin" : {
       "description" : "OEM-specific hashed VIN.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#anonymizedVin",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "wasteCode" : {
       "description" : "The waste code is used to identify the type of waste on part or material level.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#wasteCode",
-      "$ref" : "#/components/schemas/WasteCodeEnum"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/WasteCodeEnum"
+      } ]
     },
     "globalAssetId" : {
       "description" : "The fully anonymous ID in the dataspace of the part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     }
   },
   "required" : [ "vehicleCondition", "driveType", "modelIdentifier", "vehicleSeries", "oem", "emptyWeight", "productionDate", "vehicleType", "anonymizedVin", "wasteCode", "globalAssetId" ]

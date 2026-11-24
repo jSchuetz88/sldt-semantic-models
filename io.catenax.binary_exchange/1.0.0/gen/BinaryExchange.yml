@@ -87,11 +87,13 @@ components:
           description: Path and name of the file (with file extension).\n\nThe path
             can be absolute or relative.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.binary_exchange:1.0.0#resourceValue"
-          $ref: "#/components/schemas/ResourcePath"
+          allOf:
+          - $ref: "#/components/schemas/ResourcePath"
         contentType:
           description: Content type of that file.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.binary_exchange:1.0.0#contentType"
-          $ref: "#/components/schemas/MimeType"
+          allOf:
+          - $ref: "#/components/schemas/MimeType"
       required:
       - value
       - contentType
@@ -103,11 +105,13 @@ components:
         controlPlaneUrl:
           description: Control plane URL for accessing the binary file.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.binary_exchange:1.0.0#controlPlaneUrl"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         dspAssetId:
           description: DSP asset ID of the binary file.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.binary_exchange:1.0.0#dspAssetId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - controlPlaneUrl
       - dspAssetId
@@ -121,20 +125,24 @@ components:
           description: Unique identifier of the document specifying the mapping rules
             used for creating and reading the binary file.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.binary_exchange:1.0.0#mappingRuleId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         fileContentDescriptionId:
           description: Unique identifier of the semantic model describing the content
             of the binary file.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.binary_exchange:1.0.0#fileContentDescriptionId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         binaryFile:
           description: Binary File to be exchanged.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.binary_exchange:1.0.0#binaryFile"
-          $ref: "#/components/schemas/FileWithContentType"
+          allOf:
+          - $ref: "#/components/schemas/FileWithContentType"
         dspInformation:
           description: DSP information.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.binary_exchange:1.0.0#dspInformation"
-          $ref: "#/components/schemas/DspInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DspInformationCharacteristic"
       required:
       - mappingRuleId
       - fileContentDescriptionId

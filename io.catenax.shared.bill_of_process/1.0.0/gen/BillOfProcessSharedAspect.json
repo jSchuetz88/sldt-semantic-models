@@ -1,51 +1,49 @@
 {
   "billOfProcessModel" : {
     "process" : [ {
-      "capabilityId" : "urn:manufacturing-capability:capability:42",
-      "childProcessSteps" : [ "pick" ],
+      "processStepIdentifier" : [ "1234-transport" ],
+      "inputParameters" : [ {
+        "name" : "dimensionality",
+        "value" : "{\\\"height\\\" : \\\"5\\\", \\\"length\\\" : \\\"3\\\", \\\"width\\\" : \\\"7\\\"}",
+        "semanticReference" : [ "0173-1#02-BAD875#008" ],
+        "parameterKey" : "HasValue",
+        "valueRangeList" : [ {
+          "lowerValue" : "5",
+          "upperValue" : "10",
+          "name" : "dimensionality"
+        } ],
+        "tolerances" : [ {
+          "lowerLimit" : "4.9",
+          "upperLimit" : "5.1"
+        } ]
+      } ],
+      "outputParameters" : [ {
+        "name" : "dimensionality",
+        "value" : "{\\\"height\\\" : \\\"5\\\", \\\"length\\\" : \\\"3\\\", \\\"width\\\" : \\\"7\\\"}",
+        "semanticReference" : [ "0173-1#02-BAD875#008" ],
+        "parameterKey" : "HasValue",
+        "valueRangeList" : [ {
+          "lowerValue" : "5",
+          "upperValue" : "10",
+          "name" : "dimensionality"
+        } ],
+        "tolerances" : [ {
+          "lowerLimit" : "4.9",
+          "upperLimit" : "5.1"
+        } ]
+      } ],
       "precedenceRelation" : [ {
         "precedenceElements" : [ {
           "successor" : [ "TransportStepId" ]
         } ]
       } ],
-      "processStepIdentifier" : [ "1234-transport" ],
-      "inputParameters" : [ {
-        "name" : "dimensionality",
-        "parameterKey" : "HasValue",
-        "valueRangeList" : [ {
-          "name" : "dimensionality",
-          "lowerValue" : "5",
-          "upperValue" : "10"
-        } ],
-        "semanticReference" : [ "0173-1#02-BAD875#008" ],
-        "tolerances" : [ {
-          "name" : "dimensionality",
-          "upperLimit" : "5.1",
-          "lowerLimit" : "4.9"
-        } ],
-        "value" : "{\\\"height\\\" : \\\"5\\\", \\\"length\\\" : \\\"3\\\", \\\"width\\\" : \\\"7\\\"}"
-      } ],
-      "processStepType" : "IsFirstElement",
-      "outputParameters" : [ {
-        "name" : "dimensionality",
-        "parameterKey" : "HasValue",
-        "valueRangeList" : [ {
-          "name" : "dimensionality",
-          "lowerValue" : "5",
-          "upperValue" : "10"
-        } ],
-        "semanticReference" : [ "0173-1#02-BAD875#008" ],
-        "tolerances" : [ {
-          "name" : "dimensionality",
-          "upperLimit" : "5.1",
-          "lowerLimit" : "4.9"
-        } ],
-        "value" : "{\\\"height\\\" : \\\"5\\\", \\\"length\\\" : \\\"3\\\", \\\"width\\\" : \\\"7\\\"}"
-      } ]
+      "childProcessSteps" : [ "pick" ],
+      "processStepType" : "IsSubProcessElement",
+      "capabilityId" : "urn:manufacturing-capability:capability:42"
     } ],
     "productVersion" : "bar_chair_1.0.0",
+    "productName" : "Bar Chair",
     "billOfProcessIdentification" : "www.1234-bar-chair-billOfProcess.de",
-    "version" : "2.0.0",
-    "productName" : "Bar Chair"
+    "version" : "2.0.0"
   }
 }

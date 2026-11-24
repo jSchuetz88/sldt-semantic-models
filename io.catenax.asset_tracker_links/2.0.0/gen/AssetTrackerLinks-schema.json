@@ -36,27 +36,37 @@
           "paired" : {
             "description" : "Currently paired when set to true.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.asset_tracker_links:2.0.0#paired",
-            "$ref" : "#/components/schemas/PairedCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PairedCharacteristic"
+            } ]
           },
           "pairedOn" : {
             "description" : "Timestamp of pairing of an IoT Device to an Asset.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.asset_tracker_links:2.0.0#pairedOn",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "unpairedOn" : {
             "description" : "Timestamp of the unpairing of an IoT Device from an Asset.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.asset_tracker_links:2.0.0#unpairedOn",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "historicalData" : {
             "description" : "Describes the location where the historical sensor data can be found. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.asset_tracker_links:2.0.0#historicalData",
-            "$ref" : "#/components/schemas/ResourcePath"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ResourcePath"
+            } ]
           },
           "catenaXId" : {
             "description" : "The Catena-X ID of the given asset, valid for the Catena-X dataspace.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.asset_tracker_links:2.0.0#catenaXId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           }
         },
         "required" : [ "paired", "pairedOn", "unpairedOn", "catenaXId" ]
@@ -76,12 +86,16 @@
     "catenaXId" : {
       "description" : "The Catena-X ID of the given asset, valid for the Catena-X dataspace.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.asset_tracker_links:2.0.0#catenaXId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "childItems" : {
       "description" : "Set of child items, of which the given parent object consist of.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.asset_tracker_links:2.0.0#childItems",
-      "$ref" : "#/components/schemas/SetOfChildItemsCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/SetOfChildItemsCharacteristic"
+      } ]
     }
   },
   "required" : [ "catenaXId", "childItems" ]

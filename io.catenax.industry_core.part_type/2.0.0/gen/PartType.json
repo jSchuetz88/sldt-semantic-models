@@ -2,17 +2,17 @@
   "partTypeInformation" : {
     "partClassification" : [ {
       "standard" : "GIN 20510-21513",
-      "description" : "Generic standard for classification of parts in the automotive industry.",
-      "id" : "1004712"
+      "id" : "1004712",
+      "description" : "Generic standard for classification of parts in the automotive industry."
     } ],
-    "manufacturerPartId" : "123-0.740-3434-A",
-    "nameAtManufacturer" : "Mirror left"
+    "nameAtManufacturer" : "Mirror left",
+    "manufacturerPartId" : "123-0.740-3434-A"
   },
   "partSitesInformationAsPlanned" : [ {
     "siteId" : "BPNS1234567890ZZ",
-    "functionValidUntil" : "2024-01-29T12:00:00.123+02:00",
     "function" : "production",
-    "functionValidFrom" : "2024-01-29T12:00:00.123+02:00"
+    "functionValidFrom" : "2024-01-29T12:00:00.123+02:00",
+    "functionValidUntil" : "2024-01-29T12:00:00.123+02:00"
   } ],
-  "globalAssetId" : "0328Dc3f-EaCc-7698-B37a-B3Ee92B3Ad60"
+  "globalAssetId" : "urn:uuid:Cbed6CDA-fa9e-AdAB-3Ecb-989afEEeddCb"
 }

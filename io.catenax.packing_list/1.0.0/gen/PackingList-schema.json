@@ -31,12 +31,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of an item. Common units may be related to mass, count, linear, area, volume or misc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#itemUnit",
-            "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -49,15 +53,17 @@
           "itemQuantityProperty" : {
             "description" : "This property defines common units and the value for items. Items may be measured as mass, countable, miscellaneous, linear, area or volume.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#itemQuantityProperty",
-            "$ref" : "#/components/schemas/ItemQuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemQuantityCharacteristic"
+            } ]
           }
         },
         "required" : [ "itemQuantityProperty" ]
       },
       "PositionCharacteristic" : {
-        "type" : "number",
-        "maximum" : 2147483647,
+        "type" : "integer",
         "minimum" : -2147483648,
+        "maximum" : 2147483647,
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#PositionCharacteristic",
         "description" : "Describes the position in a numeric form. "
       },
@@ -80,27 +86,37 @@
           "quantity" : {
             "description" : "Quantity of the item.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#quantity",
-            "$ref" : "#/components/schemas/QuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityCharacteristic"
+            } ]
           },
           "position" : {
             "description" : "Numbering of all positions or items in the packing list.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#position",
-            "$ref" : "#/components/schemas/PositionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PositionCharacteristic"
+            } ]
           },
           "itemDescription" : {
             "description" : "Describes the item in the packing list.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#itemDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "itemName" : {
             "description" : "Name of the item seen in the packing list.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#itemName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "catenaXId" : {
             "description" : "The Catena-X ID of the given part (e.g. the assembly), valid for the Catena-X dataspace.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#catenaXId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           }
         },
         "required" : [ "quantity", "position", "itemName" ]
@@ -128,7 +144,9 @@
           "bpnaProperty" : {
             "description" : "Property based on a BPNA.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnaProperty",
-            "$ref" : "#/components/schemas/BpnaTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnaTrait"
+            } ]
           }
         },
         "required" : [ "bpnaProperty" ]
@@ -141,7 +159,9 @@
           "bpnaProperty" : {
             "description" : "Property based on a BPNA.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnaProperty",
-            "$ref" : "#/components/schemas/BpnaTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnaTrait"
+            } ]
           }
         },
         "required" : [ "bpnaProperty" ]
@@ -152,22 +172,30 @@
     "shippingDate" : {
       "description" : "Date once item(s) are shipped.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#shippingDate",
-      "$ref" : "#/components/schemas/DateCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/DateCharacteristic"
+      } ]
     },
     "listItems" : {
       "description" : "Set of items part of the packing list.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#listItems",
-      "$ref" : "#/components/schemas/SetOfListItems"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/SetOfListItems"
+      } ]
     },
     "senderAddress" : {
       "description" : "Sender of the delivery, including the name and address.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#senderAddress",
-      "$ref" : "#/components/schemas/SenderAddressCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/SenderAddressCharacteristic"
+      } ]
     },
     "receiverAddress" : {
       "description" : "Receiver of the delivery, including the name and address.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.packing_list:1.0.0#receiverAddress",
-      "$ref" : "#/components/schemas/ReceiverAddressCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ReceiverAddressCharacteristic"
+      } ]
     }
   },
   "required" : [ "shippingDate", "listItems", "senderAddress", "receiverAddress" ]

@@ -1,13 +1,13 @@
 {
-  "remainingOperatingHours" : 1.7538605E38,
   "remainingRunningDistance" : 120000,
+  "remainingOperatingHours" : -93434.2,
   "determinationStatus" : {
+    "mileage" : 204000,
     "date" : "2022-06-15T14:23:56Z",
-    "operatingHours" : 3456.7,
-    "mileage" : 204000
+    "operatingHours" : 3456.7
   },
   "determinationLoaddataSource" : {
-    "sourceLoadSpectrum" : "telnet://192.0.2.16:80/",
-    "informationOriginLoadSpectrum" : "loggedOEM"
+    "informationOriginLoadSpectrum" : "loggedOEM",
+    "sourceLoadSpectrum" : "https://example.com/Cb3TtAA51"
   }
 }

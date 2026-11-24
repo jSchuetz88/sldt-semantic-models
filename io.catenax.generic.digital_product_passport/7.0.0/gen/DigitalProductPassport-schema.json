@@ -41,12 +41,16 @@
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "content" : {
             "description" : "Identification of the preceding product passport.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#predecessorIdentifier",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -78,17 +82,23 @@
           "technicalKey" : {
             "description" : "Technical key of a thoroughfare. As specified by BPDM, this can be a \"STREET\" or a different type.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfareTechnicalKey",
-            "$ref" : "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a thoroughfare, e.g. name of a street.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfareValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "number" : {
             "description" : "Number of a thoroughfare. As used differently in international context, this number can contain both numerical and alphanumerical values.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfareNumber",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value", "number" ]
@@ -115,12 +125,16 @@
           "technicalKey" : {
             "description" : "Technical key of a locality.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#localityTechnicalKey",
-            "$ref" : "#/components/schemas/LocalityTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LocalityTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a locality, e.g. name of a city (\"Mannheim\").",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#localityValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value" ]
@@ -147,12 +161,16 @@
           "technicalKey" : {
             "description" : "Technical key of a premise.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#premiseTechnicalKey",
-            "$ref" : "#/components/schemas/PremiseTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PremiseTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a premise, e.g. name or designation of a particular site.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#premiseValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value" ]
@@ -179,12 +197,16 @@
           "technicalKey" : {
             "description" : "Technical key of a postal delivery point.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postalDeliveryPointTechnicalKey",
-            "$ref" : "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a postal delivery point, e.g. designation of a gate.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postalDeliveryPointValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value" ]
@@ -211,7 +233,9 @@
           "shortName" : {
             "description" : "The short variation of the name of the country.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#countryShortName",
-            "$ref" : "#/components/schemas/CountryTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountryTrait"
+            } ]
           }
         },
         "required" : [ "shortName" ]
@@ -244,12 +268,16 @@
           "value" : {
             "description" : "The value of a post code.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postCodeValue",
-            "$ref" : "#/components/schemas/PostCodeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostCodeTrait"
+            } ]
           },
           "technicalKey" : {
             "description" : "The technical key of a post code.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postCodeTechnicalKey",
-            "$ref" : "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
+            } ]
           }
         },
         "required" : [ "value", "technicalKey" ]
@@ -270,32 +298,44 @@
           "thoroughfare" : {
             "description" : "Street or thorough road name.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfare",
-            "$ref" : "#/components/schemas/ThoroughfareCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ThoroughfareCharacteristic"
+            } ]
           },
           "locality" : {
             "description" : "Locality belonging to an address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#locality",
-            "$ref" : "#/components/schemas/LocalityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LocalityCharacteristic"
+            } ]
           },
           "premise" : {
             "description" : "Premise of an address, e.g. a specific \"BUILDING\" but can also be used for naming a particular site.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#premise",
-            "$ref" : "#/components/schemas/PremiseCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PremiseCharacteristic"
+            } ]
           },
           "postalDeliveryPoint" : {
             "description" : "Delivery point, e.g. designation of a gate.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postalDeliveryPoint",
-            "$ref" : "#/components/schemas/PostalDeliveryPointCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalDeliveryPointCharacteristic"
+            } ]
           },
           "country" : {
             "description" : "Country of an address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#country",
-            "$ref" : "#/components/schemas/CountryCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountryCharacteristic"
+            } ]
           },
           "postCode" : {
             "description" : "Postal code of the address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postCode",
-            "$ref" : "#/components/schemas/PostCodeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostCodeCharacteristic"
+            } ]
           }
         },
         "required" : [ "thoroughfare", "locality", "country", "postCode" ]
@@ -326,22 +366,30 @@
           "website" : {
             "description" : "Website of the contact.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.contact_information:4.0.0#website",
-            "$ref" : "#/components/schemas/WebsiteCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/WebsiteCharacteristic"
+            } ]
           },
           "phoneNumber" : {
             "description" : "Phone number with country and area code.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.contact_information:4.0.0#phoneNumber",
-            "$ref" : "#/components/schemas/PhoneNumberTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PhoneNumberTrait"
+            } ]
           },
           "email" : {
             "description" : "An email address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.contact_information:4.0.0#email",
-            "$ref" : "#/components/schemas/EMailTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/EMailTrait"
+            } ]
           },
           "faxNumber" : {
             "description" : "Fax number with country and area code.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.contact_information:4.0.0#faxNumber",
-            "$ref" : "#/components/schemas/PhoneNumberTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PhoneNumberTrait"
+            } ]
           }
         }
       },
@@ -353,22 +401,30 @@
           "economicOperatorIdentification" : {
             "description" : "The identification of the owner/economic operator of the passport. Proposed, according to ISO 15459, is the CIN (Company Identification Code). Other identification numbers like the tax identification number, value added tax identification number, commercial register number and the like are also valid entries. In the Catena-X network, the BPNL is used for the identification of companies. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products  Annex III: (k) the name, contact details and unique operator identifier of the economic operator established in the Union responsible for carrying out the tasks set out in Article 4 of Regulation (EU) 2019/1020 or Article 15 of Regulation (EU) 2023/988, or similar tasks pursuant to other Union law applicable to the product, Article 11 The technical design and operation of the digital product passport shall comply with the following essential requirements:(c) the digital product passport shall be stored by the economic operator responsible for its creation or by digital product passport service providers.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperatorIdentification",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "economicOperatorNames" : {
             "description" : "Name list for the Economic Operator. Name, registered trade name, or registered trademark of the economic operator.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperatorNames",
-            "$ref" : "#/components/schemas/NameList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NameList"
+            } ]
           },
           "economicOperatorAddress" : {
             "description" : "Full address of the economic operator.This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products  Annex III: (k) the name, contact details and unique operator identifier of the economic operator established in the Union responsible for carrying out the tasks set out in Article 4 of Regulation (EU) 2019/1020 or Article 15 of Regulation (EU) 2023/988, or similar tasks pursuant to other Union law applicable to the product, Article 11 The technical design and operation of the digital product passport shall comply with the following essential requirements:(c) the digital product passport shall be stored by the economic operator responsible for its creation or by digital product passport service providers.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperatorAddress",
-            "$ref" : "#/components/schemas/PostalAddress"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalAddress"
+            } ]
           },
           "economicOperatorContact" : {
             "description" : "Contact details of the economic operator. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products  Annex III: (k) the name, contact details and unique operator identifier of the economic operator established in the Union responsible for carrying out the tasks set out in Article 4 of Regulation (EU) 2019/1020 or Article 15 of Regulation (EU) 2023/988, or similar tasks pursuant to other Union law applicable to the product, Article 11 The technical design and operation of the digital product passport shall comply with the following essential requirements:(c) the digital product passport shall be stored by the economic operator responsible for its creation or by digital product passport service providers.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperatorContact",
-            "$ref" : "#/components/schemas/ContactCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ContactCharacteristic"
+            } ]
           }
         },
         "required" : [ "economicOperatorIdentification", "economicOperatorNames", "economicOperatorAddress", "economicOperatorContact" ]
@@ -381,62 +437,86 @@
           "version" : {
             "description" : "The current version of the product passport. The possibility of modification/ updating the product passport needs to include versioning of the dataset. This attribute is an internal versioning from the passport issuer. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 9: (1)The data in the digital product passport shall be accurate, complete and up to date.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#version",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "passportStatus" : {
             "description" : "The current status of the product passport declared through either: draft, approved, invalid or expired.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#passportStatus",
-            "$ref" : "#/components/schemas/PassportStatusEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PassportStatusEnumeration"
+            } ]
           },
           "expirationDate" : {
             "description" : "The date until the product passport remains available. End of availability of the digital product passport, in a format of a timestamp (e.g. yyyy-mm-dd) or period of time (e.g. 10 years). This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Article 9: (2)(i) the period during which the digital product passport is to remain available, which shall correspond to at least the expected lifetime of a specific product. Article 11: (e) the digital product passport shall remain available for the period specified in delegated acts adopted pursuant to Article 4, including after an insolvency, a liquidation or a cessation of activity in the Union of the economic operator responsible for the creation of the digital product passport.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#expirationDate",
-            "$ref" : "#/components/schemas/DateTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTrait"
+            } ]
           },
           "issueDate" : {
             "description" : "The date when the product passport is initially issued. The date when the passport was issued in a format of a timestamp (yyyy-mm-dd).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#issueDate",
-            "$ref" : "#/components/schemas/DateTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTrait"
+            } ]
           },
           "passportIdentifier" : {
             "description" : "The identifier of the product passport, which is a uuidv4 (Universally Unique Identifier, version 4).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#passportIdentifier",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "predecessor" : {
             "description" : "Identification of the preceding product passport. Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products  Article 11: (d) where a new digital product passport is created for a product that already has a digital product passport, the new digital product passport shall be linked to the original digital product passport or passports.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#predecessor",
-            "$ref" : "#/components/schemas/PredecessorCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PredecessorCharacteristic"
+            } ]
           },
           "backupReference" : {
             "description" : "A reference to the data backup of the passport. This mandatory attribute will be further defined in the future. This attribute is mentioned in the  Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex III: (l) the reference of the digital product passport service provider hosting the back-up copy of the digital product passport. Article 10 also mentions: 4. The economic operator, when placing the product on the market, shall make available a back-up copy of the digital product passport through a digital product passport service provider. Article 27 and 29(c) a digital product passport is available in accordance with Article 9 and the delegated acts adopted pursuant to Article 4, including a back-up copy of the most up-to-date version of the digital product passport stored by a digital product passport service provider in accordance with Article 10(4).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#backupReference",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "registrationIdentifier" : {
             "description" : "Identifier in the respective registry. This will be further defined in the future. This attribute is mentioned in the ESPR provisional agreement from January 9th, 2024 in Article 12:\nBy (2 years from entering into force of this Regulation), the Commission shall set up and manage a digital registry (\"the registry\") storing in a secure manner at least the unique product identifier, the unique operator identifier, the unique facility identifiers. In case of products intended to be placed under the customs procedure (release for free circulation), the registry shall also store the product commodity code. The registry shall also store the batteries unique identifiers referred to in Article 77(3) of Regulation (EU) 2023/1542.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#registrationIdentifier",
-            "$ref" : "#/components/schemas/IdentifierCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/IdentifierCharacteristic"
+            } ]
           },
           "lastModification" : {
             "description" : "The date when the digital product passport was last modified.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lastModification",
-            "$ref" : "#/components/schemas/DateTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTrait"
+            } ]
           },
           "language" : {
             "description" : "Language used in the digital passport data fields with indication the code of the country. Specific language in which the passport content is created. 2-letter code from ISO 639:2023 + EN ISO 3166.1:2020. ISO 639:2023 Code for individual languages and language groups, ISO 3166-1:2020 Codes for the representation of names of countries and their subdivisions. This attribute is mentioned in REGULATION (EU) 2024/1781 of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products in: Article 7 (8) The information to be supplied pursuant to information requirements shall be provided in a language which can be easily understood by customers, as determined by the Member State on whose market the product is to be made available or in which it is to be put into service. Proposal for a Regulation of the European Parliament and of the Council on detergents and surfactants, amending Regulation (EU) 2019/1020 and repealing Regulation (EC) No 648/2004 - Analysis of the final compromise text with a view to agreement of 25 June 2025, Article 18: The digital product passport shall:(e) be available in the language or languages required by the Member State where the detergent or surfactant is made available on the market.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#language",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "economicOperator" : {
             "description" : "Information about the economic operator of the Digital Product Passport.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperator",
-            "$ref" : "#/components/schemas/EconomicOperatorCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/EconomicOperatorCharacteristic"
+            } ]
           },
           "specVersion" : {
             "description" : "Specification of the DPP format/data model (name and version number), which is used.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#specVersion",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "version", "expirationDate", "issueDate", "passportIdentifier", "predecessor", "backupReference", "language", "economicOperator" ]
@@ -455,12 +535,16 @@
           "key" : {
             "description" : "The key of a local identifier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#key",
-            "$ref" : "#/components/schemas/AllowedKeys"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/AllowedKeys"
+            } ]
           },
           "value" : {
             "description" : "The value of an identifier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#value",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "key", "value" ]
@@ -482,12 +566,16 @@
           "manufacturerPartId" : {
             "description" : "Part ID as assigned by the manufacturer of the part. The Part ID identifies the part (as designed) in the manufacturer`s dataspace. The Part ID does not reference a specific instance of a part and thus should not be confused with the serial number or batch number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#manufacturerPartId",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "nameAtManufacturer" : {
             "description" : "Name of the part as assigned by the manufacturer",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#nameAtManufacturer",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "manufacturerPartId", "nameAtManufacturer" ]
@@ -500,17 +588,23 @@
           "standard" : {
             "description" : "Identified classification standards",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#standard",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "id" : {
             "description" : "The classification ID of the part type according to the corresponding standard definition mentioned in the key value pair.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#id",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "description" : {
             "description" : "Optional property describing the classification standard.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#description",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "standard", "id" ]
@@ -538,17 +632,23 @@
           "content" : {
             "description" : "The content of the document e.g a link.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "contentType" : {
             "description" : "The type of content which can be expected in the \"content\" property. Examples are a link, restricted link, pdf, excel, etc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "header" : {
             "description" : "The header as a short description of the document with a maximum of 100 characters.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header",
-            "$ref" : "#/components/schemas/HeaderTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/HeaderTrait"
+            } ]
           }
         },
         "required" : [ "content", "contentType", "header" ]
@@ -569,17 +669,23 @@
           "key" : {
             "description" : "The code key for the identification of the product. Examples are: GTIN, hash, DID, ISBN, TARIC, CN, HS Code or potential waste codes, internal company codes. This attribute is mentioned in the  Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, ANNEX III: (b) the unique product identifier at the level indicated in the applicable delegated act adopted pursuant to Article 4, (c) the Global Trade Identification Number as provided for in International Organization for Standardisation/International Electrotechnical Commission standard ISO/IEC 15459-6 or equivalent of products or their parts, (d) relevant commodity codes, such as a TARIC code as defined in Regulation (EEC) No 2658/87.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#codeKey",
-            "$ref" : "#/components/schemas/IdentifierCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/IdentifierCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "The code value for the identification of the product in regard to the chosen code name. The identifier value related to the code key.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#codeValue",
-            "$ref" : "#/components/schemas/IdentifierCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/IdentifierCharacteristic"
+            } ]
           },
           "description" : {
             "description" : "Description of the specific code. This attribute can be particularly used if \"other\" as a code key is used.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#codeDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "key", "value" ]
@@ -608,12 +714,16 @@
           "carrierType" : {
             "description" : "The type of data carrier such as a QR code on the product. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 9:(b) one or more data carriers to be used.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#carrierType",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "carrierPositions" : {
             "description" : "The positioning of data carrier on the product. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 9:(b) one or more data carriers to be used.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#carrierPositions",
-            "$ref" : "#/components/schemas/StringList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringList"
+            } ]
           }
         },
         "required" : [ "carrierType", "carrierPositions" ]
@@ -634,37 +744,51 @@
           "serialInformation" : {
             "description" : "Identifier for a serial part if available. This is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Recital (33):the term item usually refers to a single unit of a model.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#serialInformation",
-            "$ref" : "#/components/schemas/LocalIdentifierCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LocalIdentifierCharacteristic"
+            } ]
           },
           "batchInformation" : {
             "description" : "Identifier for a batch part if available. This is mentioned in Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Recital (33):the term batch usually refers to a subset of a specific model composed of all products produced in a specific manufacturing plant at a specific moment in time.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#batchInformation",
-            "$ref" : "#/components/schemas/LocalIdentifierCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LocalIdentifierCharacteristic"
+            } ]
           },
           "partTypeInformation" : {
             "description" : "Identifier on the level of a part model or type. This is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Recital (33):The term model usually refers to a version of a product of which all units share the same technical characteristics relevant for the ecodesign requirements and the same model identifier. Proposal for a Regulation of the European Parliament and of the Council on detergents and surfactants, amending Regulation (EU) 2019/1020 and repealing Regulation (EC) No 648/2004 - Analysis of the final compromise text with a view to agreement of 25 June 2025 Article 2: (34a) model means a type of detergents or surfactants all of whose units meet the following conditions: -they have the same manufacturer and are placed on the market under the same trade name -they have the same content, in accordance with point (h) in Part A of Annex V, and are manufactured using the same manufacturing processes -where applicable, they are subject to the same classification under Regulation (EC) No 1272/2008 and they are defined by a type number or other element allowing them to be identified as a group.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#partTypeInformation",
-            "$ref" : "#/components/schemas/PartTypeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartTypeCharacteristic"
+            } ]
           },
           "partClassification" : {
             "description" : "Property describing the classification of a part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#partClassification",
-            "$ref" : "#/components/schemas/PartClassificationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartClassificationCharacteristic"
+            } ]
           },
           "productImages" : {
             "description" : "According Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, amending Directive (EU) 2020/1828 and Regulation (EU) 2023/1542 and repealing Directive 2009/125/EC in Article 36 Information obligations of economic operators\n1. When making a product covered by a delegated act adopted pursuant to Article 4 available on the market through distance selling, economic operators shall ensure that the product offer clearly and visibly provides at least the following information:\n(c) information allowing the identification of the product, including a picture of it, its type and any other product identifier.\n\nAccording Regulation (EU) 2023/988 of the European Parliament and of the Council of 10 May 2023 on general product safety, amending Regulation (EU) No 1025/2012 of the European Parliament and of the Council and Directive (EU) 2020/1828 of the European Parliament and the Council, and repealing Directive 2001/95/EC of the European Parliament and of the Council and Council Directive 87/357/EEC in Article 19 Obligations of economic operators in the case of distance sales:\nWhere economic operators make products available on the market online or through other means of distance sales, the offer of those products shall clearly and visibly indicate at least the following information:(c) information allowing the identification of the product, including a picture of it, its type and any other product identifier,\n\nThis attribute is mentioned in the proposal for a Regulation of the European Parliament and of the Council on detergents and surfactants, amending Regulation (EU) 2019/1020 and repealing Regulation (EC) No 648/2004 - Mandate for negotiations with the European Parliament:\nANNEX VI DIGITAL PRODUCT PASSPORT \nThe digital product passport shall include the following information:(c) the identification of detergent or surfactant allowing traceability, including its trade \nname and a colour image of the packaging of the detergent or surfactant of \nsufficient clarity to enable itsthe identification of the detergent or surfactant.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#productImages",
-            "$ref" : "#/components/schemas/ProductImageList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ProductImageList"
+            } ]
           },
           "codes" : {
             "description" : "Codes for identification.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#codes",
-            "$ref" : "#/components/schemas/CodeList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CodeList"
+            } ]
           },
           "dataCarriers" : {
             "description" : "The type and layout of the data carriers on the product. These are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 9 (2)(a) the data to be included in the digital product passport pursuant to Annex III (b) one or more data carriers to be used, Article 2 defines: (29) data carrier means a linear barcode symbol, a two-dimensional symbol or other automatic identification data capture medium that can be read by a device.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#dataCarriers",
-            "$ref" : "#/components/schemas/DataCarrierList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DataCarrierList"
+            } ]
           }
         },
         "required" : [ "partTypeInformation", "partClassification", "productImages", "codes", "dataCarriers" ]
@@ -677,12 +801,16 @@
           "facilityIdentification" : {
             "description" : "The identifier used for a location.  In the CATENA-X use case, the BPNA can be stated. \n\nThis attribute is mentioned in the ESPR provisional agreement from January 9th 2024 Annex III:\n(i) unique facility identifiers \nArticle 2 Definitions: (33) 'unique facility identifier' means a unique string of characters for the identification of locations or buildings involved in the value chain of a product or used by actors involved in the value chain of a product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#facilityIdentification",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "facilityAddress" : {
             "description" : "Full address of the facility.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#facilityAddress",
-            "$ref" : "#/components/schemas/PostalAddress"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalAddress"
+            } ]
           }
         },
         "required" : [ "facilityIdentification", "facilityAddress" ]
@@ -703,22 +831,30 @@
           "manufacturerIdentification" : {
             "description" : "The main manufacturer represented by an identification number. In the Catena-X use case, the BPNL can be stated.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturerIdentification",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "manufacturerNames" : {
             "description" : "Name, registered trade name or registered trade mark of the manufacturer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturerNames",
-            "$ref" : "#/components/schemas/NameList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NameList"
+            } ]
           },
           "manufacturerAddress" : {
             "description" : "Full address of the manufacturer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturerAddress",
-            "$ref" : "#/components/schemas/PostalAddress"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalAddress"
+            } ]
           },
           "manufacturerContact" : {
             "description" : "Contact details of the manufacturer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturerContact",
-            "$ref" : "#/components/schemas/ContactCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ContactCharacteristic"
+            } ]
           }
         },
         "required" : [ "manufacturerIdentification", "manufacturerNames", "manufacturerAddress", "manufacturerContact" ]
@@ -731,17 +867,23 @@
           "facilities" : {
             "description" : "The identifier used for a location. In the CATENA-X use case, the BPNA can be stated. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Annex III:(i) unique facility identifiers, Article 2 Definitions: (33) unique facility identifier means a unique string of characters for the identification of locations or buildings involved in a products value chain or used by actors involved in a products value chain.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#facilities",
-            "$ref" : "#/components/schemas/FacilityList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FacilityList"
+            } ]
           },
           "manufacturer" : {
             "description" : "The main manufacturer, if different from the passport owner, represented by a name, identification number, address and contact information. In the Catena-X use case, the BPNL can be stated.  This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Annex III: (h) unique operator identifiers other than that of the manufacturer, (k) the name, contact details and unique operator identifier of the economic operator established in the Union responsible for carrying out the tasks set out in Article 4 of Regulation (EU) 2019/1020 or Article 15 of Regulation (EU) 2023/988, or similar tasks pursuant to other Union law applicable to the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturer",
-            "$ref" : "#/components/schemas/ManufacturerCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ManufacturerCharacteristic"
+            } ]
           },
           "manufacturingDate" : {
             "description" : "The timestamp in the format (yyyy-mm-dd) of the manufacturing date as the final step in production process (e.g. final quality check, ready-for-shipment event).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturingDate",
-            "$ref" : "#/components/schemas/DateTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTrait"
+            } ]
           }
         },
         "required" : [ "facilities", "manufacturer" ]
@@ -760,27 +902,37 @@
           "eori" : {
             "description" : "An economic operator established in the customs territory of the Union needs, for customs purposes, an EORI number. EORI stands for economic operators registration and identification number. In this case, the importer's EORI must be provided. This attribute is mentioned in the ESPR Annex III:\n(j) information related to the importer, including the information referred to in Article 23(3) and its EORI number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#eori",
-            "$ref" : "#/components/schemas/EoriTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/EoriTrait"
+            } ]
           },
           "importerIdentification" : {
             "description" : "The importer of the product, if different from the owner of the passport. In the Catena-X network, BPNL can be used.\n\nThis attribute is mentioned in the ESPR provisional agreement from January 9th, 2024  Annex III:\n(j) information related to the importer, including the information referred to in Article 23(3) and its EORI number \nArticle 23 states:\n(3) Importers shall, for products covered by a delegated act adopted pursuant to Article 4, indicate their name, registered trade name or registered trade mark and the postal address and electronic means of communication, where they can be contacted: (a) on the public part of the product passport, when applicable, and\n(b) on the product or, where this is not possible, on the packaging, or in a document accompanying the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importerIdentification",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "importerNames" : {
             "description" : "Name, registered trade name, or registered trademark of the importer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importerNames",
-            "$ref" : "#/components/schemas/NameList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NameList"
+            } ]
           },
           "importerAddress" : {
             "description" : "Full address of the importer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importerAddress",
-            "$ref" : "#/components/schemas/PostalAddress"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalAddress"
+            } ]
           },
           "importerContact" : {
             "description" : "Contact details of the importer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importerContact",
-            "$ref" : "#/components/schemas/ContactCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ContactCharacteristic"
+            } ]
           }
         },
         "required" : [ "eori", "importerIdentification", "importerNames", "importerAddress", "importerContact" ]
@@ -793,12 +945,16 @@
           "content" : {
             "description" : "Information regarding the importer of the product, if different from the owner of the passport.This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex III: (j) information related to the importer, including the information referred to in Article 29(3) and its EORI number, Article 29 states: 3. For products covered by a delegated act adopted pursuant to Article 4, importers shall indicate their name, registered trade name or registered trade mark, postal address at which and electronic means of communication through which they can be contacted: (a) on the public part of the digital product passport, where applicable and (b) on the product or, where that is not possible, on the packaging, or in a document accompanying the product. The contact details shall be clear, understandable and legible.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importer",
-            "$ref" : "#/components/schemas/ImporterCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ImporterCharacteristic"
+            } ]
           },
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -811,27 +967,37 @@
           "otherOperatorIdentification" : {
             "description" : "Identifier of the other operator. This can be a BPN. These attributes are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products  Annex III: (h) unique operator identifiers other than that of the manufacturer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorIdentification",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "otherOperatorRole" : {
             "description" : "Role of the other operator.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorRole",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "otherOperatorAddress" : {
             "description" : "Full address of the other operators.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorAddress",
-            "$ref" : "#/components/schemas/PostalAddress"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalAddress"
+            } ]
           },
           "otherOperatorContact" : {
             "description" : "Contact details of the other operator.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorContact",
-            "$ref" : "#/components/schemas/ContactCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ContactCharacteristic"
+            } ]
           },
           "otherOperatorNames" : {
             "description" : "Names of the other economic operators.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorNames",
-            "$ref" : "#/components/schemas/NameList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NameList"
+            } ]
           }
         },
         "required" : [ "otherOperatorIdentification", "otherOperatorRole", "otherOperatorAddress", "otherOperatorContact", "otherOperatorNames" ]
@@ -852,17 +1018,23 @@
           "header" : {
             "description" : "The header as a short description of the document with a maximum of 100 characters.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header",
-            "$ref" : "#/components/schemas/HeaderTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/HeaderTrait"
+            } ]
           },
           "content" : {
             "description" : "The content of the document e.g a link.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "contentType" : {
             "description" : "The type of content which can be expected in the \"content\" property. Examples are a link, restricted link, pdf, excel, etc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "header", "content", "contentType" ]
@@ -883,12 +1055,16 @@
           "collectionPointIdentification" : {
             "description" : "The identifier used for a location.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#collectionPointIdentification",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "collectionPointAddress" : {
             "description" : "Full address of the collection point for reusable products.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#collectionPointAddress",
-            "$ref" : "#/components/schemas/PostalAddress"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalAddress"
+            } ]
           }
         },
         "required" : [ "collectionPointIdentification", "collectionPointAddress" ]
@@ -909,17 +1085,23 @@
           "symbolsOfExtendedProducerResponsibilityScheme" : {
             "description" : "Symbol.This is mentioned in the Regulation (EU) 2025/40 (71)To help achieve the objectives of this Regulation, consumers should be protected from misleading and confusing information about the characteristics and appropriate end-of-life treatment of packaging for which harmonised labels have been established under this Regulation. It should be possible to identify packaging included in the extended producer responsibility scheme by a corresponding symbol throughout the territory in which that scheme applies in order to signify that the producer fulfils its extended producer responsibility obligations. Such identification should be achieved only by means of a QR code or other standardised, open, digital-marking technology. That symbol should be clear and unambiguous to consumers as to the recyclability of packaging.\n\n This is mentioned in the Regulation (EU) 2025/40  Article 12 9.By 12 February 2027, packaging included in an extended producer responsibility scheme may be identified throughout the territory of the Member States in which that scheme or system applies. Such identification shall be achieved only by means of a corresponding symbol in a QR code or other standardised, open, digital-marking technology in order to indicate that the producer fulfils its extended producer responsibility obligations. That symbol shall be clear and unambiguous and shall not mislead consumers or other end users as to the recyclability or reusability of the packaging.\n\n(15) producer  means any manufacturer, importer or distributor to whom, irrespective of the selling technique used, including by means of distance contracts, one of the following applies:\n(a) the manufacturer, importer or distributor is established in a Member State and makes available for the first time from within the territory of that Member State and on that same territory transport packaging, service packaging, or primary production packaging, whether as single-use packaging or as reusable packaging or\n(b) the manufacturer, importer or distributor is established in a Member State and makes available for the first time from within the territory of that Member State and on that same territory products packaged in packaging other than those referred to in point (a) or (c) the manufacturer, importer or distributor is established in a Member State or in a third country and makes available for the first time on the territory of another Member State, directly to end users, transport packaging, service packaging or primary production packaging, whether as single-use packaging or as reusable packaging or (d) the manufacturer, importer or distributor is established in a Member State or in a third country and makes available for the first time on the territory of another Member State, directly to end users, products packaged in packaging other than those referred to in point (c) or (e)the manufacturer, importer or distributor is established in a Member State and unpacks packaged products without being an end user, unless another person is the producer as defined in point (a), (b), (c) or (d).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#symbolsOfExtendedProducerResponsibilityScheme",
-            "$ref" : "#/components/schemas/SymbolOfExtendedProducerResponsibilitySchemeList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SymbolOfExtendedProducerResponsibilitySchemeList"
+            } ]
           },
           "territoriesOfApplication" : {
             "description" : "Information about territories where the Extended Producer Responsibility Scheme applies. 2 letter code from ISO 3166.\n\nDIRECTIVE 2008/98/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 19 November 2008 on waste and repealing certain Directives\nArticle 2 (21). extended producer responsibility scheme  means a set of measures taken by Member States to ensure that producers of products bear financial responsibility or financial and organisational responsibility for the management of the waste stage of a product s life cycle.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#territoriesOfApplication",
-            "$ref" : "#/components/schemas/StringList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringList"
+            } ]
           },
           "collectionPoints" : {
             "description" : "Information on collection points. End-users shall discard waste in designated separate collection points set up by, or following the specific arrangements concluded with, the producer or a producer responsibility organisation.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#collectionPoints",
-            "$ref" : "#/components/schemas/CollectionPointList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CollectionPointList"
+            } ]
           }
         },
         "required" : [ "symbolsOfExtendedProducerResponsibilityScheme", "territoriesOfApplication" ]
@@ -932,12 +1114,16 @@
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "content" : {
             "description" : "Information about the Extended Producer Responsibility Scheme.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#extendedProducerResponsibilitySchemeInformation",
-            "$ref" : "#/components/schemas/ExtendedProducerResponsibilitySchemeInformationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ExtendedProducerResponsibilitySchemeInformationCharacteristic"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -950,22 +1136,30 @@
           "manufacturing" : {
             "description" : "Manufacturing information of the product. In the CATENA-X use case, the BPNL and BPNA can be stated. These attributes are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products. Annex III: (h) unique operator identifiers other than that of the manufacturer, (k) the name, contact details and unique operator identifier of the economic operator established in the Union responsible for carrying out the tasks set out in Article 4 of Regulation (EU) 2019/1020 or Article 15 of Regulation (EU) 2023/988, or similar tasks pursuant to other Union law applicable to the product, Article 27 Obligations of manufacturers 6. For products covered by a delegated act adopted pursuant to Article 4, manufacturers shall indicate their name, registered trade name or registered trade mark, postal address at which, and electronic means of communication through which, they can be contacted: (a) on the public part of the digital product passport, where applicable and (b) on the product or, where that is not possible, on its packaging, or in a document accompanying the product. The address shall indicate a single point where the manufacturer can be contacted. The contact details shall be clear, understandable and legible.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturing",
-            "$ref" : "#/components/schemas/ManufacturingCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ManufacturingCharacteristic"
+            } ]
           },
           "import" : {
             "description" : "Importer details such as the identification. Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#import",
-            "$ref" : "#/components/schemas/ImportCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ImportCharacteristic"
+            } ]
           },
           "otherOperators" : {
             "description" : "Other operators relevant for the product. Example: distributors/retailers/logistics/designers/smelters/recyclers/professional repairers/waste treatment facilities/remanufacturers/ etc. In this section, it is possible to introduce external stakeholders like certification bodies, notified bodies, consumer-oriented entities, associations related to due diligence responsible supply chains, etc. It can include system operatoes of reusable packagings described in Annex VI Regulation (EU) 2025/40 of the European Parliament and of the Council of 19 December 2024 on packaging and packaging waste, amending Regulation (EU) 2019/1020 and Directive (EU) 2019/904, and repealing Directive 94/62/EC: system operator means any natural or legal person who is a system participant and manages a re-use system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperators",
-            "$ref" : "#/components/schemas/OtherOperatorList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OtherOperatorList"
+            } ]
           },
           "extendedProducerResponsibilityScheme" : {
             "description" : "DIRECTIVE 2008/98/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 19 November 2008 on waste and repealing certain Directives Article 3 (21) Definitions:\n 21.  extended producer responsibility scheme  means a set of measures taken by Member States to ensure that producers of products bear financial responsibility or financial and organisational responsibility for the management of the waste stage of a product s life cycle.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#extendedProducerResponsibilityScheme",
-            "$ref" : "#/components/schemas/ExtendedProducerResponsibilitySchemeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ExtendedProducerResponsibilitySchemeCharacteristic"
+            } ]
           }
         },
         "required" : [ "manufacturing", "import", "extendedProducerResponsibilityScheme" ]
@@ -978,17 +1172,23 @@
           "sparePartProviderIdentification" : {
             "description" : "The identifier of a spare part producer of the product. In the Catena-X network, the BPNL is used for the identification of companies and the information stored for this like contact information and addresses.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sparePartProviderIdentification",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "sparePartProviderAddress" : {
             "description" : "Full address of the provider company of the spare part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sparePartProviderAddress",
-            "$ref" : "#/components/schemas/PostalAddress"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalAddress"
+            } ]
           },
           "sparePartProviderContact" : {
             "description" : "Contact details of the provider company of the spare part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sparePartProviderContact",
-            "$ref" : "#/components/schemas/ContactCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ContactCharacteristic"
+            } ]
           }
         },
         "required" : [ "sparePartProviderIdentification", "sparePartProviderAddress", "sparePartProviderContact" ]
@@ -1009,17 +1209,23 @@
           "sparePartProvider" : {
             "description" : "Providers/suppliers of possible spare parts indicating contact detailes of sources for replacement spares.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sparePartProvider",
-            "$ref" : "#/components/schemas/SparePartProviderList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SparePartProviderList"
+            } ]
           },
           "nameAtManufacturer" : {
             "description" : "Name of the part as assigned by the manufacturer",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#nameAtManufacturer",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "manufacturerPartId" : {
             "description" : "Part ID as assigned by the manufacturer of the part. The Part ID identifies the part (as designed) in the manufacturer`s dataspace. The Part ID does not reference a specific instance of a part and thus should not be confused with the serial number or batch number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#manufacturerPartId",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "sparePartProvider", "nameAtManufacturer", "manufacturerPartId" ]
@@ -1040,12 +1246,16 @@
           "content" : {
             "description" : "The list of spare parts available for the product from various suppliers.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#spareParts",
-            "$ref" : "#/components/schemas/SparePartList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SparePartList"
+            } ]
           },
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -1057,7 +1267,7 @@
         "enum" : [ "unit:day", "unit:month", "unit:year", "unit:cycle", "unit:runningOrOperatingHour" ]
       },
       "LifeValueCharacteristic" : {
-        "type" : "number",
+        "type" : "integer",
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#LifeValueCharacteristic",
         "description" : "Characteristic for the life span value as an integer."
       },
@@ -1075,22 +1285,30 @@
           "lifeUnit" : {
             "description" : "The unit of the respective lifespan expressed through the possible units day, month, cycle, year and runningOrOperatingHour.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifeUnit",
-            "$ref" : "#/components/schemas/LifeEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LifeEnumeration"
+            } ]
           },
           "lifeValue" : {
             "description" : "The value as an integer for the respective lifespan.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifeValue",
-            "$ref" : "#/components/schemas/LifeValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LifeValueCharacteristic"
+            } ]
           },
           "lifeType" : {
             "description" : "The type of lifespan represented with the values guaranteed lifetime, technical lifetime and mean time between failures. This attribute is mentioned in the ESPR ANNEX I:\n(a) durability and reliability of the product or its components as expressed through the product's guaranteed lifetime, technical lifetime or mean time between failures.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifeType",
-            "$ref" : "#/components/schemas/LifeTypeEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LifeTypeEnumeration"
+            } ]
           },
           "lifeDescription" : {
             "description" : "Additional detailed description of the lifeType (e.g. shelf life as a technical lifetime).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifeDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "lifeUnit", "lifeValue", "lifeType" ]
@@ -1123,12 +1341,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of a linear attribute.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#linearUnit",
-            "$ref" : "#/components/schemas/LinearUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LinearUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -1148,12 +1370,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of a mass related attribute.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#massUnit",
-            "$ref" : "#/components/schemas/MassUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MassUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -1173,12 +1399,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of a volume related attribute.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#volumeUnit",
-            "$ref" : "#/components/schemas/VolumeUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/VolumeUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -1198,12 +1428,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of an item. Common units may be related to mass, count, linear, area, volume or misc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#itemUnit",
-            "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -1216,47 +1450,65 @@
           "width" : {
             "description" : "The width of the item measured in a specific linear unit which can be declared in the corresponding unit attribute.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#width",
-            "$ref" : "#/components/schemas/LinearCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LinearCharacteristic"
+            } ]
           },
           "length" : {
             "description" : "The length of the item measured in a specific linear unit which can be declared in the corresponding unit attribute.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#length",
-            "$ref" : "#/components/schemas/LinearCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LinearCharacteristic"
+            } ]
           },
           "diameter" : {
             "description" : "The diameter of the item, if applicable, measured in a specific linear unit which can be declared in the corresponding unit attribute.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#diameter",
-            "$ref" : "#/components/schemas/LinearCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LinearCharacteristic"
+            } ]
           },
           "height" : {
             "description" : "The height of the item measured in a specific linear unit which can be declared in the corresponding unit attribute.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#height",
-            "$ref" : "#/components/schemas/LinearCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LinearCharacteristic"
+            } ]
           },
           "grossWeight" : {
             "description" : "The gross weight of the item measured in a specific mass unit which can be declared in the corresponding unit attribute. Gross weight refers to the total weight of a product, including the weight of the packaging. These attributes are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 7:(2)(b) as appropriate, also require products to be accompanied by: (i) information on the performance of the product in relation to one or more of the product parameters referred to in Annex I, including a repairability score, a durability score, a carbon footprint or an environmental footprint, Annex I (j) weight and volume of the product and its packaging, and the product-to-packaging ratio, (l) quantity, characteristics and availability of consumables needed for proper use and maintenance as expressed, inter alia, through yield, technical lifetime, ability to reuse, repair, and remanufacture, mass-resource efficiency, and interoperability.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#grossWeight",
-            "$ref" : "#/components/schemas/MassCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MassCharacteristic"
+            } ]
           },
           "grossVolume" : {
             "description" : "The gross volume of the item, if possible, measured in a specific capacity unit which can be declared in the corresponding unit attribute. If there is no separate packing, the volume of the product shall be given. Gross volume refers to the total volume of a product, including the volume of the packaging. These attributes are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 7:(2)(b) as appropriate, also require products to be accompanied by: (i) information on the performance of the product in relation to one or more of the product parameters referred to in Annex I, including a repairability score, a durability score, a carbon footprint or an environmental footprint, Annex I (j) weight and volume of the product and its packaging, and the product-to-packaging ratio, (l) quantity, characteristics and availability of consumables needed for proper use and maintenance as expressed, inter alia, through yield, technical lifetime, ability to reuse, repair, and remanufacture, mass-resource efficiency, and interoperability.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#grossVolume",
-            "$ref" : "#/components/schemas/VolumeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/VolumeCharacteristic"
+            } ]
           },
           "weight" : {
             "description" : "Weight of the product measured in a specific mass unit which can be declared in the corresponding unit attribute. These attributes are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 7:(2)(b) as appropriate, also require products to be accompanied by: (i) information on the performance of the product in relation to one or more of the product parameters referred to in Annex I, including a repairability score, a durability score, a carbon footprint or an environmental footprint, Annex I (j) weight and volume of the product and its packaging, and the product-to-packaging ratio, (l) quantity, characteristics and availability of consumables needed for proper use and maintenance as expressed, inter alia, through yield, technical lifetime, ability to reuse, repair, and remanufacture, mass-resource efficiency, and interoperability.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#weight",
-            "$ref" : "#/components/schemas/MassCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MassCharacteristic"
+            } ]
           },
           "volume" : {
             "description" : "Volume of the product, if possible, measured in a specific capacity unit which can be declared in the corresponding unit attribute. This attribute is mentioned in the ESPR  Article 7:\n(2) (b) (i) information on the performance of the product in relation to the product parameters referred to in Annex I \nAnnex I (i) weight and volume of the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#volume",
-            "$ref" : "#/components/schemas/VolumeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/VolumeCharacteristic"
+            } ]
           },
           "itemQuantityInPackage" : {
             "description" : "Physical dimensions are properties  associated with physical quantities for purposes of classification or differentiation. These attributes are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 7:(2)(b) as appropriate, also require products to be accompanied by:\n(i) information on the performance of the product in relation to one or more of the product parameters referred to in Annex I, including a repairability score, a durability score, a carbon footprint or an environmental footprint \nAnnex I \n(j) weight and volume of the product and its packaging, and the product-to-packaging ratio \n(l) quantity, characteristics and availability of consumables needed for proper use and maintenance as expressed, inter alia, through yield, technical lifetime, ability to reuse, repair, and remanufacture, mass-resource efficiency, and interoperability.\n\nThe amout of items, if product base units may be packed into inner packs. Base units are not sold individualy, only pack are possible within value chain.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#itemQuantityInPackage",
-            "$ref" : "#/components/schemas/ItemQuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemQuantityCharacteristic"
+            } ]
           }
         },
         "required" : [ "grossWeight", "grossVolume", "weight", "volume" ]
@@ -1275,12 +1527,16 @@
           "otherCharacteristicName" : {
             "description" : "Name of the specific characteristic associated with a product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherCharacteristicName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "otherCharacteristicOutcome" : {
             "description" : "Specific results or effects that are associated with the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherCharacteristicOutcome",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "otherCharacteristicName", "otherCharacteristicOutcome" ]
@@ -1301,27 +1557,37 @@
           "lifespan" : {
             "description" : "he type of lifespan is represented by the values such as guaranteed lifetime, technical lifetime, and mean time between failures. Can be described through the attributes: type, which defines the type such as guaranteed lifetime or technical lifetime, the unit for the lifetime, and the value represented by an integer. These attributes are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products ANNEX I:(a) durability and reliability of the product or its components as expressed through the products guaranteed lifetime, technical lifetime, mean time between failures. (l) quantity, characteristics and availability of consumables needed for proper use and maintenance as expressed, inter alia, through yield, technical lifetime, ability to reuse, repair, and remanufacture, mass-resource efficiency, and interoperability.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifespan",
-            "$ref" : "#/components/schemas/LifespanList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LifespanList"
+            } ]
           },
           "physicalDimension" : {
             "description" : "Physical dimensions are properties  associated with physical quantities for purposes of classification or differentiation. These attributes are mentioned in the ESPR provisional agreement from January 9th, Article 7:\n(2) (b) (i) information on the performance of the product in relation to one or more of the product parameters referred to in Annex I \nAnnex I (i) weight and volume of the product and its packaging, and the product-to-packaging ratio.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#physicalDimension",
-            "$ref" : "#/components/schemas/PhysicalDimensionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PhysicalDimensionCharacteristic"
+            } ]
           },
           "physicalState" : {
             "description" : "The physical state of the item. There are four states of matter solid, liquid, gas and plasma which can be chosen from an enumeration.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#physicalState",
-            "$ref" : "#/components/schemas/PhysicalStateEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PhysicalStateEnumeration"
+            } ]
           },
           "generalPerformanceClass" : {
             "description" : "The performance class of the product. This attribute is mentioned in Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Article 7: 4. When setting the information requirements referred to in paragraph 2, point (b)(i), the Commission shall, where appropriate in view of the specificity of the product group, determine classes of performance.The Commission may base the classes of performance on single parameters or on aggregated scores. Such classes of performance may be expressed in absolute terms or in any other form that enables potential customers to choose the best performing products.Those classes of performance shall correspond to significant improvements in performance levels. Where classes of performance are based on parameters in relation to which performance requirements are set, the lowest class shall correspond to the minimum performance required at the time when the classes of performance start to apply.Article 2 Definitions:(15) class of performance means a range of performance levels in relation to one or more product parameters referred to in Annex I, which is established based on a common methodology for the product or product group, ordered in such a way as to allow for product differentiation.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#generalPerformanceClass",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "otherCharacteristics" : {
             "description" : "Optional other characteristics of the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherCharacteristics",
-            "$ref" : "#/components/schemas/OtherCharacteristicList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OtherCharacteristicList"
+            } ]
           }
         },
         "required" : [ "lifespan", "physicalDimension" ]
@@ -1334,17 +1600,23 @@
           "content" : {
             "description" : "The content of the document e.g a link.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "contentType" : {
             "description" : "The type of content which can be expected in the \"content\" property. Examples are a link, restricted link, pdf, excel, etc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "header" : {
             "description" : "The header as a short description of the document with a maximum of 100 characters.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header",
-            "$ref" : "#/components/schemas/HeaderTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/HeaderTrait"
+            } ]
           }
         },
         "required" : [ "content", "contentType", "header" ]
@@ -1365,12 +1637,16 @@
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "content" : {
             "description" : "Documentation of the recall information of the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recallInformationDocumentation",
-            "$ref" : "#/components/schemas/DocumentList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DocumentList"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -1383,22 +1659,30 @@
           "placedOnMarket" : {
             "description" : "The timestamp in the format (yyyy-mm-dd) with or without time zone when the product was put in the market.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#placedOnMarket",
-            "$ref" : "#/components/schemas/DateTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTrait"
+            } ]
           },
           "purpose" : {
             "description" : "One or more intended industry/industries of the product described by the digital product passport. If exchanged via Catena-X, 'automotive' is a must choice included in the list.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#purpose",
-            "$ref" : "#/components/schemas/StringList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringList"
+            } ]
           },
           "purchaseOrder" : {
             "description" : "A unique identifier assigned to the order of the product for tracking purposes between supplier and customer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#purchaseOrder",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "recallInformation" : {
             "description" : "Information regarding the recall of the product. According to the General Product Safety Regulation: Information on unsafe products: A product deemed dangerous in one EU Member State is presumed to be dangerous in all others. When a product is recalled, the information must be available to the public in clear and detailed language, and consumers need to be offered an effective, cost-free and timely remedy.Information on dangerous products should, in general, be made available to the public via the Safety Gate Portal.Obligations of manufacturers: - act immediately and inform consumers and national authorities, through the Safety Business Gateway, if they believe a product on the market is dangerous - share information on accidents- provide essential product safety and traceability information on products or their packaging - provide contact details to receive complaints, investigate them and keep an internal register of complaints received. COMMUNICATION FROM THE COMMISSION TO THE EUROPEAN PARLIAMENT, THE COUNCIL, THE EUROPEAN ECONOMIC AND SOCIAL COMMITTEE AND THE COMMITTEE OF THE REGIONS A comprehensive EU toolbox for safe and sustainable e-commerce: The Commission is preparing a project to streamline the existing databases, including, as a first step, the EU Safety Gate and the Customs Risk Management System, into a unified, interoperable system that will increase synergies in the information gathered by the different authorities and ensure interoperability with the DPP. \nRegulation (EU) 2023/988 of the European Parliament and of the Council of 10 May 2023 on general product safety, amending Regulation (EU) No 1025/2012 of the European Parliament and of the Council and Directive (EU) 2020/1828 of the European Parliament and the Council, and repealing Directive 2001/95/EC of the European Parliament and of the Council and Council Directive 87/357/EEC\n\nArticle 9 (Obligations of manufacturers)\n8. Where a manufacturer considers or has reason to believe, on the basis of the information in that manufacturer s possession, that a product which it has placed on the market is a dangerous product, the manufacturer shall immediately:\n(a) take the corrective measures necessary to bring in an effective manner the product into conformity, including a withdrawal or recall, as appropriate \n(b) inform consumers thereof, in accordance with Article 35 or 36, or both and\n(c) inform, through the Safety Business Gateway, the market surveillance authorities of the Member States in which the product has been made available on the market thereof.\nFor the purposes of points (b) and (c) of the first subparagraph, the manufacturer shall give details, in particular, of the risk to the health and safety of consumers and of any corrective measure already taken, and, if available, of the quantity, by Member State, of products still circulating on the market.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recallInformation",
-            "$ref" : "#/components/schemas/RecallInformationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/RecallInformationCharacteristic"
+            } ]
           }
         },
         "required" : [ "purpose", "recallInformation" ]
@@ -1430,42 +1714,58 @@
           "value" : {
             "description" : "The value of the footprint of the product. These attributes are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex I: (m) the environmental footprint of the product, expressed as a quantification, in accordance with the applicable delegated act, of a products life cycle environmental impacts, whether in relation to one or more environmental impact categories or an aggregated set of impact categories, (n) the carbon footprint of the product, (o) the material footprint of the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintValue",
-            "$ref" : "#/components/schemas/PositiveTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PositiveTrait"
+            } ]
           },
           "rulebook" : {
             "description" : "The applied rulebook for the environmental footprint of the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintRulebook",
-            "$ref" : "#/components/schemas/DocumentList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DocumentList"
+            } ]
           },
           "lifecycle" : {
             "description" : "The lifecycle stage, to which the environmental footprint corresponds. These could be for example \"raw material acquisition and pre-processing\", \"main product production\", \"distribution\" or \"end of life and recycling\".",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintLifecycle",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "unit" : {
             "description" : "The unit of measurement of the environmental impact category. For each impact category a specific unit is used. If an aggregation is used, utilize the normalization and weighting methods used in the referenced rulebook.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintUnit",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "type" : {
             "description" : "The type of the environmental footprint of the product. This could be one of the environmental impact categories.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintType",
-            "$ref" : "#/components/schemas/CategoryEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CategoryEnumeration"
+            } ]
           },
           "performanceClass" : {
             "description" : "The performance classification of the footprint.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#performanceClass",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "manufacturingPlant" : {
             "description" : "The manufacturing plant of the footprint in the specific lifecycle phase.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturingPlant",
-            "$ref" : "#/components/schemas/FacilityList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FacilityList"
+            } ]
           },
           "declaration" : {
             "description" : "The footprint declaration in the format of a link.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declaration",
-            "$ref" : "#/components/schemas/DocumentList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DocumentList"
+            } ]
           }
         },
         "required" : [ "value", "rulebook", "lifecycle", "unit", "type", "manufacturingPlant", "declaration" ]
@@ -1486,17 +1786,23 @@
           "environmental" : {
             "description" : "The environmental footprint of the product. The environmental footprint of the product. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex I: The following parameters shall, as appropriate, and where necessary supplemented by others, be used, individually or combined, as a basis for improving the product aspects referred to in Article 5(1):(m) the environmental footprint of the product, expressed as a quantification, in accordance with the applicable delegated act, of a products life cycle environmental impacts, whether in relation to one or more environmental impact categories or an aggregated set of impact categories and Article 7:(2)(b)(i) information on the performance of the product in relation to one or more of the product parameters referred to in Annex I, including a repairability score, a durability score, a carbon footprint or an environmental footprint and defined by Article 2:(24) environmental footprint means a quantification of the environmental impacts resulting from a product throughout its life cycle, whether in relation to a single environmental impact category or an aggregated set of impact categories based on the Product Environmental Footprint method established by Recommendation (EU) 2021/2279 or other scientific methods developed by international organisations, widely tested in collaboration with different industry sectors and adopted or implemented by the Commission in other Union law.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#environmentalFootprint",
-            "$ref" : "#/components/schemas/FootprintList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FootprintList"
+            } ]
           },
           "carbon" : {
             "description" : "The carbon footprint of the product. This is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex I:The following parameters shall, as appropriate, and where necessary supplemented by others, be used, individually or combined, as a basis for improving the product aspects referred to in Article 5(1):(m) the carbon footprint of the product and Article 7:(2)(b)(i) information on the performance of the product in relation to one or more of the product parameters referred to in Annex I, including a repairability score, a durability score, a carbon footprint or an environmental footprint and defined by Article 2:(25) carbon footprint means the sum of greenhouse gas emissions and greenhouse gas removals in a product system, expressed as CO2 equivalents and based on a life cycle assessment using the single impact category of climate change.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#carbonFootprint",
-            "$ref" : "#/components/schemas/FootprintList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FootprintList"
+            } ]
           },
           "material" : {
             "description" : "The material footprint of the product. This is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex I: (ma) the material footprint of the product and defined by Article 2:(26) material footprint refers to the total amount of raw materials extracted to meet final consumption demands.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialFootprint",
-            "$ref" : "#/components/schemas/FootprintList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FootprintList"
+            } ]
           }
         },
         "required" : [ "carbon" ]
@@ -1509,17 +1815,23 @@
           "header" : {
             "description" : "The header as a short description of the document with a maximum of 100 characters.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header",
-            "$ref" : "#/components/schemas/HeaderTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/HeaderTrait"
+            } ]
           },
           "content" : {
             "description" : "The content of the document e.g a link.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "contentType" : {
             "description" : "The type of content which can be expected in the \"content\" property. Examples are a link, restricted link, pdf, excel, etc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "header", "content", "contentType" ]
@@ -1540,12 +1852,16 @@
           "calculationKey" : {
             "description" : "Key for calculation of trips/rotations.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#calculationKey",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "calculationValue" : {
             "description" : "Dynamic value for calculation trips/rotations.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#calculationValue",
-            "$ref" : "#/components/schemas/PositiveTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PositiveTrait"
+            } ]
           }
         },
         "required" : [ "calculationKey", "calculationValue" ]
@@ -1558,12 +1874,16 @@
           "calculationKey" : {
             "description" : "Key for calculation of trips/rotations.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#calculationKey",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "calculationValue" : {
             "description" : "Dynamic value for calculation trips/rotations.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#calculationValue",
-            "$ref" : "#/components/schemas/PositiveTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PositiveTrait"
+            } ]
           }
         },
         "required" : [ "calculationKey", "calculationValue" ]
@@ -1576,32 +1896,44 @@
           "reuseSystemIdentification" : {
             "description" : "Identification of the reuse system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reuseSystemIdentification",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "symbolsOfDepositAndReturnSystem" : {
             "description" : "Document of the symbols of the deposit and return system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#symbolsOfDepositAndReturnSystem",
-            "$ref" : "#/components/schemas/SymbolOfDepositAndReturnSystemList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SymbolOfDepositAndReturnSystemList"
+            } ]
           },
           "rotation" : {
             "description" : " Rotation  means the cycle that reusable packaging accomplishes from the moment it is placed on the market together with the product it is intended to contain, protect, handle, deliver or present to the moment it is ready to be re-used within a re-use system with a view to it being supplied again to end users together with another product.\n\nThis definition is based on the following regulation:\nRegulation (EU) 2025/40 of the European Parliament and of the Council of 19 December 2024 on packaging and packaging waste, amending Regulation (EU) 2019/1020 and Directive (EU) 2019/904, and repealing Directive 94/62/EC",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#rotation",
-            "$ref" : "#/components/schemas/RotationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/RotationCharacteristic"
+            } ]
           },
           "trip" : {
             "description" : " Trip  means the transfer of packaging, from filling or loading to emptying or unloading, as part of a rotation or on its own.\n\nThis definition is based on the following regulation:\nRegulation (EU) 2025/40 of the European Parliament and of the Council of 19 December 2024 on packaging and packaging waste, amending Regulation (EU) 2019/1020 and Directive (EU) 2019/904, and repealing Directive 94/62/EC",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#trip",
-            "$ref" : "#/components/schemas/TripCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TripCharacteristic"
+            } ]
           },
           "collectionPoints" : {
             "description" : "Information on collection points. End-users shall discard waste in designated separate collection points set up by, or following the specific arrangements concluded with, the producer or a producer responsibility organisation.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#collectionPoints",
-            "$ref" : "#/components/schemas/CollectionPointList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CollectionPointList"
+            } ]
           },
           "trackingFacilities" : {
             "description" : "Information about tracking facilities.\n\nThese are mentioned in the Regulation (EU) 2025/40:  \n(69) As regards reusable packaging, in order to inform end users about reusability, the availability of re-use systems and the location of collection channels, such packaging should bear a QR code or other standardised, open, digital data carrier that provides such information. The QR code or data carrier should contain information which facilitates tracking and the calculation of trips and rotations, or an average estimation if such calculations are not feasible. That label should be voluntary for open loop systems which do not have a system operator. In addition, reusable sales packaging should be clearly identified at the point of sale.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#trackingFacilities",
-            "$ref" : "#/components/schemas/FacilityList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FacilityList"
+            } ]
           }
         },
         "required" : [ "collectionPoints" ]
@@ -1614,12 +1946,16 @@
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "content" : {
             "description" : "Documentation and identification of the reuse system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reuseSystemInformation",
-            "$ref" : "#/components/schemas/ReuseSystemInformationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ReuseSystemInformationCharacteristic"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -1632,12 +1968,16 @@
           "reuseInfo" : {
             "description" : "Information about whether product is reusable or not, and description of the type of reuse, and possibilities of the reuse.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reuseInfo",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "reuseSystem" : {
             "description" : "Information about the reuse system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reuseSystem",
-            "$ref" : "#/components/schemas/ReuseSystemCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ReuseSystemCharacteristic"
+            } ]
           }
         },
         "required" : [ "reuseInfo", "reuseSystem" ]
@@ -1650,12 +1990,16 @@
           "content" : {
             "description" : "Information about the reusability of the product and the reuse system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reusabilityInformation",
-            "$ref" : "#/components/schemas/ReusabilityInformationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ReusabilityInformationCharacteristic"
+            } ]
           },
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -1668,12 +2012,16 @@
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "content" : {
             "description" : "Indication of recycleability grade.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recycleabilityPerformaceGrade",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -1686,32 +2034,44 @@
           "productStatus" : {
             "description" : "The status of the product (original, repurposed, re-used, remanufactured or waste) to indicated, whether it is a used product. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex I:(k) incorporation of used components.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#productStatus",
-            "$ref" : "#/components/schemas/ProductStatusEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ProductStatusEnumeration"
+            } ]
           },
           "productFootprint" : {
             "description" : "The carbon and environmental footprint or material footprint of the product. These attributes are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex I:(m) the environmental footprint of the product, expressed as a quantification, in accordance with the applicable delegated act, of a products life cycle environmental impacts, whether in relation to one or more environmental impact categories or an aggregated set of impact categories (n) the carbon footprint of the product (o) the material footprint of the product. All are defined by Article 2:(24) environmental footprint means a quantification of the environmental impacts resulting from a product throughout its life cycle, whether in relation to a single environmental impact category or an aggregated set of impact categories based on the Product Environmental Footprint method established by Recommendation (EU) 2021/2279 or other scientific methods developed by international organisations, widely tested in collaboration with different industry sectors and adopted or implemented by the Commission in other Union law (25) carbon footprint means the sum of greenhouse gas emissions and greenhouse gas removals in a product system, expressed as CO2 equivalents and based on a life cycle assessment using the single impact category of climate change (26) material footprint refers to the total amount of raw materials extracted to meet final consumption demands.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#productFootprint",
-            "$ref" : "#/components/schemas/ProductFootprintCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ProductFootprintCharacteristic"
+            } ]
           },
           "reparabilityScore" : {
             "description" : "The reparability score. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 7:(b) as appropriate, also require products to be accompanied by: (i) information on the performance of the product in relation to one or more of the product parameters referred to in Annex I, including a repairability score.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reparabilityScore",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "durabilityScore" : {
             "description" : "The durability score. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 7: (b) as appropriate, also require products to be accompanied by: (i) information on the performance of the product in relation to one or more of the product parameters referred to in Annex I, including a repairability score, a durability score.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#durabilityScore",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "reusability" : {
             "description" : "Reuse information about the product. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, amending Directive (EU) 2020/1828 and Regulation (EU) 2023/1542 and repealing Directive 2009/125/EC, Article 7 (2)(b)(iii): (iii) information for treatment facilities on disassembly, reuse, refurbishment, recycling, or disposal at end-of-life. This is mentioned in the Regulation (EU) 2025/40 Article 12: 2. Reusable packaging placed on the market from 12 February 2029 or 30 months from the date of entry into force of the implementing act adopted pursuant to paragraph 6, whichever is the latest, shall bear a label informing users that the packaging is reusable. Further information on reusability, including the availability of a local, national or Union-wide re-use system and information on collection points, shall be made available through a QR code or other type of standardised, open, digital data carrier that facilitates the tracking of the packaging and the calculation of trips and rotations, or, if that calculation is not feasible, an average estimation. In addition, reusable sales packaging shall be clearly identified and distinguished from single-use packaging at the point of sale. 3. By way of derogation from paragraph 2 of this Article, the requirement to bear a label and a QR code or other type of standardised, open, digital data carrier shall not apply to open loop systems which do not have a system operator in accordance with Annex VI.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reusability",
-            "$ref" : "#/components/schemas/ReusabilityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ReusabilityCharacteristic"
+            } ]
           },
           "recycleabilityPerformance" : {
             "description" : " Recyclability information about the product. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, amending Directive (EU) 2020/1828 and Regulation (EU) 2023/1542 and repealing Directive 2009/125/EC Article 7 (2 )(b)(iii):\n(iii) information for treatment facilities on disassembly, reuse, refurbishment, recycling, or disposal at end-of-life. This is mentioned in the Regulation (EU) 2025/40 Article 12: 2. Reusable packaging placed on the market from 12 February 2029 or 30 months from the date of entry into force of the implementing act adopted pursuant to paragraph 6, whichever is the latest, shall bear a label informing users that the packaging is reusable. Further information on reusability, including the availability of a local, national or Union-wide re-use system and information on collection points, shall be made available through a QR code or other type of standardised, open, digital data carrier that facilitates the tracking of the packaging and the calculation of trips and rotations, or, if that calculation is not feasible, an average estimation. In addition, reusable sales packaging shall be clearly identified and distinguished from single-use packaging at the point of sale. 3. By way of derogation from paragraph 2 of this Article, the requirement to bear a label and a QR code or other type of standardised, open, digital data carrier shall not apply to open loop systems which do not have a system operator in accordance with Annex VI.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recycleabilityPerformance",
-            "$ref" : "#/components/schemas/RecycleabilityPerformanceCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/RecycleabilityPerformanceCharacteristic"
+            } ]
           }
         },
         "required" : [ "productStatus", "productFootprint", "reusability", "recycleabilityPerformance" ]
@@ -1730,22 +2090,30 @@
           "content" : {
             "description" : "The content of the document e.g a link.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "category" : {
             "description" : "The category in which the document can be sorted. (Link to databases or systems can provide the linkt to: Electronic Freight Transport Information platform (eFTI)). These are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products ANNEX III:(e) compliance documentation and information required under this Regulation or other Union law applicable to the product, such as the declaration of conformity, technical documentation or conformity certificates, ANNEX IV states additional information regarding the content of the technical documentation. Further information on documents are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products ANNEX III:(f) user manuals, instructions, warnings or safety information, as required by other Union legislation applicable to the product. The delegated acts adopted pursuant to Article 4 shall identify information relevant to ecodesign requirements that manufacturers may include in the digital product passport in addition to the information required pursuant to Article 9(2), point (a), including information on specific voluntary labels applicable to the product. That shall include whether an EU Ecolabel has been awarded to the product in line with Regulation (EC) No 66/2010. Additionally requirements are mentioned in Article 27: (7). Manufacturers shall ensure that a product covered by a delegated act adopted pursuant to Article 4 is accompanied by instructions in digital format concerning the product (digital instructions) in a language that can be easily understood, as determined by the Member State concerned. Digital instructions shall be clear, understandable and legible and include at least the information set out in Article 7(2), point (b)(ii), as specified in that delegated act. Article 7 states additionally: (2) (b) (ii) information for customers and other actors on how to install, use, maintain and repair the product, in order to minimise its impact on the environment and to ensure optimum durability, on how to install third-party operating systems where relevant, as well as on collection for refurbishment or remanufacture, and on how to return or handle the product at end-of-life (2)(b)(iii) information for treatment facilities on disassembly, reuse, refurbishment, recycling, or disposal at end-of-life (2)(b)(iv) other information that could influence sustainable product choices for customers and the way the product is handled by parties other than the manufacturer in order to facilitate appropriate use, value-retaining operations and correct treatment at end-of-life (5)(d) relevant instructions for the safe use of the product. (5)(e) information relevant for disassembly, preparation for reuse, reuse, recycling and the environmentally sound management of the product at end-of-life. These are mentioned in the Regulation (EU) 2025/40: (161) Producers and producer responsibility organisations should be actively involved in providing information to end users, in particular consumers, on prevention and management of packaging waste. That information should include availability of re-use arrangements for packaging, meaning of labels displayed on packaging and other instructions on the discarding of packaging waste. Producers and producer responsibility organisations should also inform consumers that packaging marked as compostable means that the packaging is compostable in industrially controlled conditions in bio-waste treatment facilities and is not suitable for home composting. Packaging should not be discarded as litter. The producers should also inform that end users have an important role in ensuring an environmentally optimal management of packaging waste. The disclosure of information to all end users as well as reporting on packaging should make use of modern information technologies. The information should be provided either by classical means, such as posters, both indoors and outdoors, and social media campaigns, or by more innovative means, such as electronic access to websites provided by QR codes affixed to the packaging. Article 55 Information on prevention and management of packaging waste (f) the composting properties and appropriate waste management options for compostable packaging in accordance with Article 9(2) of this Regulation consumers shall be informed that compostable packaging is not suitable for home composting and that compostable packaging is not to be discarded in nature. Article 3 Definitions: (50) ‘compostable packaging’ means packaging that biodegrades in industrially controlled conditions or that is capable of undergoing biological decomposition in such conditions, including through anaerobic digestion, but not necessarily in a home-composting environment, combined, if necessary, with physical treatment, resulting ultimately in the conversion of the packaging into carbon dioxide or, in the absence of oxygen, methane, and mineral salts, biomass and water, and that does not hinder or jeopardise the separate collection and the composting and anaerobic digestion process (51) home compostable packaging means packaging that can biodegrade in non-controlled conditions that are not industrial-scale composting facilities and the composting process of which is performed by private individuals with the aim of producing compost for their own use.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#category",
-            "$ref" : "#/components/schemas/SourceCategoryEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SourceCategoryEnumeration"
+            } ]
           },
           "contentType" : {
             "description" : "The type of content which can be expected in the \"content\" property. Examples are a link, restricted link, pdf, excel, etc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "header" : {
             "description" : "The header as a short description of the document with a maximum of 100 characters.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header",
-            "$ref" : "#/components/schemas/HeaderTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/HeaderTrait"
+            } ]
           }
         },
         "required" : [ "content", "category", "contentType", "header" ]
@@ -1777,12 +2145,16 @@
           "typeUnit" : {
             "description" : "Choose a unit type from the unit catalog, or if the property \"children\" is filled, leave empty.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#typeUnit",
-            "$ref" : "#/components/schemas/UnitCatalog"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UnitCatalog"
+            } ]
           },
           "dataType" : {
             "description" : "Data type that describe the content of the attributes children and data. In case \"object\" is selected in the enumeration, the children field will be used in the AdditionalDataEntity instead of the \"data\" property. If it is an other type, the content will be specified in \"data\" as a string.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#dataType",
-            "$ref" : "#/components/schemas/DataTypeEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DataTypeEnumeration"
+            } ]
           }
         },
         "required" : [ "dataType" ]
@@ -1795,27 +2167,37 @@
           "label" : {
             "description" : "The human readable name of the attribute.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#label",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "description" : {
             "description" : "The description of the attribute context.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#description",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "type" : {
             "description" : "The complex description of the type.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#type",
-            "$ref" : "#/components/schemas/TypeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TypeCharacteristic"
+            } ]
           },
           "data" : {
             "description" : "The content from the attribute which is a depended of the data type and typeUnit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#data",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "children" : {
             "description" : "Children of the hierarchy.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#children",
-            "$ref" : "#/components/schemas/AdditionalDataList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/AdditionalDataList"
+            } ]
           }
         },
         "required" : [ "label", "description", "type" ]
@@ -1836,32 +2218,44 @@
           "requirementName" : {
             "description" : "Name the regulation, standard, code of conduct, or specification that the product must comply with. This information can be sourced from the Supplier Survey.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#requirementName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "complianceStatement" : {
             "description" : "The statement indicates whether the product complies with the aforementioned regulations.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#complianceStatement",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "complianceCountries" : {
             "description" : "List of countries whose rules and regulations the product must adhere to.\n\nThe name of the country of compliance denotes the country whose rules and regulations the product must adhere to. 2 letter code from ISO 3166.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#complianceCountries",
-            "$ref" : "#/components/schemas/StringList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringList"
+            } ]
           },
           "reasonsForExemption" : {
             "description" : "Data providing details and justifications for an exemption from compliance with certain regulations, standards, or requirements. This information assists regulatory authorities or stakeholders in evaluating the merits of the exemption and making decisions following legal and regulatory requirements.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reasonsForExemption",
-            "$ref" : "#/components/schemas/StringList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringList"
+            } ]
           },
           "remarks" : {
             "description" : "If necessary, any remarks that provide relevant information for compliance. Further clarification supplements the compliance information, offering additional context or details to ensure thorough understanding and adherence to regulatory requirements.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#remarks",
-            "$ref" : "#/components/schemas/StringList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringList"
+            } ]
           },
           "complianceDocuments" : {
             "description" : "Documentation accompanying the compliance. Declarations to support compliance.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#complianceDocuments",
-            "$ref" : "#/components/schemas/DocumentList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DocumentList"
+            } ]
           }
         },
         "required" : [ "requirementName", "complianceStatement", "complianceCountries" ]
@@ -1882,32 +2276,44 @@
           "componentName" : {
             "description" : "Name of the component. If the product has only one component (the product itself), a comment is enough.\n\nThis field must be used where the product consists multiple components, and where these components are made of different materials as assigned by the manufacturer of a product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "componentCode" : {
             "description" : "An identifier assigned to the component.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentCode",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "componentDescription" : {
             "description" : "Short description of component, including function or specification. Information can include data about component type, weight.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "componentLocations" : {
             "description" : "Locations or positions of the component within the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentLocations",
-            "$ref" : "#/components/schemas/StringList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringList"
+            } ]
           },
           "componentSortingInformation" : {
             "description" : "Description of how to sort the component.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentSortingInformation",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "componentPassportIdentifier" : {
             "description" : "The identifier of the component passport, which is a uuidv4.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentPassportIdentifier",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           }
         },
         "required" : [ "componentCode", "componentSortingInformation" ]
@@ -1928,12 +2334,16 @@
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "content" : {
             "description" : "Information about the components of the product.\n\nThis attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, amending Directive (EU) 2020/1828 and Regulation (EU) 2023/1542 and repealing Directive 2009/125/EC Article 2\n(2) component  means a product intended to be incorporated into another product \n\nThese are mentioned in the Regulation (EU) 2025/40: Article 3 Definitions\n(45) unit of packaging means a unit, including any integrated or separate components, which as a whole serves a packaging function, such as the containment, protection, handling, delivery, storage, transport or presentation of products, and includes independent units of grouped or transport packaging where they are discarded prior to the point of sale \n\nProposal for end-of-life vehicles regulation refers to  REGULATION (EU) 2018/858 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 30 May 2018 on the approval and market surveillance of motor vehicles and their trailers, and of systems, components and separate technical units intended for such vehicles, amending Regulations (EC) No 715/2007 and (EC) No 595/2009 and repealing Directive 2007/46/EC  in Article 3 (19) \n component  means a device that is intended to be part of a vehicle, that can be type-approved independently of a vehicle and that is subject to the requirements of this Regulation or any of the regulatory acts listed in Annex II where the specific regulatory act makes express provision to that effect,  \nArticle 31 sets out the obligations concerning removed parts and components to assess their fitness for reuse, remanufacturing, refurbishment, recycling, or other treatment operations and how they should be labelled. It also provides a list of parts that should not be reused, remanufactured or refurbished.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#components",
-            "$ref" : "#/components/schemas/ComponentList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ComponentList"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -1961,17 +2371,23 @@
           "materialName" : {
             "description" : "The name of the material that is present in the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "materialId" : {
             "description" : "The material identification, in accordance with the specification in the attribute for the list type.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialId",
-            "$ref" : "#/components/schemas/IdentifierCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/IdentifierCharacteristic"
+            } ]
           },
           "materialListTypeId" : {
             "description" : "The type of standard used for the identification of the substances. Selected can be for example CAS, IUPAC or EC.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialListTypeId",
-            "$ref" : "#/components/schemas/ListTypeIdEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ListTypeIdEnumeration"
+            } ]
           }
         },
         "required" : [ "materialName", "materialId", "materialListTypeId" ]
@@ -1992,17 +2408,23 @@
           "hazardCategory" : {
             "description" : "The hazard category of the substance of concern. Defined in Article 2 of Regulation (EC) No 1272/2008 of the European Parliament and of the Council of 16 December 2008 on classification, labelling and packaging of substances and mixtures, amending and repealing Directives 67/548/EEC and 1999/45/EC, and amending Regulation (EC) No 1907/2006:\n2. 'hazard category' means the division of criteria within each hazard class, specifying hazard severity.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#hazardCategory",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "hazardClass" : {
             "description" : "The hazard class of the substance of concern. Defined in Article 2 of Regulation (EC) No 1272/2008 of the European Parliament and of the Council of 16 December 2008 on classification, labelling and packaging of substances and mixtures, amending and repealing Directives 67/548/EEC and 1999/45/EC, and amending Regulation (EC) No 1907/2006:\n1. 'hazard class' means the nature of the physical, health or environmental hazard.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#hazardClass",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "hazardStatement" : {
             "description" : "The hazard statement of the substance of concern. Defined in Article 2 of Regulation (EC) No 1272/2008 of the European Parliament and of the Council of 16 December 2008 on classification, labelling and packaging of substances and mixtures, amending and repealing Directives 67/548/EEC and 1999/45/EC, and amending Regulation (EC) No 1907/2006:\n5. 'hazard statement' means a phrase assigned to a hazard class and category that describes the nature of the hazards of a hazardous substance or mixture, including, where appropriate, the degree of hazard.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#hazardStatement",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "hazardCategory", "hazardClass", "hazardStatement" ]
@@ -2029,12 +2451,16 @@
           "concentrationValue" : {
             "description" : "Concentration of the material at the level of the product. This attribute is specially mentioned for substances of concern mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 7: (5)(c) the concentration, maximum concentration or concentration range of the substances of concern, at the level of the product, its relevant components, or spare parts; Other substances are mentioned for the purporse of recycling in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex I: (d) design for recycling, ease and quality of recycling as expressed through use of easily recyclable materials, safe, easy and non-destructive access to recyclable components and materials or components and materials containing hazardous substances and material composition and homogeneity, possibility for high-purity sorting, number of materials and components used, use of standard components, use of component and material coding standards for the identification of components and materials, number and complexity of processes and tools needed, ease of non-destructive disassembly and re-assembly, conditions for access to product data, conditions for access to or use of hardware and software needed.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentrationValue",
-            "$ref" : "#/components/schemas/PositiveTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PositiveTrait"
+            } ]
           },
           "concentrationUnit" : {
             "description" : "The unit of concentration chosen from an enumeration: mass percent, volume percent, parts per thousand, parts per million, parts per billion and  parts per trillion.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentrationUnit",
-            "$ref" : "#/components/schemas/ConcentrationEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ConcentrationEnumeration"
+            } ]
           }
         },
         "required" : [ "concentrationValue", "concentrationUnit" ]
@@ -2047,12 +2473,16 @@
           "minConcentration" : {
             "description" : "The minimum concentration of the material at the level of the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#minConcentration",
-            "$ref" : "#/components/schemas/ConcentrationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ConcentrationCharacteristic"
+            } ]
           },
           "maxConcentration" : {
             "description" : "The maximum concentration of the material at the level of the product. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#maxConcentration",
-            "$ref" : "#/components/schemas/ConcentrationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ConcentrationCharacteristic"
+            } ]
           }
         },
         "required" : [ "maxConcentration" ]
@@ -2065,27 +2495,37 @@
           "exemption" : {
             "description" : "Exemptions to the substance of concern. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Article 7: (5) (c) provide duly justified exemptions for substances of concern or information elements from the information requirements referred to in the first subparagraph based on the technical feasibility or relevance of tracking substances of concern, the existence of analytical methods to detect and quantify them, the need to protect confidential business information or in other duly justified cases. Substances of concern within the meaning of Article 2(28), point (a), shall not be exempted if they are present in products, their relevant components or spare parts in a concentration above 0,1 % weight by weight.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#exemption",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "hazardClassifications" : {
             "description" : "The specification of the hazard classes. The specification of the hazard class. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex I:(f) use of substances, and in particular the use of substances of concern, on their own, as constituents of substances or in mixtures, during the production process of products, or leading to their presence in products, including once these products become waste, and their impacts on human health and the environment; Further defined is this by Regulation (EC) No 1272/2008 of the European Parliament and of the Council of 16 December 2008 on classification, labelling and packaging of substances and mixtures, amending and repealing Directives 67/548/EEC and 1999/45/EC, and amending Regulation (EC) No 1907/2006. Defined in Article 2: 1. 'hazard class' means the nature of the physical, health or environmental hazard; 2. 'hazard category' means the division of criteria within each hazard class, specifying hazard severity; 5. 'hazard statement' means a phrase assigned to a hazard class and category that describes the nature of the hazards of a hazardous substance or mixture, including, where appropriate, the degree of hazard.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#hazardClassifications",
-            "$ref" : "#/components/schemas/HazardClassificationList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/HazardClassificationList"
+            } ]
           },
           "substanceOfConcernDocuments" : {
             "description" : "Documentation accompanying the material.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substanceOfConcernDocuments",
-            "$ref" : "#/components/schemas/DocumentList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DocumentList"
+            } ]
           },
           "substanceOfConcernLocations" : {
             "description" : "Locations of the substance of concern within the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substanceOfConcernLocations",
-            "$ref" : "#/components/schemas/StringList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringList"
+            } ]
           },
           "substanceOfConcernConcentrationRange" : {
             "description" : "Based on the regulation: concentration range for the substance of concern.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substanceOfConcernConcentrationRange",
-            "$ref" : "#/components/schemas/RangeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/RangeCharacteristic"
+            } ]
           }
         },
         "required" : [ "exemption", "hazardClassifications", "substanceOfConcernDocuments", "substanceOfConcernLocations", "substanceOfConcernConcentrationRange" ]
@@ -2098,12 +2538,16 @@
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "content" : {
             "description" : "Information regarding substance of concern in the product. Attributes are among others substance names, ids, concentration, location and hazard class. The Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products defines: (27) substance of concern means a substance that: (a) meets the criteria laid down in Article 57 of Regulation (EC) No 1907/2006 and is identified in accordance with Article 59(1) of that Regulation; (b) is classified in Part 3 of Annex VI to Regulation (EC) No 1272/2008 in one of the following hazard classes or hazard categories:(i) carcinogenicity categories 1 and 2;(ii) germ cell mutagenicity categories 1 and 2; (iii) reproductive toxicity categories 1 and 2; (iv) endocrine disruption for human health categories 1 and 2; (v) endocrine disruption for the environment categories 1 and 2; (vi) persistent, mobile and toxic or very persistent, very mobile properties; (vii) persistent, bioaccumulative and toxic or very persistent, very bioaccumulative properties; (viii) respiratory sensitisation category 1; (ix) skin sensitisation category 1; (x) hazardous to the aquatic environment- categories chronic 1 to 4; (xi) hazardous to the ozone layer; (xii) specific target organ toxicity -repeated exposure categories 1 and 2; (xiii) specific target organ toxicity -single exposure categories 1 and 2; (c) is regulated under Regulation (EU) 2019/1021; or (d) negatively affects the reuse and recycling of materials in the product in which it is present;.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substanceOfConcern",
-            "$ref" : "#/components/schemas/SubstanceOfConcernCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SubstanceOfConcernCharacteristic"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -2116,17 +2560,23 @@
           "declarableIngredientListName" : {
             "description" : "Name of the Declarable Ingredient List.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredientListName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "declarableIngredientListDocumentId" : {
             "description" : "Document ID refered to Declarable Ingredient list.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredientListDocumentId",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "declarableIngredientDocuments" : {
             "description" : "Documentation accompanying the Declarable Ingredient list with information related to declarable ingredients. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredientDocuments",
-            "$ref" : "#/components/schemas/DocumentList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DocumentList"
+            } ]
           }
         },
         "required" : [ "declarableIngredientListName", "declarableIngredientDocuments" ]
@@ -2147,12 +2597,16 @@
           "applicable" : {
             "description" : "Check whether the connected attributes are applicable to the product. If applicable (true), content must be provided.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "content" : {
             "description" : "Declaration of ingredients contained within a product, product part, or material as applicable. The information required to determine product compliance with ingredients regulations, standards, and market needs. \nExamples of typical ingredient lists that could be reported depend on the regulatory standard requirements or restricted substances lists (e.g., AFIRM, GADSL), limitation of concentrations :\nCritical raw materials, Renewable Materials, Compostable Materials, Microorganisms, Alergens, Fragrances, Ingredients in surfactants ordered by concentration ranges, Textile fibers, Annex IV of the POP Regulation, declaration of articles with SVHC above 0,1%, etc., declaration regarding microplastics or nanomaterials.\n\nExamples are renewable materials:\nThe share of the material, which is from a renewable resource that can be replenished. These are the kind of resources that can be regenerated throughout time. Forest wood, for example, can be grown through reforestation. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Annex I:\n(i) use or content of sustainable renewable materials;\n\nExamples are critical raw materials: \nThis attribute is mentioned in Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Annex I:\n(h) use or content of recycled materials and recovery of materials, including critical raw materials;\nIn Annex II of the connected Regulation (EU) 2024/1252 of the European Parliament and of the Council of 11 April 2024 establishing a framework for ensuring a secure and sustainable supply of critical raw materials, a list of critical raw materials can be found.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredientLists",
-            "$ref" : "#/components/schemas/ListOfDeclarableIngredientList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ListOfDeclarableIngredientList"
+            } ]
           }
         },
         "required" : [ "applicable" ]
@@ -2165,12 +2619,16 @@
           "concentration" : {
             "description" : "Concentration of the material at the level of the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentration",
-            "$ref" : "#/components/schemas/ConcentrationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ConcentrationCharacteristic"
+            } ]
           },
           "concentrationRange" : {
             "description" : "The concentration range for the substance of concern. This attribute is specially mentioned for substances of concern mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Article 7: (5)(c) the concentration, maximum concentration or concentration range of the substances of concern, at the level of the product, its relevant components, or spare parts.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentrationRange",
-            "$ref" : "#/components/schemas/RangeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/RangeCharacteristic"
+            } ]
           }
         },
         "required" : [ "concentration" ]
@@ -2183,52 +2641,72 @@
           "recycled" : {
             "description" : "The share of the material, that is recovered recycled content from the product. his attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Annex I: (h) use or content of recycled materials and recovery of materials, including critical raw materials, Proposal for a REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL on circularity requirements for vehicle design and on management of end-of-life vehicles, amending Regulations (EU) 2018/858 and 2019/1020 and repealing Directives 2000/53/EC and 2005/64/EC: Article 10: Declaration on recycled content present in vehicles. Manufacturers shall declare, for each vehicle type that is type-approved as of OP: Please insert the date = the first day of the month following 36 months after the entry into force of the Regulation under Regulation (EU) 2018/858, the respective share of recycled content of:(a)neodymium, dysprosium, praseodymium, terbium, samarium, boron in permanent magnets in e-drive motors, (b)aluminium and its alloys, (c)magnesium and its alloys, (d)steel. The declaration shall concern the recycled content of these materials present in the vehicle type and indicate, per material share, whether the material is recycled from pre-consumer waste or from post-consumer waste.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recycled",
-            "$ref" : "#/components/schemas/PercentageTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PercentageTrait"
+            } ]
           },
           "materialIdentifications" : {
             "description" : "The chemical material name and identification, in accordance with the specification in the attribute for the list type. Preference is given to the IUPAC name. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products Article 7: 5. Unless otherwise provided for under paragraph 6, point (b), the information requirements shall make it possible to track the substances of concern, throughout the life cycle of the products concerned, unless such tracking is already possible pursuant to information requirements laid down in another delegated act adopted pursuant to Article 4 covering the products concerned, and shall include at least the following: (a) the name or numerical code of the substances of concern present in the product, as follows: (i) name in the International Union of Pure and Applied Chemistry (IUPAC) nomenclature, or another international name when IUPAC name is not available (ii) other names, including usual name, trade name, abbreviation,(iii) European Community (EC) number, as indicated in the European Inventory of Existing Commercial Chemical Substances (EINECS), the European List of Notified Chemical Substances (ELINCS) or the No Longer Polymer (NLP) list or the number assigned by the European Chemicals Agency (ECHA), if available and appropriate, (iv) the Chemical Abstract Service (CAS) name and number, if available.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialIdentifications",
-            "$ref" : "#/components/schemas/MaterialIdentificationList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MaterialIdentificationList"
+            } ]
           },
           "materialDocuments" : {
             "description" : "Documentation accompanying the material.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialDocuments",
-            "$ref" : "#/components/schemas/DocumentList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DocumentList"
+            } ]
           },
           "substancesOfConcernInformation" : {
             "description" : "Information regarding substances of concern in the product. The ESPR provisional agreement from January 9th, 2024 defines:\n(52) 'hazardous substance' means a substance classified as hazardous pursuant to Article 3 of Regulation (EC) No 1272/2008.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substancesOfConcernInformation",
-            "$ref" : "#/components/schemas/SubstancesOfConcernInformationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SubstancesOfConcernInformationCharacteristic"
+            } ]
           },
           "materialType" : {
             "description" : "Information refers to the specific category of material intentionally or unintentionally incorporated into the product. Can inform about multi-constituent substances or other aspects that can be associated with the proper identification of material or informing about Substance of Unknown or Variable composition, Complex reaction products or Biological material.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialType",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "materialOrigin" : {
             "description" : "Country of material origin. 2 letter code from ISO 3166.\n\nAttribute is mentioned in Regulation (EU) 2017/821 of the European Parliament and of the Council of 17 May 2017 laying down supply chain due diligence obligations for Union importers of tin, tantalum and tungsten, their ores, and gold originating from conflict-affected and high-risk areas. \nArticle 4: Management system obligations\nUnion importers of minerals or metals shall:\n(a) adopt, and clearly communicate to suppliers and the public up-to-date information on, their supply chain policy for the minerals and metals potentially originating from conflict-affected and high-risk areas \n\nThis attribute is mentioned in: COMMUNICATION FROM THE COMMISSION TO THE EUROPEAN PARLIAMENT, THE COUNCIL, THE EUROPEAN ECONOMIC AND SOCIAL COMMITTEE AND THE COMMITTEE OF THE REGIONS EU Strategy for Sustainable and Circular Textiles \n2.4.Introducing information requirements and a Digital Product Passport\n To ensure consistency with this new piece of legislation, the Commission will also review the Textile Labelling Regulation, which requires textiles sold on the EU market to carry a label clearly identifying the fibre composition and indicating any non-textile parts of animal origin. As part of this review and subject to an impact assessment, the Commission will introduce mandatory disclosure of other types of information, such as sustainability and circularity parameters, products  size and, where applicable, the country where manufacturing processes take place ( made in ).\n\nDirective (EU) 2024/1760 of the European Parliament and of the Council of 13 June 2024 on corporate sustainability due diligence and amending Directive (EU) 2019/1937 and Regulation (EU) 2023/2859 also demand in non\nfinancial statement this kind of information.\n\nThis attribute often appear in different voluntary certification and labelling schemes.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialOrigin",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "materialPassportIdentifier" : {
             "description" : "The identifier of the material passport, which is a uuidv4.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialPassportIdentifier",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "materialLocations" : {
             "description" : "Locations/positions of the material within the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialLocations",
-            "$ref" : "#/components/schemas/StringList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringList"
+            } ]
           },
           "declarableIngredient" : {
             "description" : "Declaration of ingredients contained within a product, product part, or material as applicable. The information required to determine product compliance with ingredients regulations, standards, and market needs. \nExamples of typical ingredient lists that could be reported depend on the regulatory standard requirements or restricted substances lists (e.g., AFIRM, GADSL), limitation of concentrations :\nCritical raw materials, Renewable Materials, Compostable Materials, Microorganisms, Alergens, Fragrances, Ingredients in surfactants ordered by concentration ranges, Textile fibers, Annex IV of the POP Regulation, declaration of articles with SVHC above 0,1%, etc., declaration regarding microplastics or nanomaterials.\n\nExamples are renewable materials:\nThe share of the material, which is from a renewable resource that can be replenished. These are the kind of resources that can be regenerated throughout time. Forest wood, for example, can be grown through reforestation. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Annex I:\n(i) use or content of sustainable renewable materials \n\nExamples are critical raw materials: \nThis attribute is mentioned in Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, Annex I:\n(h) use or content of recycled materials and recovery of materials, including critical raw materials \nIn Annex II of the connected Regulation (EU) 2024/1252 of the European Parliament and of the Council of 11 April 2024 establishing a framework for ensuring a secure and sustainable supply of critical raw materials, a list of critical raw materials can be found.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredient",
-            "$ref" : "#/components/schemas/DeclarableIngredientCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DeclarableIngredientCharacteristic"
+            } ]
           },
           "concentrationInformation" : {
             "description" : "Information about the concentration of the material at the product level.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentrationInformation",
-            "$ref" : "#/components/schemas/ConcentrationInformationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ConcentrationInformationCharacteristic"
+            } ]
           }
         },
         "required" : [ "recycled", "materialIdentifications", "materialDocuments", "substancesOfConcernInformation", "declarableIngredient", "concentrationInformation" ]
@@ -2249,7 +2727,9 @@
           "materials" : {
             "description" : "The product's material composition includes information on recycled materials.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materials",
-            "$ref" : "#/components/schemas/MaterialList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MaterialList"
+            } ]
           }
         },
         "required" : [ "materials" ]
@@ -2262,12 +2742,16 @@
           "componentInformation" : {
             "description" : "Information about the component(s) of the product.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentInformation",
-            "$ref" : "#/components/schemas/ComponentInformationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ComponentInformationCharacteristic"
+            } ]
           },
           "materialInformation" : {
             "description" : "The product's material composition includes information on recycled materials.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialInformation",
-            "$ref" : "#/components/schemas/MaterialInformationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MaterialInformationCharacteristic"
+            } ]
           }
         },
         "required" : [ "componentInformation", "materialInformation" ]
@@ -2278,57 +2762,79 @@
     "metadata" : {
       "description" : "Metadata of the product passport. These are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#metadata",
-      "$ref" : "#/components/schemas/MetadataCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MetadataCharacteristic"
+      } ]
     },
     "identification" : {
       "description" : "Identification information of the product, especially identifiers and codes. These are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, ANNEX III: (b) the unique product identifier at the level indicated in the applicable delegated act adopted pursuant to Article 4, Additionally, in Article 10 regarding Requirements for the digital product passport it is stated that: 1. A digital product passport shall comply with the following essential requirements: (a) it shall be connected through a data carrier to a persistent unique product identifier, (f) the data included in the digital product passport shall refer to the product model, batch or item as specified in the delegated act adopted pursuant to Article 4, Article 2 Definitions: (30) unique product identifier means a unique string of characters for the identification of a product that also enables a web link to the digital product passport, Recital (33): The term model usually refers to a version of a product of which all units share the same technical characteristics relevant for the ecodesign requirements and the same model identifier, the term-batch usually refers to a subset of a specific model composed of all products produced in a specific manufacturing plant at a specific moment in time and the term-item usually refers to a single unit of a model.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#identification",
-      "$ref" : "#/components/schemas/IdentificationCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/IdentificationCharacteristic"
+      } ]
     },
     "operation" : {
       "description" : "Operational information of the product.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#operation",
-      "$ref" : "#/components/schemas/OperationCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/OperationCharacteristic"
+      } ]
     },
     "handling" : {
       "description" : "Properties connected with the handling of the product.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#handling",
-      "$ref" : "#/components/schemas/HandlingCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/HandlingCharacteristic"
+      } ]
     },
     "characteristics" : {
       "description" : "Defines specific characteristics of a product.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#characteristics",
-      "$ref" : "#/components/schemas/ProductCharacteristics"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ProductCharacteristics"
+      } ]
     },
     "commercial" : {
       "description" : "Commercial information of the product.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#commercial",
-      "$ref" : "#/components/schemas/CommercialCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CommercialCharacteristic"
+      } ]
     },
     "sustainability" : {
       "description" : "Sustainability related attributes.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sustainability",
-      "$ref" : "#/components/schemas/SustainabilityCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/SustainabilityCharacteristic"
+      } ]
     },
     "sources" : {
       "description" : "Documents that are mandatory for the product. These are mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, ANNEX III:(e) compliance documentation and information required under this Regulation or other Union law applicable to the product, such as the declaration of conformity, technical documentation or conformity certificates. (f) user manuals, instructions, warnings or safety information, as required by other Union law applicable to the product. Additionally, requirements are mentioned in Article 21 7. Manufacturers shall ensure that a product covered by a delegated act adopted pursuant to Article 4 is accompanied by instructions in digital format that enable customers and other relevant actors to assemble, install, operate, store, maintain, repair and dispose of the product in a language that can be easily understood, as determined by the Member State concerned. Such instructions shall be clear, understandable and legible and include at least the information set out in Article 7(2), point (b), point (ii) specified in the delegated acts adopted pursuant to Article 4. Article 7 states additionally: (ii) information for customers and other actors on how to install, use, maintain and repair the product, in order to minimise its impact on the environment and to ensure optimum durability, on how to install third-party operating systems where relevant, as well as on collection for refurbishment or remanufacture, and on how to return or handle the product at the end of its life, (2) (b) (iii) information for treatment facilities on disassembly, reuse, refurbishment, recycling, or disposal at end-of-life. (2) (b) (iv) other information that may influence sustainable product choices for customers and the way the product is handled by parties other than the manufacturer in order to facilitate appropriate use, value retaining operations and correct treatment at end-of-life. (5) (d) relevant instructions for the safe use of the product. (5) (e) information relevant for disassembly, preparation for reuse, reuse, recycling and the environmentally sound management of the product at the end of its life. Annex I: (b) ease of repair and maintenance, as expressed through characteristics, availability, delivery time and affordability of spare parts, modularity, compatibility with commonly available tools and spare parts, availability of repair and maintenance instructions, number of materials and components used, use of standard components, use of component and material coding standards for the identification of components and materials, number and complexity of processes and whether specialised tools are needed, ease of non-destructive disassembly and re-assembly, conditions for access to product data, conditions for access to or use of hardware and software needed. (c) ease of upgrading, reuse, remanufacturing and refurbishment as expressed through number of materials and components used, use of standard components, use of component and material coding standards for the identification of components and materials, number and complexity of processes and tools needed, ease of non-destructive disassembly and re-assembly, conditions for access to product data, conditions for access to or use of hardware and software needed, conditions of access to test protocols or not commonly available testing equipment, availability of guarantees specific to remanufactured or refurbished products, conditions for access to or use of technologies protected by intellectual property rights, modularity. (d) design for recycling, ease and quality of recycling as expressed through use of easily recyclable materials, safe, easy and non-destructive access to recyclable components and materials or components and materials containing hazardous substances and material composition and homogeneity, possibility for high-purity sorting, number of materials and components used, use of standard components, use of component and material coding standards for the identification of components and materials, number and complexity of processes and tools needed, ease of non-destructive disassembly and re-assembly, conditions for access to product data, conditions for access to or use of hardware and software needed; (s) functional performance and conditions for use, including as expressed through the ability to perform its intended use, precautions for use, skills required and compatibility with other products or systems. Also Directive (EU) 2024/1799 of the European Parliament and of the Council of 13 June 2024 on common rules promoting the repair of goods and amending Regulation (EU) 2017/2394 and Directives (EU) 2019/771 and (EU) 2020/1828, inform of possibility use the DPP as a space to pass repair information: (25) In order to increase consumer awareness on the availability of repair and thus its likelihood, manufacturers or, where applicable, authorised representatives, importers or distributors, should inform consumers by making available information on their obligation to repair and their repair services. The manufacturer should be free to determine the means through which it informs the consumer, such as via a website in a visible and prominent way, via the Digital Product Passport or at the point of sale, for example where the manufacturer is the seller.  Also Proposal for a Regulation of the European Parliament and of the Council on detergents and surfactants, amending Regulation (EU) 2019/1020 and repealing Regulation (EC) No 648/2004 - Analysis of the final compromise text with a view to agreement of 25 June mentioned: (39) Manufacturers should create a digital product passport to provide information on the conformity of detergents and end-user surfactants with this Regulation. While this Regulation sets out the minimum content of the digital product passport starting from the EU declaration of conformity, the inclusion of additional information could be envisaged in future, such as the technical documentation. Also important to consider are guidelines and instructions regarding the proper management and disposal of packaging materials after use. This can include instructions for separation, reuse, and recycling.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sources",
-      "$ref" : "#/components/schemas/SourceList"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/SourceList"
+      } ]
     },
     "additionalData" : {
       "description" : "Data in form of open fields which need to be transferred in additionally. The regulation is still under development and may change in the future. To accommodate this, additional data allows the option to include additional data required by future changes to the regulation. In addition, the DPP can be easily updated and adapted to the new requirements. The Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products mentions: 2. Where other Union legislation requires or allows the inclusion of specific information in the product passport, that information may be included in the product passport pursuant to the applicable delegated act adopted pursuant to Article 4.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#additionalData",
-      "$ref" : "#/components/schemas/AdditionalDataList"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/AdditionalDataList"
+      } ]
     },
     "compliances" : {
       "description" : "Compliance refers to adhering to relevant regulations, standards, or specifications regarding the testing, certification, assessments, ratings, documentation, and presentation of parameters, methods, and results, tests, marks (like CE mark), and compliance statements. This ensures that the product meets required safety (including dual-use products, chemical weapons conventions, and explosive precursor regulations), quality, and regulatory standards throughout its lifecycle. It can serve to display voluntary certification and labelling schemes and self-declarations (eg, ISO 14021), type-approval documentation (Euro 7). The compliance section is not only intendent for the EU market, but also applicable to United Nations standards (e.g., UN labour standards) and other country-specific requirements.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#compliances",
-      "$ref" : "#/components/schemas/ComplianceList"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ComplianceList"
+      } ]
     },
     "composition" : {
       "description" : "Information about the components and material composition of the product.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#composition",
-      "$ref" : "#/components/schemas/CompositionCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CompositionCharacteristic"
+      } ]
     }
   },
   "required" : [ "metadata", "identification", "operation", "handling", "characteristics", "commercial", "sustainability", "sources", "compliances", "composition" ]

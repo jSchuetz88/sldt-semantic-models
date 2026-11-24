@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<aas:environment xmlns:aas="https://admin-shell.io/aas/3/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://admin-shell.io/aas/3/0 AAS.xsd">
+<aas:environment xmlns:aas="https://admin-shell.io/aas/3/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://admin-shell.io/aas/3/1 AAS.xsd">
   <aas:assetAdministrationShells>
     <aas:assetAdministrationShell>
       <aas:idShort>defaultAdminShell</aas:idShort>
@@ -13,6 +13,7 @@
       <aas:id>urn:samm:io.catenax.secondary_material_content_verifiable:1.0.0#SecondaryMaterialContentVerifiable</aas:id>
       <aas:assetInformation>
         <aas:assetKind>Type</aas:assetKind>
+        <aas:globalAssetId>urn:samm:io.catenax.secondary_material_content_verifiable:1.0.0#SecondaryMaterialContentVerifiable</aas:globalAssetId>
       </aas:assetInformation>
       <aas:submodels>
         <aas:reference>
@@ -68,15 +69,40 @@
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#SecondaryMaterialContentMaterials</aas:value>
+                <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#secondaryMaterialContent</aas:value>
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>OneToMany</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:orderRelevant>false</aas:orderRelevant>
+          <aas:semanticIdListElement>
+            <aas:type>ExternalReference</aas:type>
+            <aas:keys>
+              <aas:key>
+                <aas:type>GlobalReference</aas:type>
+                <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#SecondaryMaterialContentMaterialsEntity</aas:value>
+              </aas:key>
+            </aas:keys>
+          </aas:semanticIdListElement>
           <aas:typeValueListElement>SubmodelElementCollection</aas:typeValueListElement>
           <aas:value>
             <aas:submodelElementCollection>
-              <aas:idShort>secondaryMaterialContent</aas:idShort>
               <aas:displayName>
                 <aas:langStringNameType>
                   <aas:language>en</aas:language>
@@ -89,6 +115,15 @@
                   <aas:text>List of relevant materials, which are built in this part and details on the share of primary and secondary material.</aas:text>
                 </aas:langStringTextType>
               </aas:description>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#SecondaryMaterialContentMaterialsEntity</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
               <aas:value>
                 <aas:property>
                   <aas:idShort>materialClass</aas:idShort>
@@ -118,7 +153,31 @@
                       </aas:keys>
                     </aas:reference>
                   </aas:supplementalSemanticIds>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>One</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>5.1</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
+                  <aas:value>5.1</aas:value>
                 </aas:property>
                 <aas:submodelElementCollection>
                   <aas:idShort>materialNameStandardized</aas:idShort>
@@ -134,6 +193,38 @@
                       <aas:text>Material name according to standard.</aas:text>
                     </aas:langStringTextType>
                   </aas:description>
+                  <aas:semanticId>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#MaterialNameStandardizedEntity</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>One</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>PP-TD10</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:value>
                     <aas:property>
                       <aas:idShort>referencedStandard</aas:idShort>
@@ -152,7 +243,31 @@
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>ISO</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ISO</aas:value>
                     </aas:property>
                     <aas:property>
                       <aas:idShort>referencedStandardID</aas:idShort>
@@ -171,7 +286,31 @@
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>1043</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>1043</aas:value>
                     </aas:property>
                     <aas:property>
                       <aas:idShort>materialNameStandardizedValue</aas:idShort>
@@ -190,7 +329,31 @@
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>PP-TD10</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>PP-TD10</aas:value>
                     </aas:property>
                   </aas:value>
                 </aas:submodelElementCollection>
@@ -208,6 +371,38 @@
                       <aas:text>Attribute to define the measure and actual mass of the material.</aas:text>
                     </aas:langStringTextType>
                   </aas:description>
+                  <aas:semanticId>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#UnitOfMeasureEntity</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>One</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>3500.0</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:value>
                     <aas:property>
                       <aas:idShort>unitOfMeasureKey</aas:idShort>
@@ -226,7 +421,31 @@
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>unit:gramm</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>unit:gramm</aas:value>
                     </aas:property>
                     <aas:property>
                       <aas:idShort>materialNetMass</aas:idShort>
@@ -245,7 +464,31 @@
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>3000.0</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:valueType>xs:float</aas:valueType>
+                      <aas:value>3000.0</aas:value>
                     </aas:property>
                     <aas:property>
                       <aas:idShort>grossMaterialInputMass</aas:idShort>
@@ -264,7 +507,31 @@
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>3500.0</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:valueType>xs:float</aas:valueType>
+                      <aas:value>3500.0</aas:value>
                     </aas:property>
                   </aas:value>
                 </aas:submodelElementCollection>
@@ -282,6 +549,38 @@
                       <aas:text>Bio-based materials are materials of biological origin excluding material embedded in geological formations and/or fossilized.</aas:text>
                     </aas:langStringTextType>
                   </aas:description>
+                  <aas:semanticId>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#BioBasedEntity</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>One</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>12.0</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:value>
                     <aas:property>
                       <aas:idShort>bioBasedClass</aas:idShort>
@@ -300,7 +599,31 @@
                           </aas:key>
                         </aas:keys>
                       </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>gen1</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>gen1</aas:value>
                     </aas:property>
                     <aas:submodelElementCollection>
                       <aas:idShort>secondaryBioBased</aas:idShort>
@@ -316,6 +639,38 @@
                           <aas:text>Secondary materials are recycled materials that can be used in manufacturing processes instead of or alongside virgin raw materials.</aas:text>
                         </aas:langStringTextType>
                       </aas:description>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#SecondaryBioBasedEntity</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>12.0</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:value>
                         <aas:property>
                           <aas:idShort>isMassBalanced</aas:idShort>
@@ -334,7 +689,31 @@
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>true</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:boolean</aas:valueType>
+                          <aas:value>true</aas:value>
                         </aas:property>
                         <aas:property>
                           <aas:idShort>percentageOfMaterialWeight</aas:idShort>
@@ -353,7 +732,31 @@
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>12.0</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:float</aas:valueType>
+                          <aas:value>12.0</aas:value>
                         </aas:property>
                       </aas:value>
                     </aas:submodelElementCollection>
@@ -371,6 +774,38 @@
                           <aas:text>Primary materials are raw materials that are used for the first time during the planned process.</aas:text>
                         </aas:langStringTextType>
                       </aas:description>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#PrimaryBioBasedEntity</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>12.0</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:value>
                         <aas:property>
                           <aas:idShort>percentageOfMaterialWeight</aas:idShort>
@@ -389,7 +824,31 @@
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>12.0</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:float</aas:valueType>
+                          <aas:value>12.0</aas:value>
                         </aas:property>
                       </aas:value>
                     </aas:submodelElementCollection>
@@ -409,6 +868,38 @@
                       <aas:text>Material based on inorganic matter or fossil fuels.</aas:text>
                     </aas:langStringTextType>
                   </aas:description>
+                  <aas:semanticId>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#InorganicEntity</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>One</aas:value>
+                    </aas:qualifier>
+                    <aas:qualifier>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/ExampleValue</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>12.0</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:value>
                     <aas:submodelElementCollection>
                       <aas:idShort>secondaryInorganic</aas:idShort>
@@ -424,6 +915,38 @@
                           <aas:text>Secondary materials are recycled materials that can be used in manufacturing processes instead of or alongside virgin raw materials.</aas:text>
                         </aas:langStringTextType>
                       </aas:description>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#SecondaryInorganicEntity</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>true</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:value>
                         <aas:submodelElementCollection>
                           <aas:idShort>preConsumer</aas:idShort>
@@ -439,6 +962,38 @@
                               <aas:text>Amount of material that is Pre-consumer material. Material diverted from the waste stream during a manufacturing process. Excluded is reutilization of materials such as rework, regrind or scrap generated in a process and capable of being reclaimed within the same process that generated it. Pre-consumer material can be used in form of recovered or recycled material as a substitute for primary material.</aas:text>
                             </aas:langStringTextType>
                           </aas:description>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#PreConsumerEntity</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>true</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:value>
                             <aas:submodelElementCollection>
                               <aas:idShort>mechanicalRecycling</aas:idShort>
@@ -454,6 +1009,38 @@
                                   <aas:text>Materials that have undergone mechanical recycling.</aas:text>
                                 </aas:langStringTextType>
                               </aas:description>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#MechanicalRecyclingEntity</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:qualifiers>
+                                <aas:qualifier>
+                                  <aas:semanticId>
+                                    <aas:type>ExternalReference</aas:type>
+                                    <aas:keys>
+                                      <aas:key>
+                                        <aas:type>GlobalReference</aas:type>
+                                        <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                      </aas:key>
+                                    </aas:keys>
+                                  </aas:semanticId>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/Cardinality</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>One</aas:value>
+                                </aas:qualifier>
+                                <aas:qualifier>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/ExampleValue</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>true</aas:value>
+                                </aas:qualifier>
+                              </aas:qualifiers>
                               <aas:value>
                                 <aas:property>
                                   <aas:idShort>percentageOfMaterialWeight</aas:idShort>
@@ -472,7 +1059,31 @@
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>12.0</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:float</aas:valueType>
+                                  <aas:value>12.0</aas:value>
                                 </aas:property>
                                 <aas:property>
                                   <aas:idShort>isMassBalanced</aas:idShort>
@@ -491,7 +1102,31 @@
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>true</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:boolean</aas:valueType>
+                                  <aas:value>true</aas:value>
                                 </aas:property>
                               </aas:value>
                             </aas:submodelElementCollection>
@@ -511,6 +1146,38 @@
                               <aas:text>Amount of material that is Post-consumer material. Material generated by households or by commercial, industrial and institutional facilities in their role as end-users of the product which can no longer be used for ist intended purpose. This includes returns of material from the distribution chain. Post-consumer material can be used in form of recovered or recycled material as a substitute for primary material.</aas:text>
                             </aas:langStringTextType>
                           </aas:description>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#PostConsumerEntity</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>12.0</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:value>
                             <aas:submodelElementCollection>
                               <aas:idShort>mechanicalRecycling</aas:idShort>
@@ -526,6 +1193,38 @@
                                   <aas:text>Materials that have undergone mechanical recycling.</aas:text>
                                 </aas:langStringTextType>
                               </aas:description>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#MechanicalRecyclingEntity</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:qualifiers>
+                                <aas:qualifier>
+                                  <aas:semanticId>
+                                    <aas:type>ExternalReference</aas:type>
+                                    <aas:keys>
+                                      <aas:key>
+                                        <aas:type>GlobalReference</aas:type>
+                                        <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                      </aas:key>
+                                    </aas:keys>
+                                  </aas:semanticId>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/Cardinality</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>One</aas:value>
+                                </aas:qualifier>
+                                <aas:qualifier>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/ExampleValue</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>true</aas:value>
+                                </aas:qualifier>
+                              </aas:qualifiers>
                               <aas:value>
                                 <aas:property>
                                   <aas:idShort>percentageOfMaterialWeight</aas:idShort>
@@ -544,7 +1243,31 @@
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>12.0</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:float</aas:valueType>
+                                  <aas:value>12.0</aas:value>
                                 </aas:property>
                                 <aas:property>
                                   <aas:idShort>isMassBalanced</aas:idShort>
@@ -563,7 +1286,31 @@
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>true</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:boolean</aas:valueType>
+                                  <aas:value>true</aas:value>
                                 </aas:property>
                               </aas:value>
                             </aas:submodelElementCollection>
@@ -581,6 +1328,38 @@
                                   <aas:text>Materials that have undergone chemical recycling.</aas:text>
                                 </aas:langStringTextType>
                               </aas:description>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ChemicalRecyclingEntity</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:qualifiers>
+                                <aas:qualifier>
+                                  <aas:semanticId>
+                                    <aas:type>ExternalReference</aas:type>
+                                    <aas:keys>
+                                      <aas:key>
+                                        <aas:type>GlobalReference</aas:type>
+                                        <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                      </aas:key>
+                                    </aas:keys>
+                                  </aas:semanticId>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/Cardinality</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>One</aas:value>
+                                </aas:qualifier>
+                                <aas:qualifier>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/ExampleValue</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>12.0</aas:value>
+                                </aas:qualifier>
+                              </aas:qualifiers>
                               <aas:value>
                                 <aas:property>
                                   <aas:idShort>isMassBalanced</aas:idShort>
@@ -599,7 +1378,31 @@
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>true</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:boolean</aas:valueType>
+                                  <aas:value>true</aas:value>
                                 </aas:property>
                                 <aas:property>
                                   <aas:idShort>percentageOfMaterialWeight</aas:idShort>
@@ -618,7 +1421,31 @@
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>12.0</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:float</aas:valueType>
+                                  <aas:value>12.0</aas:value>
                                 </aas:property>
                               </aas:value>
                             </aas:submodelElementCollection>
@@ -640,6 +1467,38 @@
 This attribute ONLY contains post consume material which originates from the automotive industry. All other material must be included in "post consumer".</aas:text>
                             </aas:langStringTextType>
                           </aas:description>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#PostConsumerAutomotiveEntity</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>true</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:value>
                             <aas:submodelElementCollection>
                               <aas:idShort>chemicalRecycling</aas:idShort>
@@ -655,6 +1514,38 @@ This attribute ONLY contains post consume material which originates from the aut
                                   <aas:text>Materials that have undergone chemical recycling.</aas:text>
                                 </aas:langStringTextType>
                               </aas:description>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ChemicalRecyclingEntity</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:qualifiers>
+                                <aas:qualifier>
+                                  <aas:semanticId>
+                                    <aas:type>ExternalReference</aas:type>
+                                    <aas:keys>
+                                      <aas:key>
+                                        <aas:type>GlobalReference</aas:type>
+                                        <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                      </aas:key>
+                                    </aas:keys>
+                                  </aas:semanticId>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/Cardinality</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>One</aas:value>
+                                </aas:qualifier>
+                                <aas:qualifier>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/ExampleValue</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>12.0</aas:value>
+                                </aas:qualifier>
+                              </aas:qualifiers>
                               <aas:value>
                                 <aas:property>
                                   <aas:idShort>isMassBalanced</aas:idShort>
@@ -673,7 +1564,31 @@ This attribute ONLY contains post consume material which originates from the aut
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>true</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:boolean</aas:valueType>
+                                  <aas:value>true</aas:value>
                                 </aas:property>
                                 <aas:property>
                                   <aas:idShort>percentageOfMaterialWeight</aas:idShort>
@@ -692,7 +1607,31 @@ This attribute ONLY contains post consume material which originates from the aut
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>12.0</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:float</aas:valueType>
+                                  <aas:value>12.0</aas:value>
                                 </aas:property>
                               </aas:value>
                             </aas:submodelElementCollection>
@@ -710,6 +1649,38 @@ This attribute ONLY contains post consume material which originates from the aut
                                   <aas:text>Materials that have undergone mechanical recycling.</aas:text>
                                 </aas:langStringTextType>
                               </aas:description>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#MechanicalRecyclingEntity</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:qualifiers>
+                                <aas:qualifier>
+                                  <aas:semanticId>
+                                    <aas:type>ExternalReference</aas:type>
+                                    <aas:keys>
+                                      <aas:key>
+                                        <aas:type>GlobalReference</aas:type>
+                                        <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                      </aas:key>
+                                    </aas:keys>
+                                  </aas:semanticId>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/Cardinality</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>One</aas:value>
+                                </aas:qualifier>
+                                <aas:qualifier>
+                                  <aas:kind>TemplateQualifier</aas:kind>
+                                  <aas:type>SMT/ExampleValue</aas:type>
+                                  <aas:valueType>xs:string</aas:valueType>
+                                  <aas:value>true</aas:value>
+                                </aas:qualifier>
+                              </aas:qualifiers>
                               <aas:value>
                                 <aas:property>
                                   <aas:idShort>percentageOfMaterialWeight</aas:idShort>
@@ -728,7 +1699,31 @@ This attribute ONLY contains post consume material which originates from the aut
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>12.0</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:float</aas:valueType>
+                                  <aas:value>12.0</aas:value>
                                 </aas:property>
                                 <aas:property>
                                   <aas:idShort>isMassBalanced</aas:idShort>
@@ -747,7 +1742,31 @@ This attribute ONLY contains post consume material which originates from the aut
                                       </aas:key>
                                     </aas:keys>
                                   </aas:semanticId>
+                                  <aas:qualifiers>
+                                    <aas:qualifier>
+                                      <aas:semanticId>
+                                        <aas:type>ExternalReference</aas:type>
+                                        <aas:keys>
+                                          <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                          </aas:key>
+                                        </aas:keys>
+                                      </aas:semanticId>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/Cardinality</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>One</aas:value>
+                                    </aas:qualifier>
+                                    <aas:qualifier>
+                                      <aas:kind>TemplateQualifier</aas:kind>
+                                      <aas:type>SMT/ExampleValue</aas:type>
+                                      <aas:valueType>xs:string</aas:valueType>
+                                      <aas:value>true</aas:value>
+                                    </aas:qualifier>
+                                  </aas:qualifiers>
                                   <aas:valueType>xs:boolean</aas:valueType>
+                                  <aas:value>true</aas:value>
                                 </aas:property>
                               </aas:value>
                             </aas:submodelElementCollection>
@@ -769,6 +1788,38 @@ This attribute ONLY contains post consume material which originates from the aut
                           <aas:text>Primary materials are raw materials that are used for the first time during the planned process.</aas:text>
                         </aas:langStringTextType>
                       </aas:description>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#PrimaryInorganicEntity</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:qualifiers>
+                        <aas:qualifier>
+                          <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                              <aas:key>
+                                <aas:type>GlobalReference</aas:type>
+                                <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                              </aas:key>
+                            </aas:keys>
+                          </aas:semanticId>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/Cardinality</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>One</aas:value>
+                        </aas:qualifier>
+                        <aas:qualifier>
+                          <aas:kind>TemplateQualifier</aas:kind>
+                          <aas:type>SMT/ExampleValue</aas:type>
+                          <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>12.0</aas:value>
+                        </aas:qualifier>
+                      </aas:qualifiers>
                       <aas:value>
                         <aas:property>
                           <aas:idShort>percentageOfMaterialWeight</aas:idShort>
@@ -787,7 +1838,31 @@ This attribute ONLY contains post consume material which originates from the aut
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>12.0</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:float</aas:valueType>
+                          <aas:value>12.0</aas:value>
                         </aas:property>
                       </aas:value>
                     </aas:submodelElementCollection>
@@ -812,15 +1887,40 @@ This attribute ONLY contains post consume material which originates from the aut
                     <aas:keys>
                       <aas:key>
                         <aas:type>GlobalReference</aas:type>
-                        <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#CertificateCharacteristic</aas:value>
+                        <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#certificate</aas:value>
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToMany</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:orderRelevant>false</aas:orderRelevant>
+                  <aas:semanticIdListElement>
+                    <aas:type>ExternalReference</aas:type>
+                    <aas:keys>
+                      <aas:key>
+                        <aas:type>GlobalReference</aas:type>
+                        <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#CertificateEntity</aas:value>
+                      </aas:key>
+                    </aas:keys>
+                  </aas:semanticIdListElement>
                   <aas:typeValueListElement>SubmodelElementCollection</aas:typeValueListElement>
                   <aas:value>
                     <aas:submodelElementCollection>
-                      <aas:idShort>certificate</aas:idShort>
                       <aas:displayName>
                         <aas:langStringNameType>
                           <aas:language>en</aas:language>
@@ -833,6 +1933,15 @@ This attribute ONLY contains post consume material which originates from the aut
                           <aas:text>If available, the name of a certificate verifying the recycling content can be included.</aas:text>
                         </aas:langStringTextType>
                       </aas:description>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#CertificateEntity</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
                       <aas:value>
                         <aas:property>
                           <aas:idShort>certificateName</aas:idShort>
@@ -851,7 +1960,31 @@ This attribute ONLY contains post consume material which originates from the aut
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                            <aas:qualifier>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/ExampleValue</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>Redcert</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:string</aas:valueType>
+                          <aas:value>Redcert</aas:value>
                         </aas:property>
                         <aas:property>
                           <aas:idShort>certificateLink</aas:idShort>
@@ -870,6 +2003,23 @@ This attribute ONLY contains post consume material which originates from the aut
                               </aas:key>
                             </aas:keys>
                           </aas:semanticId>
+                          <aas:qualifiers>
+                            <aas:qualifier>
+                              <aas:semanticId>
+                                <aas:type>ExternalReference</aas:type>
+                                <aas:keys>
+                                  <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                                  </aas:key>
+                                </aas:keys>
+                              </aas:semanticId>
+                              <aas:kind>TemplateQualifier</aas:kind>
+                              <aas:type>SMT/Cardinality</aas:type>
+                              <aas:valueType>xs:string</aas:valueType>
+                              <aas:value>One</aas:value>
+                            </aas:qualifier>
+                          </aas:qualifiers>
                           <aas:valueType>xs:anyURI</aas:valueType>
                         </aas:property>
                       </aas:value>
@@ -893,6 +2043,23 @@ This attribute ONLY contains post consume material which originates from the aut
                       </aas:key>
                     </aas:keys>
                   </aas:semanticId>
+                  <aas:qualifiers>
+                    <aas:qualifier>
+                      <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
+                        <aas:keys>
+                          <aas:key>
+                            <aas:type>GlobalReference</aas:type>
+                            <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                          </aas:key>
+                        </aas:keys>
+                      </aas:semanticId>
+                      <aas:kind>TemplateQualifier</aas:kind>
+                      <aas:type>SMT/Cardinality</aas:type>
+                      <aas:valueType>xs:string</aas:valueType>
+                      <aas:value>ZeroToOne</aas:value>
+                    </aas:qualifier>
+                  </aas:qualifiers>
                   <aas:valueType>xs:string</aas:valueType>
                 </aas:property>
               </aas:value>
@@ -916,7 +2083,31 @@ This attribute ONLY contains post consume material which originates from the aut
               </aas:key>
             </aas:keys>
           </aas:semanticId>
+          <aas:qualifiers>
+            <aas:qualifier>
+              <aas:semanticId>
+                <aas:type>ExternalReference</aas:type>
+                <aas:keys>
+                  <aas:key>
+                    <aas:type>GlobalReference</aas:type>
+                    <aas:value>https://admin-shell.io/SubmodelTemplates/Cardinality/1/0</aas:value>
+                  </aas:key>
+                </aas:keys>
+              </aas:semanticId>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/Cardinality</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>One</aas:value>
+            </aas:qualifier>
+            <aas:qualifier>
+              <aas:kind>TemplateQualifier</aas:kind>
+              <aas:type>SMT/ExampleValue</aas:type>
+              <aas:valueType>xs:string</aas:valueType>
+              <aas:value>856496</aas:value>
+            </aas:qualifier>
+          </aas:qualifiers>
           <aas:valueType>xs:string</aas:valueType>
+          <aas:value>856496</aas:value>
         </aas:property>
       </aas:submodelElements>
     </aas:submodel>
@@ -945,7 +2136,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -957,12 +2148,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Secondary Material Content Verifiable</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>SecondaryMaterialContentVerifiable</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
                   <aas:language>en</aas:language>
@@ -990,7 +2175,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1002,12 +2187,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Material Class</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialClass</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1036,7 +2215,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1048,12 +2227,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Referenced Standard</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>referencedStandard</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1069,7 +2242,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_AISI7f527e78</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1081,7 +2254,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_ASde148153</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1093,7 +2266,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_ASME3f7f07d4</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1105,7 +2278,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_DIN3218e87e</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1117,7 +2290,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_DINEN10e49ce3</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1129,7 +2302,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_EN69374b09</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1141,7 +2314,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_JASOe0ec3809</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1153,7 +2326,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_JIS98cf27fc</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1165,7 +2338,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_GBb4043b0b</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1177,7 +2350,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_ISO6dc87bf3</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1189,7 +2362,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#ReferencedStandardCharacteristic:_IS0d40e64e</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1218,7 +2391,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1230,12 +2403,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Referenced Standard ID</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>referencedStandardID</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1264,7 +2431,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1276,12 +2443,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Material Name Standardized Value</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialNameStandardizedValue</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1310,7 +2471,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1322,12 +2483,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Material name standardized</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialNameStandardized</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1356,7 +2511,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1368,12 +2523,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Unit of Measure Key</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>unitOfMeasureKey</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1402,7 +2551,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1414,12 +2563,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Material Net Mass</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>materialNetMass</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>REAL_MEASURE</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1448,7 +2591,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1460,12 +2603,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Gross Material Input Mass</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>grossMaterialInputMass</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>REAL_MEASURE</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1494,7 +2631,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1506,12 +2643,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Unit of measure</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>unitOfMeasure</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1540,7 +2671,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1552,12 +2683,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Bio Based Class</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>bioBasedClass</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1573,7 +2698,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#BioBasedClassCharacteristic:_gen11f36df49</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1585,7 +2710,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#BioBasedClassCharacteristic:_gen2c89296cd</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1597,7 +2722,7 @@ This attribute ONLY contains post consume material which originates from the aut
                       <aas:type>ModelReference</aas:type>
                       <aas:keys>
                         <aas:key>
-                          <aas:type>DataElement</aas:type>
+                          <aas:type>ConceptDescription</aas:type>
                           <aas:value>urn:samm:io.catenax.shared.secondary_material_content:1.0.0#BioBasedClassCharacteristic:_gen3304121f0</aas:value>
                         </aas:key>
                       </aas:keys>
@@ -1626,7 +2751,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1638,12 +2763,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Is Mass Balanced</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>isMassBalanced</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>BOOLEAN</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1672,7 +2791,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1684,12 +2803,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Percentage of Material Weight</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>percentageOfMaterialWeight</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>REAL_MEASURE</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1718,7 +2831,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1730,12 +2843,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Secondary Bio Based</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>secondaryBioBased</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1764,7 +2871,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1776,12 +2883,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Primary Bio Based</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>primaryBioBased</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1810,7 +2911,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1822,12 +2923,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Bio Based</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>bioBased</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1856,7 +2951,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1868,12 +2963,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Mechanical Recycling</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>mechanicalRecycling</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1902,7 +2991,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1914,12 +3003,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Pre Consumer</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>preConsumer</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1948,7 +3031,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -1960,12 +3043,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Chemical Recycling</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>chemicalRecycling</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -1994,7 +3071,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2006,12 +3083,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Post Consumer</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>postConsumer</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2040,7 +3111,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2052,12 +3123,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Post Consumer Automotive</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>postConsumerAutomotive</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2088,7 +3153,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2100,12 +3165,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Secondary Inorganic</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>secondaryInorganic</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2134,7 +3193,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2146,12 +3205,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Primary Inorganic</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>primaryInorganic</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2180,7 +3233,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2192,12 +3245,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Inorganic</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>inorganic</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2226,7 +3273,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2238,12 +3285,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Certificate Name</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>certificateName</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2272,7 +3313,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2284,12 +3325,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Certificate Link</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>certificateLink</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2318,7 +3353,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2330,12 +3365,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>Certificate</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>certificate</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2364,7 +3393,7 @@ This attribute ONLY contains post consume material which originates from the aut
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2376,12 +3405,6 @@ This attribute ONLY contains post consume material which originates from the aut
                   <aas:text>additional information</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>additionalInformation</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2411,7 +3434,7 @@ For example could this field contain information about how much material has bee
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2423,12 +3446,6 @@ For example could this field contain information about how much material has bee
                   <aas:text>Secondary Material Content</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>secondaryMaterialContent</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>
@@ -2457,7 +3474,7 @@ For example could this field contain information about how much material has bee
             <aas:keys>
               <aas:key>
                 <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0</aas:value>
+                <aas:value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3</aas:value>
               </aas:key>
             </aas:keys>
           </aas:dataSpecification>
@@ -2469,12 +3486,6 @@ For example could this field contain information about how much material has bee
                   <aas:text>Order Number</aas:text>
                 </aas:langStringPreferredNameTypeIec61360>
               </aas:preferredName>
-              <aas:shortName>
-                <aas:langStringShortNameTypeIec61360>
-                  <aas:language>en</aas:language>
-                  <aas:text>orderNumber</aas:text>
-                </aas:langStringShortNameTypeIec61360>
-              </aas:shortName>
               <aas:dataType>STRING</aas:dataType>
               <aas:definition>
                 <aas:langStringDefinitionTypeIec61360>

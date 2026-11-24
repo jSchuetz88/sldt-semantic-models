@@ -23,17 +23,23 @@
           "supplierOrderId" : {
             "description" : "This is the order number on the supplier side that is given by e.g., the supplier's enterprise resource planning system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#supplierOrderId",
-            "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            } ]
           },
           "customerOrderId" : {
             "description" : "This is the order number on the customer side that can be given by e.g., the customer's enterprise resource planning system.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#customerOrderId",
-            "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderIdCharacteristic"
+            } ]
           },
           "customerOrderPositionId" : {
             "description" : "This is an identifier for the position of an order defined by the customer. It's not a technical identifier, such as an UUID. This identifier is used within the business context when talking about the position.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#customerOrderPositionId",
-            "$ref" : "#/components/schemas/OrderPositionIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderPositionIdCharacteristic"
+            } ]
           }
         },
         "required" : [ "customerOrderId", "customerOrderPositionId" ]
@@ -64,12 +70,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:1.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of an item. Common units may be related to mass, count, linear, area, volume or misc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:1.0.0#itemUnit",
-            "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -88,17 +98,23 @@
           "plannedProductionQuantity" : {
             "description" : "Quantity of a product that a supplier plans to produce on a certain date and time for a specific customer (that means that it will be allocated to a specific customer's \"allocated item stock\").\nQuantities that have already been produced are put on stock or are considered for delivery. Therefore those quantities MUST NOT be considered in the allocated production output to build a consistent view on the supply situation. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#plannedProductionQuantity",
-            "$ref" : "#/components/schemas/QuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityCharacteristic"
+            } ]
           },
           "productionSiteBpns" : {
             "description" : "One planned and allocated production output has always one site. The site is identified by the BPNS.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#productionSiteBpns",
-            "$ref" : "#/components/schemas/BpnsTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnsTrait"
+            } ]
           },
           "estimatedTimeOfCompletion" : {
             "description" : "Date and time on which the planned and allocated production output is estimated to be completed. Date and time are set according to a timezone.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#estimatedTimeOfCompletion",
-            "$ref" : "#/components/schemas/DateTimeStamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTimeStamp"
+            } ]
           }
         },
         "required" : [ "plannedProductionQuantity", "productionSiteBpns", "estimatedTimeOfCompletion" ]
@@ -119,17 +135,23 @@
           "orderPositionReference" : {
             "description" : "The order position reference contains information to identify a position within an order.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#orderPositionReference",
-            "$ref" : "#/components/schemas/OrderPositionReferenceCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OrderPositionReferenceCharacteristic"
+            } ]
           },
           "lastUpdatedOnDateTime" : {
             "description" : "Date and time at which the position has been updated by the supplier's systems. Date and time are set according to the timezone.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#lastUpdatedOnDateTime",
-            "$ref" : "#/components/schemas/DateTimeStamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTimeStamp"
+            } ]
           },
           "allocatedPlannedProductionOutputs" : {
             "description" : "Planned Production Outputs already allocated to the customer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#allocatedPlannedProductionOutputs",
-            "$ref" : "#/components/schemas/AllocatedPlannedProductionOutputCollection"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/AllocatedPlannedProductionOutputCollection"
+            } ]
           }
         },
         "required" : [ "lastUpdatedOnDateTime", "allocatedPlannedProductionOutputs" ]
@@ -159,22 +181,30 @@
     "positions" : {
       "description" : "The positions refer to positions within an order of the given product (see material number supplier, materialNumber customer and material global Asset Id) for which the production outputs are transferred. The positions can be differentiated by the order position reference. If no order position reference is given, then there is only one position containing all planned production outputs of the product.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#positions",
-      "$ref" : "#/components/schemas/PositionsCollection"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PositionsCollection"
+      } ]
     },
     "materialNumberCustomer" : {
       "description" : "Material identifier as assigned by the customer. This material number identifies the material (as planned) in the customer's database. For standard parts (e.g. screws) for which a customer does not have an own number, the material number supplier should be set in this field, too.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#materialNumberCustomer",
-      "$ref" : "#/components/schemas/MaterialNumberCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MaterialNumberCharacteristic"
+      } ]
     },
     "materialGlobalAssetId" : {
       "description" : "Material identifier used uniquely to identify the Material (e.g. PartAsPlanned).",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#materialGlobalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "materialNumberSupplier" : {
       "description" : "Material identifier as assigned by the supplier. This material number identifies the material (as planned) in the supplier's database.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.planned_production_output:1.0.0#materialNumberSupplier",
-      "$ref" : "#/components/schemas/MaterialNumberCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MaterialNumberCharacteristic"
+      } ]
     }
   },
   "required" : [ "positions", "materialNumberCustomer" ]

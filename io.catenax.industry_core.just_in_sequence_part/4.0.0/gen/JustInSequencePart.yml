@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/JustInSequencePart"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        partTypeInformation:
+          type: array
+          items:
+            $ref: "#/components/schemas/JustInSequencePart"
     Text:
       type: string
       x-samm-aspect-model-urn: "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Text"
@@ -108,16 +109,19 @@ components:
         standard:
           description: Identified classification standards
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#standard"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         id:
           description: The classification ID of the part type according to the corresponding
             standard definition mentioned in the key value pair.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#id"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         description:
           description: Optional property describing the classification standard.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#description"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - standard
       - id
@@ -136,14 +140,16 @@ components:
         nameAtManufacturer:
           description: Name of the part as assigned by the manufacturer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#nameAtManufacturer"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         manufacturerPartId:
           description: Part ID as assigned by the manufacturer of the part. The Part
             ID identifies the part (as designed) in the manufacturer`s dataspace.
             The Part ID does not reference a specific instance of a part and thus
             should not be confused with the serial number or batch number.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#manufacturerPartId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         customerPartId:
           description: "Part ID as assigned by the customer of the part. The customer\
             \ Part ID identifies the part (as designed)in the customer`s dataspace.\
@@ -152,15 +158,18 @@ components:
             \ IDs. \nIf no specific part ID exists a part family ID may be substituted\
             \ for it."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#customerPartId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         nameAtCustomer:
           description: Name of the part as assigned by the customer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#nameAtCustomer"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         partClassification:
           description: Property describing the classification of a part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#partClassification"
-          $ref: "#/components/schemas/PartClassificationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PartClassificationCharacteristic"
       required:
       - nameAtManufacturer
     AllowedKeys:
@@ -188,11 +197,13 @@ components:
         key:
           description: The key of a local identifier.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#key"
-          $ref: "#/components/schemas/AllowedKeys"
+          allOf:
+          - $ref: "#/components/schemas/AllowedKeys"
         value:
           description: The value of an identifier.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#value"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - key
       - value
@@ -242,12 +253,14 @@ components:
             \ of the different business relationships / structures between or within\
             \ the Business Partners or company locations."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.site_information:1.0.0#siteId"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
         function:
           description: The function of the site in relation to the part(i.e. the activity
             within the value chain of the part that is performed at the site)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.site_information:1.0.0#function"
-          $ref: "#/components/schemas/FunctionCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FunctionCharacteristic"
       required:
       - siteId
       - function
@@ -267,12 +280,14 @@ components:
           description: "Timestamp of the manufacturing date as the final step in production\
             \ process (e.g. final quality check, ready-for-shipment event)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.manufacturing_information:1.0.0#productionDate"
-          $ref: "#/components/schemas/DateCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DateCharacteristic"
         country:
           description: Alphabetic three-character (alpha-3) code representing a country
             name.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.standard_codes:1.0.0#country"
-          $ref: "#/components/schemas/CountryAlpha3Trait"
+          allOf:
+          - $ref: "#/components/schemas/CountryAlpha3Trait"
         sites:
           description: "A site is a delimited geographical area where a legal entity\
             \ does business(geographical address with geo coordinates).A site always\
@@ -281,7 +296,8 @@ components:
             \ in addition to the physical address. A site has a 1:n relation to addresses,\
             \ means at least 1 address is necessary and multiple addresses are possible."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.site_information:1.0.0#sites"
-          $ref: "#/components/schemas/SitesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SitesCharacteristic"
       required:
       - productionDate
     UuidV4Trait:
@@ -303,22 +319,26 @@ components:
           description: The part type or part family from which the just-in-sequence
             part has been instantiated.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.industry_core.just_in_sequence_part:4.0.0#partTypeInformation"
-          $ref: "#/components/schemas/PartTypeInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PartTypeInformationCharacteristic"
         localIdentifiers:
           description: "A local identifier enables identification of a part in a specific\
             \ dataspace, but is not unique in the Catena-X dataspace. Multiple local\
             \ identifiers may exist."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#localIdentifiers"
-          $ref: "#/components/schemas/LocalIdentifierCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalIdentifierCharacteristic"
         manufacturingInformation:
           description: "Information from manufacturing process, such as manufacturing\
             \ date and manufacturing country"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.manufacturing_information:1.0.0#manufacturingInformation"
-          $ref: "#/components/schemas/ManufacturingCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ManufacturingCharacteristic"
         globalAssetId:
           description: The fully anonymous ID in the dataspace of the part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - partTypeInformation
       - localIdentifiers

@@ -22,7 +22,7 @@
         "description" : "Min and max value of classified load range"
       },
       "NumberOfBinsCharacteristic" : {
-        "type" : "number",
+        "type" : "integer",
         "minimum" : 1,
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#NumberOfBinsCharacteristic",
         "description" : "Number of classes "
@@ -43,32 +43,44 @@
           "channelName" : {
             "description" : "identifier of the load channel, needed to combine the loading with the damage calculation",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#channelName",
-            "$ref" : "#/components/schemas/ChannelNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ChannelNameCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "unit of the corresponding load channel",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#unit",
-            "$ref" : "#/components/schemas/UnitReference"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UnitReference"
+            } ]
           },
           "lowerLimit" : {
             "description" : "for classification, a range of load values must be set. The limits and the number of bins decribe the classes. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#lowerLimit",
-            "$ref" : "#/components/schemas/LimitCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LimitCharacteristic"
+            } ]
           },
           "upperLimit" : {
             "description" : "for classification, a range of load values must be set. The limits and the number of bins decribe the classes. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#upperLimit",
-            "$ref" : "#/components/schemas/LimitCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LimitCharacteristic"
+            } ]
           },
           "numberOfBins" : {
             "description" : "for classification, a range of load values must be set. The limits and the number of bins decribe the classes. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#numberOfBins",
-            "$ref" : "#/components/schemas/NumberOfBinsCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NumberOfBinsCharacteristic"
+            } ]
           },
           "binLimits" : {
             "description" : "In case of non- equidistant classes, the limits of the intervalls are given here. Optional, but if given, this list will be used. List must start with lowerLimit and end with upperLimit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#binLimits",
-            "$ref" : "#/components/schemas/BinLimitsList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BinLimitsList"
+            } ]
           }
         },
         "required" : [ "channelName", "unit", "lowerLimit", "upperLimit", "numberOfBins" ]
@@ -100,22 +112,30 @@
           "channels" : {
             "description" : "Full information on loadchannel including name, unit, limits, classes",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#channels",
-            "$ref" : "#/components/schemas/ChannelList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ChannelList"
+            } ]
           },
           "countingMethod" : {
             "description" : "Type of classification: rainflow or event counting or load revolution distribution",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#countingMethod",
-            "$ref" : "#/components/schemas/CountingMethodCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountingMethodCharacteristic"
+            } ]
           },
           "countingValue" : {
             "description" : "Optional. By default, the number of for example events or peaks are counted. Value should be given if for example time or revolutions are counted.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#countingValue",
-            "$ref" : "#/components/schemas/CountedValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountedValueCharacteristic"
+            } ]
           },
           "countingUnit" : {
             "description" : "depending on counted value: if revolutions are counted, counted unit might be 1/min or 1/s.  Required, default is \"/\", which means no unit. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#countingUnit",
-            "$ref" : "#/components/schemas/UnitReference"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UnitReference"
+            } ]
           }
         },
         "required" : [ "channels", "countingMethod", "countingUnit" ]
@@ -125,7 +145,7 @@
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#ClassListCharacteristic",
         "type" : "array",
         "items" : {
-          "type" : "number",
+          "type" : "integer",
           "minimum" : 1
         }
       },
@@ -142,12 +162,16 @@
           "classList" : {
             "description" : "The class list contains the classes describing the load. The loading is the combination of all load channel classes, therefore, duplicates are possible.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#classList",
-            "$ref" : "#/components/schemas/ClassListCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ClassListCharacteristic"
+            } ]
           },
           "className" : {
             "description" : "Channel name extended by \"-class\". In case of rainflow counting, the extention is from-class and to-class.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#className",
-            "$ref" : "#/components/schemas/ClassNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ClassNameCharacteristic"
+            } ]
           }
         },
         "required" : [ "classList", "className" ]
@@ -181,12 +205,16 @@
           "countsName" : {
             "description" : "Name of the counted value: \"Counts\" or \"Time\" or\" Revolutions\"",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#countsName",
-            "$ref" : "#/components/schemas/CountsNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountsNameCharacteristic"
+            } ]
           },
           "countsList" : {
             "description" : "List of counts according to the load channel lists.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#countsList",
-            "$ref" : "#/components/schemas/Counts"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Counts"
+            } ]
           }
         },
         "required" : [ "countsName", "countsList" ]
@@ -199,12 +227,16 @@
           "classes" : {
             "description" : "Several load channel classes  are sorted in a list. For rainflow counting, a load channel has two channel class lists, from-class and to-class. \n",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#classes",
-            "$ref" : "#/components/schemas/ClassesList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ClassesList"
+            } ]
           },
           "counts" : {
             "description" : "List of counts according to the load channel lists.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#counts",
-            "$ref" : "#/components/schemas/CountsCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountsCharacteristic"
+            } ]
           }
         },
         "required" : [ "classes", "counts" ]
@@ -228,7 +260,7 @@
         "description" : "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
       },
       "Mileage" : {
-        "type" : "number",
+        "type" : "integer",
         "minimum" : 0,
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#Mileage",
         "description" : "Mileage of the vehicle respectively part."
@@ -252,17 +284,23 @@
           "mileage" : {
             "description" : "Mileage of the vehicle respectively part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#mileage",
-            "$ref" : "#/components/schemas/Mileage"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Mileage"
+            } ]
           },
           "date" : {
             "description" : "date representing the load spectrum",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#date",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "operatingHours" : {
             "description" : "Operating hours covered by the load spectrum.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#operatingHours",
-            "$ref" : "#/components/schemas/OperatingHoursCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/OperatingHoursCharacteristic"
+            } ]
           }
         },
         "required" : [ "date" ]
@@ -275,22 +313,30 @@
           "componentDescription" : {
             "description" : "Component or assembly the load spectrum is valid for. A ZF_lrd counted load spectrum  belomgs to a gear set while a temperature load spectrum belong to the part where the temperature is measured (gear oil or IGBT). ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#componentDescription",
-            "$ref" : "#/components/schemas/ComponentCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ComponentCharacteristic"
+            } ]
           },
           "routeDescription" : {
             "description" : "Information on the route which the load spectrum is representing. For example \"city munich heavy trailer\" or \"motorway light trailer agil driver\".",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#routeDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "projectDescription" : {
             "description" : "Further information on the vehicle /assembly/component.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#projectDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "status" : {
             "description" : "Identification of vehicle status",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#status",
-            "$ref" : "#/components/schemas/StatusCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StatusCharacteristic"
+            } ]
           }
         },
         "required" : [ "componentDescription", "routeDescription", "projectDescription", "status" ]
@@ -311,7 +357,7 @@
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#ResiduumListCharacteristic",
         "type" : "array",
         "items" : {
-          "type" : "number",
+          "type" : "integer",
           "minimum" : 1
         }
       },
@@ -323,12 +369,16 @@
           "residuumClassName" : {
             "description" : "Name of the load channel extended by -class",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#residuumClassName",
-            "$ref" : "#/components/schemas/ResiduumClassNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ResiduumClassNameCharacteristic"
+            } ]
           },
           "residuumList" : {
             "description" : "List of load-classes not defining a closed hysterese.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#residuumList",
-            "$ref" : "#/components/schemas/ResiduumListCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ResiduumListCharacteristic"
+            } ]
           }
         },
         "required" : [ "residuumClassName", "residuumList" ]
@@ -339,27 +389,37 @@
     "header" : {
       "description" : "Information on the classified load spectrum including kind of classificationen, Classes, Limits",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#header",
-      "$ref" : "#/components/schemas/HeaderCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/HeaderCharacteristic"
+      } ]
     },
     "body" : {
       "description" : "List of load channel classes and corresponding counts",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#body",
-      "$ref" : "#/components/schemas/BodyCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BodyCharacteristic"
+      } ]
     },
     "metadata" : {
       "description" : "all information decribing the source, purpose and application of the load spectrum.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#metadata",
-      "$ref" : "#/components/schemas/MetadataCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MetadataCharacteristic"
+      } ]
     },
     "targetComponentID" : {
       "description" : "CX-ID /AAS-ID des Zwilling ",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#targetComponentID",
-      "$ref" : "#/components/schemas/TargetComponentIDCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/TargetComponentIDCharacteristic"
+      } ]
     },
     "residuum" : {
       "description" : "Residuum of load history i case of rainflow counting",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.classified_load_spectrum:1.0.0#residuum",
-      "$ref" : "#/components/schemas/ResiduumCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ResiduumCharacteristic"
+      } ]
     }
   },
   "required" : [ "header", "body", "metadata", "targetComponentID" ]

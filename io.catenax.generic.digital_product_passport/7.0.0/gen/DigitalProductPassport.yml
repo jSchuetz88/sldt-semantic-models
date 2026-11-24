@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/DigitalProductPassport"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        metadata:
+          type: array
+          items:
+            $ref: "#/components/schemas/DigitalProductPassport"
     Text:
       type: string
       x-samm-aspect-model-urn: "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Text"
@@ -137,11 +138,13 @@ components:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         content:
           description: Identification of the preceding product passport.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#predecessorIdentifier"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - applicable
     IdentifierCharacteristic:
@@ -174,16 +177,19 @@ components:
           description: "Technical key of a thoroughfare. As specified by BPDM, this\
             \ can be a \"STREET\" or a different type."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfareTechnicalKey"
-          $ref: "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
         value:
           description: "Value of a thoroughfare, e.g. name of a street."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfareValue"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         number:
           description: "Number of a thoroughfare. As used differently in international\
             \ context, this number can contain both numerical and alphanumerical values."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfareNumber"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - technicalKey
       - value
@@ -215,11 +221,13 @@ components:
         technicalKey:
           description: Technical key of a locality.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#localityTechnicalKey"
-          $ref: "#/components/schemas/LocalityTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalityTechnicalKeyCharacteristic"
         value:
           description: "Value of a locality, e.g. name of a city (\"Mannheim\")."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#localityValue"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - technicalKey
       - value
@@ -253,12 +261,14 @@ components:
         technicalKey:
           description: Technical key of a premise.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#premiseTechnicalKey"
-          $ref: "#/components/schemas/PremiseTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PremiseTechnicalKeyCharacteristic"
         value:
           description: "Value of a premise, e.g. name or designation of a particular\
             \ site."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#premiseValue"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - technicalKey
       - value
@@ -288,11 +298,13 @@ components:
         technicalKey:
           description: Technical key of a postal delivery point.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postalDeliveryPointTechnicalKey"
-          $ref: "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
         value:
           description: "Value of a postal delivery point, e.g. designation of a gate."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postalDeliveryPointValue"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - technicalKey
       - value
@@ -318,7 +330,8 @@ components:
         shortName:
           description: The short variation of the name of the country.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#countryShortName"
-          $ref: "#/components/schemas/CountryTrait"
+          allOf:
+          - $ref: "#/components/schemas/CountryTrait"
       required:
       - shortName
     CountryCharacteristic:
@@ -350,11 +363,13 @@ components:
         value:
           description: The value of a post code.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postCodeValue"
-          $ref: "#/components/schemas/PostCodeTrait"
+          allOf:
+          - $ref: "#/components/schemas/PostCodeTrait"
         technicalKey:
           description: The technical key of a post code.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postCodeTechnicalKey"
-          $ref: "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
       required:
       - value
       - technicalKey
@@ -375,28 +390,34 @@ components:
         thoroughfare:
           description: Street or thorough road name.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#thoroughfare"
-          $ref: "#/components/schemas/ThoroughfareCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ThoroughfareCharacteristic"
         locality:
           description: Locality belonging to an address.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#locality"
-          $ref: "#/components/schemas/LocalityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalityCharacteristic"
         premise:
           description: "Premise of an address, e.g. a specific \"BUILDING\" but can\
             \ also be used for naming a particular site."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#premise"
-          $ref: "#/components/schemas/PremiseCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PremiseCharacteristic"
         postalDeliveryPoint:
           description: "Delivery point, e.g. designation of a gate."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postalDeliveryPoint"
-          $ref: "#/components/schemas/PostalDeliveryPointCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PostalDeliveryPointCharacteristic"
         country:
           description: Country of an address.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#country"
-          $ref: "#/components/schemas/CountryCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CountryCharacteristic"
         postCode:
           description: Postal code of the address.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.address_characteristic:4.0.0#postCode"
-          $ref: "#/components/schemas/PostCodeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PostCodeCharacteristic"
       required:
       - thoroughfare
       - locality
@@ -426,19 +447,23 @@ components:
         website:
           description: Website of the contact.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.contact_information:4.0.0#website"
-          $ref: "#/components/schemas/WebsiteCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/WebsiteCharacteristic"
         phoneNumber:
           description: Phone number with country and area code.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.contact_information:4.0.0#phoneNumber"
-          $ref: "#/components/schemas/PhoneNumberTrait"
+          allOf:
+          - $ref: "#/components/schemas/PhoneNumberTrait"
         email:
           description: An email address.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.contact_information:4.0.0#email"
-          $ref: "#/components/schemas/EMailTrait"
+          allOf:
+          - $ref: "#/components/schemas/EMailTrait"
         faxNumber:
           description: Fax number with country and area code.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.contact_information:4.0.0#faxNumber"
-          $ref: "#/components/schemas/PhoneNumberTrait"
+          allOf:
+          - $ref: "#/components/schemas/PhoneNumberTrait"
     EconomicOperatorCharacteristic:
       description: Characteristic of the economic operator.
       x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#EconomicOperatorCharacteristic"
@@ -464,12 +489,14 @@ components:
             \ responsible for its creation or by digital product passport service\
             \ providers."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperatorIdentification"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         economicOperatorNames:
           description: "Name list for the Economic Operator. Name, registered trade\
             \ name, or registered trademark of the economic operator."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperatorNames"
-          $ref: "#/components/schemas/NameList"
+          allOf:
+          - $ref: "#/components/schemas/NameList"
         economicOperatorAddress:
           description: "Full address of the economic operator.This attribute is mentioned\
             \ in the Regulation (EU) 2024/1781 of the European Parliament and of the\
@@ -485,7 +512,8 @@ components:
             \ responsible for its creation or by digital product passport service\
             \ providers."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperatorAddress"
-          $ref: "#/components/schemas/PostalAddress"
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
         economicOperatorContact:
           description: "Contact details of the economic operator. This attribute is\
             \ mentioned in the Regulation (EU) 2024/1781 of the European Parliament\
@@ -501,7 +529,8 @@ components:
             \ economic operator responsible for its creation or by digital product\
             \ passport service providers."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperatorContact"
-          $ref: "#/components/schemas/ContactCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ContactCharacteristic"
       required:
       - economicOperatorIdentification
       - economicOperatorNames
@@ -523,12 +552,14 @@ components:
             \ products, Article 9: (1)The data in the digital product passport shall\
             \ be accurate, complete and up to date."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#version"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         passportStatus:
           description: "The current status of the product passport declared through\
             \ either: draft, approved, invalid or expired."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#passportStatus"
-          $ref: "#/components/schemas/PassportStatusEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/PassportStatusEnumeration"
         expirationDate:
           description: "The date until the product passport remains available. End\
             \ of availability of the digital product passport, in a format of a timestamp\
@@ -544,17 +575,20 @@ components:
             \ or a cessation of activity in the Union of the economic operator responsible\
             \ for the creation of the digital product passport."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#expirationDate"
-          $ref: "#/components/schemas/DateTrait"
+          allOf:
+          - $ref: "#/components/schemas/DateTrait"
         issueDate:
           description: The date when the product passport is initially issued. The
             date when the passport was issued in a format of a timestamp (yyyy-mm-dd).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#issueDate"
-          $ref: "#/components/schemas/DateTrait"
+          allOf:
+          - $ref: "#/components/schemas/DateTrait"
         passportIdentifier:
           description: "The identifier of the product passport, which is a uuidv4\
             \ (Universally Unique Identifier, version 4)."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#passportIdentifier"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         predecessor:
           description: "Identification of the preceding product passport. Check whether\
             \ the connected attributes are applicable to the product. If applicable\
@@ -566,7 +600,8 @@ components:
             \ product passport, the new digital product passport shall be linked to\
             \ the original digital product passport or passports."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#predecessor"
-          $ref: "#/components/schemas/PredecessorCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PredecessorCharacteristic"
         backupReference:
           description: "A reference to the data backup of the passport. This mandatory\
             \ attribute will be further defined in the future. This attribute is mentioned\
@@ -584,17 +619,20 @@ components:
             \ stored by a digital product passport service provider in accordance\
             \ with Article 10(4)."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#backupReference"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         registrationIdentifier:
           description: |-
             Identifier in the respective registry. This will be further defined in the future. This attribute is mentioned in the ESPR provisional agreement from January 9th, 2024 in Article 12:
             By (2 years from entering into force of this Regulation), the Commission shall set up and manage a digital registry ("the registry") storing in a secure manner at least the unique product identifier, the unique operator identifier, the unique facility identifiers. In case of products intended to be placed under the customs procedure (release for free circulation), the registry shall also store the product commodity code. The registry shall also store the batteries unique identifiers referred to in Article 77(3) of Regulation (EU) 2023/1542.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#registrationIdentifier"
-          $ref: "#/components/schemas/IdentifierCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IdentifierCharacteristic"
         lastModification:
           description: The date when the digital product passport was last modified.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lastModification"
-          $ref: "#/components/schemas/DateTrait"
+          allOf:
+          - $ref: "#/components/schemas/DateTrait"
         language:
           description: "Language used in the digital passport data fields with indication\
             \ the code of the country. Specific language in which the passport content\
@@ -615,17 +653,20 @@ components:
             \ available in the language or languages required by the Member State\
             \ where the detergent or surfactant is made available on the market."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#language"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         economicOperator:
           description: Information about the economic operator of the Digital Product
             Passport.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#economicOperator"
-          $ref: "#/components/schemas/EconomicOperatorCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/EconomicOperatorCharacteristic"
         specVersion:
           description: "Specification of the DPP format/data model (name and version\
             \ number), which is used."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#specVersion"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - version
       - expirationDate
@@ -660,11 +701,13 @@ components:
         key:
           description: The key of a local identifier.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#key"
-          $ref: "#/components/schemas/AllowedKeys"
+          allOf:
+          - $ref: "#/components/schemas/AllowedKeys"
         value:
           description: The value of an identifier.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#value"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - key
       - value
@@ -687,11 +730,13 @@ components:
             The Part ID does not reference a specific instance of a part and thus
             should not be confused with the serial number or batch number.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#manufacturerPartId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         nameAtManufacturer:
           description: Name of the part as assigned by the manufacturer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#nameAtManufacturer"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - manufacturerPartId
       - nameAtManufacturer
@@ -703,16 +748,19 @@ components:
         standard:
           description: Identified classification standards
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#standard"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         id:
           description: The classification ID of the part type according to the corresponding
             standard definition mentioned in the key value pair.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#id"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         description:
           description: Optional property describing the classification standard.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#description"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - standard
       - id
@@ -736,17 +784,20 @@ components:
         content:
           description: The content of the document e.g a link.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         contentType:
           description: "The type of content which can be expected in the \"content\"\
             \ property. Examples are a link, restricted link, pdf, excel, etc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         header:
           description: The header as a short description of the document with a maximum
             of 100 characters.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header"
-          $ref: "#/components/schemas/HeaderTrait"
+          allOf:
+          - $ref: "#/components/schemas/HeaderTrait"
       required:
       - content
       - contentType
@@ -776,17 +827,20 @@ components:
             \ products or their parts, (d) relevant commodity codes, such as a TARIC\
             \ code as defined in Regulation (EEC) No 2658/87."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#codeKey"
-          $ref: "#/components/schemas/IdentifierCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IdentifierCharacteristic"
         value:
           description: The code value for the identification of the product in regard
             to the chosen code name. The identifier value related to the code key.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#codeValue"
-          $ref: "#/components/schemas/IdentifierCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IdentifierCharacteristic"
         description:
           description: Description of the specific code. This attribute can be particularly
             used if "other" as a code key is used.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#codeDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - key
       - value
@@ -814,7 +868,8 @@ components:
             \ a framework for the setting of ecodesign requirements for sustainable\
             \ products, Article 9:(b) one or more data carriers to be used."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#carrierType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         carrierPositions:
           description: "The positioning of data carrier on the product. This attribute\
             \ is mentioned in the Regulation (EU) 2024/1781 of the European Parliament\
@@ -822,7 +877,8 @@ components:
             \ setting of ecodesign requirements for sustainable products, Article\
             \ 9:(b) one or more data carriers to be used."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#carrierPositions"
-          $ref: "#/components/schemas/StringList"
+          allOf:
+          - $ref: "#/components/schemas/StringList"
       required:
       - carrierType
       - carrierPositions
@@ -844,7 +900,8 @@ components:
             requirements for sustainable products Recital (33):the term item usually
             refers to a single unit of a model.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#serialInformation"
-          $ref: "#/components/schemas/LocalIdentifierCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalIdentifierCharacteristic"
         batchInformation:
           description: "Identifier for a batch part if available. This is mentioned\
             \ in Regulation (EU) 2024/1781 of the European Parliament and of the Council\
@@ -853,7 +910,8 @@ components:
             \ refers to a subset of a specific model composed of all products produced\
             \ in a specific manufacturing plant at a specific moment in time."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#batchInformation"
-          $ref: "#/components/schemas/LocalIdentifierCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalIdentifierCharacteristic"
         partTypeInformation:
           description: "Identifier on the level of a part model or type. This is mentioned\
             \ in the Regulation (EU) 2024/1781 of the European Parliament and of the\
@@ -874,11 +932,13 @@ components:
             \ Regulation (EC) No 1272/2008 and they are defined by a type number or\
             \ other element allowing them to be identified as a group."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#partTypeInformation"
-          $ref: "#/components/schemas/PartTypeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PartTypeCharacteristic"
         partClassification:
           description: Property describing the classification of a part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.part_classification:1.0.0#partClassification"
-          $ref: "#/components/schemas/PartClassificationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PartClassificationCharacteristic"
         productImages:
           description: "According Regulation (EU) 2024/1781 of the European Parliament\
             \ and of the Council of 13 June 2024 establishing a framework for the\
@@ -912,11 +972,13 @@ components:
             \ of the detergent or surfactant of \nsufficient clarity to enable itsthe\
             \ identification of the detergent or surfactant."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#productImages"
-          $ref: "#/components/schemas/ProductImageList"
+          allOf:
+          - $ref: "#/components/schemas/ProductImageList"
         codes:
           description: Codes for identification.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#codes"
-          $ref: "#/components/schemas/CodeList"
+          allOf:
+          - $ref: "#/components/schemas/CodeList"
         dataCarriers:
           description: "The type and layout of the data carriers on the product. These\
             \ are mentioned in the Regulation (EU) 2024/1781 of the European Parliament\
@@ -928,7 +990,8 @@ components:
             \ or other automatic identification data capture medium that can be read\
             \ by a device."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#dataCarriers"
-          $ref: "#/components/schemas/DataCarrierList"
+          allOf:
+          - $ref: "#/components/schemas/DataCarrierList"
       required:
       - partTypeInformation
       - partClassification
@@ -949,11 +1012,13 @@ components:
             \ or buildings involved in the value chain of a product or used by actors\
             \ involved in the value chain of a product."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#facilityIdentification"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         facilityAddress:
           description: Full address of the facility.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#facilityAddress"
-          $ref: "#/components/schemas/PostalAddress"
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
       required:
       - facilityIdentification
       - facilityAddress
@@ -972,20 +1037,24 @@ components:
           description: "The main manufacturer represented by an identification number.\
             \ In the Catena-X use case, the BPNL can be stated."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturerIdentification"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         manufacturerNames:
           description: "Name, registered trade name or registered trade mark of the\
             \ manufacturer."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturerNames"
-          $ref: "#/components/schemas/NameList"
+          allOf:
+          - $ref: "#/components/schemas/NameList"
         manufacturerAddress:
           description: Full address of the manufacturer.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturerAddress"
-          $ref: "#/components/schemas/PostalAddress"
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
         manufacturerContact:
           description: Contact details of the manufacturer.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturerContact"
-          $ref: "#/components/schemas/ContactCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ContactCharacteristic"
       required:
       - manufacturerIdentification
       - manufacturerNames
@@ -1007,7 +1076,8 @@ components:
             \ involved in a products value chain or used by actors involved in a products\
             \ value chain."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#facilities"
-          $ref: "#/components/schemas/FacilityList"
+          allOf:
+          - $ref: "#/components/schemas/FacilityList"
         manufacturer:
           description: "The main manufacturer, if different from the passport owner,\
             \ represented by a name, identification number, address and contact information.\
@@ -1022,13 +1092,15 @@ components:
             \ 15 of Regulation (EU) 2023/988, or similar tasks pursuant to other Union\
             \ law applicable to the product."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturer"
-          $ref: "#/components/schemas/ManufacturerCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ManufacturerCharacteristic"
         manufacturingDate:
           description: "The timestamp in the format (yyyy-mm-dd) of the manufacturing\
             \ date as the final step in production process (e.g. final quality check,\
             \ ready-for-shipment event)."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturingDate"
-          $ref: "#/components/schemas/DateTrait"
+          allOf:
+          - $ref: "#/components/schemas/DateTrait"
       required:
       - facilities
       - manufacturer
@@ -1049,7 +1121,8 @@ components:
             An economic operator established in the customs territory of the Union needs, for customs purposes, an EORI number. EORI stands for economic operators registration and identification number. In this case, the importer's EORI must be provided. This attribute is mentioned in the ESPR Annex III:
             (j) information related to the importer, including the information referred to in Article 23(3) and its EORI number.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#eori"
-          $ref: "#/components/schemas/EoriTrait"
+          allOf:
+          - $ref: "#/components/schemas/EoriTrait"
         importerIdentification:
           description: "The importer of the product, if different from the owner of\
             \ the passport. In the Catena-X network, BPNL can be used.\n\nThis attribute\
@@ -1064,20 +1137,24 @@ components:
             \ or, where this is not possible, on the packaging, or in a document accompanying\
             \ the product."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importerIdentification"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         importerNames:
           description: "Name, registered trade name, or registered trademark of the\
             \ importer."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importerNames"
-          $ref: "#/components/schemas/NameList"
+          allOf:
+          - $ref: "#/components/schemas/NameList"
         importerAddress:
           description: Full address of the importer.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importerAddress"
-          $ref: "#/components/schemas/PostalAddress"
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
         importerContact:
           description: Contact details of the importer.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importerContact"
-          $ref: "#/components/schemas/ContactCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ContactCharacteristic"
       required:
       - eori
       - importerIdentification
@@ -1105,12 +1182,14 @@ components:
             \ or in a document accompanying the product. The contact details shall\
             \ be clear, understandable and legible."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#importer"
-          $ref: "#/components/schemas/ImporterCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ImporterCharacteristic"
         applicable:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
       required:
       - applicable
     OtherOperatorEntity:
@@ -1125,23 +1204,28 @@ components:
             \ for the setting of ecodesign requirements for sustainable products \
             \ Annex III: (h) unique operator identifiers other than that of the manufacturer."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorIdentification"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         otherOperatorRole:
           description: Role of the other operator.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorRole"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         otherOperatorAddress:
           description: Full address of the other operators.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorAddress"
-          $ref: "#/components/schemas/PostalAddress"
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
         otherOperatorContact:
           description: Contact details of the other operator.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorContact"
-          $ref: "#/components/schemas/ContactCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ContactCharacteristic"
         otherOperatorNames:
           description: Names of the other economic operators.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperatorNames"
-          $ref: "#/components/schemas/NameList"
+          allOf:
+          - $ref: "#/components/schemas/NameList"
       required:
       - otherOperatorIdentification
       - otherOperatorRole
@@ -1164,16 +1248,19 @@ components:
           description: The header as a short description of the document with a maximum
             of 100 characters.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header"
-          $ref: "#/components/schemas/HeaderTrait"
+          allOf:
+          - $ref: "#/components/schemas/HeaderTrait"
         content:
           description: The content of the document e.g a link.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         contentType:
           description: "The type of content which can be expected in the \"content\"\
             \ property. Examples are a link, restricted link, pdf, excel, etc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - header
       - content
@@ -1192,11 +1279,13 @@ components:
         collectionPointIdentification:
           description: The identifier used for a location.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#collectionPointIdentification"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         collectionPointAddress:
           description: Full address of the collection point for reusable products.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#collectionPointAddress"
-          $ref: "#/components/schemas/PostalAddress"
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
       required:
       - collectionPointIdentification
       - collectionPointAddress
@@ -1221,7 +1310,8 @@ components:
             (a) the manufacturer, importer or distributor is established in a Member State and makes available for the first time from within the territory of that Member State and on that same territory transport packaging, service packaging, or primary production packaging, whether as single-use packaging or as reusable packaging or
             (b) the manufacturer, importer or distributor is established in a Member State and makes available for the first time from within the territory of that Member State and on that same territory products packaged in packaging other than those referred to in point (a) or (c) the manufacturer, importer or distributor is established in a Member State or in a third country and makes available for the first time on the territory of another Member State, directly to end users, transport packaging, service packaging or primary production packaging, whether as single-use packaging or as reusable packaging or (d) the manufacturer, importer or distributor is established in a Member State or in a third country and makes available for the first time on the territory of another Member State, directly to end users, products packaged in packaging other than those referred to in point (c) or (e)the manufacturer, importer or distributor is established in a Member State and unpacks packaged products without being an end user, unless another person is the producer as defined in point (a), (b), (c) or (d).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#symbolsOfExtendedProducerResponsibilityScheme"
-          $ref: "#/components/schemas/SymbolOfExtendedProducerResponsibilitySchemeList"
+          allOf:
+          - $ref: "#/components/schemas/SymbolOfExtendedProducerResponsibilitySchemeList"
         territoriesOfApplication:
           description: |-
             Information about territories where the Extended Producer Responsibility Scheme applies. 2 letter code from ISO 3166.
@@ -1229,14 +1319,16 @@ components:
             DIRECTIVE 2008/98/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 19 November 2008 on waste and repealing certain Directives
             Article 2 (21). extended producer responsibility scheme  means a set of measures taken by Member States to ensure that producers of products bear financial responsibility or financial and organisational responsibility for the management of the waste stage of a product s life cycle.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#territoriesOfApplication"
-          $ref: "#/components/schemas/StringList"
+          allOf:
+          - $ref: "#/components/schemas/StringList"
         collectionPoints:
           description: "Information on collection points. End-users shall discard\
             \ waste in designated separate collection points set up by, or following\
             \ the specific arrangements concluded with, the producer or a producer\
             \ responsibility organisation."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#collectionPoints"
-          $ref: "#/components/schemas/CollectionPointList"
+          allOf:
+          - $ref: "#/components/schemas/CollectionPointList"
       required:
       - symbolsOfExtendedProducerResponsibilityScheme
       - territoriesOfApplication
@@ -1249,11 +1341,13 @@ components:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         content:
           description: Information about the Extended Producer Responsibility Scheme.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#extendedProducerResponsibilitySchemeInformation"
-          $ref: "#/components/schemas/ExtendedProducerResponsibilitySchemeInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ExtendedProducerResponsibilitySchemeInformationCharacteristic"
       required:
       - applicable
     OperationCharacteristic:
@@ -1283,13 +1377,15 @@ components:
             \ can be contacted. The contact details shall be clear, understandable\
             \ and legible."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturing"
-          $ref: "#/components/schemas/ManufacturingCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ManufacturingCharacteristic"
         import:
           description: "Importer details such as the identification. Check whether\
             \ the connected attributes are applicable to the product. If applicable\
             \ (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#import"
-          $ref: "#/components/schemas/ImportCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ImportCharacteristic"
         otherOperators:
           description: "Other operators relevant for the product. Example: distributors/retailers/logistics/designers/smelters/recyclers/professional\
             \ repairers/waste treatment facilities/remanufacturers/ etc. In this section,\
@@ -1303,13 +1399,15 @@ components:
             \ operator means any natural or legal person who is a system participant\
             \ and manages a re-use system."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherOperators"
-          $ref: "#/components/schemas/OtherOperatorList"
+          allOf:
+          - $ref: "#/components/schemas/OtherOperatorList"
         extendedProducerResponsibilityScheme:
           description: |-
             DIRECTIVE 2008/98/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 19 November 2008 on waste and repealing certain Directives Article 3 (21) Definitions:
              21.  extended producer responsibility scheme  means a set of measures taken by Member States to ensure that producers of products bear financial responsibility or financial and organisational responsibility for the management of the waste stage of a product s life cycle.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#extendedProducerResponsibilityScheme"
-          $ref: "#/components/schemas/ExtendedProducerResponsibilitySchemeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ExtendedProducerResponsibilitySchemeCharacteristic"
       required:
       - manufacturing
       - import
@@ -1325,15 +1423,18 @@ components:
             \ the Catena-X network, the BPNL is used for the identification of companies\
             \ and the information stored for this like contact information and addresses."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sparePartProviderIdentification"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         sparePartProviderAddress:
           description: Full address of the provider company of the spare part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sparePartProviderAddress"
-          $ref: "#/components/schemas/PostalAddress"
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
         sparePartProviderContact:
           description: Contact details of the provider company of the spare part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sparePartProviderContact"
-          $ref: "#/components/schemas/ContactCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ContactCharacteristic"
       required:
       - sparePartProviderIdentification
       - sparePartProviderAddress
@@ -1353,18 +1454,21 @@ components:
           description: Providers/suppliers of possible spare parts indicating contact
             detailes of sources for replacement spares.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sparePartProvider"
-          $ref: "#/components/schemas/SparePartProviderList"
+          allOf:
+          - $ref: "#/components/schemas/SparePartProviderList"
         nameAtManufacturer:
           description: Name of the part as assigned by the manufacturer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#nameAtManufacturer"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         manufacturerPartId:
           description: Part ID as assigned by the manufacturer of the part. The Part
             ID identifies the part (as designed) in the manufacturer`s dataspace.
             The Part ID does not reference a specific instance of a part and thus
             should not be confused with the serial number or batch number.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#manufacturerPartId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - sparePartProvider
       - nameAtManufacturer
@@ -1385,12 +1489,14 @@ components:
           description: The list of spare parts available for the product from various
             suppliers.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#spareParts"
-          $ref: "#/components/schemas/SparePartList"
+          allOf:
+          - $ref: "#/components/schemas/SparePartList"
         applicable:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
       required:
       - applicable
     LifeEnumeration:
@@ -1405,7 +1511,7 @@ components:
       - unit:cycle
       - unit:runningOrOperatingHour
     LifeValueCharacteristic:
-      type: number
+      type: integer
       x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#LifeValueCharacteristic"
       description: Characteristic for the life span value as an integer.
     LifeTypeEnumeration:
@@ -1426,22 +1532,26 @@ components:
           description: "The unit of the respective lifespan expressed through the\
             \ possible units day, month, cycle, year and runningOrOperatingHour."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifeUnit"
-          $ref: "#/components/schemas/LifeEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/LifeEnumeration"
         lifeValue:
           description: The value as an integer for the respective lifespan.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifeValue"
-          $ref: "#/components/schemas/LifeValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LifeValueCharacteristic"
         lifeType:
           description: |-
             The type of lifespan represented with the values guaranteed lifetime, technical lifetime and mean time between failures. This attribute is mentioned in the ESPR ANNEX I:
             (a) durability and reliability of the product or its components as expressed through the product's guaranteed lifetime, technical lifetime or mean time between failures.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifeType"
-          $ref: "#/components/schemas/LifeTypeEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/LifeTypeEnumeration"
         lifeDescription:
           description: Additional detailed description of the lifeType (e.g. shelf
             life as a technical lifetime).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifeDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - lifeUnit
       - lifeValue
@@ -1479,11 +1589,13 @@ components:
         value:
           description: The quantity value associated with the unit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         unit:
           description: The unit of a linear attribute.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#linearUnit"
-          $ref: "#/components/schemas/LinearUnitEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/LinearUnitEnumeration"
       required:
       - value
       - unit
@@ -1507,11 +1619,13 @@ components:
         value:
           description: The quantity value associated with the unit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         unit:
           description: The unit of a mass related attribute.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#massUnit"
-          $ref: "#/components/schemas/MassUnitEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/MassUnitEnumeration"
       required:
       - value
       - unit
@@ -1537,11 +1651,13 @@ components:
         value:
           description: The quantity value associated with the unit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         unit:
           description: The unit of a volume related attribute.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#volumeUnit"
-          $ref: "#/components/schemas/VolumeUnitEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/VolumeUnitEnumeration"
       required:
       - value
       - unit
@@ -1595,12 +1711,14 @@ components:
         value:
           description: The quantity value associated with the unit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         unit:
           description: "The unit of an item. Common units may be related to mass,\
             \ count, linear, area, volume or misc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#itemUnit"
-          $ref: "#/components/schemas/ItemUnitEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/ItemUnitEnumeration"
       required:
       - value
       - unit
@@ -1614,22 +1732,26 @@ components:
           description: The width of the item measured in a specific linear unit which
             can be declared in the corresponding unit attribute.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#width"
-          $ref: "#/components/schemas/LinearCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LinearCharacteristic"
         length:
           description: The length of the item measured in a specific linear unit which
             can be declared in the corresponding unit attribute.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#length"
-          $ref: "#/components/schemas/LinearCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LinearCharacteristic"
         diameter:
           description: "The diameter of the item, if applicable, measured in a specific\
             \ linear unit which can be declared in the corresponding unit attribute."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#diameter"
-          $ref: "#/components/schemas/LinearCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LinearCharacteristic"
         height:
           description: The height of the item measured in a specific linear unit which
             can be declared in the corresponding unit attribute.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#height"
-          $ref: "#/components/schemas/LinearCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LinearCharacteristic"
         grossWeight:
           description: "The gross weight of the item measured in a specific mass unit\
             \ which can be declared in the corresponding unit attribute. Gross weight\
@@ -1648,7 +1770,8 @@ components:
             \ technical lifetime, ability to reuse, repair, and remanufacture, mass-resource\
             \ efficiency, and interoperability."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#grossWeight"
-          $ref: "#/components/schemas/MassCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MassCharacteristic"
         grossVolume:
           description: "The gross volume of the item, if possible, measured in a specific\
             \ capacity unit which can be declared in the corresponding unit attribute.\
@@ -1668,7 +1791,8 @@ components:
             \ yield, technical lifetime, ability to reuse, repair, and remanufacture,\
             \ mass-resource efficiency, and interoperability."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#grossVolume"
-          $ref: "#/components/schemas/VolumeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VolumeCharacteristic"
         weight:
           description: "Weight of the product measured in a specific mass unit which\
             \ can be declared in the corresponding unit attribute. These attributes\
@@ -1686,7 +1810,8 @@ components:
             \ ability to reuse, repair, and remanufacture, mass-resource efficiency,\
             \ and interoperability."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#weight"
-          $ref: "#/components/schemas/MassCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MassCharacteristic"
         volume:
           description: "Volume of the product, if possible, measured in a specific\
             \ capacity unit which can be declared in the corresponding unit attribute.\
@@ -1694,7 +1819,8 @@ components:
             \ on the performance of the product in relation to the product parameters\
             \ referred to in Annex I \nAnnex I (i) weight and volume of the product."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#volume"
-          $ref: "#/components/schemas/VolumeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VolumeCharacteristic"
         itemQuantityInPackage:
           description: "Physical dimensions are properties  associated with physical\
             \ quantities for purposes of classification or differentiation. These\
@@ -1714,7 +1840,8 @@ components:
             \ be packed into inner packs. Base units are not sold individualy, only\
             \ pack are possible within value chain."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#itemQuantityInPackage"
-          $ref: "#/components/schemas/ItemQuantityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ItemQuantityCharacteristic"
       required:
       - grossWeight
       - grossVolume
@@ -1739,11 +1866,13 @@ components:
         otherCharacteristicName:
           description: Name of the specific characteristic associated with a product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherCharacteristicName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         otherCharacteristicOutcome:
           description: Specific results or effects that are associated with the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherCharacteristicOutcome"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - otherCharacteristicName
       - otherCharacteristicOutcome
@@ -1774,7 +1903,8 @@ components:
             \ yield, technical lifetime, ability to reuse, repair, and remanufacture,\
             \ mass-resource efficiency, and interoperability."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#lifespan"
-          $ref: "#/components/schemas/LifespanList"
+          allOf:
+          - $ref: "#/components/schemas/LifespanList"
         physicalDimension:
           description: "Physical dimensions are properties  associated with physical\
             \ quantities for purposes of classification or differentiation. These\
@@ -1784,12 +1914,14 @@ components:
             \ Annex I \nAnnex I (i) weight and volume of the product and its packaging,\
             \ and the product-to-packaging ratio."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#physicalDimension"
-          $ref: "#/components/schemas/PhysicalDimensionCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PhysicalDimensionCharacteristic"
         physicalState:
           description: "The physical state of the item. There are four states of matter\
             \ solid, liquid, gas and plasma which can be chosen from an enumeration."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#physicalState"
-          $ref: "#/components/schemas/PhysicalStateEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/PhysicalStateEnumeration"
         generalPerformanceClass:
           description: "The performance class of the product. This attribute is mentioned\
             \ in Regulation (EU) 2024/1781 of the European Parliament and of the Council\
@@ -1811,11 +1943,13 @@ components:
             \ which is established based on a common methodology for the product or\
             \ product group, ordered in such a way as to allow for product differentiation."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#generalPerformanceClass"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         otherCharacteristics:
           description: Optional other characteristics of the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#otherCharacteristics"
-          $ref: "#/components/schemas/OtherCharacteristicList"
+          allOf:
+          - $ref: "#/components/schemas/OtherCharacteristicList"
       required:
       - lifespan
       - physicalDimension
@@ -1827,17 +1961,20 @@ components:
         content:
           description: The content of the document e.g a link.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         contentType:
           description: "The type of content which can be expected in the \"content\"\
             \ property. Examples are a link, restricted link, pdf, excel, etc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         header:
           description: The header as a short description of the document with a maximum
             of 100 characters.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header"
-          $ref: "#/components/schemas/HeaderTrait"
+          allOf:
+          - $ref: "#/components/schemas/HeaderTrait"
       required:
       - content
       - contentType
@@ -1857,11 +1994,13 @@ components:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         content:
           description: Documentation of the recall information of the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recallInformationDocumentation"
-          $ref: "#/components/schemas/DocumentList"
+          allOf:
+          - $ref: "#/components/schemas/DocumentList"
       required:
       - applicable
     CommercialCharacteristic:
@@ -1873,18 +2012,21 @@ components:
           description: The timestamp in the format (yyyy-mm-dd) with or without time
             zone when the product was put in the market.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#placedOnMarket"
-          $ref: "#/components/schemas/DateTrait"
+          allOf:
+          - $ref: "#/components/schemas/DateTrait"
         purpose:
           description: "One or more intended industry/industries of the product described\
             \ by the digital product passport. If exchanged via Catena-X, 'automotive'\
             \ is a must choice included in the list."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#purpose"
-          $ref: "#/components/schemas/StringList"
+          allOf:
+          - $ref: "#/components/schemas/StringList"
         purchaseOrder:
           description: A unique identifier assigned to the order of the product for
             tracking purposes between supplier and customer.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#purchaseOrder"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         recallInformation:
           description: "Information regarding the recall of the product. According\
             \ to the General Product Safety Regulation: Information on unsafe products:\
@@ -1928,7 +2070,8 @@ components:
             \ measure already taken, and, if available, of the quantity, by Member\
             \ State, of products still circulating on the market."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recallInformation"
-          $ref: "#/components/schemas/RecallInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RecallInformationCharacteristic"
       required:
       - purpose
       - recallInformation
@@ -1991,44 +2134,52 @@ components:
             \ impact categories or an aggregated set of impact categories, (n) the\
             \ carbon footprint of the product, (o) the material footprint of the product."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintValue"
-          $ref: "#/components/schemas/PositiveTrait"
+          allOf:
+          - $ref: "#/components/schemas/PositiveTrait"
         rulebook:
           description: The applied rulebook for the environmental footprint of the
             product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintRulebook"
-          $ref: "#/components/schemas/DocumentList"
+          allOf:
+          - $ref: "#/components/schemas/DocumentList"
         lifecycle:
           description: "The lifecycle stage, to which the environmental footprint\
             \ corresponds. These could be for example \"raw material acquisition and\
             \ pre-processing\", \"main product production\", \"distribution\" or \"\
             end of life and recycling\"."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintLifecycle"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         unit:
           description: "The unit of measurement of the environmental impact category.\
             \ For each impact category a specific unit is used. If an aggregation\
             \ is used, utilize the normalization and weighting methods used in the\
             \ referenced rulebook."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintUnit"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         type:
           description: The type of the environmental footprint of the product. This
             could be one of the environmental impact categories.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#footprintType"
-          $ref: "#/components/schemas/CategoryEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/CategoryEnumeration"
         performanceClass:
           description: The performance classification of the footprint.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#performanceClass"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         manufacturingPlant:
           description: The manufacturing plant of the footprint in the specific lifecycle
             phase.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#manufacturingPlant"
-          $ref: "#/components/schemas/FacilityList"
+          allOf:
+          - $ref: "#/components/schemas/FacilityList"
         declaration:
           description: The footprint declaration in the format of a link.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declaration"
-          $ref: "#/components/schemas/DocumentList"
+          allOf:
+          - $ref: "#/components/schemas/DocumentList"
       required:
       - value
       - rulebook
@@ -2073,7 +2224,8 @@ components:
             \ tested in collaboration with different industry sectors and adopted\
             \ or implemented by the Commission in other Union law."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#environmentalFootprint"
-          $ref: "#/components/schemas/FootprintList"
+          allOf:
+          - $ref: "#/components/schemas/FootprintList"
         carbon:
           description: "The carbon footprint of the product. This is mentioned in\
             \ the Regulation (EU) 2024/1781 of the European Parliament and of the\
@@ -2091,7 +2243,8 @@ components:
             \ and based on a life cycle assessment using the single impact category\
             \ of climate change."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#carbonFootprint"
-          $ref: "#/components/schemas/FootprintList"
+          allOf:
+          - $ref: "#/components/schemas/FootprintList"
         material:
           description: "The material footprint of the product. This is mentioned in\
             \ the Regulation (EU) 2024/1781 of the European Parliament and of the\
@@ -2101,7 +2254,8 @@ components:
             \ refers to the total amount of raw materials extracted to meet final\
             \ consumption demands."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialFootprint"
-          $ref: "#/components/schemas/FootprintList"
+          allOf:
+          - $ref: "#/components/schemas/FootprintList"
       required:
       - carbon
     SymbolOfDepositAndReturnSystemEntity:
@@ -2113,16 +2267,19 @@ components:
           description: The header as a short description of the document with a maximum
             of 100 characters.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header"
-          $ref: "#/components/schemas/HeaderTrait"
+          allOf:
+          - $ref: "#/components/schemas/HeaderTrait"
         content:
           description: The content of the document e.g a link.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         contentType:
           description: "The type of content which can be expected in the \"content\"\
             \ property. Examples are a link, restricted link, pdf, excel, etc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - header
       - content
@@ -2141,11 +2298,13 @@ components:
         calculationKey:
           description: Key for calculation of trips/rotations.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#calculationKey"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         calculationValue:
           description: Dynamic value for calculation trips/rotations.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#calculationValue"
-          $ref: "#/components/schemas/PositiveTrait"
+          allOf:
+          - $ref: "#/components/schemas/PositiveTrait"
       required:
       - calculationKey
       - calculationValue
@@ -2157,11 +2316,13 @@ components:
         calculationKey:
           description: Key for calculation of trips/rotations.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#calculationKey"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         calculationValue:
           description: Dynamic value for calculation trips/rotations.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#calculationValue"
-          $ref: "#/components/schemas/PositiveTrait"
+          allOf:
+          - $ref: "#/components/schemas/PositiveTrait"
       required:
       - calculationKey
       - calculationValue
@@ -2173,11 +2334,13 @@ components:
         reuseSystemIdentification:
           description: Identification of the reuse system.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reuseSystemIdentification"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         symbolsOfDepositAndReturnSystem:
           description: Document of the symbols of the deposit and return system.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#symbolsOfDepositAndReturnSystem"
-          $ref: "#/components/schemas/SymbolOfDepositAndReturnSystemList"
+          allOf:
+          - $ref: "#/components/schemas/SymbolOfDepositAndReturnSystemList"
         rotation:
           description: |2-
              Rotation  means the cycle that reusable packaging accomplishes from the moment it is placed on the market together with the product it is intended to contain, protect, handle, deliver or present to the moment it is ready to be re-used within a re-use system with a view to it being supplied again to end users together with another product.
@@ -2185,7 +2348,8 @@ components:
             This definition is based on the following regulation:
             Regulation (EU) 2025/40 of the European Parliament and of the Council of 19 December 2024 on packaging and packaging waste, amending Regulation (EU) 2019/1020 and Directive (EU) 2019/904, and repealing Directive 94/62/EC
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#rotation"
-          $ref: "#/components/schemas/RotationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RotationCharacteristic"
         trip:
           description: |2-
              Trip  means the transfer of packaging, from filling or loading to emptying or unloading, as part of a rotation or on its own.
@@ -2193,14 +2357,16 @@ components:
             This definition is based on the following regulation:
             Regulation (EU) 2025/40 of the European Parliament and of the Council of 19 December 2024 on packaging and packaging waste, amending Regulation (EU) 2019/1020 and Directive (EU) 2019/904, and repealing Directive 94/62/EC
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#trip"
-          $ref: "#/components/schemas/TripCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/TripCharacteristic"
         collectionPoints:
           description: "Information on collection points. End-users shall discard\
             \ waste in designated separate collection points set up by, or following\
             \ the specific arrangements concluded with, the producer or a producer\
             \ responsibility organisation."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#collectionPoints"
-          $ref: "#/components/schemas/CollectionPointList"
+          allOf:
+          - $ref: "#/components/schemas/CollectionPointList"
         trackingFacilities:
           description: "Information about tracking facilities.\n\nThese are mentioned\
             \ in the Regulation (EU) 2025/40:  \n(69) As regards reusable packaging,\
@@ -2214,7 +2380,8 @@ components:
             \ do not have a system operator. In addition, reusable sales packaging\
             \ should be clearly identified at the point of sale."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#trackingFacilities"
-          $ref: "#/components/schemas/FacilityList"
+          allOf:
+          - $ref: "#/components/schemas/FacilityList"
       required:
       - collectionPoints
     ReuseSystemCharacteristic:
@@ -2226,11 +2393,13 @@ components:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         content:
           description: Documentation and identification of the reuse system.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reuseSystemInformation"
-          $ref: "#/components/schemas/ReuseSystemInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ReuseSystemInformationCharacteristic"
       required:
       - applicable
     ReusabilityInformationCharacteristic:
@@ -2242,11 +2411,13 @@ components:
           description: "Information about whether product is reusable or not, and\
             \ description of the type of reuse, and possibilities of the reuse."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reuseInfo"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         reuseSystem:
           description: Information about the reuse system.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reuseSystem"
-          $ref: "#/components/schemas/ReuseSystemCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ReuseSystemCharacteristic"
       required:
       - reuseInfo
       - reuseSystem
@@ -2259,12 +2430,14 @@ components:
           description: Information about the reusability of the product and the reuse
             system.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reusabilityInformation"
-          $ref: "#/components/schemas/ReusabilityInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ReusabilityInformationCharacteristic"
         applicable:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
       required:
       - applicable
     RecycleabilityPerformanceCharacteristic:
@@ -2276,11 +2449,13 @@ components:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         content:
           description: Indication of recycleability grade.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recycleabilityPerformaceGrade"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - applicable
     SustainabilityCharacteristic:
@@ -2297,7 +2472,8 @@ components:
             \ a framework for the setting of ecodesign requirements for sustainable\
             \ products Annex I:(k) incorporation of used components."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#productStatus"
-          $ref: "#/components/schemas/ProductStatusEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/ProductStatusEnumeration"
         productFootprint:
           description: "The carbon and environmental footprint or material footprint\
             \ of the product. These attributes are mentioned in the Regulation (EU)\
@@ -2323,7 +2499,8 @@ components:
             \ the total amount of raw materials extracted to meet final consumption\
             \ demands."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#productFootprint"
-          $ref: "#/components/schemas/ProductFootprintCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ProductFootprintCharacteristic"
         reparabilityScore:
           description: "The reparability score. This attribute is mentioned in the\
             \ Regulation (EU) 2024/1781 of the European Parliament and of the Council\
@@ -2333,7 +2510,8 @@ components:
             \ of the product in relation to one or more of the product parameters\
             \ referred to in Annex I, including a repairability score."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reparabilityScore"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         durabilityScore:
           description: "The durability score. This attribute is mentioned in the Regulation\
             \ (EU) 2024/1781 of the European Parliament and of the Council of 13 June\
@@ -2343,7 +2521,8 @@ components:
             \ the product in relation to one or more of the product parameters referred\
             \ to in Annex I, including a repairability score, a durability score."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#durabilityScore"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         reusability:
           description: "Reuse information about the product. This attribute is mentioned\
             \ in the Regulation (EU) 2024/1781 of the European Parliament and of the\
@@ -2369,13 +2548,15 @@ components:
             \ open, digital data carrier shall not apply to open loop systems which\
             \ do not have a system operator in accordance with Annex VI."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reusability"
-          $ref: "#/components/schemas/ReusabilityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ReusabilityCharacteristic"
         recycleabilityPerformance:
           description: |2-
              Recyclability information about the product. This attribute is mentioned in the Regulation (EU) 2024/1781 of the European Parliament and of the Council of 13 June 2024 establishing a framework for the setting of ecodesign requirements for sustainable products, amending Directive (EU) 2020/1828 and Regulation (EU) 2023/1542 and repealing Directive 2009/125/EC Article 7 (2 )(b)(iii):
             (iii) information for treatment facilities on disassembly, reuse, refurbishment, recycling, or disposal at end-of-life. This is mentioned in the Regulation (EU) 2025/40 Article 12: 2. Reusable packaging placed on the market from 12 February 2029 or 30 months from the date of entry into force of the implementing act adopted pursuant to paragraph 6, whichever is the latest, shall bear a label informing users that the packaging is reusable. Further information on reusability, including the availability of a local, national or Union-wide re-use system and information on collection points, shall be made available through a QR code or other type of standardised, open, digital data carrier that facilitates the tracking of the packaging and the calculation of trips and rotations, or, if that calculation is not feasible, an average estimation. In addition, reusable sales packaging shall be clearly identified and distinguished from single-use packaging at the point of sale. 3. By way of derogation from paragraph 2 of this Article, the requirement to bear a label and a QR code or other type of standardised, open, digital data carrier shall not apply to open loop systems which do not have a system operator in accordance with Annex VI.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recycleabilityPerformance"
-          $ref: "#/components/schemas/RecycleabilityPerformanceCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RecycleabilityPerformanceCharacteristic"
       required:
       - productStatus
       - productFootprint
@@ -2456,7 +2637,8 @@ components:
         content:
           description: The content of the document e.g a link.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#content"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         category:
           description: "The category in which the document can be sorted. (Link to\
             \ databases or systems can provide the linkt to: Electronic Freight Transport\
@@ -2537,17 +2719,20 @@ components:
             \ composting process of which is performed by private individuals with\
             \ the aim of producing compost for their own use."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#category"
-          $ref: "#/components/schemas/SourceCategoryEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/SourceCategoryEnumeration"
         contentType:
           description: "The type of content which can be expected in the \"content\"\
             \ property. Examples are a link, restricted link, pdf, excel, etc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#contentType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         header:
           description: The header as a short description of the document with a maximum
             of 100 characters.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#header"
-          $ref: "#/components/schemas/HeaderTrait"
+          allOf:
+          - $ref: "#/components/schemas/HeaderTrait"
       required:
       - content
       - category
@@ -2589,7 +2774,8 @@ components:
           description: "Choose a unit type from the unit catalog, or if the property\
             \ \"children\" is filled, leave empty."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#typeUnit"
-          $ref: "#/components/schemas/UnitCatalog"
+          allOf:
+          - $ref: "#/components/schemas/UnitCatalog"
         dataType:
           description: "Data type that describe the content of the attributes children\
             \ and data. In case \"object\" is selected in the enumeration, the children\
@@ -2597,7 +2783,8 @@ components:
             \ property. If it is an other type, the content will be specified in \"\
             data\" as a string."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#dataType"
-          $ref: "#/components/schemas/DataTypeEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/DataTypeEnumeration"
       required:
       - dataType
     AdditionalDataEntity:
@@ -2611,24 +2798,29 @@ components:
         label:
           description: The human readable name of the attribute.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#label"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         description:
           description: The description of the attribute context.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#description"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         type:
           description: The complex description of the type.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#type"
-          $ref: "#/components/schemas/TypeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/TypeCharacteristic"
         data:
           description: The content from the attribute which is a depended of the data
             type and typeUnit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#data"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         children:
           description: Children of the hierarchy.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#children"
-          $ref: "#/components/schemas/AdditionalDataList"
+          allOf:
+          - $ref: "#/components/schemas/AdditionalDataList"
       required:
       - label
       - description
@@ -2650,19 +2842,22 @@ components:
             \ that the product must comply with. This information can be sourced from\
             \ the Supplier Survey."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#requirementName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         complianceStatement:
           description: The statement indicates whether the product complies with the
             aforementioned regulations.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#complianceStatement"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         complianceCountries:
           description: |-
             List of countries whose rules and regulations the product must adhere to.
 
             The name of the country of compliance denotes the country whose rules and regulations the product must adhere to. 2 letter code from ISO 3166.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#complianceCountries"
-          $ref: "#/components/schemas/StringList"
+          allOf:
+          - $ref: "#/components/schemas/StringList"
         reasonsForExemption:
           description: "Data providing details and justifications for an exemption\
             \ from compliance with certain regulations, standards, or requirements.\
@@ -2670,19 +2865,22 @@ components:
             \ the merits of the exemption and making decisions following legal and\
             \ regulatory requirements."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#reasonsForExemption"
-          $ref: "#/components/schemas/StringList"
+          allOf:
+          - $ref: "#/components/schemas/StringList"
         remarks:
           description: "If necessary, any remarks that provide relevant information\
             \ for compliance. Further clarification supplements the compliance information,\
             \ offering additional context or details to ensure thorough understanding\
             \ and adherence to regulatory requirements."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#remarks"
-          $ref: "#/components/schemas/StringList"
+          allOf:
+          - $ref: "#/components/schemas/StringList"
         complianceDocuments:
           description: Documentation accompanying the compliance. Declarations to
             support compliance.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#complianceDocuments"
-          $ref: "#/components/schemas/DocumentList"
+          allOf:
+          - $ref: "#/components/schemas/DocumentList"
       required:
       - requirementName
       - complianceStatement
@@ -2704,28 +2902,34 @@ components:
 
             This field must be used where the product consists multiple components, and where these components are made of different materials as assigned by the manufacturer of a product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         componentCode:
           description: An identifier assigned to the component.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentCode"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         componentDescription:
           description: "Short description of component, including function or specification.\
             \ Information can include data about component type, weight."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         componentLocations:
           description: Locations or positions of the component within the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentLocations"
-          $ref: "#/components/schemas/StringList"
+          allOf:
+          - $ref: "#/components/schemas/StringList"
         componentSortingInformation:
           description: Description of how to sort the component.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentSortingInformation"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         componentPassportIdentifier:
           description: "The identifier of the component passport, which is a uuidv4."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentPassportIdentifier"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - componentCode
       - componentSortingInformation
@@ -2744,7 +2948,8 @@ components:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         content:
           description: "Information about the components of the product.\n\nThis attribute\
             \ is mentioned in the Regulation (EU) 2024/1781 of the European Parliament\
@@ -2774,7 +2979,8 @@ components:
             \ treatment operations and how they should be labelled. It also provides\
             \ a list of parts that should not be reused, remanufactured or refurbished."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#components"
-          $ref: "#/components/schemas/ComponentList"
+          allOf:
+          - $ref: "#/components/schemas/ComponentList"
       required:
       - applicable
     PercentageTrait:
@@ -2806,17 +3012,20 @@ components:
         materialName:
           description: The name of the material that is present in the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         materialId:
           description: "The material identification, in accordance with the specification\
             \ in the attribute for the list type."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialId"
-          $ref: "#/components/schemas/IdentifierCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IdentifierCharacteristic"
         materialListTypeId:
           description: "The type of standard used for the identification of the substances.\
             \ Selected can be for example CAS, IUPAC or EC."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialListTypeId"
-          $ref: "#/components/schemas/ListTypeIdEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/ListTypeIdEnumeration"
       required:
       - materialName
       - materialId
@@ -2837,19 +3046,22 @@ components:
             The hazard category of the substance of concern. Defined in Article 2 of Regulation (EC) No 1272/2008 of the European Parliament and of the Council of 16 December 2008 on classification, labelling and packaging of substances and mixtures, amending and repealing Directives 67/548/EEC and 1999/45/EC, and amending Regulation (EC) No 1907/2006:
             2. 'hazard category' means the division of criteria within each hazard class, specifying hazard severity.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#hazardCategory"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         hazardClass:
           description: |-
             The hazard class of the substance of concern. Defined in Article 2 of Regulation (EC) No 1272/2008 of the European Parliament and of the Council of 16 December 2008 on classification, labelling and packaging of substances and mixtures, amending and repealing Directives 67/548/EEC and 1999/45/EC, and amending Regulation (EC) No 1907/2006:
             1. 'hazard class' means the nature of the physical, health or environmental hazard.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#hazardClass"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         hazardStatement:
           description: |-
             The hazard statement of the substance of concern. Defined in Article 2 of Regulation (EC) No 1272/2008 of the European Parliament and of the Council of 16 December 2008 on classification, labelling and packaging of substances and mixtures, amending and repealing Directives 67/548/EEC and 1999/45/EC, and amending Regulation (EC) No 1907/2006:
             5. 'hazard statement' means a phrase assigned to a hazard class and category that describes the nature of the hazards of a hazardous substance or mixture, including, where appropriate, the degree of hazard.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#hazardStatement"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - hazardCategory
       - hazardClass
@@ -2901,13 +3113,15 @@ components:
             \ re-assembly, conditions for access to product data, conditions for access\
             \ to or use of hardware and software needed."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentrationValue"
-          $ref: "#/components/schemas/PositiveTrait"
+          allOf:
+          - $ref: "#/components/schemas/PositiveTrait"
         concentrationUnit:
           description: "The unit of concentration chosen from an enumeration: mass\
             \ percent, volume percent, parts per thousand, parts per million, parts\
             \ per billion and  parts per trillion."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentrationUnit"
-          $ref: "#/components/schemas/ConcentrationEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/ConcentrationEnumeration"
       required:
       - concentrationValue
       - concentrationUnit
@@ -2921,12 +3135,14 @@ components:
           description: The minimum concentration of the material at the level of the
             product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#minConcentration"
-          $ref: "#/components/schemas/ConcentrationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ConcentrationCharacteristic"
         maxConcentration:
           description: 'The maximum concentration of the material at the level of
             the product. '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#maxConcentration"
-          $ref: "#/components/schemas/ConcentrationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ConcentrationCharacteristic"
       required:
       - maxConcentration
     SubstanceOfConcernCharacteristic:
@@ -2949,7 +3165,8 @@ components:
             \ if they are present in products, their relevant components or spare\
             \ parts in a concentration above 0,1 % weight by weight."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#exemption"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         hazardClassifications:
           description: "The specification of the hazard classes. The specification\
             \ of the hazard class. This attribute is mentioned in the Regulation (EU)\
@@ -2971,20 +3188,24 @@ components:
             \ that describes the nature of the hazards of a hazardous substance or\
             \ mixture, including, where appropriate, the degree of hazard."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#hazardClassifications"
-          $ref: "#/components/schemas/HazardClassificationList"
+          allOf:
+          - $ref: "#/components/schemas/HazardClassificationList"
         substanceOfConcernDocuments:
           description: Documentation accompanying the material.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substanceOfConcernDocuments"
-          $ref: "#/components/schemas/DocumentList"
+          allOf:
+          - $ref: "#/components/schemas/DocumentList"
         substanceOfConcernLocations:
           description: Locations of the substance of concern within the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substanceOfConcernLocations"
-          $ref: "#/components/schemas/StringList"
+          allOf:
+          - $ref: "#/components/schemas/StringList"
         substanceOfConcernConcentrationRange:
           description: "Based on the regulation: concentration range for the substance\
             \ of concern."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substanceOfConcernConcentrationRange"
-          $ref: "#/components/schemas/RangeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RangeCharacteristic"
       required:
       - exemption
       - hazardClassifications
@@ -3000,7 +3221,8 @@ components:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         content:
           description: "Information regarding substance of concern in the product.\
             \ Attributes are among others substance names, ids, concentration, location\
@@ -3026,7 +3248,8 @@ components:
             \ or (d) negatively affects the reuse and recycling of materials in the\
             \ product in which it is present;."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substanceOfConcern"
-          $ref: "#/components/schemas/SubstanceOfConcernCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SubstanceOfConcernCharacteristic"
       required:
       - applicable
     DeclarableIngredientlListEntity:
@@ -3037,16 +3260,19 @@ components:
         declarableIngredientListName:
           description: Name of the Declarable Ingredient List.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredientListName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         declarableIngredientListDocumentId:
           description: Document ID refered to Declarable Ingredient list.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredientListDocumentId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         declarableIngredientDocuments:
           description: 'Documentation accompanying the Declarable Ingredient list
             with information related to declarable ingredients. '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredientDocuments"
-          $ref: "#/components/schemas/DocumentList"
+          allOf:
+          - $ref: "#/components/schemas/DocumentList"
       required:
       - declarableIngredientListName
       - declarableIngredientDocuments
@@ -3065,7 +3291,8 @@ components:
           description: "Check whether the connected attributes are applicable to the\
             \ product. If applicable (true), content must be provided."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#applicable"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         content:
           description: "Declaration of ingredients contained within a product, product\
             \ part, or material as applicable. The information required to determine\
@@ -3095,7 +3322,8 @@ components:
             \ a secure and sustainable supply of critical raw materials, a list of\
             \ critical raw materials can be found."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredientLists"
-          $ref: "#/components/schemas/ListOfDeclarableIngredientList"
+          allOf:
+          - $ref: "#/components/schemas/ListOfDeclarableIngredientList"
       required:
       - applicable
     ConcentrationInformationCharacteristic:
@@ -3106,7 +3334,8 @@ components:
         concentration:
           description: Concentration of the material at the level of the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentration"
-          $ref: "#/components/schemas/ConcentrationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ConcentrationCharacteristic"
         concentrationRange:
           description: "The concentration range for the substance of concern. This\
             \ attribute is specially mentioned for substances of concern mentioned\
@@ -3117,7 +3346,8 @@ components:
             \ of concern, at the level of the product, its relevant components, or\
             \ spare parts."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentrationRange"
-          $ref: "#/components/schemas/RangeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RangeCharacteristic"
       required:
       - concentration
     MaterialEntity:
@@ -3148,7 +3378,8 @@ components:
             \ and indicate, per material share, whether the material is recycled from\
             \ pre-consumer waste or from post-consumer waste."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#recycled"
-          $ref: "#/components/schemas/PercentageTrait"
+          allOf:
+          - $ref: "#/components/schemas/PercentageTrait"
         materialIdentifications:
           description: "The chemical material name and identification, in accordance\
             \ with the specification in the attribute for the list type. Preference\
@@ -3173,17 +3404,20 @@ components:
             \ if available and appropriate, (iv) the Chemical Abstract Service (CAS)\
             \ name and number, if available."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialIdentifications"
-          $ref: "#/components/schemas/MaterialIdentificationList"
+          allOf:
+          - $ref: "#/components/schemas/MaterialIdentificationList"
         materialDocuments:
           description: Documentation accompanying the material.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialDocuments"
-          $ref: "#/components/schemas/DocumentList"
+          allOf:
+          - $ref: "#/components/schemas/DocumentList"
         substancesOfConcernInformation:
           description: |-
             Information regarding substances of concern in the product. The ESPR provisional agreement from January 9th, 2024 defines:
             (52) 'hazardous substance' means a substance classified as hazardous pursuant to Article 3 of Regulation (EC) No 1272/2008.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#substancesOfConcernInformation"
-          $ref: "#/components/schemas/SubstancesOfConcernInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SubstancesOfConcernInformationCharacteristic"
         materialType:
           description: "Information refers to the specific category of material intentionally\
             \ or unintentionally incorporated into the product. Can inform about multi-constituent\
@@ -3191,7 +3425,8 @@ components:
             \ of material or informing about Substance of Unknown or Variable composition,\
             \ Complex reaction products or Biological material."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         materialOrigin:
           description: "Country of material origin. 2 letter code from ISO 3166.\n\
             \nAttribute is mentioned in Regulation (EU) 2017/821 of the European Parliament\
@@ -3221,15 +3456,18 @@ components:
             \ statement this kind of information.\n\nThis attribute often appear in\
             \ different voluntary certification and labelling schemes."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialOrigin"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         materialPassportIdentifier:
           description: "The identifier of the material passport, which is a uuidv4."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialPassportIdentifier"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         materialLocations:
           description: Locations/positions of the material within the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialLocations"
-          $ref: "#/components/schemas/StringList"
+          allOf:
+          - $ref: "#/components/schemas/StringList"
         declarableIngredient:
           description: "Declaration of ingredients contained within a product, product\
             \ part, or material as applicable. The information required to determine\
@@ -3259,12 +3497,14 @@ components:
             \ a secure and sustainable supply of critical raw materials, a list of\
             \ critical raw materials can be found."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#declarableIngredient"
-          $ref: "#/components/schemas/DeclarableIngredientCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DeclarableIngredientCharacteristic"
         concentrationInformation:
           description: Information about the concentration of the material at the
             product level.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#concentrationInformation"
-          $ref: "#/components/schemas/ConcentrationInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ConcentrationInformationCharacteristic"
       required:
       - recycled
       - materialIdentifications
@@ -3287,7 +3527,8 @@ components:
           description: The product's material composition includes information on
             recycled materials.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materials"
-          $ref: "#/components/schemas/MaterialList"
+          allOf:
+          - $ref: "#/components/schemas/MaterialList"
       required:
       - materials
     CompositionCharacteristic:
@@ -3298,12 +3539,14 @@ components:
         componentInformation:
           description: Information about the component(s) of the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#componentInformation"
-          $ref: "#/components/schemas/ComponentInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ComponentInformationCharacteristic"
         materialInformation:
           description: The product's material composition includes information on
             recycled materials.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#materialInformation"
-          $ref: "#/components/schemas/MaterialInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialInformationCharacteristic"
       required:
       - componentInformation
       - materialInformation
@@ -3320,7 +3563,8 @@ components:
             of 13 June 2024 establishing a framework for the setting of ecodesign
             requirements for sustainable products.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#metadata"
-          $ref: "#/components/schemas/MetadataCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MetadataCharacteristic"
         identification:
           description: "Identification information of the product, especially identifiers\
             \ and codes. These are mentioned in the Regulation (EU) 2024/1781 of the\
@@ -3344,27 +3588,33 @@ components:
             \ produced in a specific manufacturing plant at a specific moment in time\
             \ and the term-item usually refers to a single unit of a model."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#identification"
-          $ref: "#/components/schemas/IdentificationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IdentificationCharacteristic"
         operation:
           description: Operational information of the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#operation"
-          $ref: "#/components/schemas/OperationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OperationCharacteristic"
         handling:
           description: Properties connected with the handling of the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#handling"
-          $ref: "#/components/schemas/HandlingCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/HandlingCharacteristic"
         characteristics:
           description: Defines specific characteristics of a product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#characteristics"
-          $ref: "#/components/schemas/ProductCharacteristics"
+          allOf:
+          - $ref: "#/components/schemas/ProductCharacteristics"
         commercial:
           description: Commercial information of the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#commercial"
-          $ref: "#/components/schemas/CommercialCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CommercialCharacteristic"
         sustainability:
           description: Sustainability related attributes.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sustainability"
-          $ref: "#/components/schemas/SustainabilityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SustainabilityCharacteristic"
         sources:
           description: "Documents that are mandatory for the product. These are mentioned\
             \ in the Regulation (EU) 2024/1781 of the European Parliament and of the\
@@ -3456,7 +3706,8 @@ components:
             \ materials after use. This can include instructions for separation, reuse,\
             \ and recycling."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#sources"
-          $ref: "#/components/schemas/SourceList"
+          allOf:
+          - $ref: "#/components/schemas/SourceList"
         additionalData:
           description: "Data in form of open fields which need to be transferred in\
             \ additionally. The regulation is still under development and may change\
@@ -3471,7 +3722,8 @@ components:
             \ passport pursuant to the applicable delegated act adopted pursuant to\
             \ Article 4."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#additionalData"
-          $ref: "#/components/schemas/AdditionalDataList"
+          allOf:
+          - $ref: "#/components/schemas/AdditionalDataList"
         compliances:
           description: "Compliance refers to adhering to relevant regulations, standards,\
             \ or specifications regarding the testing, certification, assessments,\
@@ -3486,12 +3738,14 @@ components:
             \ to United Nations standards (e.g., UN labour standards) and other country-specific\
             \ requirements."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#compliances"
-          $ref: "#/components/schemas/ComplianceList"
+          allOf:
+          - $ref: "#/components/schemas/ComplianceList"
         composition:
           description: Information about the components and material composition of
             the product.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.generic.digital_product_passport:7.0.0#composition"
-          $ref: "#/components/schemas/CompositionCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CompositionCharacteristic"
       required:
       - metadata
       - identification

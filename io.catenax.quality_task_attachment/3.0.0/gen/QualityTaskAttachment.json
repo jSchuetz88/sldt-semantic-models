@@ -1,20 +1,20 @@
 {
   "files" : [ {
+    "fileName" : "Histogramm_data.csv",
     "schema" : {
+      "decimalSeperator" : "\"comma\", \"dot\"",
+      "delimiter" : "semicolon",
       "variablesProperty" : [ {
-        "unit" : "unit:degreeCelsiusPerHour",
         "variableName" : "Price",
         "dataType" : "double",
+        "unit" : "unit:degreeCelsiusPerHour",
         "variableDescription" : "This column contains the hourly temperature of a part"
-      } ],
-      "delimiter" : "semicolon",
-      "decimalSeperator" : "\"comma\", \"dot\""
+      } ]
     },
-    "fileDescription" : "Price list for various components",
-    "fileName" : "Histogramm_data.csv",
-    "sizeInKbProperty" : 615,
-    "fileExtension" : "csv",
     "filePath" : "/subfolder/Histogramm_data.csv",
+    "sizeInKbProperty" : 615,
+    "fileDescription" : "Price list for various components",
+    "fileExtension" : "csv",
     "relatedModelType" : {
       "namespace" : "io.catenax.fleet.vehicles",
       "ttlFile" : "Vehicles.ttl",

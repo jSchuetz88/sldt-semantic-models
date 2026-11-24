@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/Requirement"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        requirementId:
+          type: array
+          items:
+            $ref: "#/components/schemas/Requirement"
     UuidV4Trait:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.uuid:2.0.0#UuidV4Trait"
@@ -132,12 +133,14 @@ components:
         versionNumber:
           description: Semantic version of the requirement
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#versionNumber"
-          $ref: "#/components/schemas/VersionNumberTrait"
+          allOf:
+          - $ref: "#/components/schemas/VersionNumberTrait"
         versionId:
           description: "The identifier of this exact version of the requirement represented\
             \ by a UUID, valid for the Catena-X dataspace."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#versionId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - versionNumber
       - versionId
@@ -163,15 +166,18 @@ components:
           description: "The key may contain only letters, digits, underscores, and\
             \ hyphens."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#key"
-          $ref: "#/components/schemas/KeyTrait"
+          allOf:
+          - $ref: "#/components/schemas/KeyTrait"
         value:
           description: Value string for the associated metadata
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#value"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         metadataDescription:
           description: Description of the associated metadata
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#metadataDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - key
       - value
@@ -196,12 +202,14 @@ components:
         versionPredecessorNumber:
           description: https://semver.org/
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#versionPredecessorNumber"
-          $ref: "#/components/schemas/VersionNumberTrait"
+          allOf:
+          - $ref: "#/components/schemas/VersionNumberTrait"
         versionPredecessorId:
           description: "The identifier of the predecessor version of the requirement\
             \ represented by a UUID, valid for the Catena-X dataspace."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#versionPredecessorId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - versionPredecessorNumber
       - versionPredecessorId
@@ -213,50 +221,61 @@ components:
         reqIfName:
           description: Name of the requirement (from ReqIF).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#reqIfName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         reqIfType:
           description: "Type of the requirement (e.g., 'Functional', 'Non-Functional')."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#reqIfType"
-          $ref: "#/components/schemas/ReqIFTypeEnum"
+          allOf:
+          - $ref: "#/components/schemas/ReqIFTypeEnum"
         version:
           description: Version of the requirement with it's predecessor
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#version"
-          $ref: "#/components/schemas/VersionCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VersionCharacteristic"
         description:
           description: Textual description of the requirement.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#description"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         creationDate:
           description: Date of requirement/version creation.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#creationDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         author:
           description: 'Company that created the requirement. '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#author"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         foreignId:
           description: Identifier from an external system (e.g. the chapter in a set
             of requirements)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#foreignId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         longname:
           description: Descriptive name for the requirement.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#longname"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         metadata:
           description: Additional metadata that is associated with the requirement
             and not standardized in the aspect model.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#metadata"
-          $ref: "#/components/schemas/MetadataList"
+          allOf:
+          - $ref: "#/components/schemas/MetadataList"
         specification:
           description: Link to the specification document.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#specification"
-          $ref: "#/components/schemas/SpecificationList"
+          allOf:
+          - $ref: "#/components/schemas/SpecificationList"
         versionPredecessor:
           description: "Includes the informaiton to identifiy predecessor requirement\
             \ (e.g., ID and Version)."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#versionPredecessor"
-          $ref: "#/components/schemas/VersionPredecessorCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VersionPredecessorCharacteristic"
       required:
       - reqIfName
       - reqIfType
@@ -292,15 +311,18 @@ components:
         customerStatusValue:
           description: Value for customer status
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#customerStatusValue"
-          $ref: "#/components/schemas/CustomerStatusValueEnum"
+          allOf:
+          - $ref: "#/components/schemas/CustomerStatusValueEnum"
         customerStatusComment:
           description: Comment from the customer.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#customerStatusComment"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         customerStatusTimestamp:
           description: Property for the customer status timestamp
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#customerStatusTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
       required:
       - customerStatusValue
       - customerStatusTimestamp
@@ -329,15 +351,18 @@ components:
         supplierStatusValue:
           description: Value for the supplier status
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#supplierStatusValue"
-          $ref: "#/components/schemas/SupplierStatusValueEnum"
+          allOf:
+          - $ref: "#/components/schemas/SupplierStatusValueEnum"
         supplierStatusComment:
           description: Comment from the supplier.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#supplierStatusComment"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         supplierStatusTimestamp:
           description: Property for the supplier status timestamp
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#supplierStatusTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
       required:
       - supplierStatusValue
       - supplierStatusTimestamp
@@ -355,19 +380,23 @@ components:
         statusValue:
           description: Overall status of the requirement
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#statusValue"
-          $ref: "#/components/schemas/StatusValueEnum"
+          allOf:
+          - $ref: "#/components/schemas/StatusValueEnum"
         statusTimestamp:
           description: Timestamp of the status change.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#statusTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         customerStatus:
           description: Property for the requirement status of customer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#customerStatus"
-          $ref: "#/components/schemas/CustomerStatusList"
+          allOf:
+          - $ref: "#/components/schemas/CustomerStatusList"
         supplierStatus:
           description: Property for the requirement status of supplier
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#supplierStatus"
-          $ref: "#/components/schemas/SupplierStatusList"
+          allOf:
+          - $ref: "#/components/schemas/SupplierStatusList"
       required:
       - statusValue
       - statusTimestamp
@@ -381,11 +410,13 @@ components:
         relatedRequirementId:
           description: Id of related requirement in form of a UUID
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#relatedRequirementId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         requirementRelationshipType:
           description: The type of relationship of the two related requirements
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#requirementRelationshipType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - relatedRequirementId
       - requirementRelationshipType
@@ -405,19 +436,23 @@ components:
           description: "The identifier of a requirement represented by a UUID, valid\
             \ for the Catena-X dataspace."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#requirementId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         requirementInformation:
           description: Mainnode for all the Requirement related information
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#requirementInformation"
-          $ref: "#/components/schemas/RequirementInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RequirementInformationCharacteristic"
         requirementStatus:
           description: Status of the Requirement
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#requirementStatus"
-          $ref: "#/components/schemas/RequirementStatusCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RequirementStatusCharacteristic"
         requirementRelations:
           description: Links to related requirements
           x-samm-aspect-model-urn: "urn:samm:io.catenax.requirement:1.0.0#requirementRelations"
-          $ref: "#/components/schemas/RequirementRelationSet"
+          allOf:
+          - $ref: "#/components/schemas/RequirementRelationSet"
       required:
       - requirementId
       - requirementInformation

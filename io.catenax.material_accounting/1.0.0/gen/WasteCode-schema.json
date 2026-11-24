@@ -23,12 +23,16 @@
     "wasteCode" : {
       "description" : "The waste code is used to identify the type of waste on part or material level.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#wasteCode",
-      "$ref" : "#/components/schemas/WasteCodeEnum"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/WasteCodeEnum"
+      } ]
     },
     "globalAssetId" : {
       "description" : "The fully anonymous ID in the dataspace of the part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     }
   },
   "required" : [ "wasteCode", "globalAssetId" ]

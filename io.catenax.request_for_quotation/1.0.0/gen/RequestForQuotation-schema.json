@@ -34,22 +34,30 @@
           "source" : {
             "description" : "digital address of the sender (e.g.token, IP address, link, user account)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#source",
-            "$ref" : "#/components/schemas/SourceCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SourceCharacteristic"
+            } ]
           },
           "id" : {
             "description" : "internal identifier in user account",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#id",
-            "$ref" : "#/components/schemas/IdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/IdCharacteristic"
+            } ]
           },
           "name" : {
             "description" : "name for the request for user account management (usually name of the part to be manufactured)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#name",
-            "$ref" : "#/components/schemas/NameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NameCharacteristic"
+            } ]
           },
           "dateTime" : {
             "description" : "date and time of the request in user account",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#dateTime",
-            "$ref" : "#/components/schemas/DateTimeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTimeCharacteristic"
+            } ]
           }
         },
         "required" : [ "source", "id", "name", "dateTime" ]
@@ -114,17 +122,23 @@
           "postProcessGroup" : {
             "description" : "process group is depending on the defined manufacturing method and defines the general treatment",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#postProcessGroup",
-            "$ref" : "#/components/schemas/PostProcessGroupCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostProcessGroupCharacteristic"
+            } ]
           },
           "postProcessType" : {
             "description" : "specific process out of the process group",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#postProcessType",
-            "$ref" : "#/components/schemas/PostProcessTypeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostProcessTypeCharacteristic"
+            } ]
           },
           "postProcessProperty" : {
             "description" : "additional property based on the post process type ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#postProcessProperty",
-            "$ref" : "#/components/schemas/PostProcessPropertyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostProcessPropertyCharacteristic"
+            } ]
           }
         },
         "required" : [ "postProcessGroup", "postProcessType", "postProcessProperty" ]
@@ -163,12 +177,16 @@
           "quantityNumber" : {
             "description" : "The number of objects related to the measurement unit",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#quantityNumber",
-            "$ref" : "#/components/schemas/NumberOfObjects"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NumberOfObjects"
+            } ]
           },
           "measurementUnit" : {
             "description" : "Unit of Measurement for the quantity of serialized objects",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#measurementUnit",
-            "$ref" : "#/components/schemas/UnitReference"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UnitReference"
+            } ]
           }
         },
         "required" : [ "quantityNumber", "measurementUnit" ]
@@ -191,12 +209,16 @@
           "value" : {
             "description" : "value to detail the part material item",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#value",
-            "$ref" : "#/components/schemas/ValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ValueCharacteristic"
+            } ]
           },
           "type" : {
             "description" : "value type to detail the part material item",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#type",
-            "$ref" : "#/components/schemas/TypeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TypeCharacteristic"
+            } ]
           }
         },
         "required" : [ "value", "type" ]
@@ -214,12 +236,16 @@
           "materialItems" : {
             "description" : "material definition with additional detail elements (name, density, chemical name,...)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#materialItems",
-            "$ref" : "#/components/schemas/SetMaterialItemsCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SetMaterialItemsCharacteristic"
+            } ]
           },
           "materialGroup" : {
             "description" : "definition of material group for pre-selection",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#materialGroup",
-            "$ref" : "#/components/schemas/PartMaterialGroupCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartMaterialGroupCharacteristic"
+            } ]
           }
         },
         "required" : [ "materialItems", "materialGroup" ]
@@ -232,57 +258,79 @@
           "partId" : {
             "description" : "identifier of the part from CAD File",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#partId",
-            "$ref" : "#/components/schemas/PartIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartIdCharacteristic"
+            } ]
           },
           "partName" : {
             "description" : "name of the part in CAD file. In case the CAD file has only one part, this could also be the file name.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#partName",
-            "$ref" : "#/components/schemas/PartNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartNameCharacteristic"
+            } ]
           },
           "manufacturingDomain" : {
             "description" : "domain of required process (e.g. subtractive manufacturing, additive manufacturing, assembly)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#manufacturingDomain",
-            "$ref" : "#/components/schemas/ManufacturingDomainCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ManufacturingDomainCharacteristic"
+            } ]
           },
           "manufacturingMethod" : {
             "description" : "manufacturing method depending on the domain (e.g. milling, powder bed fusion, welding,?)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#manufacturingMethod",
-            "$ref" : "#/components/schemas/ManufacturingMethodCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ManufacturingMethodCharacteristic"
+            } ]
           },
           "billOfProcess" : {
             "description" : "RFQ-Configuration: list of processes to manufacture the part(s)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#billOfProcess",
-            "$ref" : "#/components/schemas/BillOfProcessCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BillOfProcessCharacteristic"
+            } ]
           },
           "postProcesses" : {
             "description" : "RFQ-Configuration: after manufacturing typically post processes are necessary, depending on the manufacturing method",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#postProcesses",
-            "$ref" : "#/components/schemas/SetOfPostProcessCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SetOfPostProcessCharacteristic"
+            } ]
           },
           "generalTolerance" : {
             "description" : "RFQ-Configuration: selection of defined tolerance classes",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#generalTolerance",
-            "$ref" : "#/components/schemas/GeneralToleranceCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/GeneralToleranceCharacteristic"
+            } ]
           },
           "additionalQualityRequirements" : {
             "description" : "RFQ-Configuration: specific requirements to guarantee quality",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#additionalQualityRequirements",
-            "$ref" : "#/components/schemas/AdditionalQualityRequirementsCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/AdditionalQualityRequirementsCharacteristic"
+            } ]
           },
           "testPartRequired" : {
             "description" : "RFQ-Configuration: check if a test part is required, makes only sens for batches",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#testPartRequired",
-            "$ref" : "#/components/schemas/TestPartRequiredCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TestPartRequiredCharacteristic"
+            } ]
           },
           "quantity" : {
             "description" : "Quantity of which the child item is assembled into the parent item. In general it is '1' for serialized parts.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#quantity",
-            "$ref" : "#/components/schemas/QuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityCharacteristic"
+            } ]
           },
           "material" : {
             "description" : "material definition with further information",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#material",
-            "$ref" : "#/components/schemas/MaterialCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MaterialCharacteristic"
+            } ]
           }
         },
         "required" : [ "partId", "partName", "manufacturingDomain", "manufacturingMethod", "billOfProcess", "postProcesses", "generalTolerance", "additionalQualityRequirements", "testPartRequired", "quantity", "material" ]
@@ -313,27 +361,37 @@
           "createdOn" : {
             "description" : "Timestamp when the relation between the parent item and the child item was created, e.g. when the serialized child part was assembled into the given part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#createdOn",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "quantity" : {
             "description" : "Quantity of which the child item is assembled into the parent item. In general it is '1' for serialized parts.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#quantity",
-            "$ref" : "#/components/schemas/QuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityCharacteristic"
+            } ]
           },
           "lastModifiedOn" : {
             "description" : "Timestamp when the assembly relationship between parent item and child item was last modified.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#lastModifiedOn",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "catenaXId" : {
             "description" : "The Catena-X ID of the given part (e.g. the assembly), valid for the Catena-X dataspace.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#catenaXId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "businessPartner" : {
             "description" : "The supplier of the given child item.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#businessPartner",
-            "$ref" : "#/components/schemas/BpnlTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnlTrait"
+            } ]
           }
         },
         "required" : [ "createdOn", "quantity", "catenaXId" ]
@@ -355,12 +413,16 @@
           "childItems" : {
             "description" : "Set of child items, of which the given parent item is assembled by (one structural level down).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#childItems",
-            "$ref" : "#/components/schemas/SetOfChildItemsCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SetOfChildItemsCharacteristic"
+            } ]
           },
           "catenaXId" : {
             "description" : "The Catena-X ID of the given part (e.g. the assembly), valid for the Catena-X dataspace.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#catenaXId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           }
         },
         "required" : [ "childItems", "catenaXId" ]
@@ -390,42 +452,58 @@
           "cadFile" : {
             "description" : "RFQ-Configuration: CAD file as geometry definition, e.g. step file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#cadFile",
-            "$ref" : "#/components/schemas/FileCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FileCharacteristic"
+            } ]
           },
           "cadFileType" : {
             "description" : "RFQ-Configuration: CAD file format",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#cadFileType",
-            "$ref" : "#/components/schemas/CADFileTypeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CADFileTypeCharacteristic"
+            } ]
           },
           "parts" : {
             "description" : "list of parts contained in the CAD file, to be defined in RFQ configuration",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#parts",
-            "$ref" : "#/components/schemas/SetOfPartsCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SetOfPartsCharacteristic"
+            } ]
           },
           "billOfMaterial" : {
             "description" : "RFQ-Configuration: reference to the single level bill of material as built",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#billOfMaterial",
-            "$ref" : "#/components/schemas/BillOfMaterialCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BillOfMaterialCharacteristic"
+            } ]
           },
           "firstDeliveryDate" : {
             "description" : "RFQ-Configuration: Date of desired, first, but not must delivery",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#firstDeliveryDate",
-            "$ref" : "#/components/schemas/DeliveryDateCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DeliveryDateCharacteristic"
+            } ]
           },
           "lastDeliveryDate" : {
             "description" : "RFQ-Configuration: date of required and last acceptable delivery",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#lastDeliveryDate",
-            "$ref" : "#/components/schemas/DeliveryDateCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DeliveryDateCharacteristic"
+            } ]
           },
           "additionalComments" : {
             "description" : "RFQ-Configuration: placeholder for any kind of additional comments",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#additionalComments",
-            "$ref" : "#/components/schemas/CommentCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CommentCharacteristic"
+            } ]
           },
           "additionalFiles" : {
             "description" : "RFQ-Configuration: in case there are additional documents or files to share",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#additionalFiles",
-            "$ref" : "#/components/schemas/SetOfFilesCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SetOfFilesCharacteristic"
+            } ]
           }
         },
         "required" : [ "cadFile", "cadFileType", "parts", "billOfMaterial", "firstDeliveryDate", "lastDeliveryDate", "additionalComments", "additionalFiles" ]
@@ -478,42 +556,58 @@
           "senderName" : {
             "description" : "RFQ-Sender: name of the sender",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#senderName",
-            "$ref" : "#/components/schemas/SenderNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SenderNameCharacteristic"
+            } ]
           },
           "senderAddress" : {
             "description" : "RFQ-Sender: BPDM/ or fill in by the customer, address of sender",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#senderAddress",
-            "$ref" : "#/components/schemas/SenderAddressCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SenderAddressCharacteristic"
+            } ]
           },
           "senderCompanyName" : {
             "description" : "RFQ-Sender: BPDM/ or fill in by the customer, company name of sender",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#senderCompanyName",
-            "$ref" : "#/components/schemas/SenderCompanyNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SenderCompanyNameCharacteristic"
+            } ]
           },
           "senderEMail" : {
             "description" : "RFQ-Sender: BPDM/ or fill in by the customer, e-mail address of sender",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#senderEMail",
-            "$ref" : "#/components/schemas/SenderEMailCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SenderEMailCharacteristic"
+            } ]
           },
           "senderPhoneNumber" : {
             "description" : "RFQ-Sender: BPDM/ or fill in by the customer, phone number of sender",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#senderPhoneNumber",
-            "$ref" : "#/components/schemas/SenderPhoneNumberCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SenderPhoneNumberCharacteristic"
+            } ]
           },
           "senderAccountAddress" : {
             "description" : "RFQ-Sender: BPDM/ or fill in by the customer, address of sender for account",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#senderAccountAddress",
-            "$ref" : "#/components/schemas/SenderAccountAddressCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SenderAccountAddressCharacteristic"
+            } ]
           },
           "senderDeliveryAddress" : {
             "description" : "RFQ-Sender: BPDM/ or fill in by the customer, address of sender for delivery",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#senderDeliveryAddress",
-            "$ref" : "#/components/schemas/SenderDeliveryAddressCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SenderDeliveryAddressCharacteristic"
+            } ]
           },
           "deliveryRequirements" : {
             "description" : "RFQ-Sender: filled by customer, any kind of delivery requirements",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#deliveryRequirements",
-            "$ref" : "#/components/schemas/DeliveryRequirementsCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DeliveryRequirementsCharacteristic"
+            } ]
           }
         },
         "required" : [ "senderName", "senderAddress", "senderCompanyName", "senderEMail", "senderPhoneNumber", "senderAccountAddress", "senderDeliveryAddress", "deliveryRequirements" ]
@@ -542,32 +636,44 @@
           "senderBpn" : {
             "description" : "CX-Header: BPN identification of sender partner",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#senderBpn",
-            "$ref" : "#/components/schemas/BpnlTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnlTrait"
+            } ]
           },
           "recipientBpn" : {
             "description" : "CX-Header: BPN identification of recipient partner",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#recipientBpn",
-            "$ref" : "#/components/schemas/BpnlTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnlTrait"
+            } ]
           },
           "context" : {
             "description" : "CX-Header: description of use case context",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#context",
-            "$ref" : "#/components/schemas/ContextCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ContextCharacteristic"
+            } ]
           },
           "messageId" : {
             "description" : "CX-Header: identifier used by RFQ protocol",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#messageId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "sentDateTime" : {
             "description" : "CX-Header: time stamp, when message is sent. The value MUST be formatted according to the ISO 8601 standard.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#sentDateTime",
-            "$ref" : "#/components/schemas/TimeStamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TimeStamp"
+            } ]
           },
           "version" : {
             "description" : "CX-Header: version of RFQ data structure",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#version",
-            "$ref" : "#/components/schemas/VersionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/VersionCharacteristic"
+            } ]
           }
         },
         "required" : [ "senderBpn", "recipientBpn", "context", "messageId", "sentDateTime", "version" ]
@@ -578,22 +684,30 @@
     "rfqIdentification" : {
       "description" : "all properties necessary for identification of the request for quotation",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#rfqIdentification",
-      "$ref" : "#/components/schemas/RFQIdentificationCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/RFQIdentificationCharacteristic"
+      } ]
     },
     "rfqConfiguration" : {
       "description" : "all information to configure a request for quotation",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#rfqConfiguration",
-      "$ref" : "#/components/schemas/RFQConfigurationCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/RFQConfigurationCharacteristic"
+      } ]
     },
     "rfqSender" : {
       "description" : "all data about sender of request for quotation, important for offer and delivery",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#rfqSender",
-      "$ref" : "#/components/schemas/RFQSenderCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/RFQSenderCharacteristic"
+      } ]
     },
     "cxHeader" : {
       "description" : "header information by Catena-X",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.request_for_quotation:1.0.0#cxHeader",
-      "$ref" : "#/components/schemas/CXHeaderCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CXHeaderCharacteristic"
+      } ]
     }
   },
   "required" : [ "rfqIdentification", "rfqConfiguration", "rfqSender", "cxHeader" ]

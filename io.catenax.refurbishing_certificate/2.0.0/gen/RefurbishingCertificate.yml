@@ -96,34 +96,41 @@ components:
         issuer:
           description: BPN of the business partner who creates this certificate
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:2.0.0#issuer"
-          $ref: "#/components/schemas/BpnlTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnlTrait"
         issueDate:
           description: This is the date when the certificate was issued.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:2.0.0#issueDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         catenaXIdPreviousLife:
           description: Twin identification previous life
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:2.0.0#catenaXIdPreviousLife"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         catenaXId:
           description: "The Catena-X ID of the given part (e.g. the assembly), valid\
             \ for the Catena-X dataspace."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:2.0.0#catenaXId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         articleNumber:
           description: Unique identification assigned by the authorized company for
             internal referencing
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:2.0.0#articleNumber"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         vin:
           description: "Vehicle Identification Number. Remark: this should be deducted\
             \ from a reference to the vehicle TWIN"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:2.0.0#vin"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         oeNumber:
           description: original equipment number
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:2.0.0#oeNumber"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - issuer
       - issueDate
@@ -143,7 +150,8 @@ components:
         certificate:
           description: "A property of the model, named certificate."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.refurbishing_certificate:2.0.0#certificate"
-          $ref: "#/components/schemas/RecyclingStrategyCertificateCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RecyclingStrategyCertificateCharacteristic"
       required:
       - certificate
   responses:

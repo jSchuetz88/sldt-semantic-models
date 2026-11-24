@@ -30,22 +30,30 @@
           "materialSubgroup" : {
             "description" : "A refined subset of a Material Group that classifies materials according to detailed technical distinctions such as alloying type, polymer family, manufacturing process, or functional properties.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.material_classification:1.0.0#materialSubgroup",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "materialGroup" : {
             "description" : "A more specific subdivision within a Material Category. It organizes materials into technical families that share similar composition, structure, and performance characteristics.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.material_classification:1.0.0#materialGroup",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "materialCategory" : {
             "description" : "The highest-level classification that groups materials into broad, fundamental classes based on their overall nature and fundamental properties.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.material_classification:1.0.0#materialCategory",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "classificationStandard" : {
             "description" : "Standard according to which the material is classified.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.material_classification:1.0.0#classificationStandard",
-            "$ref" : "#/components/schemas/ClassificationStandardEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ClassificationStandardEnumeration"
+            } ]
           }
         },
         "required" : [ "materialSubgroup", "materialGroup", "materialCategory", "classificationStandard" ]
@@ -68,47 +76,65 @@
     "thermalCharacterization" : {
       "description" : "Characterisation of Materials Thermal: Information about the material's behaviour under various thermal conditions.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#thermalCharacterization",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "chemicalCharacterization" : {
       "description" : "Characterisation of Materials Chemical: Description of the chemical composition and properties of the material.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#chemicalCharacterization",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "physicalState" : {
       "description" : "The physical state of the material.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#physicalState",
-      "$ref" : "#/components/schemas/PhysicalStateEnum"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PhysicalStateEnum"
+      } ]
     },
     "materialFormat" : {
       "description" : "Format of material in the process step.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#materialFormat",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "materialStatus" : {
       "description" : "Status of the material in the process step",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#materialStatus",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "rangeOfUncertainty" : {
       "description" : "Tolerance specification in material composition",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#rangeOfUncertainty",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "materialClassification" : {
       "description" : "Classification of the material according to defined standards.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.material_classification:1.0.0#materialClassification",
-      "$ref" : "#/components/schemas/MaterialClassificationCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MaterialClassificationCharacteristic"
+      } ]
     },
     "wasteCode" : {
       "description" : "The waste code is used to identify the type of waste on part or material level.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#wasteCode",
-      "$ref" : "#/components/schemas/WasteCodeEnum"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/WasteCodeEnum"
+      } ]
     },
     "globalAssetId" : {
       "description" : "The fully anonymous ID in the dataspace of the part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     }
   },
   "required" : [ "thermalCharacterization", "chemicalCharacterization", "physicalState", "materialFormat", "materialStatus", "rangeOfUncertainty", "materialClassification", "wasteCode", "globalAssetId" ]

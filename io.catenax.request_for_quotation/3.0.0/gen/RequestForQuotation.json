@@ -1,118 +1,116 @@
 {
+  "rfqIdentification" : {
+    "rfqSource" : "https://maasportal.mendixcloud.com/",
+    "rfqId" : "Drehteil_02_0815",
+    "rfqName" : "Drehteil",
+    "rfqDateTime" : "2023-10-24T14:48:54.709Z",
+    "rfqVersion" : "1.0.0"
+  },
   "rfqConfiguration" : {
-    "firstDeliveryDate" : "2023-10-24",
-    "additionalFiles" : {
-      "fileName" : "fraesteil",
-      "fileObject" : { },
-      "fileType" : "STEP, stl, jt",
-      "filePath" : "https://anypath/..."
-    },
     "cadFile" : {
-      "fileName" : "fraesteil",
-      "fileObject" : { },
       "fileType" : "STEP, stl, jt",
-      "filePath" : "https://anypath/..."
+      "filePath" : "https://anypath/...",
+      "fileName" : "fraesteil",
+      "fileObject" : { }
     },
-    "additionalComments" : "this is a prototype, recommendations towards design for manufacturing are highly welcome",
     "parts" : {
-      "generalTolerance" : "ISO 2768-1 (m), Rough DIN ISO 2768 cL, Medium DIN ISO 2768 mK, Fine DIN ISO 2768 fH",
+      "partId" : "Drehteil",
+      "partName" : "Drehteil",
       "manufacturingDomain" : "additive manufacturing",
+      "generalTolerance" : "ISO 2768-1 (m), Rough DIN ISO 2768 cL, Medium DIN ISO 2768 mK, Fine DIN ISO 2768 fH",
+      "additionalRequirements" : "premium quality check, standard quality check",
       "material" : {
-        "materialFamily" : "aluminum, steel, ...",
         "materialProperties" : {
           "value" : "2.7 or black",
-          "propertyName" : "density or color",
-          "valueType" : "g/cm3 or string"
-        }
+          "valueType" : "g/cm3 or string",
+          "propertyName" : "density or color"
+        },
+        "materialFamily" : "aluminum, steel, ..."
       },
-      "partId" : "Drehteil",
-      "additionalRequirements" : "premium quality check, standard quality check",
       "partQuantity" : {
         "quantityNumber" : 2.5,
         "measurementUnit" : "unit:litre"
       },
       "billOfProcess" : {
         "process" : [ {
-          "capabilityId" : "urn:manufacturing-capability:capability:42",
-          "childProcessSteps" : [ "pick" ],
+          "processStepIdentifier" : [ "1234-transport" ],
+          "inputParameters" : [ {
+            "name" : "dimensionality",
+            "value" : "{\\\"height\\\" : \\\"5\\\", \\\"length\\\" : \\\"3\\\", \\\"width\\\" : \\\"7\\\"}",
+            "semanticReference" : [ "0173-1#02-BAD875#008" ],
+            "parameterKey" : "HasValue",
+            "valueRangeList" : [ {
+              "lowerValue" : "5",
+              "upperValue" : "10",
+              "name" : "dimensionality"
+            } ],
+            "tolerances" : [ {
+              "lowerLimit" : "4.9",
+              "upperLimit" : "5.1"
+            } ]
+          } ],
+          "outputParameters" : [ {
+            "name" : "dimensionality",
+            "value" : "{\\\"height\\\" : \\\"5\\\", \\\"length\\\" : \\\"3\\\", \\\"width\\\" : \\\"7\\\"}",
+            "semanticReference" : [ "0173-1#02-BAD875#008" ],
+            "parameterKey" : "HasValue",
+            "valueRangeList" : [ {
+              "lowerValue" : "5",
+              "upperValue" : "10",
+              "name" : "dimensionality"
+            } ],
+            "tolerances" : [ {
+              "lowerLimit" : "4.9",
+              "upperLimit" : "5.1"
+            } ]
+          } ],
           "precedenceRelation" : [ {
             "precedenceElements" : [ {
               "successor" : [ "TransportStepId" ]
             } ]
           } ],
-          "processStepIdentifier" : [ "1234-transport" ],
-          "inputParameters" : [ {
-            "name" : "dimensionality",
-            "parameterKey" : "HasValue",
-            "valueRangeList" : [ {
-              "name" : "dimensionality",
-              "lowerValue" : "5",
-              "upperValue" : "10"
-            } ],
-            "semanticReference" : [ "0173-1#02-BAD875#008" ],
-            "tolerances" : [ {
-              "name" : "dimensionality",
-              "upperLimit" : "5.1",
-              "lowerLimit" : "4.9"
-            } ],
-            "value" : "{\\\"height\\\" : \\\"5\\\", \\\"length\\\" : \\\"3\\\", \\\"width\\\" : \\\"7\\\"}"
-          } ],
-          "processStepType" : "IsFirstElement",
-          "outputParameters" : [ {
-            "name" : "dimensionality",
-            "parameterKey" : "HasValue",
-            "valueRangeList" : [ {
-              "name" : "dimensionality",
-              "lowerValue" : "5",
-              "upperValue" : "10"
-            } ],
-            "semanticReference" : [ "0173-1#02-BAD875#008" ],
-            "tolerances" : [ {
-              "name" : "dimensionality",
-              "upperLimit" : "5.1",
-              "lowerLimit" : "4.9"
-            } ],
-            "value" : "{\\\"height\\\" : \\\"5\\\", \\\"length\\\" : \\\"3\\\", \\\"width\\\" : \\\"7\\\"}"
-          } ]
+          "childProcessSteps" : [ "pick" ],
+          "processStepType" : "IsSubProcessElement",
+          "capabilityId" : "urn:manufacturing-capability:capability:42"
         } ],
         "productVersion" : "bar_chair_1.0.0",
+        "productName" : "Bar Chair",
         "billOfProcessIdentification" : "www.1234-bar-chair-billOfProcess.de",
-        "version" : "2.0.0",
-        "productName" : "Bar Chair"
-      },
-      "partName" : "Drehteil"
+        "version" : "2.0.0"
+      }
+    },
+    "firstDeliveryDate" : "2023-10-24",
+    "lastDeliveryDate" : "2023-12-24",
+    "additionalComments" : "this is a prototype, recommendations towards design for manufacturing are highly welcome",
+    "additionalFiles" : {
+      "fileType" : "STEP, stl, jt",
+      "filePath" : "https://anypath/...",
+      "fileName" : "fraesteil",
+      "fileObject" : { }
     },
     "orderQuantity" : {
       "quantityNumber" : 2.5,
       "measurementUnit" : "unit:litre"
-    },
-    "lastDeliveryDate" : "2023-12-24"
-  },
-  "rfqIdentification" : {
-    "rfqVersion" : "1.0.0",
-    "rfqName" : "Drehteil",
-    "rfqDateTime" : "2023-10-24T14:48:54.709Z",
-    "rfqSource" : "https://maasportal.mendixcloud.com/",
-    "rfqId" : "Drehteil_02_0815"
-  },
-  "cxHeader" : {
-    "senderBpn" : "BPNL7588787849VQ",
-    "relatedMessageId" : "d9452f24-3bf3-4134-b3eb-68858f1b2362",
-    "expectedResponseBy" : "2023-06-19T21:24:00+07:00",
-    "context" : "urn:samm:io.catenax.<ASPECT-MODEL-NAME>:1.x.x",
-    "messageId" : "3b4edc05-e214-47a1-b0c2-1d831cdd9ba9",
-    "receiverBpn" : "BPNL6666787765VQ",
-    "sentDateTime" : "2023-06-19T21:24:00+07:00",
-    "version" : "2.0.0"
+    }
   },
   "rfqSender" : {
-    "deliveryRequirements" : "no plastic for packaging",
     "senderName" : "John Doe",
-    "senderPhoneNumber" : "555 123456",
-    "senderEMail" : "johndoe@sunny.com",
-    "senderDeliveryAddress" : "Mystreet 1, 1234 Mystate",
     "senderAdress" : "Sunstreet 1, 5555 Sunstate",
+    "senderCompanyName" : "ManufactureEnterprise",
+    "senderEMail" : "johndoe@sunny.com",
+    "senderPhoneNumber" : "555 123456",
     "senderAccountAddress" : "Accountstreet 1, 1234 Accountstate",
-    "senderCompanyName" : "ManufactureEnterprise"
+    "senderDeliveryAddress" : "Mystreet 1, 1234 Mystate",
+    "deliveryRequirements" : "no plastic for packaging"
+  },
+  "cxHeader" : {
+    "messageId" : "3b4edc05-e214-47a1-b0c2-1d831cdd9ba9",
+    "context" : "urn:samm:io.catenax.<ASPECT-MODEL-NAME>:1.x.x",
+    "sentDateTime" : "2023-06-19T21:24:00+07:00",
+    "senderBpn" : "BPNL7588787849VQ",
+    "receiverBpn" : "BPNL6666787765VQ",
+    "expectedResponseBy" : "2023-06-19T21:24:00+07:00",
+    "relatedMessageId" : "d9452f24-3bf3-4134-b3eb-68858f1b2362",
+    "version" : "2.0.0"
   }
 }

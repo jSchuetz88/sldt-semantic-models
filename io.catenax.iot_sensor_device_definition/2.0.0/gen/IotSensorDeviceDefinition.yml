@@ -97,24 +97,29 @@ components:
           description: "The fully anonymous Catena-X ID of the serialized part, valid\
             \ for the Catena-X dataspace."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_device_definition:2.0.0#catenaXId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         manufacturer:
           description: Manufacturer of the IoT sensor device.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_device_definition:2.0.0#manufacturer"
-          $ref: "#/components/schemas/ManufacturerCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ManufacturerCharacteristic"
         type:
           description: The type of the IoT sensor device.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_device_definition:2.0.0#type"
-          $ref: "#/components/schemas/TypeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/TypeCharacteristic"
         serialNumber:
           description: "The serial number of the IoT sensor device, as assigned by\
             \ the manufacturer of the device."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_device_definition:2.0.0#serialNumber"
-          $ref: "#/components/schemas/SerialNumberCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SerialNumberCharacteristic"
         ownerID:
           description: The Catena-X BPNL of the device owner.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_device_definition:2.0.0#ownerID"
-          $ref: "#/components/schemas/BpnlTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnlTrait"
       required:
       - catenaXId
       - manufacturer

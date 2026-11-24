@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/IotSensorData"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        catenaXId:
+          type: array
+          items:
+            $ref: "#/components/schemas/IotSensorData"
     UuidV4Trait:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.uuid:1.0.0#UuidV4Trait"
@@ -129,20 +130,24 @@ components:
         latitude:
           description: The angle between zenith and a plane parallel to the equator.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#latitude"
-          $ref: "#/components/schemas/LatitudeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LatitudeCharacteristic"
         longitude:
           description: Geographic coordinate that specifies the east-west position
             of a point on the Earth's surface.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#longitude"
-          $ref: "#/components/schemas/LongitudeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LongitudeCharacteristic"
         altitude:
           description: Antenna Altitude above/below mean-sea-level (geoid).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#altitude"
-          $ref: "#/components/schemas/AltitudeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/AltitudeCharacteristic"
         geoDataTimestamp:
           description: The timestamp of the latest sensor reading of the geo data.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#geoDataTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
       required:
       - latitude
       - longitude
@@ -179,14 +184,17 @@ components:
             \ applications, measuring one of the physical properties like Temperature,\
             \ Pressure,  Resistance, Shock, Conduction, Heat Transfer etc."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#sensorType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         sensorValue:
           description: The measured value of the sensor type.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#sensorValue"
-          $ref: "#/components/schemas/SensorValueCharacteristics"
+          allOf:
+          - $ref: "#/components/schemas/SensorValueCharacteristics"
         sensorUnit:
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#sensorUnit"
-          $ref: "#/components/schemas/UnitReference"
+          allOf:
+          - $ref: "#/components/schemas/UnitReference"
       required:
       - sensorType
       - sensorValue
@@ -211,25 +219,30 @@ components:
             \ and information that has explicit or implicit association with a location\
             \ relative to Earth."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#sensorGeoLocation"
-          $ref: "#/components/schemas/SensorGeoLocationCharacteristics"
+          allOf:
+          - $ref: "#/components/schemas/SensorGeoLocationCharacteristics"
         batteryLevel:
           description: The battery level displays how much charge of the battery has
             been left.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#batteryLevel"
-          $ref: "#/components/schemas/BatteryLevelCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BatteryLevelCharacteristic"
         timestamp:
           description: The timestamp of the latest sensor reading.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#timestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         sensorData:
           description: The data collected by an IoT Sensor Device.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#sensorData"
-          $ref: "#/components/schemas/SensorDataCharacteristics"
+          allOf:
+          - $ref: "#/components/schemas/SensorDataCharacteristics"
         transmissionMethod:
           description: The method under which the sensing data is transmitted from
             the source to the remote node.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#transmissionMethod"
-          $ref: "#/components/schemas/TransmissionMethodCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/TransmissionMethodCharacteristic"
       required:
       - sensorGeoLocation
       - batteryLevel
@@ -251,12 +264,14 @@ components:
           description: "The fully anonymous Catena-X ID of the asset, valid for the\
             \ Catena-X dataspace."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#catenaXId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         sensorRuntimeData:
           description: The information collected by a Sensor device at an instance
             in time.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.iot_sensor_data:2.0.0#sensorRuntimeData"
-          $ref: "#/components/schemas/SensorRuntimeDataCharacteristics"
+          allOf:
+          - $ref: "#/components/schemas/SensorRuntimeDataCharacteristics"
       required:
       - catenaXId
       - sensorRuntimeData

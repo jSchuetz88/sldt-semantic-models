@@ -77,7 +77,7 @@ components:
         \ days, month 02 must have DD in the range of  01..29 days."
       pattern: "^([0-9]{4})-(((0[1,3,5,7,8]|1[0,2])-((0[1-9])|([1,2][0-9])|(3[0,1])))|((0[4,6,9]|11)-((0[1-9])|([1,2][0-9])|(30)))|((02)-((0[1-9])|([1,2][0-9]))))$|^null$|^NULL$"
     PositiveInteger:
-      type: number
+      type: integer
       minimum: 1
       x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#PositiveInteger"
       description: Defines a positive integer number.
@@ -131,70 +131,85 @@ components:
             you combine the BPNL of the data provider with this claim ID you get a
             unique claim ID in the data space.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#claimId"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         billingId:
           description: A unique identifier for one billing. It is data provider individual.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#billingId"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         billingDate:
           description: "References the date when the claim was billed. Date format:\
             \ ISO (YYYY-MM-DD)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#billingDate"
-          $ref: "#/components/schemas/ISO8601LocalDate"
+          allOf:
+          - $ref: "#/components/schemas/ISO8601LocalDate"
         agreedTechnicalFactor:
           description: Technical factor which was agreed upon.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#agreedTechnicalFactor"
-          $ref: "#/components/schemas/PositiveInteger"
+          allOf:
+          - $ref: "#/components/schemas/PositiveInteger"
         debitValueJustified:
           description: Check between billed technical factor & agreed technical factor;
             other plausibility checks
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#debitValueJustified"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         billedCurrency:
           description: Billing currency
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#billedCurrency"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         claimPlausible:
           description: Check between billed technical factor & agreed technical factor
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#claimPlausible"
-          $ref: "#/components/schemas/PositiveFloatNumber"
+          allOf:
+          - $ref: "#/components/schemas/PositiveFloatNumber"
         claimImplausible:
           description: Check between billed technical factor & agreed technical factor
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#claimImplausible"
-          $ref: "#/components/schemas/PositiveFloatNumber"
+          allOf:
+          - $ref: "#/components/schemas/PositiveFloatNumber"
         billingStatus:
           description: Status of the bill based on claim_request_verification assessment
             (approved / disputed)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#billingStatus"
-          $ref: "#/components/schemas/BillingStatusEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/BillingStatusEnumeration"
         statementDate:
           description: Due date for the claim_request_verification to approve / dispute
             the bill
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#statementDate"
-          $ref: "#/components/schemas/ISO8601LocalDate"
+          allOf:
+          - $ref: "#/components/schemas/ISO8601LocalDate"
         statementReason:
           description: "Reason give by the claim_request_verification, why the bill\
             \ / claim was disputed"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request_verification:1.0.0#statementReason"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         qualityTaskId:
           description: A unique quality task identifier within this data-space.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#qualityTaskId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         bpnlProperty:
           description: Property based on a BPNL.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnlProperty"
-          $ref: "#/components/schemas/BpnlTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnlTrait"
         vehicleId:
           description: A unique identifier for this vehicle in data-space. This property
             is optional as of now not all vehicles have this identifier assigned.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#vehicleId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         anonymizedVIN:
           description: "Vehicle manufacturer-specific anonymized VIN, which is still\
             \ a unique identifier within this data provider."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#anonymizedVIN"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
       required:
       - claimId
       - billingId

@@ -1,13 +1,13 @@
 {
-  "modelIdentifier" : "E46",
-  "productionDate" : "2025-01-01",
-  "emptyWeight" : 1850.5,
+  "vehicleCondition" : "damaged",
   "driveType" : "combustion engine",
+  "modelIdentifier" : "E46",
   "vehicleSeries" : "3-Series",
   "oem" : "Mercedes",
-  "vehicleCondition" : "damaged",
-  "wasteCode" : "16 01 99",
-  "globalAssetId" : "2cE7eBDA-c05A-FB76-8c2a-3Ed597f177D9",
+  "emptyWeight" : 1850.5,
+  "productionDate" : "2025-01-01",
+  "vehicleType" : "Electric and Hybrid Vehicles (Other than passenger cars)",
   "anonymizedVin" : "WVWZZZ1JZXW000001",
-  "vehicleType" : "Electric and Hybrid Vehicles (Other than passenger cars)"
+  "wasteCode" : "16 01 99",
+  "globalAssetId" : "812F0705-db8A-0DeD-6dF7-DdBFFA450F94"
 }

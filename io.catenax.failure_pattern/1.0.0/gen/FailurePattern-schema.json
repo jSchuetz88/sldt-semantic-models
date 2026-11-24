@@ -36,17 +36,23 @@
           "nameSpace" : {
             "description" : "Name space of the model",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#nameSpace",
-            "$ref" : "#/components/schemas/QAXNamespaces"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QAXNamespaces"
+            } ]
           },
           "ttlFile" : {
             "description" : "A defined ttl file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#ttlFile",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "modelVersion" : {
             "description" : "Version of aspect model.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#modelVersion",
-            "$ref" : "#/components/schemas/ModelVersionTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ModelVersionTrait"
+            } ]
           }
         },
         "required" : [ "nameSpace", "ttlFile", "modelVersion" ]
@@ -59,22 +65,30 @@
           "stringPropertyName" : {
             "description" : "A property name of type string from the model.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#stringPropertyName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "stringInsideOperator" : {
             "description" : "Describes the logical connector inside of a string expression",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#stringInsideOperator",
-            "$ref" : "#/components/schemas/StringInsideOperatorEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringInsideOperatorEnumeration"
+            } ]
           },
           "stringValue" : {
             "description" : "The value that is used within the string expression and with which it is to be compared",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#stringValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "referenceToAspectModel" : {
             "description" : "This property describes the underlying aspect model to which this failure pattern definition should be applied to.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#referenceToAspectModel",
-            "$ref" : "#/components/schemas/LinkToAspectModel"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LinkToAspectModel"
+            } ]
           }
         },
         "required" : [ "stringPropertyName", "stringInsideOperator", "stringValue", "referenceToAspectModel" ]
@@ -98,22 +112,30 @@
           "booleanPropertyName" : {
             "description" : "A property name of type boolean from the model.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#booleanPropertyName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "booleanInsideOperator" : {
             "description" : "Describes the logical connector inside of a boolean expression",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#booleanInsideOperator",
-            "$ref" : "#/components/schemas/BooleanInsideOperatorEnumerator"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BooleanInsideOperatorEnumerator"
+            } ]
           },
           "booleanValue" : {
             "description" : "The value that is used within the boolean expression and with which it is to be compared",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#booleanValue",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "referenceToAspectModel" : {
             "description" : "This property describes the underlying aspect model to which this failure pattern definition should be applied to.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#referenceToAspectModel",
-            "$ref" : "#/components/schemas/LinkToAspectModel"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LinkToAspectModel"
+            } ]
           }
         },
         "required" : [ "booleanPropertyName", "booleanInsideOperator", "booleanValue", "referenceToAspectModel" ]
@@ -126,32 +148,44 @@
           "stringExpression" : {
             "description" : "Describes an expression to compare string values",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#stringExpression",
-            "$ref" : "#/components/schemas/StringExpressionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringExpressionCharacteristic"
+            } ]
           },
           "booleanExpression" : {
             "description" : "Describes an expression to compare boolean values",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#booleanExpression",
-            "$ref" : "#/components/schemas/BooleanExpressionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BooleanExpressionCharacteristic"
+            } ]
           },
           "subExpressionList" : {
             "description" : "A List of Expressions which is inside of an expression to be able to describe complex expressions",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#subExpressionList",
-            "$ref" : "#/components/schemas/ListOfExpressions"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ListOfExpressions"
+            } ]
           },
           "timestampExpression" : {
             "description" : "Describes an expression to compare timestamp values",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#timestampExpression",
-            "$ref" : "#/components/schemas/TimestampExpressionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TimestampExpressionCharacteristic"
+            } ]
           },
           "numericExpression" : {
             "description" : "Describes an expression to compare numeric values",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#numericExpression",
-            "$ref" : "#/components/schemas/NumericExpressionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NumericExpressionCharacteristic"
+            } ]
           },
           "expressionConnector" : {
             "description" : "Describes how multiple expressions of a failure pattern are connected to eachother",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#expressionConnector",
-            "$ref" : "#/components/schemas/ExpressionConnectorEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ExpressionConnectorEnumeration"
+            } ]
           }
         }
       },
@@ -183,22 +217,30 @@
           "timestampPropertyName" : {
             "description" : "A property name of type timestamp from the model.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#timestampPropertyName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "timestampInsideOperator" : {
             "description" : "Describes the logical connector inside of a timestamp expression",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#timestampInsideOperator",
-            "$ref" : "#/components/schemas/TimestampInsideOperatorEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TimestampInsideOperatorEnumeration"
+            } ]
           },
           "timestampValue" : {
             "description" : "The value that is used within the timestamp expression and with which it is to be compared",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#timestampValue",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "referenceToAspectModel" : {
             "description" : "This property describes the underlying aspect model to which this failure pattern definition should be applied to.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#referenceToAspectModel",
-            "$ref" : "#/components/schemas/LinkToAspectModel"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LinkToAspectModel"
+            } ]
           }
         },
         "required" : [ "timestampPropertyName", "timestampInsideOperator", "timestampValue", "referenceToAspectModel" ]
@@ -222,22 +264,30 @@
           "numericPropertyName" : {
             "description" : "A property name of a numeric type from the model.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#numericPropertyName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "numericInsideOperator" : {
             "description" : "Describes the logical connector inside of a numeric expression",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#numericInsideOperator",
-            "$ref" : "#/components/schemas/NumericInsideOperatorEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NumericInsideOperatorEnumeration"
+            } ]
           },
           "numericValue" : {
             "description" : "The value that is used within the numeric expression and with which it is to be compared",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#numericValue",
-            "$ref" : "#/components/schemas/NumericValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NumericValueCharacteristic"
+            } ]
           },
           "referenceToAspectModel" : {
             "description" : "This property describes the underlying aspect model to which this failure pattern definition should be applied to.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#referenceToAspectModel",
-            "$ref" : "#/components/schemas/LinkToAspectModel"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LinkToAspectModel"
+            } ]
           }
         },
         "required" : [ "numericPropertyName", "numericInsideOperator", "numericValue", "referenceToAspectModel" ]
@@ -254,7 +304,9 @@
     "failurePatternDefinition" : {
       "description" : "The definition of a failure pattern",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.failure_pattern:1.0.0#failurePatternDefinition",
-      "$ref" : "#/components/schemas/ListOfExpressions"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ListOfExpressions"
+      } ]
     }
   },
   "required" : [ "failurePatternDefinition" ]

@@ -1,19 +1,19 @@
 {
+  "catenaXId" : "urn:uuid:ed85f17e-29dd-473c-9cb8-d7ad1dc44d2f",
   "sensorRuntimeData" : [ {
-    "sensorData" : [ {
-      "sensorValue" : 32,
-      "sensorUnit" : "unit:Celsius",
-      "sensorType" : "Temperature"
-    } ],
     "sensorGeoLocation" : {
-      "altitude" : 280.2,
-      "geoDataTimestamp" : "2023-02-04T14:48:54",
       "latitude" : 40.20361,
-      "longitude" : 11.3102
+      "longitude" : 11.3102,
+      "altitude" : 280.20,
+      "geoDataTimestamp" : "2023-02-04T14:48:54"
     },
-    "batteryLevel" : 5E+1,
+    "batteryLevel" : 50.00,
     "timestamp" : "2023-02-04T14:48:54",
+    "sensorData" : [ {
+      "sensorType" : "Temperature",
+      "sensorValue" : 32.00,
+      "sensorUnit" : "unit:Celsius"
+    } ],
     "transmissionMethod" : "LoRaWAN"
-  } ],
-  "catenaXId" : "urn:uuid:ed85f17e-29dd-473c-9cb8-d7ad1dc44d2f"
+  } ]
 }

@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/SingleLevelSceneNode"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        catenaXId:
+          type: array
+          items:
+            $ref: "#/components/schemas/SingleLevelSceneNode"
     UuidV4Trait:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.uuid:2.0.0#UuidV4Trait"
@@ -136,7 +137,8 @@ components:
           description: Defines a 4x4 transformation matrix for the geometry object
             or node.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#matrix4x4"
-          $ref: "#/components/schemas/MatrixTrait"
+          allOf:
+          - $ref: "#/components/schemas/MatrixTrait"
       required:
       - matrix4x4
     ChildData:
@@ -147,20 +149,24 @@ components:
         catenaXId:
           description: The Catena-X ID of the given part valid for the Catena-X dataspace.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#catenaXId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         semanticTags:
           description: Used to identify the type of the linked geometry data
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#semanticTags"
-          $ref: "#/components/schemas/SetOfSemanticTagsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfSemanticTagsCharacteristic"
         customTags:
           description: Is used to use custom identifier of the geometry data
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#customTags"
-          $ref: "#/components/schemas/SetOfCustomTagsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfCustomTagsCharacteristic"
         localTransform:
           description: "The local transformation (position, rotation, scale) of the\
             \ node relative to its parent."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#localTransform"
-          $ref: "#/components/schemas/LocalTransformCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalTransformCharacteristic"
       required:
       - catenaXId
     SetOfChildItemsCharacteristic:
@@ -189,11 +195,13 @@ components:
         minPoint:
           description: The minimum corner point of the bounding box.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#minPoint"
-          $ref: "#/components/schemas/Vector3Trait"
+          allOf:
+          - $ref: "#/components/schemas/Vector3Trait"
         maxPoint:
           description: The maximum corner point of the bounding box.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#maxPoint"
-          $ref: "#/components/schemas/Vector3Trait"
+          allOf:
+          - $ref: "#/components/schemas/Vector3Trait"
       required:
       - minPoint
       - maxPoint
@@ -205,15 +213,18 @@ components:
         semanticTags:
           description: Used to identify the type of the linked geometry data
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#semanticTags"
-          $ref: "#/components/schemas/SetOfSemanticTagsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfSemanticTagsCharacteristic"
         customTags:
           description: Is used to use custom identifier of the geometry data
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#customTags"
-          $ref: "#/components/schemas/SetOfCustomTagsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfCustomTagsCharacteristic"
         catenaXId:
           description: The Catena-X ID of the given part valid for the Catena-X dataspace.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#catenaXId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - catenaXId
     SetOfModelItemsCharacteristic:
@@ -231,25 +242,30 @@ components:
         catenaXId:
           description: The Catena-X ID of the given part valid for the Catena-X dataspace.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#catenaXId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         childItems:
           description: "Set of child items, of which the given parent item is assembled\
             \ by (one structural level down)."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#childItems"
-          $ref: "#/components/schemas/SetOfChildItemsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfChildItemsCharacteristic"
         localTransform:
           description: "The local transformation (position, rotation, scale) of the\
             \ node relative to its parent."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#localTransform"
-          $ref: "#/components/schemas/LocalTransformCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalTransformCharacteristic"
         boundingVolume:
           description: The bounding volume that encloses the geometry object or node.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#boundingVolume"
-          $ref: "#/components/schemas/BoundingVolumeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BoundingVolumeCharacteristic"
         modelItems:
           description: The set of geometry model items associated with this node.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.single_level_scene_node:1.0.0#modelItems"
-          $ref: "#/components/schemas/SetOfModelItemsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SetOfModelItemsCharacteristic"
       required:
       - catenaXId
   responses:

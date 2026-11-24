@@ -1,38 +1,38 @@
 {
   "header" : {
-    "countingValue" : "Time",
-    "countingUnit" : "s",
     "channels" : [ {
-      "binLimits" : [ 4.416086E37 ],
       "channelName" : "TorqueInputshaft",
       "unit" : "Nm",
-      "upperLimit" : 1500.0,
       "lowerLimit" : -500.0,
-      "numberOfBins" : 10
+      "upperLimit" : 1500.0,
+      "numberOfBins" : 10,
+      "binLimits" : [ -71366.2 ]
     } ],
-    "countingMethod" : "Rainflow"
+    "countingMethod" : "TimeAtLevel",
+    "countingValue" : "Time",
+    "countingUnit" : "s"
   },
-  "metadata" : {
-    "projectDescription" : "\"projectnumber pqr12345\"",
-    "componentDescription" : "gear set",
-    "routeDescription" : "\"city munich heavy trailer\"",
-    "status" : {
-      "date" : "2026-01-26T14:31:26.558Z",
-      "operatingHours" : 3456.2,
-      "mileage" : 123456
-    }
-  },
-  "targetComponentID" : "telnet://192.0.2.16:80/",
   "body" : {
-    "counts" : {
-      "countsName" : "Time",
-      "countsList" : [ 7.9 ]
-    },
     "classes" : [ {
       "classList" : [ 5 ],
       "className" : "Torque_Inputshaft-class"
-    } ]
+    } ],
+    "counts" : {
+      "countsName" : "Time",
+      "countsList" : [ 7.9 ]
+    }
   },
+  "metadata" : {
+    "componentDescription" : "gear set",
+    "routeDescription" : "\"city munich heavy trailer\"",
+    "projectDescription" : "\"projectnumber pqr12345\"",
+    "status" : {
+      "mileage" : 123456,
+      "date" : "2026-11-24T12:32:38.000Z",
+      "operatingHours" : 3456.2
+    }
+  },
+  "targetComponentID" : "https://example.com/8oiNS",
   "residuum" : {
     "residuumClassName" : "Temp_Oil-class",
     "residuumList" : [ 6 ]

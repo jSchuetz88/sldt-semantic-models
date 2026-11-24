@@ -25,12 +25,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of an item. Common units may be related to mass, count, linear, area, volume or misc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#itemUnit",
-            "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -49,12 +53,16 @@
           "demand" : {
             "description" : "Quantity of materials required on a specific day. This demand is not a call-off and should be as close as possible to the actual production program.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.short_term_material_demand:1.0.0#demand",
-            "$ref" : "#/components/schemas/DemandQuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DemandQuantityCharacteristic"
+            } ]
           },
           "day" : {
             "description" : "Day of the demanded quantity.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.short_term_material_demand:1.0.0#day",
-            "$ref" : "#/components/schemas/DateCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateCharacteristic"
+            } ]
           }
         },
         "required" : [ "demand", "day" ]
@@ -198,27 +206,37 @@
           "demands" : {
             "description" : "A time series on a daily basis along a given time period to describe the demand values for this demand series.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.short_term_material_demand:1.0.0#demands",
-            "$ref" : "#/components/schemas/DemandTimeSeries"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DemandTimeSeries"
+            } ]
           },
           "demandCategory" : {
             "description" : "Type of demand for this demand series.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.short_term_material_demand:1.0.0#demandCategory",
-            "$ref" : "#/components/schemas/DemandCategoryCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DemandCategoryCharacteristic"
+            } ]
           },
           "expectedSupplierLocationBpns" : {
             "description" : "The Business Partner Number Site (BPNS) of the site from where the customer expects the supplier to fulfill the demands of the demand series. The value is used for informational purposes only and is therefore not binding for the supplier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.short_term_material_demand:1.0.0#expectedSupplierLocationBpns",
-            "$ref" : "#/components/schemas/BpnsTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnsTrait"
+            } ]
           },
           "customerLocationBpns" : {
             "description" : "The Business Partner Number Site (BPNS) of the site at which the customer needs the specified material for this demand series.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.short_term_material_demand:1.0.0#customerLocationBpns",
-            "$ref" : "#/components/schemas/BpnsTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnsTrait"
+            } ]
           },
           "lastUpdatedOnDateTime" : {
             "description" : "Date and time at which the DemandSeries has been updated by the reporting partner's system. Date and time are set according to a timezone.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.short_term_material_demand:1.0.0#lastUpdatedOnDateTime",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           }
         },
         "required" : [ "demands", "demandCategory", "customerLocationBpns", "lastUpdatedOnDateTime" ]
@@ -244,12 +262,16 @@
     "demandSeries" : {
       "description" : "The demands for a dedicated material in a given time period, distinguished by their demand location and demand category.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.short_term_material_demand:1.0.0#demandSeries",
-      "$ref" : "#/components/schemas/DemandSeriesSet"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/DemandSeriesSet"
+      } ]
     },
     "materialGlobalAssetId" : {
       "description" : "Identifier used uniquely to identify part type twin.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.short_term_material_demand:1.0.0#materialGlobalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     }
   },
   "required" : [ "demandSeries", "materialGlobalAssetId" ]

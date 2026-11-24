@@ -23,27 +23,37 @@
           "weight" : {
             "description" : "Weight of the item",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.physical_dimension:3.0.0#weight",
-            "$ref" : "#/components/schemas/KilogramCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/KilogramCharacteristic"
+            } ]
           },
           "diameter" : {
             "description" : "Diameter of the item.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.physical_dimension:3.0.0#diameter",
-            "$ref" : "#/components/schemas/MillimetreCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MillimetreCharacteristic"
+            } ]
           },
           "height" : {
             "description" : "Height of the item.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.physical_dimension:3.0.0#height",
-            "$ref" : "#/components/schemas/MillimetreCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MillimetreCharacteristic"
+            } ]
           },
           "width" : {
             "description" : "Width of the item.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.physical_dimension:3.0.0#width",
-            "$ref" : "#/components/schemas/MillimetreCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MillimetreCharacteristic"
+            } ]
           },
           "length" : {
             "description" : "Length of the item.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.physical_dimension:3.0.0#length",
-            "$ref" : "#/components/schemas/MillimetreCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MillimetreCharacteristic"
+            } ]
           }
         }
       }
@@ -53,7 +63,9 @@
     "physicalDimensionsProperty" : {
       "description" : "Describes the physical dimensions of then entity.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.physical_dimension:3.0.0#physicalDimensionsProperty",
-      "$ref" : "#/components/schemas/PhysicalDimensionsCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PhysicalDimensionsCharacteristic"
+      } ]
     }
   },
   "required" : [ "physicalDimensionsProperty" ]

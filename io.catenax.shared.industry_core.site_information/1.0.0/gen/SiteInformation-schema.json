@@ -29,17 +29,23 @@
     "bpnlProperty" : {
       "description" : "Property based on a BPNL.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnlProperty",
-      "$ref" : "#/components/schemas/BpnlTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BpnlTrait"
+      } ]
     },
     "bpnsProperty" : {
       "description" : "Property based on a BPNS.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnsProperty",
-      "$ref" : "#/components/schemas/BpnsTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BpnsTrait"
+      } ]
     },
     "bpnaProperty" : {
       "description" : "Property based on a BPNA.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnaProperty",
-      "$ref" : "#/components/schemas/BpnaTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/BpnaTrait"
+      } ]
     }
   },
   "required" : [ "bpnlProperty", "bpnsProperty", "bpnaProperty" ]

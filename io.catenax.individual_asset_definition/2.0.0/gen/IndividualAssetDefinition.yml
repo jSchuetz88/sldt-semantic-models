@@ -98,23 +98,28 @@ components:
         weight:
           description: Weight of the item
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.physical_dimension:3.0.0#weight"
-          $ref: "#/components/schemas/KilogramCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/KilogramCharacteristic"
         diameter:
           description: Diameter of the item.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.physical_dimension:3.0.0#diameter"
-          $ref: "#/components/schemas/MillimetreCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MillimetreCharacteristic"
         height:
           description: Height of the item.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.physical_dimension:3.0.0#height"
-          $ref: "#/components/schemas/MillimetreCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MillimetreCharacteristic"
         width:
           description: Width of the item.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.physical_dimension:3.0.0#width"
-          $ref: "#/components/schemas/MillimetreCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MillimetreCharacteristic"
         length:
           description: Length of the item.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.physical_dimension:3.0.0#length"
-          $ref: "#/components/schemas/MillimetreCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MillimetreCharacteristic"
     IndividualAssetDefinition:
       description: Permanent characteristics of an individual asset.
       type: object
@@ -124,23 +129,28 @@ components:
           description: "The fully anonymous Catena-X ID of the asset, valid for the\
             \ Catena-X dataspace."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.individual_asset_definition:2.0.0#catenaXId"
-          $ref: "#/components/schemas/CatenaXIdTrait"
+          allOf:
+          - $ref: "#/components/schemas/CatenaXIdTrait"
         assetOwnerId:
           description: BPNL of the asset owner.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.individual_asset_definition:2.0.0#assetOwnerId"
-          $ref: "#/components/schemas/AssetOwnerCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/AssetOwnerCharacteristic"
         assetSerialNumber:
           description: The serial number of the asset.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.individual_asset_definition:2.0.0#assetSerialNumber"
-          $ref: "#/components/schemas/AssetSerialNumberCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/AssetSerialNumberCharacteristic"
         assetType:
           description: The type of an asset.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.individual_asset_definition:2.0.0#assetType"
-          $ref: "#/components/schemas/AssetTypeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/AssetTypeCharacteristic"
         physicalDimensionsProperty:
           description: Describes the physical dimensions of then entity.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.individual_asset_definition:2.0.0#physicalDimensionsProperty"
-          $ref: "#/components/schemas/PhysicalDimensionsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PhysicalDimensionsCharacteristic"
       required:
       - catenaXId
       - assetOwnerId

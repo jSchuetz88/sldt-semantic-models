@@ -13,7 +13,7 @@
         "enum" : [ "unit:secondUnitOfTime", "unit:minuteUnitOfTime", "unit:hour", "unit:day", "unit:week", "unit:month", "unit:year" ]
       },
       "IntegerValueCharacteristic" : {
-        "type" : "number",
+        "type" : "integer",
         "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#IntegerValueCharacteristic",
         "description" : "The value of the specified timeUnit as an integer value"
       },
@@ -25,12 +25,16 @@
           "timeUnit" : {
             "description" : "Specifies the unit in which the time is represented",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#timeUnit",
-            "$ref" : "#/components/schemas/TimeUnitEnum"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TimeUnitEnum"
+            } ]
           },
           "value" : {
             "description" : "The amount of timeUnits considered",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#value",
-            "$ref" : "#/components/schemas/IntegerValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/IntegerValueCharacteristic"
+            } ]
           }
         },
         "required" : [ "timeUnit", "value" ]
@@ -64,47 +68,65 @@
           "offset" : {
             "description" : "Send/start time of the first message/notification\n- \"0\" ==> immediate response",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shopfloor_information.get_production_forecast:1.0.0#offset",
-            "$ref" : "#/components/schemas/TimeValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TimeValueCharacteristic"
+            } ]
           },
           "customerId" : {
             "description" : "Internal customerId",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shopfloor_information.get_production_forecast:1.0.0#customerId",
-            "$ref" : "#/components/schemas/BpnCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnCharacteristic"
+            } ]
           },
           "precisionOfForecast" : {
             "description" : "Accuracy of the time specification of the completion date.\n- default: implicitly defined by production\n- only as a REQUEST of the requester since it cannot be guaranteed that the store floor can provide the data in this accuracy.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shopfloor_information.get_production_forecast:1.0.0#precisionOfForecast",
-            "$ref" : "#/components/schemas/TimeValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TimeValueCharacteristic"
+            } ]
           },
           "productionForecastForAll" : {
             "description" : "Boolean variable that detemines whether the customer request information about each position of an order, or information about the complete order",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shopfloor_information.get_production_forecast:1.0.0#productionForecastForAll",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "orderId" : {
             "description" : "The Id identifying subject of the request",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shopfloor_information.get_production_forecast:1.0.0#orderId",
-            "$ref" : "#/components/schemas/UuidCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidCharacteristic"
+            } ]
           },
           "deviationOfSchedule" : {
             "description" : "Mandatory property for the notification mode. The property specifies the deviation from targeted delivery date that must be met to send a notification to a subscriber\n\nmandatory for CommunicationMode = \"notification\"",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shopfloor_information.get_production_forecast:1.0.0#deviationOfSchedule",
-            "$ref" : "#/components/schemas/TimeValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TimeValueCharacteristic"
+            } ]
           },
           "notificationInterval" : {
             "description" : "Interval time that either specifies the cyclic send time or limits the notification time\nmandatory for CommunicationMode = \"cyclic\"",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shopfloor_information.get_production_forecast:1.0.0#notificationInterval",
-            "$ref" : "#/components/schemas/TimeValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TimeValueCharacteristic"
+            } ]
           },
           "communicationMode" : {
             "description" : "Specification of the communication mode",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#communicationMode",
-            "$ref" : "#/components/schemas/CommunicationModeEnum"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CommunicationModeEnum"
+            } ]
           },
           "versionDataModel" : {
             "description" : "Specifies the used version of the data model",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.shopfloor_information_types:1.0.0#versionDataModel",
-            "$ref" : "#/components/schemas/BpnCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnCharacteristic"
+            } ]
           }
         },
         "required" : [ "offset", "customerId", "productionForecastForAll", "orderId", "communicationMode", "versionDataModel" ]
@@ -133,42 +155,58 @@
           "messageId" : {
             "description" : "Unique ID identifying the message. The purpose of the ID is to uniquely identify a single message, therefore it MUST not be reused.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:1.0.0#messageId",
-            "$ref" : "#/components/schemas/UuidCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidCharacteristic"
+            } ]
           },
           "context" : {
             "description" : "Information about the context the message should be considered in.\nThe value MUST consist of two parts: an identifier of the context (e.g. business domain, etc.) followed by a version number.\nBoth the identifier and the version number MUST correspond to the content of the message.\nIf the content of a message is described by an aspect model available in the Catena-X Semantic Hub, then the unique identifier of this semantic model (e.g. urn:samm:io.catenax.<ASPECT-MODEL-NAME>:1.x.x) MUST be used as a value of the context field. This is considered the default case.\nIn all other cases the value of the context field MUST follow the pattern <domain>-<subdomain>-<object>:<[major] version> (e.g. TRACE-QM-Alert:1.x.x).\nVersioning only refers to major versions in both default and fallback cases.\nNote: The version of the message's header is specified in the version field.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:1.0.0#context",
-            "$ref" : "#/components/schemas/ContextCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ContextCharacteristic"
+            } ]
           },
           "sentDateTime" : {
             "description" : "Time zone aware timestamp holding the date and the time the message was sent by the sending party. The value MUST be formatted according to the ISO 8601 standard",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:1.0.0#sentDateTime",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "senderBpn" : {
             "description" : "The Business Partner Number of the sending party. The value MUST be a valid BPN. BPNA and BPNS are not allowed. Applicable constraints are defined in the corresponding standard",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:1.0.0#senderBpn",
-            "$ref" : "#/components/schemas/BpnCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnCharacteristic"
+            } ]
           },
           "receiverBpn" : {
             "description" : "The Business Partner Number of the receiving party. The value MUST be a valid BPN. BPNA and BPNS are not allowed. Applicable constraints are defined in the corresponding standard.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:1.0.0#receiverBpn",
-            "$ref" : "#/components/schemas/BpnCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnCharacteristic"
+            } ]
           },
           "expectedResponseBy" : {
             "description" : "Time zone aware timestamp holding the date and time by which the sending party expects a certain type of response from the receiving party. The meaning and interpretation of the fields's value are context-bound and MUST therefore be defined by any business domain or platform capability making use of it. The value MUST be formatted according to the ISO 8601 standard",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:1.0.0#expectedResponseBy",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "relatedMessageId" : {
             "description" : "Unique ID identifying a message somehow related to the current one",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:1.0.0#relatedMessageId",
-            "$ref" : "#/components/schemas/UuidCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidCharacteristic"
+            } ]
           },
           "version" : {
             "description" : "The unique identifier of the aspect model defining the structure and the semantics of the message's header. The version number should reflect the versioning schema of aspect models in Catena-X.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:1.0.0#version",
-            "$ref" : "#/components/schemas/VersionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/VersionCharacteristic"
+            } ]
           }
         },
         "required" : [ "messageId", "context", "sentDateTime", "senderBpn", "receiverBpn", "version" ]
@@ -179,12 +217,16 @@
     "request" : {
       "description" : "Data model for a request",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shopfloor_information.get_production_forecast:1.0.0#request",
-      "$ref" : "#/components/schemas/RequestCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/RequestCharacteristic"
+      } ]
     },
     "header" : {
       "description" : "Contains standardized attributes for message processing common across several use cases.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:1.0.0#header",
-      "$ref" : "#/components/schemas/HeaderCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/HeaderCharacteristic"
+      } ]
     }
   },
   "required" : [ "header" ]

@@ -1,10 +1,6 @@
 {
-  "receiverAddress" : {
-    "bpnaProperty" : "BPNA0123456789ZZ"
-  },
+  "shippingDate" : "2023-02-11",
   "listItems" : [ {
-    "catenaXId" : "urn:uuid:055c1128-0375-47c8-98de-7cf802c3241d",
-    "itemName" : "Valve",
     "quantity" : {
       "itemQuantityProperty" : {
         "value" : 20.0,
@@ -12,10 +8,14 @@
       }
     },
     "position" : 1,
-    "itemDescription" : "eOMtThyhVNLWUZNRcBaQKxI"
+    "itemDescription" : "Y28d",
+    "itemName" : "Valve",
+    "catenaXId" : "urn:uuid:055c1128-0375-47c8-98de-7cf802c3241d"
   } ],
   "senderAddress" : {
     "bpnaProperty" : "BPNA0123456789ZZ"
   },
-  "shippingDate" : "2023-02-11"
+  "receiverAddress" : {
+    "bpnaProperty" : "BPNA0123456789ZZ"
+  }
 }

@@ -29,17 +29,23 @@
           "technicalKey" : {
             "description" : "Technical key of a thoroughfare. As specified by BPDM, this can be a \"STREET\" or a different type.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfareTechnicalKey",
-            "$ref" : "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ThoroughfareTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a thoroughfare, e.g. name of a street.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfareValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "number" : {
             "description" : "Number of a thoroughfare. As used differently in international context, this number can contain both numerical and alphanumerical values.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfareNumber",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value", "number" ]
@@ -66,12 +72,16 @@
           "technicalKey" : {
             "description" : "Technical key of a locality.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#localityTechnicalKey",
-            "$ref" : "#/components/schemas/LocalityTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LocalityTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a locality, e.g. name of a city (\"Mannheim\").",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#localityValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value" ]
@@ -98,12 +108,16 @@
           "technicalKey" : {
             "description" : "Technical key of a premise.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#premiseTechnicalKey",
-            "$ref" : "#/components/schemas/PremiseTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PremiseTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a premise, e.g. name or designation of a particular site.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#premiseValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value" ]
@@ -130,12 +144,16 @@
           "technicalKey" : {
             "description" : "Technical key of a postal delivery point.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postalDeliveryPointTechnicalKey",
-            "$ref" : "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalDeliveryPointTechnicalKeyCharacteristic"
+            } ]
           },
           "value" : {
             "description" : "Value of a postal delivery point, e.g. designation of a gate.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postalDeliveryPointValue",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "technicalKey", "value" ]
@@ -162,7 +180,9 @@
           "shortName" : {
             "description" : "The short variation of the name of the country.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#countryShortName",
-            "$ref" : "#/components/schemas/CountryTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountryTrait"
+            } ]
           }
         },
         "required" : [ "shortName" ]
@@ -195,12 +215,16 @@
           "value" : {
             "description" : "The value of a post code.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postCodeValue",
-            "$ref" : "#/components/schemas/PostCodeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostCodeTrait"
+            } ]
           },
           "technicalKey" : {
             "description" : "The technical key of a post code.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postCodeTechnicalKey",
-            "$ref" : "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostCodeTechnicalKeyCharacteristic"
+            } ]
           }
         },
         "required" : [ "value", "technicalKey" ]
@@ -221,32 +245,44 @@
           "thoroughfare" : {
             "description" : "Street or thorough road name.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#thoroughfare",
-            "$ref" : "#/components/schemas/ThoroughfareCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ThoroughfareCharacteristic"
+            } ]
           },
           "locality" : {
             "description" : "Locality belonging to an address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#locality",
-            "$ref" : "#/components/schemas/LocalityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LocalityCharacteristic"
+            } ]
           },
           "premise" : {
             "description" : "Premise of an address, e.g. a specific \"BUILDING\" but can also be used for naming a particular site.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#premise",
-            "$ref" : "#/components/schemas/PremiseCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PremiseCharacteristic"
+            } ]
           },
           "postalDeliveryPoint" : {
             "description" : "Delivery point, e.g. designation of a gate.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postalDeliveryPoint",
-            "$ref" : "#/components/schemas/PostalDeliveryPointCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalDeliveryPointCharacteristic"
+            } ]
           },
           "country" : {
             "description" : "Country of an address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#country",
-            "$ref" : "#/components/schemas/CountryCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountryCharacteristic"
+            } ]
           },
           "postCode" : {
             "description" : "Postal code of the address.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#postCode",
-            "$ref" : "#/components/schemas/PostCodeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostCodeCharacteristic"
+            } ]
           }
         },
         "required" : [ "thoroughfare", "locality", "country", "postCode" ]
@@ -265,17 +301,23 @@
           "supplierId" : {
             "description" : "The supplier ID is filled in if the actual sender of the goods differs from the actual supplier. In other words, the supplier ID provides information on where the goods are actually delivered from - the physical sender of the goods. A supplier ID is assigned by the ordering company for this purpose. This is not created or hosted centrally, similar to the DUNS number. It is freely selectable and can therefore be freely designed in terms of syntax.ID number from the supplier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#supplierId",
-            "$ref" : "#/components/schemas/SupplierIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SupplierIdCharacteristic"
+            } ]
           },
           "address" : {
             "description" : "The address of the data provider.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#address",
-            "$ref" : "#/components/schemas/PostalAddress"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalAddress"
+            } ]
           },
           "bpnsProperty" : {
             "description" : "Property based on a BPNS.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnsProperty",
-            "$ref" : "#/components/schemas/BpnsTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnsTrait"
+            } ]
           }
         },
         "required" : [ "address", "bpnsProperty" ]
@@ -304,22 +346,30 @@
           "unloadingPoint" : {
             "description" : "Unloading point where the means of transport is being unloaded.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#unloadingPoint",
-            "$ref" : "#/components/schemas/UnloadingPointCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UnloadingPointCharacteristic"
+            } ]
           },
           "internalDestination" : {
             "description" : "Additional Internal destination at recipients' side after unloading (warehouse / storage).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#internalDestination",
-            "$ref" : "#/components/schemas/InternalDestinationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/InternalDestinationCharacteristic"
+            } ]
           },
           "address" : {
             "description" : "The address of the data provider.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.address_characteristic:3.0.0#address",
-            "$ref" : "#/components/schemas/PostalAddress"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PostalAddress"
+            } ]
           },
           "bpnaProperty" : {
             "description" : "Property based on a BPNA.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnaProperty",
-            "$ref" : "#/components/schemas/BpnaTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnaTrait"
+            } ]
           }
         },
         "required" : [ "unloadingPoint", "internalDestination", "address", "bpnaProperty" ]
@@ -348,12 +398,16 @@
           "deliveryNoteNumber" : {
             "description" : "Associated delivery note number, assigned by sender.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#deliveryNoteNumber",
-            "$ref" : "#/components/schemas/DeliveryNoteNumberCharaceristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DeliveryNoteNumberCharaceristic"
+            } ]
           },
           "supplierNumber" : {
             "description" : "Supplier number assigned to the seller by the customer. This supplier number may differ from ship-from's identifier, depending on the numbering concept applied by the customer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#supplierNumber",
-            "$ref" : "#/components/schemas/SupplierNumberCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SupplierNumberCharacteristic"
+            } ]
           }
         },
         "required" : [ "deliveryNoteNumber", "supplierNumber" ]
@@ -399,12 +453,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of an item. Common units may be related to mass, count, linear, area, volume or misc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#itemUnit",
-            "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -417,22 +475,30 @@
           "expectedTimeOfArrival" : {
             "description" : "Expected/request delivery time of the goods at the customer's premises.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#expectedTimeOfArrival",
-            "$ref" : "#/components/schemas/ExpectedTimeOfArrivalCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ExpectedTimeOfArrivalCharacteristic"
+            } ]
           },
           "netWeight" : {
             "description" : "Net weight of the loading unit or inner packaging item.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#netWeight",
-            "$ref" : "#/components/schemas/NetWeight"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NetWeight"
+            } ]
           },
           "grossWeight" : {
             "description" : "Gross weight of the loading unit or inner packaging item.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#grossWeight",
-            "$ref" : "#/components/schemas/GrossWeight"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/GrossWeight"
+            } ]
           },
           "itemQuantityProperty" : {
             "description" : "This property defines common units and the value for items. Items may be measured as mass, countable, miscellaneous, linear, area or volume.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:2.0.0#itemQuantityProperty",
-            "$ref" : "#/components/schemas/ItemQuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemQuantityCharacteristic"
+            } ]
           }
         },
         "required" : [ "expectedTimeOfArrival", "netWeight", "grossWeight", "itemQuantityProperty" ]
@@ -466,22 +532,30 @@
           "customerPartNumber" : {
             "description" : "Number that the customer uses to identify the delivered part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#customerPartNumber",
-            "$ref" : "#/components/schemas/CustomerPartNumberCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CustomerPartNumberCharacteristic"
+            } ]
           },
           "customerPartDescription" : {
             "description" : "Name of the part as assigned by the customer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#customerPartDescription",
-            "$ref" : "#/components/schemas/CustomerPartDescriptionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CustomerPartDescriptionCharacteristic"
+            } ]
           },
           "safetyRelevantPart" : {
             "description" : "Describes, wether the part is safety-relevant or not. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#safetyRelevantPart",
-            "$ref" : "#/components/schemas/SafetyRelevantPartCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SafetyRelevantPartCharacteristic"
+            } ]
           },
           "catenaXId" : {
             "description" : "Catena-X ID of partType / delivered goods.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#catenaXId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           }
         },
         "required" : [ "customerPartNumber", "customerPartDescription", "safetyRelevantPart", "catenaXId" ]
@@ -506,12 +580,16 @@
           "licencePlate" : {
             "description" : "Globally unique package ID of the package /\nloading unit: it does not include the data identifier. It includes the issuing agency code (IAC), the company identification number (CIN), and the serial number (SN).",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#licencePlate",
-            "$ref" : "#/components/schemas/LicensePlateTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/LicensePlateTrait"
+            } ]
           },
           "dataIdentifier" : {
             "description" : "The data identifier (DI) is a classifying characteristic and precedes the actual barcode content. The data identifier classifies the packages into Single, Homogeneous Master, Mixed Master.\nIdentifiers are based on ISO 17367",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#dataIdentifier",
-            "$ref" : "#/components/schemas/DataIdentifierCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DataIdentifierCharacteristic"
+            } ]
           }
         },
         "required" : [ "licencePlate", "dataIdentifier" ]
@@ -541,12 +619,16 @@
           "dateCategory" : {
             "description" : "Expery (E)\nShipment (S)\nProduction (P) \nin that order of priority",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#dateCategory",
-            "$ref" : "#/components/schemas/DateCategoryEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateCategoryEnumeration"
+            } ]
           },
           "date" : {
             "description" : "Dates are to be given in the following format according to the example in the VDA recommendation: CCYY-MM-DD. Where the indication of times is required, they are to be separated from the date by a slash \"/\" and printed in a 24-hour format HH:MM",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#date",
-            "$ref" : "#/components/schemas/DateTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTrait"
+            } ]
           }
         },
         "required" : [ "dateCategory", "date" ]
@@ -573,37 +655,51 @@
           "packagingTypeCode" : {
             "description" : "Is a digit code identifying the packaging type code.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#packagingTypeCode",
-            "$ref" : "#/components/schemas/PackagingTypeCodeCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PackagingTypeCodeCharacteristic"
+            } ]
           },
           "dateCategoryInformation" : {
             "description" : "On Master and Mixed Labels attached to loading units: Package type, ship-ping date, number of inner packages\nThe following applies to inner packages and simplified loading units:\n- If there is an expiry date, it must be printed. The expiry date must be preceded by the letter \"E\".\n- If there is no expiry date, and if the shipping date is known at the time of printing the label, the shipping date should be printed. The shipping date must be preceded by the letter \"S\".\n- If none of the above dates are known or apply, the production date should be printed. The production date must be preceded by the letter \"P\".",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#dateCategoryInformation",
-            "$ref" : "#/components/schemas/DateCategorySet"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateCategorySet"
+            } ]
           },
           "batchNumber" : {
             "description" : "Describes the transportation batch on a Master or Mixed labels that is attached to loading units.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#batchNumber",
-            "$ref" : "#/components/schemas/StringCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringCharacteristic"
+            } ]
           },
           "numberOfInnerPackageItems" : {
             "description" : "Describes the amount of internal packages.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#numberOfInnerPackageItems",
-            "$ref" : "#/components/schemas/StringCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringCharacteristic"
+            } ]
           },
           "hardwareRevision" : {
             "description" : "Hardware Revision number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#hardwareRevision",
-            "$ref" : "#/components/schemas/StringCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringCharacteristic"
+            } ]
           },
           "softwareRevision" : {
             "description" : "Software revision number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#softwareRevision",
-            "$ref" : "#/components/schemas/StringCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringCharacteristic"
+            } ]
           },
           "partRevision" : {
             "description" : "Part revision number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#partRevision",
-            "$ref" : "#/components/schemas/StringCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StringCharacteristic"
+            } ]
           }
         },
         "required" : [ "packagingTypeCode", "dateCategoryInformation", "partRevision" ]
@@ -642,57 +738,79 @@
     "shipFrom" : {
       "description" : "Information about the sender of the transport unit.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#shipFrom",
-      "$ref" : "#/components/schemas/ShipFromCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ShipFromCharacteristic"
+      } ]
     },
     "shipTo" : {
       "description" : "Information about the recipient of the transport unit.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#shipTo",
-      "$ref" : "#/components/schemas/ShipToCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ShipToCharacteristic"
+      } ]
     },
     "labelType" : {
       "description" : "Describes the Label Type according to VDA 4994",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#labelType",
-      "$ref" : "#/components/schemas/LabelTypeCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/LabelTypeCharacteristic"
+      } ]
     },
     "customerReference1" : {
       "description" : "Reference information from the customer.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#customerReference1",
-      "$ref" : "#/components/schemas/CustomerReference1Characteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CustomerReference1Characteristic"
+      } ]
     },
     "customerSpecificRouting" : {
       "description" : "Information on customer specific routing. This information is supplied as part of the call-off and does not need to be interpreted by the supplier.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#customerSpecificRouting",
-      "$ref" : "#/components/schemas/CustomerSpecificRoutingCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CustomerSpecificRoutingCharacteristic"
+      } ]
     },
     "logisticsReference" : {
       "description" : "Information of the transport unit that is relevant for the logstics.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#logisticsReference",
-      "$ref" : "#/components/schemas/LogisticsReferenceCharcteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/LogisticsReferenceCharcteristic"
+      } ]
     },
     "contentDescription" : {
       "description" : "Describes the content of the global transport label.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#contentDescription",
-      "$ref" : "#/components/schemas/ContentDescriptionCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ContentDescriptionCharacteristic"
+      } ]
     },
     "packageId" : {
       "description" : "Information for identification of the transport unit.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#packageId",
-      "$ref" : "#/components/schemas/PackageIdCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PackageIdCharacteristic"
+      } ]
     },
     "customerReference2" : {
       "description" : "Information integrating a comprehensive labeling protocol for the customer for inner packages and simplified loading units.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#customerReference2",
-      "$ref" : "#/components/schemas/CustomerReference2Characteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CustomerReference2Characteristic"
+      } ]
     },
     "optionalInformation" : {
       "description" : "Supplier area that includes specific information for supplier's use only. Example Value: F61F008AD4.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#optionalInformation",
-      "$ref" : "#/components/schemas/OptionalInformationTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/OptionalInformationTrait"
+      } ]
     },
     "customerReference3" : {
       "description" : "Additional, customer specific information for customer's use only. This field contains customer data that is transmitted in the PCI segment (qual-ifier 16 or 3) of the customer call-off.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.global_transport_label:1.0.0#customerReference3",
-      "$ref" : "#/components/schemas/CustomerReference3Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/CustomerReference3Trait"
+      } ]
     }
   },
   "required" : [ "shipFrom", "shipTo", "labelType", "customerReference1", "logisticsReference", "contentDescription", "packageId", "customerReference2" ]

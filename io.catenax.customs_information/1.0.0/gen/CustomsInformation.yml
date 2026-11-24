@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/CustomsInformation"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        customsInformation:
+          type: array
+          items:
+            $ref: "#/components/schemas/CustomsInformation"
     TradeRelationTrait:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#TradeRelationTrait"
@@ -156,11 +157,13 @@ components:
         value:
           description: Value of traced Value  depending on the currency.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#value"
-          $ref: "#/components/schemas/ValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ValueCharacteristic"
         currency:
           description: This is the currency of the traced value.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#currency"
-          $ref: "#/components/schemas/CurrencyTrait"
+          allOf:
+          - $ref: "#/components/schemas/CurrencyTrait"
       required:
       - value
       - currency
@@ -189,20 +192,24 @@ components:
           description: Name of the person responsible for the customs information
             provided.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#contactPerson"
-          $ref: "#/components/schemas/ContactPersionCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ContactPersionCharacteristic"
         jobTitle:
           description: Jobtitle of the responsible for the customs information provided.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#jobTitle"
-          $ref: "#/components/schemas/JobTitleCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/JobTitleCharacteristic"
         email:
           description: E-Mail of the responsible for the customs information provided.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#email"
-          $ref: "#/components/schemas/EmailCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/EmailCharacteristic"
         phoneNumber:
           description: Phone number of the responsible for the customs information
             provided.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#phoneNumber"
-          $ref: "#/components/schemas/PhoneNumberCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PhoneNumberCharacteristic"
       required:
       - contactPerson
       - jobTitle
@@ -221,11 +228,13 @@ components:
         longitude:
           description: Longitude of the manufacturing place.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#longitude"
-          $ref: "#/components/schemas/LongitudeAndLatitudeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LongitudeAndLatitudeCharacteristic"
         latitude:
           description: Latiitude of the manufacturing place.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#latitude"
-          $ref: "#/components/schemas/LongitudeAndLatitudeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LongitudeAndLatitudeCharacteristic"
       required:
       - longitude
       - latitude
@@ -238,33 +247,40 @@ components:
           description: The trade relation (preferential agreement)for which origin
             information has been provided.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#tradeRelation"
-          $ref: "#/components/schemas/TradeRelationTrait"
+          allOf:
+          - $ref: "#/components/schemas/TradeRelationTrait"
         commercialCountryOfOrigin:
           description: "The term \"Commercial Country Of Origin\" specifically refers\
             \ to the country where the goods were originally produced, manufactured\
             \ or significantly transformed"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#commercialCountryOfOrigin"
-          $ref: "#/components/schemas/CommercialCountryOfOriginTrait"
+          allOf:
+          - $ref: "#/components/schemas/CommercialCountryOfOriginTrait"
         federalState:
           description: German federal state in which the part was manufactured.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#federalState"
-          $ref: "#/components/schemas/FederalStateTrait"
+          allOf:
+          - $ref: "#/components/schemas/FederalStateTrait"
         preferredStatus:
           description: This is the preference status of the part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#preferredStatus"
-          $ref: "#/components/schemas/PreferredStatusEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/PreferredStatusEnumeration"
         tracedWorth:
           description: Material value of the part in a currency unit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#tracedWorth"
-          $ref: "#/components/schemas/TracedWorthCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/TracedWorthCharacteristic"
         contactInformation:
           description: Contact information for the responsible.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#contactInformation"
-          $ref: "#/components/schemas/ContactInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ContactInformationCharacteristic"
         originOfManufacturing:
           description: Information of the Manufacturing place.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#originOfManufacturing"
-          $ref: "#/components/schemas/OriginOfManufacturingCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OriginOfManufacturingCharacteristic"
       required:
       - tradeRelation
       - preferredStatus
@@ -302,29 +318,34 @@ components:
             \ determine that the part is eligible for preferential treatment, i.e.\
             \ the determination of preferential origin."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#originInformation"
-          $ref: "#/components/schemas/OriginInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OriginInformationCharacteristic"
         confirmationDate:
           description: Confirmation Date is the date of issue of a long-term supplier's
             declaration.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#confirmationDate"
-          $ref: "#/components/schemas/DateCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DateCharacteristic"
         validFrom:
           description: Valid From is the date from which a long-term supplier declaration
             is valid. This date can be in the future.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#validFrom"
-          $ref: "#/components/schemas/DateCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DateCharacteristic"
         type:
           description: Type is the reason for submitting a long-term supplier's declaration.
             This may be due to a recurring annual enquiry by the customer or at the
             start of a supply relationship.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#type"
-          $ref: "#/components/schemas/TypeEnumaration"
+          allOf:
+          - $ref: "#/components/schemas/TypeEnumaration"
         status:
           description: Status represents the stage of a long-term supplier's declaration.
             Committed indicates to the data recipient that all data has been provided
             correctly.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#status"
-          $ref: "#/components/schemas/StatusEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/StatusEnumeration"
       required:
       - originInformation
       - confirmationDate
@@ -362,12 +383,14 @@ components:
             \ over a longer period of time, provided that the delivered goods are\
             \ expected to have the same origin status."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#customsInformation"
-          $ref: "#/components/schemas/CustomsInformationSet"
+          allOf:
+          - $ref: "#/components/schemas/CustomsInformationSet"
         catenaXId:
           description: "The fully anonymous Catena-X ID of the corresponding part,\
             \ valid for the Catena-X dataspace."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.customs_information:1.0.0#catenaXId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - customsInformation
       - catenaXId

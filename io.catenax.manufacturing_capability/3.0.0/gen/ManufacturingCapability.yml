@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/ManufacturingCapability"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        processes:
+          type: array
+          items:
+            $ref: "#/components/schemas/ManufacturingCapability"
     BillOfProcessIdCharacteristic:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.0.0#BillOfProcessIdCharacteristic"
@@ -107,7 +108,8 @@ components:
           description: Unique identifier for a bill of process that can be used to
             reference instances of the bill of process
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.bill_of_process:1.0.0#billOfProcessIdentification"
-          $ref: "#/components/schemas/BillOfProcessIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BillOfProcessIdCharacteristic"
       required:
       - billOfProcessIdentification
     ProcessSetCharacteristic:
@@ -135,7 +137,8 @@ components:
         semanticReferenceId:
           description: Globally unique identifier for the semantic.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#semanticReferenceId"
-          $ref: "#/components/schemas/IdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IdCharacteristic"
       required:
       - semanticReferenceId
     SemanticReferenceSetCharacteristic:
@@ -157,16 +160,19 @@ components:
         propertyLabel:
           description: Human readable label of a property.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#propertyLabel"
-          $ref: "#/components/schemas/MultiLanguageText"
+          allOf:
+          - $ref: "#/components/schemas/MultiLanguageText"
         semanticReferences:
           description: A set of semantic references.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#semanticReferences"
-          $ref: "#/components/schemas/SemanticReferenceSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SemanticReferenceSetCharacteristic"
         propertyValue:
           description: The value of a property. Note that this SAMM property does
             have a variable type and is therefore defined as string.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#propertyValue"
-          $ref: "#/components/schemas/PropertyValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PropertyValueCharacteristic"
       required:
       - propertyLabel
     PropertySetCharacteristic:
@@ -191,7 +197,8 @@ components:
         belongsToMaterialFamilies:
           description: A material belongs to certain material families.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#belongsToMaterialFamilies"
-          $ref: "#/components/schemas/MaterialFamilySetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialFamilySetCharacteristic"
       allOf:
       - $ref: "#/components/schemas/ElementAbstractEntity"
     MaterialFamilyEntity:
@@ -209,11 +216,13 @@ components:
         provides:
           description: Set of capabilities the machine can provide.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#provides"
-          $ref: "#/components/schemas/CapabilitySetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CapabilitySetCharacteristic"
         containsTools:
           description: Set of machine tools the machine can be equipped with.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#containsTools"
-          $ref: "#/components/schemas/MachineToolSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MachineToolSetCharacteristic"
       allOf:
       - $ref: "#/components/schemas/ElementAbstractEntity"
     ProductEntity:
@@ -232,11 +241,13 @@ components:
           description: "Set of qualities or characteristics inherent in or ascribed\
             \ to process, resource, product or capability entities."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#properties"
-          $ref: "#/components/schemas/PropertySetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PropertySetCharacteristic"
         label:
           description: Multilanguage label of an element.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#label"
-          $ref: "#/components/schemas/MultiLanguageText"
+          allOf:
+          - $ref: "#/components/schemas/MultiLanguageText"
       required:
       - label
     MaterialFamilySetCharacteristic:
@@ -254,7 +265,8 @@ components:
         belongsToMaterialFamilies:
           description: A material belongs to certain material families.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#belongsToMaterialFamilies"
-          $ref: "#/components/schemas/MaterialFamilySetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialFamilySetCharacteristic"
       allOf:
       - $ref: "#/components/schemas/ElementAbstractEntity"
     CapabilityConstraintEntity:
@@ -265,11 +277,13 @@ components:
         capabilityConstraintProperties:
           description: Set of constraints restricting the capability.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#capabilityConstraintProperties"
-          $ref: "#/components/schemas/PropertySetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PropertySetCharacteristic"
         refersToMaterial:
           description: A specific material the capability constraint can refer to.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#refersToMaterial"
-          $ref: "#/components/schemas/MaterialCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialCharacteristic"
     CapabilityConstraintSetCharacteristic:
       description: Characteristic for a set of capability constraint representations.
       x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#CapabilityConstraintSetCharacteristic"
@@ -289,7 +303,8 @@ components:
         hierarchyElementId:
           description: An identifier of a hierarchy element.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#hierarchyElementId"
-          $ref: "#/components/schemas/HierarchyElementIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/HierarchyElementIdCharacteristic"
       required:
       - hierarchyElementId
     HierarchyElementSetCharacteristic:
@@ -308,19 +323,23 @@ components:
           description: Set of conditions imposed on capabilities which further detail
             their applicability.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#capabilityConstraintSet"
-          $ref: "#/components/schemas/CapabilityConstraintSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CapabilityConstraintSetCharacteristic"
         semanticReferences:
           description: A set of semantic references.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#semanticReferences"
-          $ref: "#/components/schemas/SemanticReferenceSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SemanticReferenceSetCharacteristic"
         capabilityId:
           description: Locally unique identifier for a capability.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#capabilityId"
-          $ref: "#/components/schemas/IdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IdCharacteristic"
         capabilityLabel:
           description: Label of a capability.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#capabilityLabel"
-          $ref: "#/components/schemas/MultiLanguageText"
+          allOf:
+          - $ref: "#/components/schemas/MultiLanguageText"
       required:
       - capabilityLabel
       allOf:
@@ -340,7 +359,8 @@ components:
         canProcessMaterials:
           description: Set of materials the machine tool can utilize.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#canProcessMaterials"
-          $ref: "#/components/schemas/MaterialSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialSetCharacteristic"
       allOf:
       - $ref: "#/components/schemas/HierarchyElementAbstractEntity"
     HierarchyElementAbstractEntity:
@@ -352,15 +372,18 @@ components:
         specializes:
           description: One hierarchy element can specialize others.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#specializes"
-          $ref: "#/components/schemas/HierarchyElementSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/HierarchyElementSetCharacteristic"
         generalizes:
           description: One hierarchy element can generalize others.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#generalizes"
-          $ref: "#/components/schemas/HierarchyElementSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/HierarchyElementSetCharacteristic"
         hierarchyElementId:
           description: An identifier of a hierarchy element.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#hierarchyElementId"
-          $ref: "#/components/schemas/HierarchyElementIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/HierarchyElementIdCharacteristic"
       required:
       - hierarchyElementId
     CapabilitySetCharacteristic:
@@ -409,30 +432,36 @@ components:
           description: Set of production-relevant activities at any level of granularity
             that might affect materials and is performed by resources.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#processes"
-          $ref: "#/components/schemas/ProcessSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ProcessSetCharacteristic"
         machines:
           description: A set of machines used for production.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#machines"
-          $ref: "#/components/schemas/MachineSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MachineSetCharacteristic"
         products:
           description: Set of physical objects being used as an input or created as
             an output of a production process.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#products"
-          $ref: "#/components/schemas/ProductSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ProductSetCharacteristic"
         capabilities:
           description: Set of implementation-independent specifications of functions
             in industrial production to achieve an effect in the physical or virtual
             world.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#capabilities"
-          $ref: "#/components/schemas/CapabilitySetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CapabilitySetCharacteristic"
         machineTools:
           description: A set of machine tools.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#machineTools"
-          $ref: "#/components/schemas/MachineToolSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MachineToolSetCharacteristic"
         certificates:
           description: Set of certificates.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.manufacturing_capability:3.0.0#certificates"
-          $ref: "#/components/schemas/CertificateSetCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CertificateSetCharacteristic"
       required:
       - processes
       - machines

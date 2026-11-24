@@ -1,189 +1,147 @@
 {
-  "stepD7" : {
-    "additionalInformationList" : [ {
-      "value" : "Stainless steel",
-      "key" : "Steel quality"
+  "header" : {
+    "complaintDate" : "2025-01-01",
+    "lastRevisionDate" : "2025-01-01",
+    "title" : "Test Component 1 breakdown",
+    "customerComplaintId" : "OE-123456789",
+    "supplierComplaintId" : "SU-123456789",
+    "customerContact" : {
+      "companyName" : "Test Company",
+      "street" : "Test Avenue",
+      "city" : "Berlin",
+      "postalCode" : "012345",
+      "country" : "Germany",
+      "bpnlProperty" : "BPNL0123456789ZZ",
+      "email" : "test.mail@example.com",
+      "phoneNumber" : "+49 89 1234567890"
+    },
+    "supplierContact" : {
+      "companyName" : "Test Company",
+      "street" : "Test Avenue",
+      "city" : "Berlin",
+      "postalCode" : "012345",
+      "country" : "Germany",
+      "bpnlProperty" : "BPNL0123456789ZZ",
+      "email" : "test.mail@example.com",
+      "phoneNumber" : "+49 89 1234567890"
+    },
+    "parts" : [ {
+      "supplierPartNumber" : "123456789",
+      "customerPartNumber" : "987564321",
+      "orderNumber" : "192837645",
+      "serialNumber" : "ECU20646005020221",
+      "batchNumber" : "LB#LineA#20240731",
+      "partName" : "Gearbox ECU",
+      "hwVersion" : "Version H001",
+      "partId" : "urn:uuid:580d3adf-1981-44a0-a214-13d6ceed9000"
     } ],
-    "errorPreventiveMeasures" : [ {
-      "responsiblePerson" : "Max Mustermann",
-      "measure" : "Introduction of camera inspection with automatic OK/nOK separation",
-      "proofOfEffectiveness" : "Daily inspection of the produced parts for scratches",
-      "effectivenessResult" : 80,
-      "causeAssignment" : "Root cause 1",
-      "introductionDate" : "2025-03-10",
-      "status" : "closed"
+    "complaintLocation" : "Berlin Workshop Mustermann",
+    "supplierId" : "RB2064600502",
+    "supplierName" : "Robert Bosch GmbH",
+    "qualityTaskId" : "430f56d3-1234-1234-1234-abc123456789",
+    "additionalInformationList" : [ {
+      "key" : "Steel quality",
+      "value" : "Stainless steel"
     } ]
-  },
-  "stepD6" : {
-    "implementedCorrectiveMeasures" : [ {
-      "responsiblePerson" : "Max Mustermann",
-      "measure" : "Introduction of camera inspection with automatic OK/nOK separation",
-      "proofOfEffectiveness" : "Daily inspection of the produced parts for scratches",
-      "effectivenessResult" : 80,
-      "causeAssignment" : "Root cause 1",
-      "introductionDate" : "2025-03-10",
-      "status" : "closed"
-    } ],
-    "additionalInformationList" : [ {
-      "value" : "Stainless steel",
-      "key" : "Steel quality"
-    } ]
-  },
-  "stepD5" : {
-    "additionalInformationList" : [ {
-      "value" : "Stainless steel",
-      "key" : "Steel quality"
-    } ],
-    "definePermanentCorrectiveActions" : [ {
-      "responsiblePerson" : "Max Mustermann",
-      "measure" : "Introduction of camera inspection with automatic OK/nOK separation",
-      "proofOfEffectiveness" : "Daily inspection of the produced parts for scratches",
-      "effectivenessResult" : 80,
-      "causeAssignment" : "Root cause 1",
-      "introductionDate" : "2025-03-10",
-      "status" : "closed"
-    } ]
-  },
-  "stepD4" : {
-    "additionalInformationList" : [ {
-      "value" : "Stainless steel",
-      "key" : "Steel quality"
-    } ],
-    "causes" : [ {
-      "result" : "Lubrication investigation showed insufficient lubrication in some cases.",
-      "method" : "5why",
-      "errorCauseCategory" : "10030012",
-      "typeOfCauses" : "TUA",
-      "causeHypothesisDescription" : "Insufficient lubrication of the brake components.",
-      "report" : "A detailed report was prepared documenting the analysis, the hypotheses tested, and the root cause identified.",
-      "verificationBy" : "eOMtThyhVNLWUZNRcBaQKxI",
-      "clarificationDate" : "2025-03-21"
-    } ]
-  },
-  "stepD3" : {
-    "descriptionOfInterimContainmentActions" : [ {
-      "responsiblePerson" : "Max Mustermann",
-      "riskOfImmediateMeasure" : "Possible delays in the production process due to the additional controls",
-      "methodForEffectivenessCheck" : "FMEA (Failure Mode and Effects Analysis)",
-      "proofOfEffectiveness" : "Daily inspection of the produced parts for scratches",
-      "effectivenessResult" : 80,
-      "introductionDate" : "2025-03-10"
-    } ],
-    "additionalInformationList" : [ {
-      "value" : "Stainless steel",
-      "key" : "Steel quality"
-    } ]
-  },
-  "stepD2" : {
-    "riskAssessmentStarted" : "2025-03-04",
-    "errorType" : "Surface defects",
-    "problemDescription" : "The scratches on the parts lead to an increased scrap rate and affect product quality.",
-    "riskAssessmentUpdated" : "2025-03-10",
-    "qualityTaskAttachmentId" : "12366548799",
-    "additionalInformationList" : [ {
-      "value" : "Stainless steel",
-      "key" : "Steel quality"
-    } ],
-    "symptomDescription" : "A high percentage of the parts produced have scratches on the surface.",
-    "errorLocation" : "Cast housing"
   },
   "stepD1" : {
     "sponsor" : {
       "name" : "Max Muster",
-      "role" : "QualityExpert",
-      "phoneNumber" : "+49 89 1234567890",
       "department" : "QualityManagement",
-      "email" : "test.mail@example.com"
-    },
-    "contactPerson" : {
-      "name" : "Max Muster",
       "role" : "QualityExpert",
-      "phoneNumber" : "+49 89 1234567890",
-      "department" : "QualityManagement",
       "email" : "test.mail@example.com"
     },
     "teamLeader" : {
       "name" : "Max Muster",
-      "role" : "QualityExpert",
-      "phoneNumber" : "+49 89 1234567890",
       "department" : "QualityManagement",
+      "role" : "QualityExpert",
+      "email" : "test.mail@example.com"
+    },
+    "contactPerson" : {
+      "name" : "Max Muster",
+      "department" : "QualityManagement",
+      "role" : "QualityExpert",
       "email" : "test.mail@example.com"
     },
     "teamMembers" : [ {
       "name" : "Max Muster",
-      "role" : "QualityExpert",
-      "phoneNumber" : "+49 89 1234567890",
       "department" : "QualityManagement",
+      "role" : "QualityExpert",
       "email" : "test.mail@example.com"
     } ]
   },
-  "stepD0" : {
-    "supplierComplaintId" : "SU-123456789",
-    "complaintDate" : "2025-01-01",
-    "complaintLocation" : "Berlin Workshop Mustermann",
+  "stepD2" : {
+    "symptomDescription" : "A high percentage of the parts produced have scratches on the surface.",
     "problemDescription" : "The scratches on the parts lead to an increased scrap rate and affect product quality.",
-    "customerComplaintId" : "OE-123456789",
-    "additionalInformationList" : [ {
-      "value" : "Stainless steel",
-      "key" : "Steel quality"
-    } ],
-    "defineEmergencyResponseAction" : [ {
-      "responsiblePerson" : "Max Mustermann",
-      "measure" : "Introduction of camera inspection with automatic OK/nOK separation",
+    "errorType" : "Surface defects",
+    "riskAssessmentStarted" : "2025-03-04",
+    "riskAssessmentUpdated" : "2025-03-10",
+    "qualityTaskAttachmentId" : "12366548799",
+    "errorLocation" : "Cast housing"
+  },
+  "stepD3" : {
+    "descriptionOfInterimContainmentActions" : [ {
       "proofOfEffectiveness" : "Daily inspection of the produced parts for scratches",
       "effectivenessResult" : 80,
-      "causeAssignment" : "Root cause 1",
       "introductionDate" : "2025-03-10",
-      "status" : "closed"
+      "responsiblePerson" : "Max Mustermann",
+      "riskOfImmediateMeasure" : "Possible delays in the production process due to the additional controls",
+      "methodForEffectivenessCheck" : "FMEA (Failure Mode and Effects Analysis)"
     } ]
   },
-  "header" : {
-    "supplierName" : "Robert Bosch GmbH",
-    "complaintLocation" : "Berlin Workshop Mustermann",
-    "supplierId" : "RB2064600502",
-    "qualityTaskId" : "430f56d3-1234-1234-1234-abc123456789",
-    "title" : "Test Component 1 breakdown",
-    "supplierComplaintId" : "SU-123456789",
-    "complaintDate" : "2025-01-01",
-    "customerContact" : {
-      "country" : "Germany",
-      "phoneNumber" : "+49 89 1234567890",
-      "bpnlProperty" : "BPNL0123456789ZZ",
-      "city" : "Berlin",
-      "street" : "Test Avenue",
-      "companyName" : "Test Company",
-      "postalCode" : "012345",
-      "email" : "test.mail@example.com"
-    },
-    "lastRevisionDate" : "2025-01-01",
-    "parts" : [ {
-      "customerPartNumber" : "987564321",
-      "orderNumber" : "192837645",
-      "serialNumber" : "ECU20646005020221",
-      "partId" : "urn:uuid:580d3adf-1981-44a0-a214-13d6ceed9000",
-      "supplierPartNumber" : "123456789",
-      "partName" : "Gearbox ECU",
-      "batchNumber" : "LB#LineA#20240731",
-      "hwVersion" : "Version H001"
-    } ],
-    "customerComplaintId" : "OE-123456789",
-    "additionalInformationList" : [ {
-      "value" : "Stainless steel",
-      "key" : "Steel quality"
-    } ],
-    "supplierContact" : {
-      "country" : "Germany",
-      "phoneNumber" : "+49 89 1234567890",
-      "bpnlProperty" : "BPNL0123456789ZZ",
-      "city" : "Berlin",
-      "street" : "Test Avenue",
-      "companyName" : "Test Company",
-      "postalCode" : "012345",
-      "email" : "test.mail@example.com"
-    }
+  "stepD4" : {
+    "causes" : [ {
+      "typeOfCauses" : "TUA",
+      "causeHypothesisDescription" : "Insufficient lubrication of the brake components.",
+      "verificationBy" : "dNCRTx7u",
+      "clarificationDate" : "2025-03-21",
+      "result" : "Lubrication investigation showed insufficient lubrication in some cases.",
+      "method" : "5why",
+      "report" : "A detailed report was prepared documenting the analysis, the hypotheses tested, and the root cause identified.",
+      "errorCauseCategory" : "10030012"
+    } ]
+  },
+  "stepD5" : {
+    "definePermanentCorrectiveActions" : [ {
+      "introductionDate" : "2025-03-10",
+      "causeAssignment" : "Root cause 1",
+      "proofOfEffectiveness" : "Daily inspection of the produced parts for scratches",
+      "status" : "Closed",
+      "measure" : "Introduction of camera inspection with automatic OK/nOK separation"
+    } ]
+  },
+  "stepD6" : {
+    "implementedCorrectiveMeasures" : [ {
+      "introductionDate" : "2025-03-10",
+      "causeAssignment" : "Root cause 1",
+      "proofOfEffectiveness" : "Daily inspection of the produced parts for scratches",
+      "status" : "Closed",
+      "measure" : "Introduction of camera inspection with automatic OK/nOK separation"
+    } ]
+  },
+  "stepD7" : {
+    "errorPreventiveMeasures" : [ {
+      "introductionDate" : "2025-03-10",
+      "causeAssignment" : "Root cause 1",
+      "proofOfEffectiveness" : "Daily inspection of the produced parts for scratches",
+      "status" : "Closed",
+      "measure" : "Introduction of camera inspection with automatic OK/nOK separation"
+    } ]
   },
   "stepD8" : {
-    "closingDate" : "2025-05-02",
-    "resultAssesment" : "The corrective measures are having an impact. The cause has been clearly identified and resolved."
+    "resultAssesment" : "The corrective measures are having an impact. The cause has been clearly identified and resolved.",
+    "closingDate" : "2025-05-02"
+  },
+  "stepD0" : {
+    "defineEmergencyResponseAction" : [ {
+      "introductionDate" : "2025-03-10",
+      "causeAssignment" : "Root cause 1",
+      "proofOfEffectiveness" : "Daily inspection of the produced parts for scratches",
+      "status" : "Closed",
+      "measure" : "Introduction of camera inspection with automatic OK/nOK separation"
+    } ],
+    "customerComplaintId" : "OE-123456789",
+    "problemDescription" : "The scratches on the parts lead to an increased scrap rate and affect product quality.",
+    "complaintDate" : "2025-01-01"
   }
 }

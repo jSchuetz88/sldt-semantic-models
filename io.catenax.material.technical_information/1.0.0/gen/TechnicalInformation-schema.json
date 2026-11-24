@@ -30,12 +30,16 @@
           "alpha3Code" : {
             "description" : "Country code consisting of three capital letters according to ISO 3166.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#hasAlpha3Code",
-            "$ref" : "#/components/schemas/Alpha3CodeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Alpha3CodeTrait"
+            } ]
           },
           "name" : {
             "description" : "Country name.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#label",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "alpha3Code", "name" ]
@@ -69,7 +73,9 @@
           "payload" : {
             "description" : "Base64-encoded string of PDF file",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#payload",
-            "$ref" : "#/components/schemas/PayloadCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PayloadCharacteristic"
+            } ]
           }
         },
         "required" : [ "payload" ],
@@ -85,7 +91,9 @@
           "link" : {
             "description" : "HTTP(S) address according to RFC 3986",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#link",
-            "$ref" : "#/components/schemas/ResourcePath"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ResourcePath"
+            } ]
           }
         },
         "required" : [ "link" ],
@@ -101,22 +109,30 @@
           "issueVersion" : {
             "description" : "Versioning information of the Technical Information",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#issueVersion",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "country" : {
             "description" : "Relationship between the Technical Information and the country to which it applies for.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#appliesToCountry",
-            "$ref" : "#/components/schemas/CountryTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/CountryTrait"
+            } ]
           },
           "issueDate" : {
             "description" : "Issue date of Technical Information",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#issueDate",
-            "$ref" : "#/components/schemas/IssueDateCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/IssueDateCharacteristic"
+            } ]
           },
           "language" : {
             "description" : "ISO-639-2/B code of language",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#language",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "country", "language" ]
@@ -143,12 +159,16 @@
     "technicalInformationLink" : {
       "description" : "Property that references the link representation of the Technical Information.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#technicalInformationLink",
-      "$ref" : "#/components/schemas/TechnicalInformationCharacteristicList"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/TechnicalInformationCharacteristicList"
+      } ]
     },
     "technicalInformationBinary" : {
       "description" : "Property that references the binary representation of the Technical Information.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material.technical_information:1.0.0#technicalInformationBinary",
-      "$ref" : "#/components/schemas/TechnicalInformationBinaryCharacteristicList"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/TechnicalInformationBinaryCharacteristicList"
+      } ]
     }
   },
   "required" : [ "technicalInformationLink", "technicalInformationBinary" ]

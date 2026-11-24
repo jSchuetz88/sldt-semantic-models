@@ -25,12 +25,16 @@
           "value" : {
             "description" : "The quantity value associated with the unit.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue",
-            "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/QuantityValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of an item. Common units may be related to mass, count, linear, area, volume or misc.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.quantity:3.0.0#itemUnit",
-            "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemUnitEnumeration"
+            } ]
           }
         },
         "required" : [ "value", "unit" ]
@@ -66,32 +70,44 @@
           "quantity" : {
             "description" : "Quantity of which the child part is assembled into the parent part. In general it is '1' for serialized parts.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.industry_core.single_level_usage_as_built:4.0.0#quantity",
-            "$ref" : "#/components/schemas/ItemQuantityCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ItemQuantityCharacteristic"
+            } ]
           },
           "isOnlyPotentialParent" : {
             "description" : "Expresses the certainty whether the part has been used as component or input material in the produced item. If the value is false, it can be assumed that the part has been used. If the value is true, there are alternatives for that part, and it is unknown if this part item or an alternative part item has been used.\nThis is the case when, e.g. the same item is supplied by two suppliers, and the item is only tracked by a customer part ID during assembly. Thus, these items cannot be differentiated from each other.\n",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.industry_core.single_level_usage_as_built:4.0.0#isOnlyPotentialParent",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "businessPartner" : {
             "description" : "The supplier of the given child item.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#businessPartner",
-            "$ref" : "#/components/schemas/BpnlTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnlTrait"
+            } ]
           },
           "createdOn" : {
             "description" : "Timestamp when the relation between the parent part and the child part was created",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#createdOn",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "lastModifiedOn" : {
             "description" : "Timestamp when the assembly or usage relationship between parent part and child part was last modified.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#lastModifiedOn",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "globalAssetId" : {
             "description" : "The fully anonymous ID in the dataspace of the part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           }
         },
         "required" : [ "isOnlyPotentialParent", "businessPartner", "createdOn", "globalAssetId" ]
@@ -122,17 +138,23 @@
     "parentItems" : {
       "description" : "Set of parent items, in which the given child object is assembled in (one structural level up).\n\nFor serialized items the list should contain only one parent item.\nAs different subsets of a batch might be used by a customer in different items this is a list.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.industry_core.single_level_usage_as_built:4.0.0#parentItems",
-      "$ref" : "#/components/schemas/SetOfParentItemsCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/SetOfParentItemsCharacteristic"
+      } ]
     },
     "customers" : {
       "description" : "A list of all customers of this item. If the parent items in which this item is assembled into are known, they should be listed as well.\n\nFor serialized items the list should contain only one customer with one parent item.\nAs different subsets of a batch might be sold to different customers this is a list.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#customers",
-      "$ref" : "#/components/schemas/ListOfCustomers"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ListOfCustomers"
+      } ]
     },
     "globalAssetId" : {
       "description" : "The fully anonymous ID in the dataspace of the part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     }
   },
   "required" : [ "parentItems", "customers", "globalAssetId" ]

@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/MaterialForHomologation"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        materialForHomologation:
+          type: array
+          items:
+            $ref: "#/components/schemas/MaterialForHomologation"
     ItemNumber1Trait:
       type: string
       x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#ItemNumber1Trait"
@@ -125,11 +126,13 @@ components:
         mainGroup:
           description: Main group according to material classification VDA 231-10.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#mainGroup"
-          $ref: "#/components/schemas/MainGroupTrait1"
+          allOf:
+          - $ref: "#/components/schemas/MainGroupTrait1"
         subgroup:
           description: First subgroup according to material classification VDA 231-11.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#subgroup"
-          $ref: "#/components/schemas/SubgroupTrait1"
+          allOf:
+          - $ref: "#/components/schemas/SubgroupTrait1"
       required:
       - mainGroup
       - subgroup
@@ -158,27 +161,33 @@ components:
           description: Individual component to which the materials belong (no materials
             are assigned to nodes).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#itemNumber"
-          $ref: "#/components/schemas/ItemNumber1Trait"
+          allOf:
+          - $ref: "#/components/schemas/ItemNumber1Trait"
         share:
           description: Proportion of the material.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#share"
-          $ref: "#/components/schemas/ShareCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ShareCharacteristic"
         vdaStandardId:
           description: German quality management system standard.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#vdaStandardId"
-          $ref: "#/components/schemas/VDAStandardIdCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VDAStandardIdCharacteristic"
         name:
           description: Designation of the material.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#name"
-          $ref: "#/components/schemas/NameTrait1"
+          allOf:
+          - $ref: "#/components/schemas/NameTrait1"
         standard:
           description: Standard in which the material is listed.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#standard"
-          $ref: "#/components/schemas/StandardTrait1"
+          allOf:
+          - $ref: "#/components/schemas/StandardTrait1"
         materialNumber:
           description: The number of the material in the standard.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#materialNumber"
-          $ref: "#/components/schemas/MaterialNumberTrait1"
+          allOf:
+          - $ref: "#/components/schemas/MaterialNumberTrait1"
       required:
       - itemNumber
       - share
@@ -204,7 +213,8 @@ components:
           description: Property that references the material that describes and calculate
             the recycling quota for the homologation of a vehicle type.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_for_homologation:1.0.0#materialForHomologation"
-          $ref: "#/components/schemas/MaterialForHomologationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialForHomologationCharacteristic"
       required:
       - materialForHomologation
   responses:

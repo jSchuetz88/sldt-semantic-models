@@ -98,11 +98,13 @@ components:
         key:
           description: The key of a local identifier.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#key"
-          $ref: "#/components/schemas/AllowedKeys"
+          allOf:
+          - $ref: "#/components/schemas/AllowedKeys"
         value:
           description: The value of an identifier.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#value"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - key
       - value
@@ -126,17 +128,20 @@ components:
             \ code can combine supplier name, part type, manufacturing and many more\
             \ information. A DMC string is often unique within this data provider."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#dataMatrixCode"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         nameAtManufacturer:
           description: Name of the part as assigned by the manufacturer
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#nameAtManufacturer"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         localIdentifiers:
           description: "A local identifier enables identification of a part in a specific\
             \ dataspace, but is not unique in the Catena-X dataspace. Multiple local\
             \ identifiers may exist."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#localIdentifiers"
-          $ref: "#/components/schemas/LocalIdentifierCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LocalIdentifierCharacteristic"
         customerPartId:
           description: "Part ID as assigned by the customer of the part. The customer\
             \ Part ID identifies the part (as designed)in the customer`s dataspace.\
@@ -145,7 +150,8 @@ components:
             \ IDs. \nIf no specific part ID exists a part family ID may be substituted\
             \ for it."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.industry_core.common:1.0.0#customerPartId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - nameAtManufacturer
       - customerPartId
@@ -166,17 +172,20 @@ components:
           description: "Vehicle manufacturer-specific anonymized VIN, which is still\
             \ a unique identifier within this data provider."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#anonymizedVIN"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         modelIdentifier:
           description: Vehicle manufacturer-specific model identifier or Vehicle manufacturer-specific
             project name.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.vehicles:4.0.0#modelIdentifier"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         engineId:
           description: Vehicle manufacturer-specific identifier/type of the installed
             engine
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.vehicles:4.0.0#engineId"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
       required:
       - anonymizedVIN
       - modelIdentifier
@@ -218,11 +227,13 @@ components:
         value:
           description: The quantity value associated with the unit.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#quantityValue"
-          $ref: "#/components/schemas/QuantityValueCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityValueCharacteristic"
         unit:
           description: The unit of a countable attribute.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quantity:3.0.0#countUnit"
-          $ref: "#/components/schemas/CountUnitEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/CountUnitEnumeration"
       required:
       - value
       - unit
@@ -241,21 +252,25 @@ components:
         assemblyTimestamp:
           description: Timestamp of the assembly of the given part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#assemblyTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         assemblyLineName:
           description: "The name of the assembly line in the plant, where the given\
             \ part has been assemblied into the vehicle."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#assemblyLineName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         defectPartsPerShift:
           description: Amount of defect parts per shift
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#defectPartsPerShift"
-          $ref: "#/components/schemas/CountQuantityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CountQuantityCharacteristic"
         siteIdentifier:
           description: Identifier of the plant site that uniqly identifies the plant
             within this dataspace.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#siteIdentifier"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
       required:
       - assemblyTimestamp
       - assemblyLineName
@@ -286,13 +301,13 @@ components:
       x-samm-aspect-model-urn: "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Boolean"
       description: Represents a boolean value (i.e. a "flag").
     Long:
-      type: number
+      type: integer
       minimum: -9223372036854775808
       maximum: 9223372036854775807
       x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#Long"
       description: Characteristic for a long value.
     MileageTrait:
-      type: number
+      type: integer
       minimum: -1
       maximum: 2000000
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#MileageTrait"
@@ -327,31 +342,38 @@ components:
           description: "OEM-specific: Primary key for this condition consists of unique\
             \ identifier of env. condition and DTC"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#conditionId"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         conditionCreationTimeStamp:
           description: Date and time when this condition/information was created.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#conditionCreationTimeStamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         conditionDescription:
           description: The description of the environment condition/information
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#conditionDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         conditionHexValue:
           description: Hex value of the condition.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#conditionHexValue"
-          $ref: "#/components/schemas/HexValueTrait"
+          allOf:
+          - $ref: "#/components/schemas/HexValueTrait"
         conditionNumericValue:
           description: The numeric value of the condition as double.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#conditionNumericValue"
-          $ref: "#/components/schemas/Double"
+          allOf:
+          - $ref: "#/components/schemas/Double"
         conditionTextValue:
           description: Text value of the condition.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#conditionTextValue"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         measurementUnit:
           description: The unit of measurement for the environment condition value.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#measurementUnit"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - conditionId
     EnvironmentalConditionsList:
@@ -373,7 +395,8 @@ components:
         dtcHexValue:
           description: Hex value of this DTC
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#dtcHexValue"
-          $ref: "#/components/schemas/HexValueTrait"
+          allOf:
+          - $ref: "#/components/schemas/HexValueTrait"
         fullName:
           description: "A human-readable name that is the result of the translation\
             \ of DTC hex code. There is a 1:1 relationship between DTC hex code and\
@@ -382,64 +405,77 @@ components:
             \ timestamp and the same vehicle and the same ECU only one DTC full name\
             \ can be set."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#fullName"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         fullDescription:
           description: "Description of this DTC. If description name consists of main\
             \ DTC  and failure byte, than both description strings are concatenated\
             \ using a \"-\" as separator."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#fullDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         faultPath:
           description: "OEM-specific: Fault path for this DTC. Allows further analysis"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#faultPath"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         faultPathDescription:
           description: OEM-specific description of DTC fault path
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#faultPathDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         freezeFrame:
           description: freeze frame from ecu. The freeze frame records many parameters
             of the DTC and surrounding parameters like outside temperature when the
             DTC was set. It is a very long HEX string with many OEM-specific and ECU-specific
             content in
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#freezeFrame"
-          $ref: "#/components/schemas/HexValueTrait"
+          allOf:
+          - $ref: "#/components/schemas/HexValueTrait"
         isMilOn:
           description: Describes whether this DTC sets the MIL (malfunction indicator
             light) in the dashboard.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#isMilOn"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         occurenceCounterTotal:
           description: Counter how often this DTC was set in total
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#occurenceCounterTotal"
-          $ref: "#/components/schemas/Long"
+          allOf:
+          - $ref: "#/components/schemas/Long"
         occurenceMileage:
           description: 'mileage in km when the DTC occurred the first time '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#occurenceMileage"
-          $ref: "#/components/schemas/MileageTrait"
+          allOf:
+          - $ref: "#/components/schemas/MileageTrait"
         occurenceMileageUnit:
           description: Unit of occurrence mileage - either km or mi.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#occurenceMileageUnit"
-          $ref: "#/components/schemas/MileageUnit"
+          allOf:
+          - $ref: "#/components/schemas/MileageUnit"
         occurenceTimeStamp:
           description: date and time when the DTC occurred the first time/was recorded
             the first time in the ECU
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#occurenceTimeStamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         state:
           description: "OEM-specific state of DTC: 0;1 (permanent/temporary/intermediate),\
             \ could also be a string with permanent, temporary, intermediate, ...."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#state"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         type:
           description: Indicator whether this DTC was stored as Error or Info
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#type"
-          $ref: "#/components/schemas/TypeEnumumeration"
+          allOf:
+          - $ref: "#/components/schemas/TypeEnumumeration"
         envConditions:
           description: "A list of environment conditions: E.g. outside temperature\
             \ measured by the vehicle, a specific value measured by on ECU, ...."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#envConditions"
-          $ref: "#/components/schemas/EnvironmentalConditionsList"
+          allOf:
+          - $ref: "#/components/schemas/EnvironmentalConditionsList"
       required:
       - dtcHexValue
     DTCList:
@@ -470,16 +506,19 @@ components:
         description:
           description: Description of the defect as human readable text.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#description"
-          $ref: "#/components/schemas/MultiLanguageText"
+          allOf:
+          - $ref: "#/components/schemas/MultiLanguageText"
         dtcs:
           description: A list of diagnostic trouble codes.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#dtcs"
-          $ref: "#/components/schemas/DTCList"
+          allOf:
+          - $ref: "#/components/schemas/DTCList"
         parentItems:
           description: "List of references to related items, e.g. quality tasks. The\
             \ references are unique within this data space."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#parentItems"
-          $ref: "#/components/schemas/ParentItemsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ParentItemsCharacteristic"
       required:
       - description
     DefectCharacteristic:
@@ -501,21 +540,25 @@ components:
           description: Describes and identifies the given part which is suspected
             to cause the zero kilometre failure.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#partInformation"
-          $ref: "#/components/schemas/PartInformationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PartInformationCharacteristic"
         vehicle:
           description: 'Describes and identifies the vehicle or subassambly  in which
             the part has been assemblied into. '
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#vehicle"
-          $ref: "#/components/schemas/VehicleCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VehicleCharacteristic"
         plantInformation:
           description: Information on the plant at which the failure has been discovered
             (during assembly) for a given part.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#plantInformation"
-          $ref: "#/components/schemas/PlantCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PlantCharacteristic"
         defect:
           description: Defect related data
           x-samm-aspect-model-urn: "urn:samm:io.catenax.zero_km_failure:1.0.0#defect"
-          $ref: "#/components/schemas/DefectCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DefectCharacteristic"
       required:
       - partInformation
       - vehicle

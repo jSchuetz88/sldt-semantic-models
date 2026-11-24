@@ -28,12 +28,16 @@
           "automotive" : {
             "description" : "Share of automotive material",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#automotive",
-            "$ref" : "#/components/schemas/MaterialShareTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MaterialShareTrait"
+            } ]
           },
           "nonAutomotive" : {
             "description" : "Share of non-automotive material.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#nonAutomotive",
-            "$ref" : "#/components/schemas/MaterialShareTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MaterialShareTrait"
+            } ]
           }
         },
         "required" : [ "automotive", "nonAutomotive" ]
@@ -54,12 +58,16 @@
           "secondaryMaterial" : {
             "description" : "Material share from all materials obtained from waste, by-products and production residues sources. In the material cycle diagrams, this corresponds to the material flows PrC, PoC and ReU-M.  This includes substances and mixtures of substances that are intended for the manufacture of products. This can include both secondary raw materials and more highly processed substances and mixtures of substances. Secondary material can be used as a substitute for primary material in processes.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#secondaryMaterial",
-            "$ref" : "#/components/schemas/MaterialShareTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MaterialShareTrait"
+            } ]
           },
           "primaryMaterial" : {
             "description" : "Material share from Substances and mixtures of substances intended for the manufacture of products and used for the first time in a production process. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#primaryMaterial",
-            "$ref" : "#/components/schemas/MaterialShareTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/MaterialShareTrait"
+            } ]
           }
         },
         "required" : [ "secondaryMaterial", "primaryMaterial" ]
@@ -89,37 +97,51 @@
     "reutilizationMaterialShare" : {
       "description" : "Material share from reutilization of materials such as rework, regrind, or scrap materials generated within the process and capable of being reused within the same process that generated it.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#reutilizationMaterialShare",
-      "$ref" : "#/components/schemas/MaterialShareTrait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MaterialShareTrait"
+      } ]
     },
     "origin" : {
       "description" : "Information on material origin.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#origin",
-      "$ref" : "#/components/schemas/OriginEnumeration"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/OriginEnumeration"
+      } ]
     },
     "preConsumerShares" : {
       "description" : "Set of pre consumer material shares.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#preConsumerShares",
-      "$ref" : "#/components/schemas/ConsumerShareCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ConsumerShareCharacteristic"
+      } ]
     },
     "postConsumerShares" : {
       "description" : "Set of post consumer material shares.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#postConsumerShares",
-      "$ref" : "#/components/schemas/ConsumerShareCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ConsumerShareCharacteristic"
+      } ]
     },
     "materialSourceShares" : {
       "description" : "Shares of primary and secondary materials",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#materialSourceShares",
-      "$ref" : "#/components/schemas/MaterialSourceSingleEntity"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MaterialSourceSingleEntity"
+      } ]
     },
     "otherInformation" : {
       "description" : "Document or evidence verifying the origin, quality, or compliance of a material",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#otherInformation",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "globalAssetId" : {
       "description" : "The fully anonymous ID in the dataspace of the part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     }
   },
   "required" : [ "reutilizationMaterialShare", "origin", "preConsumerShares", "postConsumerShares", "materialSourceShares", "otherInformation", "globalAssetId" ]

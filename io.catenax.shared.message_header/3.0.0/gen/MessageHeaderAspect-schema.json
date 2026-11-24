@@ -42,42 +42,58 @@
           "messageId" : {
             "description" : "Unique ID identifying the message. The purpose of the ID is to uniquely identify a single message, therefore it MUST not be reused.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:3.0.0#messageId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "context" : {
             "description" : "Information about the context the message should be considered in.\nThe value MUST consist of two parts: an identifier of the context (e.g. business domain, etc.) followed by a version number.\nBoth the identifier and the version number MUST correspond to the content of the message.\nIf the content of a message is described by an aspect model available in the Catena-X Semantic Hub, then the unique identifier of this semantic model (e.g. urn:samm:io.catenax.<ASPECT-MODEL-NAME>:1.x.x) MUST be used as a value of the context field. This is considered the default case.\nIn all other cases the value of the context field MUST follow the pattern <domain>-<subdomain>-<object>:<[major] version> (e.g. TRACE-QM-Alert:1.x.x).\nVersioning only refers to major versions in both default and fallback cases.\nNote: The version of the message's header is specified in the version field.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:3.0.0#context",
-            "$ref" : "#/components/schemas/ContextCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ContextCharacteristic"
+            } ]
           },
           "sentDateTime" : {
             "description" : "Time zone aware timestamp holding the date and the time the message was sent by the sending party. The value MUST be formatted according to the ISO 8601 standard",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:3.0.0#sentDateTime",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "senderBpn" : {
             "description" : "The Business Partner Number of the sending party. The value MUST be a valid BPN. BPNA and BPNS are not allowed. Applicable constraints are defined in the corresponding standard",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:3.0.0#senderBpn",
-            "$ref" : "#/components/schemas/BpnlTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnlTrait"
+            } ]
           },
           "receiverBpn" : {
             "description" : "The Business Partner Number of the receiving party. The value MUST be a valid BPN. BPNA and BPNS are not allowed. Applicable constraints are defined in the corresponding standard.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:3.0.0#receiverBpn",
-            "$ref" : "#/components/schemas/BpnlTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnlTrait"
+            } ]
           },
           "expectedResponseBy" : {
             "description" : "Time zone aware timestamp holding the date and time by which the sending party expects a certain type of response from the receiving party. The meaning and interpretation of the fields's value are context-bound and MUST therefore be defined by any business domain or platform capability making use of it. The value MUST be formatted according to the ISO 8601 standard",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:3.0.0#expectedResponseBy",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "relatedMessageId" : {
             "description" : "Unique ID identifying a message somehow related to the current one",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:3.0.0#relatedMessageId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "version" : {
             "description" : "The unique identifier of the aspect model defining the structure and the semantics of the message's header. The version number should reflect the versioning schema of aspect models in Catena-X.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:3.0.0#version",
-            "$ref" : "#/components/schemas/SemanticVersioningTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SemanticVersioningTrait"
+            } ]
           }
         },
         "required" : [ "messageId", "context", "sentDateTime", "senderBpn", "receiverBpn", "version" ]
@@ -88,7 +104,9 @@
     "header" : {
       "description" : "Contains standardized attributes for message processing common across several use cases.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.message_header:3.0.0#header",
-      "$ref" : "#/components/schemas/HeaderCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/HeaderCharacteristic"
+      } ]
     }
   },
   "required" : [ "header" ]

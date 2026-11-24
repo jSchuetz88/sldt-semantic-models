@@ -88,7 +88,7 @@ components:
       description: Currency Characteristic is used for all currency related aspects
         having a positive float values
     BillableMinutesCharacteristic:
-      type: number
+      type: integer
       minimum: 1
       x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#BillableMinutesCharacteristic"
       description: Characteristic used for time related values (minutes)
@@ -122,122 +122,149 @@ components:
             you combine the BPNL of the data provider with this claim ID you get a
             unique claim ID in the data space.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#claimId"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         billingId:
           description: A unique identifier for one billing. It is data provider individual.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#billingId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         billingDate:
           description: "References the date when the claim was billed. Date format:\
             \ ISO (JJJJ-MM-DD)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#billingDate"
-          $ref: "#/components/schemas/ISO8601LocalDate"
+          allOf:
+          - $ref: "#/components/schemas/ISO8601LocalDate"
         repairIndicator:
           description: A unique identifier for one type of activity. It is data provider
             individual.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#repairIndicator"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         recoveryType:
           description: A unique identifier for one type of recovery. It is data provider
             individual.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#recoveryType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         warrantyType:
           description: A unique identifier for one type of warranty. It is data provider
             individual.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#warrantyType"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         recoveryGroupCode:
           description: A unique code for one specific part family (technically similar
             to Product Groups).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#recoveryGroupCode"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         recoveryGroupName:
           description: A name for one specific part family (technically similar to
             Product Groups).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#recoveryGroupName"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         billedCurrency:
           description: Billing currency according to ISO 4217 (latest version)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#billedCurrency"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         billedAmount:
           description: Billing amount for the specific repair.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#billedAmount"
-          $ref: "#/components/schemas/CurrencyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CurrencyCharacteristic"
         billedTF:
           description: Technical Factor which is charged
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#billedTF"
-          $ref: "#/components/schemas/CurrencyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CurrencyCharacteristic"
         repairCostsTF100:
           description: Cost for the repair - overall
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#repairCostsTF100"
-          $ref: "#/components/schemas/CurrencyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CurrencyCharacteristic"
         materialCosts:
           description: Cost for the repair - parts
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#materialCosts"
-          $ref: "#/components/schemas/CurrencyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CurrencyCharacteristic"
         laborCosts:
           description: Labor costs for the repair
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#laborCosts"
-          $ref: "#/components/schemas/CurrencyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CurrencyCharacteristic"
         otherCosts:
           description: "Cost for the repair - others (consumables, handling fees,\
             \ etc.)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#otherCosts"
-          $ref: "#/components/schemas/CurrencyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CurrencyCharacteristic"
         hourlyRate:
           description: Individual hourly rate per OEM / per country
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#hourlyRate"
-          $ref: "#/components/schemas/CurrencyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CurrencyCharacteristic"
         globalLaborCode:
           description: Code for OEM specific definition of the repair performed /
             billed
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#globalLaborCode"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         globalLaborCodeDesc:
           description: Description for OEM specific definition of the repair performed
             / billed
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#globalLaborCodeDesc"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         baseLaborTime:
           description: Labor time (minutes) - base labor
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#baseLaborTime"
-          $ref: "#/components/schemas/BillableMinutesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BillableMinutesCharacteristic"
         otherLaborTime:
           description: Labor time (minutes) - other
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#otherLaborTime"
-          $ref: "#/components/schemas/BillableMinutesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BillableMinutesCharacteristic"
         supplementalLaborTime:
           description: Labor time (minutes) - supplemental
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#supplementalLaborTime"
-          $ref: "#/components/schemas/BillableMinutesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BillableMinutesCharacteristic"
         diagnosticLaborTime:
           description: Labor time (minutes) - diagnostic
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#diagnosticLaborTime"
-          $ref: "#/components/schemas/BillableMinutesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BillableMinutesCharacteristic"
         totalTime:
           description: Labor time (minutes) - total
           x-samm-aspect-model-urn: "urn:samm:io.catenax.warranty_claim_request:1.0.0#totalTime"
-          $ref: "#/components/schemas/BillableMinutesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BillableMinutesCharacteristic"
         qualityTaskId:
           description: A unique quality task identifier within this data-space.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#qualityTaskId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         vehicleId:
           description: A unique identifier for this vehicle in data-space. This property
             is optional as of now not all vehicles have this identifier assigned.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#vehicleId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         anonymizedVIN:
           description: "Vehicle manufacturer-specific anonymized VIN, which is still\
             \ a unique identifier within this data provider."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#anonymizedVIN"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         bpnsProperty:
           description: Property based on a BPNS.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.business_partner_number:2.0.0#bpnsProperty"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
       required:
       - claimId
       - billingId

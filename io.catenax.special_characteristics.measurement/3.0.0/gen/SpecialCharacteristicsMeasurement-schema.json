@@ -53,32 +53,44 @@
           "identifier" : {
             "description" : "Identifier of the individual measurement object.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#identifier",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "measurementTimestamp" : {
             "description" : "Timestamp when the measurement was taken.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#measurementTimestamp",
-            "$ref" : "#/components/schemas/Timestamp"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Timestamp"
+            } ]
           },
           "value" : {
             "description" : "The actual value of the measurement for special characteristics.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#value",
-            "$ref" : "#/components/schemas/ValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ValueCharacteristic"
+            } ]
           },
           "unit" : {
             "description" : "The unit of the measurement object, expressed via the SAMM / UNECE common unit catalog.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#unit",
-            "$ref" : "#/components/schemas/UnitReference"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UnitReference"
+            } ]
           },
           "description" : {
             "description" : "Detailed description of the measurement object.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#description",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "attachmentUrl" : {
             "description" : "Optional reference (URI) to a related artifact, e.g. an image documenting the measurement. Replaces the previous practice of embedding image links inside the description text.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#attachmentUrl",
-            "$ref" : "#/components/schemas/AttachmentUrlCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/AttachmentUrlCharacteristic"
+            } ]
           }
         },
         "required" : [ "identifier", "measurementTimestamp", "value", "description" ]
@@ -97,27 +109,37 @@
     "manufacturerBpn" : {
       "description" : "Business Partner Number (BPNL, BPNS or BPNA) of the manufacturer of the related product. Kept deliberately, although also available via the digital twin, to enable cross-referencing.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#manufacturerBpn",
-      "$ref" : "#/components/schemas/AnyBpnCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/AnyBpnCharacteristic"
+      } ]
     },
     "revisionIndex" : {
       "description" : "This attribute contains the revision index of the special characteristic; it is necessary to identify a special characteristic.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#revisionIndex",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "characteristicId" : {
       "description" : "Identifier of the special characteristic in relation to a specified part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#characteristicId",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "measurementType" : {
       "description" : "The type of the measurement. Constrained to a fixed set of supported measurement types.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#measurementType",
-      "$ref" : "#/components/schemas/MeasurementTypeEnumeration"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MeasurementTypeEnumeration"
+      } ]
     },
     "results" : {
       "description" : "List of measurement objects regarding the special characteristic of a specific part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.special_characteristics.measurement:3.0.0#results",
-      "$ref" : "#/components/schemas/ResultList"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ResultList"
+      } ]
     }
   },
   "required" : [ "manufacturerBpn", "revisionIndex", "characteristicId", "measurementType", "results" ]

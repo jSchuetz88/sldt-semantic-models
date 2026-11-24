@@ -101,7 +101,7 @@ components:
       - Front-Wheel Drive
       - Rear-Wheel Drive
     EnginePower:
-      type: number
+      type: integer
       x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#EnginePower"
       description: Engine power expressed in kilowatt.
     Hybridization:
@@ -131,23 +131,26 @@ components:
             \ the vehicle identification number.\nA list of in NHTSA registered wmiCodes\
             \ can be found in attribute Wmi in table [vPICList_lite].[dbo].[Wmi] "
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#wmiCode"
-          $ref: "#/components/schemas/OemShortNameTrait"
+          allOf:
+          - $ref: "#/components/schemas/OemShortNameTrait"
         wmiDescription:
           description: |-
             Name of OEM according NHTSA or other authorities. Has to be compliant with/linked wmiCode attribute.
             For NHTSA: name of table [vPICList_lite].[dbo].[Manufacturer]
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#wmiDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         cxBPN:
           description: Catena-X business partner number of this company.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#cxBPN"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - wmiCode
       - wmiDescription
       - cxBPN
     PositiveNumber:
-      type: number
+      type: integer
       minimum: 1
       x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#PositiveNumber"
     KbaVariant:
@@ -200,24 +203,29 @@ components:
         numberOfDoors:
           description: Describes the number of doors of a vehicle.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#numberOfDoors"
-          $ref: "#/components/schemas/PositiveNumber"
+          allOf:
+          - $ref: "#/components/schemas/PositiveNumber"
         colorId:
           description: Colour code describes the code of a specific colour of a vehicle.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#colorId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         colorDescription:
           description: Colour name describes the colour of the colour code as a written
             word.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#colorDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         kbaBody:
           description: Vehicle variant - Body shapes according German KBA
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#kbaBody"
-          $ref: "#/components/schemas/KbaVariant"
+          allOf:
+          - $ref: "#/components/schemas/KbaVariant"
         nhtsaBody:
           description: Vehicle variant - Body shapes according US NHTSA
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#nhtsaBody"
-          $ref: "#/components/schemas/NhtsaVariant"
+          allOf:
+          - $ref: "#/components/schemas/NhtsaVariant"
       required:
       - numberOfDoors
       - colorId
@@ -230,16 +238,19 @@ components:
         equipmentIdentifier:
           description: The identifier of a specific equipment.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#equipmentIdentifier"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         equipmentDescription:
           description: The equipment variants description.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#equipmentDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         group:
           description: Bundels all equipment-oriented information into categories
             like Interior
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#group"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - equipmentIdentifier
       - equipmentDescription
@@ -265,15 +276,18 @@ components:
         productionDate:
           description: Production date of the vehicle
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#productionDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         plantIdentifier:
           description: Plant id of the final assembly of the vehicle
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#plantIdentifier"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         plantDescription:
           description: Long name of the production plant of the vehicle
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#plantDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - productionDate
       - plantIdentifier
@@ -291,21 +305,24 @@ components:
         soldDate:
           description: Sold date of the vehicle = warranty start date for this vehicle
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#soldDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         countryCode:
           description: Vehicle sold country in ISO 8601 alpha 3
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#countryCode"
-          $ref: "#/components/schemas/CountryCodeTrait"
+          allOf:
+          - $ref: "#/components/schemas/CountryCodeTrait"
         countryGroup:
           description: Region where this car was sold
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#countryGroup"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - soldDate
       - countryCode
       - countryGroup
     CubicCapacity:
-      type: number
+      type: integer
       x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#CubicCapacity"
       description: Cubic capacity of the engine
     Engine:
@@ -316,36 +333,44 @@ components:
         engineId:
           description: OEM-specific identifier/type of the installed engine
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#engineId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         engineDescription:
           description: Description of the engine
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#engineDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         engineSeries:
           description: Engine series as defined by OEM
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#engineSeries"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         serialNumber:
           description: Serial number of the installed engine
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#serialNumber"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         size:
           description: Cubic capacity in a combustion engine  - not available in battery-electric
             vehicles
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#size"
-          $ref: "#/components/schemas/CubicCapacity"
+          allOf:
+          - $ref: "#/components/schemas/CubicCapacity"
         power:
           description: Engine power is the power that an engine can put out
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#power"
-          $ref: "#/components/schemas/EnginePower"
+          allOf:
+          - $ref: "#/components/schemas/EnginePower"
         engineProductionDate:
           description: Date when the engine was produced
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#engineProductionDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         installDate:
           description: Date when the engine was installed
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#installDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
       required:
       - engineId
       - engineDescription
@@ -432,11 +457,13 @@ components:
         kbaFuelType:
           description: Description of the fuel according german KBA
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#kbaFuelType"
-          $ref: "#/components/schemas/FuelKBA"
+          allOf:
+          - $ref: "#/components/schemas/FuelKBA"
         nhtsaFuelType:
           description: Description of the fuel according US NHTSA
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#nhtsaFuelType"
-          $ref: "#/components/schemas/FuelNHTSA"
+          allOf:
+          - $ref: "#/components/schemas/FuelNHTSA"
     VehicleCharacteristic:
       description: This chracteristic bundles all general vehicle data.
       x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#VehicleCharacteristic"
@@ -446,57 +473,69 @@ components:
           description: OEM-specific hashed VIN; link to car data over pseydomized/hashed
             VIN or Catena-X unique digital twin identifier.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#anonymizedVin"
-          $ref: "#/components/schemas/UniqueID"
+          allOf:
+          - $ref: "#/components/schemas/UniqueID"
         catenaXId:
           description: "A fully anonymous Catena-X identifier that is registered in\
             \ C-X Digital twin registry. Can be used for vehicles, parts, workshops,\
             \ ....."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#catenaXId"
-          $ref: "#/components/schemas/CatenaXIdTrait"
+          allOf:
+          - $ref: "#/components/schemas/CatenaXIdTrait"
         vehicleSeries:
           description: "vehicle series, normally one level above model. E.g. vehicle\
             \ series =\"Golf\", vehicle model=\"Golf VIII\""
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#vehicleSeries"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         modelDescription:
           description: Detail vehicle model like "Golf VIII"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#modelDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         modelIdentifier:
           description: OEM-specific model identifier or OEM-specific project name.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#modelIdentifier"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         class:
           description: Class of the vehicle.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#class"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         steeringPos:
           description: "Position of vehicle steering wheel, Left or right."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#steeringPos"
-          $ref: "#/components/schemas/VehicleSteeringPos"
+          allOf:
+          - $ref: "#/components/schemas/VehicleSteeringPos"
         emptyWeight:
           description: The empty weight of the vehicle in kg as specified.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#emptyWeight"
-          $ref: "#/components/schemas/Weight"
+          allOf:
+          - $ref: "#/components/schemas/Weight"
         driveType:
           description: Drive type of a vehicle according enumeration.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#driveType"
-          $ref: "#/components/schemas/DriveTypeNHTSA"
+          allOf:
+          - $ref: "#/components/schemas/DriveTypeNHTSA"
         systemPower:
           description: Complete power of this vehicle in KW.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#systemPower"
-          $ref: "#/components/schemas/EnginePower"
+          allOf:
+          - $ref: "#/components/schemas/EnginePower"
         hybridizationType:
           description: Degree of hybridization in this vehicle.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#hybridizationType"
-          $ref: "#/components/schemas/Hybridization"
+          allOf:
+          - $ref: "#/components/schemas/Hybridization"
         softwareCategory:
           description: |-
             Some OEMs bring in the software as complete package for all systems:
             To identify this software: software category and software version is needed.
             Software category when this car was built.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#softwareCategory"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         softwareVersion:
           description: |-
             Some OEMs brings in the software as complete package for all systems:
@@ -504,35 +543,43 @@ components:
             Software version when this car was built
             .
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#softwareVersion"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         oem:
           description: Original equipment manufacturer.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#oem"
-          $ref: "#/components/schemas/OEMCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OEMCharacteristic"
         body:
           description: Vehicle body.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#body"
-          $ref: "#/components/schemas/BodyCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/BodyCharacteristic"
         equipments:
           description: Equipments.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#equipments"
-          $ref: "#/components/schemas/Equipments"
+          allOf:
+          - $ref: "#/components/schemas/Equipments"
         production:
           description: This property bundles production-related information.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#production"
-          $ref: "#/components/schemas/ProductionCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ProductionCharacteristic"
         sale:
           description: This property bundles all sales related information.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#sale"
-          $ref: "#/components/schemas/SaleCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/SaleCharacteristic"
         engines:
           description: List of installed engines in the vehicle.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#engines"
-          $ref: "#/components/schemas/Engines"
+          allOf:
+          - $ref: "#/components/schemas/Engines"
         fuel:
           description: The fuel type of the vehicle.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#fuel"
-          $ref: "#/components/schemas/FuelCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/FuelCharacteristic"
       required:
       - anonymizedVin
       - vehicleSeries
@@ -560,7 +607,8 @@ components:
         vehicle:
           description: "A vehicle can be a car, bus, truck..."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.vehicle.product_description:3.0.0#vehicle"
-          $ref: "#/components/schemas/VehicleCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VehicleCharacteristic"
       required:
       - vehicle
   responses:

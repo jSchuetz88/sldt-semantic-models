@@ -5,10 +5,10 @@
       "unit" : "unit:piece"
     },
     "hasAlternatives" : false,
-    "globalAssetId" : "urn:uuid:Dc32a2AF-085E-b44C-00A1-BF146EABa30B",
+    "lastModifiedOn" : "2022-02-03T14:48:54.709Z",
     "createdOn" : "2022-02-03T14:48:54.709Z",
-    "businessPartner" : "BPNL50096894aNXY",
-    "lastModifiedOn" : "2022-02-03T14:48:54.709Z"
+    "globalAssetId" : "07E2FA06-DD9d-246b-2A64-df56AdFafD5d",
+    "businessPartner" : "BPNL50096894aNXY"
   } ],
-  "globalAssetId" : "dF687aE8-E7CE-Bf1f-6E4F-3843BBC61b95"
+  "globalAssetId" : "urn:uuid:Aefb8C0F-6c1b-AeaF-E4FD-e0d2FecA67F2"
 }

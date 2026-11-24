@@ -1,90 +1,90 @@
 {
-  "flagAnonymous" : false,
-  "incidentStatusInformation" : "new",
-  "essIncidentIssuerLastName" : "Testuser Last name",
+  "productCommodity" : "Tire",
+  "productDescription" : "Natural Rubber",
   "rawMaterial" : "Natural Rubber",
-  "industry" : "Extraction of raw materials",
-  "subCaseOpCoIds" : "9f47b3c8-b6d4-44f1-99ba-6bdb33916cac, 9f47b3c8-b6d4-44f1-99ba-6bdb33916cad",
+  "industry" : "Extraction of raw material",
+  "incidentCategory" : "Social",
   "incidentSubcategory" : "Child labour",
   "incidentSubject" : "Child labour on rubber producer Farm A",
-  "essIncidentIssuerAddress" : {
-    "locality" : {
-      "value" : "Mannheim",
-      "technicalKey" : "BLOCK"
-    },
-    "country" : {
-      "shortName" : "JF-3L8"
-    },
-    "postCode" : {
-      "value" : "98765-4321",
-      "technicalKey" : "CEDEX"
-    },
-    "thoroughfare" : {
-      "value" : "Bernstrasse",
-      "number" : "45",
-      "technicalKey" : "STREET"
-    },
-    "premise" : {
-      "value" : "Werk 1",
-      "technicalKey" : "BUILDING"
-    },
-    "postalDeliveryPoint" : {
-      "value" : "Tor 1",
-      "technicalKey" : "INTERURBAN_DELIVERY_POINT"
-    }
-  },
-  "essOriginatorCompanyName" : "Rubbery Ltd.",
-  "essOriginatorCountrySubdivision" : "BR-SP",
-  "productCommodity" : "Tire",
-  "essOriginatorAddress" : {
-    "locality" : {
-      "value" : "Mannheim",
-      "technicalKey" : "BLOCK"
-    },
-    "country" : {
-      "shortName" : ""
-    },
-    "postCode" : {
-      "value" : "98765-4321",
-      "technicalKey" : "CEDEX"
-    },
-    "thoroughfare" : {
-      "value" : "Bernstrasse",
-      "number" : "45",
-      "technicalKey" : "STREET"
-    },
-    "premise" : {
-      "value" : "Werk 1",
-      "technicalKey" : "BUILDING"
-    },
-    "postalDeliveryPoint" : {
-      "value" : "Tor 1",
-      "technicalKey" : "INTERURBAN_DELIVERY_POINT"
-    }
-  },
-  "incidentCategory" : "Environmental",
-  "incidentAttachment" : "telnet://192.0.2.16:80/",
-  "productDescription" : "Natural Rubber",
-  "essOriginatorBpnA" : "BPNA1234567890ZZ",
-  "essIncidentIssuerPhoneNo" : "+49-123-456789",
   "incidentExternalSubject" : "Child labour on a rubber producer farm",
-  "incidentShareFlag" : false,
+  "incidentDescription" : "Child labour at production site of the rubber producer Farm A in Brazil",
   "incidentExternalNotes" : "Child labour at production site of a rubber producer in Brazil",
-  "essIncidentIssuerFirstName" : "Testuser First name",
-  "essIncidentIssuerId" : "9a47b3c8-b6d4-44f1-99ba-6bdb33916cac",
+  "incidentAttachment" : "https://example.com/1LdKocyYRE",
+  "systemDate" : "2022-08-31T23:22:12Z",
+  "incidentDate" : "2022-08-31T00:00:00Z",
+  "incidentId" : "9f47b3c8-b6d4-44f1-99ba-6bdb33916cac",
   "masterOpCoId" : "9f47b3c8-b6d4-44f1-99ba-6bdb33916cac",
+  "incidentDisplayId" : "123456789101",
+  "incidentStatusInformation" : "new",
+  "incidentShareFlag" : false,
+  "subCaseOpCoIds" : "9f47b3c8-b6d4-44f1-99ba-6bdb33916cac, 9f47b3c8-b6d4-44f1-99ba-6bdb33916cad",
   "incidentSystemId" : "123456789",
+  "essOriginatorCompanyName" : "Rubbery Ltd.",
+  "essOriginatorAddress" : {
+    "thoroughfare" : {
+      "technicalKey" : "STREET",
+      "value" : "Bernstrasse",
+      "number" : "45"
+    },
+    "locality" : {
+      "technicalKey" : "CITY",
+      "value" : "Mannheim"
+    },
+    "premise" : {
+      "technicalKey" : "OTHER",
+      "value" : "Werk 1"
+    },
+    "postalDeliveryPoint" : {
+      "technicalKey" : "OTHER",
+      "value" : "Tor 1"
+    },
+    "country" : {
+      "shortName" : "PY-CO"
+    },
+    "postCode" : {
+      "value" : "98765-4321",
+      "technicalKey" : "CEDEX"
+    }
+  },
   "essOriginatorBpnL" : "BPNL1234567890ZZ",
+  "essOriginatorBpnS" : "BPNS1234567890ZZ",
+  "essOriginatorBpnA" : "BPNA1234567890ZZ",
   "essOriginatorCoordinates" : {
     "longitude" : "-79.517415",
     "latitude" : "-5.422077"
   },
-  "essIncidentIssuerCountrySubdivision" : "IN-AP",
+  "essIncidentIssuerFirstName" : "Testuser First name",
   "essIncidentIssuerEmailAddress" : "test@example.com",
-  "essOriginatorBpnS" : "BPNS1234567890ZZ",
-  "systemDate" : "2022-08-31T23:22:12Z",
-  "incidentDisplayId" : "123456789101",
-  "incidentDate" : "2022-08-31T00:00:00Z",
-  "incidentId" : "9f47b3c8-b6d4-44f1-99ba-6bdb33916cac",
-  "incidentDescription" : "Child labour at production site of the rubber producer Farm A in Brazil"
+  "essIncidentIssuerPhoneNo" : "+49-123-456789",
+  "flagAnonymous" : false,
+  "essIncidentIssuerId" : "9a47b3c8-b6d4-44f1-99ba-6bdb33916cac",
+  "essIncidentIssuerAddress" : {
+    "thoroughfare" : {
+      "technicalKey" : "STREET",
+      "value" : "Bernstrasse",
+      "number" : "45"
+    },
+    "locality" : {
+      "technicalKey" : "CITY",
+      "value" : "Mannheim"
+    },
+    "premise" : {
+      "technicalKey" : "OTHER",
+      "value" : "Werk 1"
+    },
+    "postalDeliveryPoint" : {
+      "technicalKey" : "OTHER",
+      "value" : "Tor 1"
+    },
+    "country" : {
+      "shortName" : "PY-CO"
+    },
+    "postCode" : {
+      "value" : "98765-4321",
+      "technicalKey" : "CEDEX"
+    }
+  },
+  "essIncidentIssuerLastName" : "Testuser Last name",
+  "essOriginatorCountrySubdivision" : "BR-SP",
+  "essIncidentIssuerCountrySubdivision" : "IN-AP"
 }

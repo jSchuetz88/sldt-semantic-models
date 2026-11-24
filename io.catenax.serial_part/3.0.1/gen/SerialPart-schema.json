@@ -30,12 +30,16 @@
           "key" : {
             "description" : "The key of a local identifier. ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#key",
-            "$ref" : "#/components/schemas/KeyTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/KeyTrait"
+            } ]
           },
           "value" : {
             "description" : "The value of an identifier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#value",
-            "$ref" : "#/components/schemas/ValueCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ValueCharacteristic"
+            } ]
           }
         },
         "required" : [ "key", "value" ]
@@ -81,12 +85,16 @@
           "catenaXsiteId" : {
             "description" : "The identifier of the site according to Catena-X BPDM. The catenaXsiteId must be a valid Catena-X BPN. The BPN is a unique, unchangeable identifier for Business Partners / company locations from foundation to closure, regardless of the different business relationships / structures between or within the Business Partners or company locations.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_site_information_as_built:2.0.0#catenaXsiteId",
-            "$ref" : "#/components/schemas/BpnsTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/BpnsTrait"
+            } ]
           },
           "function" : {
             "description" : "The function of the site in relation to the part(i.e. the activity within the value chain of the part that is performed at the site)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_site_information_as_built:2.0.0#function",
-            "$ref" : "#/components/schemas/FunctionCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/FunctionCharacteristic"
+            } ]
           }
         },
         "required" : [ "catenaXsiteId", "function" ]
@@ -108,17 +116,23 @@
           "date" : {
             "description" : "Timestamp of the manufacturing date as the final step in production process (e.g. final quality check, ready-for-shipment event)",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#date",
-            "$ref" : "#/components/schemas/DateTimeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/DateTimeTrait"
+            } ]
           },
           "country" : {
             "description" : "Country code where the part was manufactured",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#country",
-            "$ref" : "#/components/schemas/ProductionCountryCodeTrait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ProductionCountryCodeTrait"
+            } ]
           },
           "sites" : {
             "description" : "A site is a delimited geographical area where a legal entity does business(geographical address with geo coordinates).A site always has a primary physical address. It is possible that further physical addresses are specified for the site. P.O. box details are only possible in addition to the physical address. A site has a 1:n relation to addresses, means at least 1 address is necessary and multiple addresses are possible.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_site_information_as_built:2.0.0#sites",
-            "$ref" : "#/components/schemas/SitesCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SitesCharacteristic"
+            } ]
           }
         },
         "required" : [ "date" ]
@@ -156,17 +170,23 @@
           "classificationStandard" : {
             "description" : "Identified classification standards that align to the Catena-X needs.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_classification:1.0.0#classificationStandard",
-            "$ref" : "#/components/schemas/ClassificationStandardCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ClassificationStandardCharacteristic"
+            } ]
           },
           "classificationID" : {
             "description" : "The classification ID of the part type according to the corresponding standard definition mentioned in the key value pair.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_classification:1.0.0#classificationID",
-            "$ref" : "#/components/schemas/ClassificationIDCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ClassificationIDCharacteristic"
+            } ]
           },
           "classificationDescription" : {
             "description" : "Optional property describing the classification standard.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_classification:1.0.0#classificationDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "classificationStandard", "classificationID" ]
@@ -188,27 +208,37 @@
           "manufacturerPartId" : {
             "description" : "Part ID as assigned by the manufacturer of the part. The Part ID identifies the part (as designed)in the manufacturer`s dataspace. The Part ID does not reference a specific instance of a part and thus should not be confused with the serial number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#manufacturerPartId",
-            "$ref" : "#/components/schemas/PartIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartIdCharacteristic"
+            } ]
           },
           "customerPartId" : {
             "description" : "Part ID as assigned by the manufacturer of the part. The Part ID identifies the part (as designed)in the customer`s dataspace. The Part ID does not reference a specific instance of a part and thus should not be confused with the serial number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#customerPartId",
-            "$ref" : "#/components/schemas/PartIdCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartIdCharacteristic"
+            } ]
           },
           "nameAtManufacturer" : {
             "description" : "Name of the part as assigned by the manufacturer",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#nameAtManufacturer",
-            "$ref" : "#/components/schemas/PartNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartNameCharacteristic"
+            } ]
           },
           "nameAtCustomer" : {
             "description" : "Name of the part as assigned by the customer",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#nameAtCustomer",
-            "$ref" : "#/components/schemas/PartNameCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/PartNameCharacteristic"
+            } ]
           },
           "partClassification" : {
             "description" : "Property describing the classification of a part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.part_classification:1.0.0#partClassification",
-            "$ref" : "#/components/schemas/ClassificationCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ClassificationCharacteristic"
+            } ]
           }
         },
         "required" : [ "manufacturerPartId", "nameAtManufacturer" ]
@@ -219,22 +249,30 @@
     "catenaXId" : {
       "description" : "The fully anonymous Catena-X ID of the serialized part, valid for the Catena-X dataspace.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#catenaXId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "localIdentifiers" : {
       "description" : "A local identifier enables identification of a part in a specific dataspace, but is not unique in Catena-X dataspace. Multiple local identifiers may exist.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#localIdentifiers",
-      "$ref" : "#/components/schemas/LocalIdentifierCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/LocalIdentifierCharacteristic"
+      } ]
     },
     "manufacturingInformation" : {
       "description" : "Information from manufacturing process, such as manufacturing date and manufacturing country",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#manufacturingInformation",
-      "$ref" : "#/components/schemas/ManufacturingCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/ManufacturingCharacteristic"
+      } ]
     },
     "partTypeInformation" : {
       "description" : "The part type from which the serialized part has been instantiated",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.serial_part:3.0.1#partTypeInformation",
-      "$ref" : "#/components/schemas/PartTypeInformationCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PartTypeInformationCharacteristic"
+      } ]
     }
   },
   "required" : [ "catenaXId", "localIdentifiers", "manufacturingInformation", "partTypeInformation" ]

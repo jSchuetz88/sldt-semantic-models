@@ -83,9 +83,6 @@ components:
     PagingSchema:
       type: object
       properties:
-        items:
-          type: array
-          $ref: "#/components/schemas/DemandAndCapacityNotification"
         totalItems:
           type: number
         totalPages:
@@ -94,6 +91,10 @@ components:
           type: number
         currentPage:
           type: number
+        affectedSitesSender:
+          type: array
+          items:
+            $ref: "#/components/schemas/DemandAndCapacityNotification"
     AffectedSitesCharacteristic:
       description: A set of Business Partner Number Sites (BPNS) that are affected.
       x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#AffectedSitesCharacteristic"
@@ -186,18 +187,21 @@ components:
           description: The affected Business Partner Site Numbers of the sender of
             the notification. It is RECOMMENDED to set this property.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#affectedSitesSender"
-          $ref: "#/components/schemas/AffectedSitesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/AffectedSitesCharacteristic"
         affectedSitesRecipient:
           description: The affected Business Partner Site Numbers of the recipient
             of the notification. It is RECOMMENDED to set this property. It MUST NOT
             contain any BPNS that doesn't belong to the receiver.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#affectedSitesRecipient"
-          $ref: "#/components/schemas/AffectedSitesCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/AffectedSitesCharacteristic"
         leadingRootCause:
           description: The main cause that has or may have an impact on the supply
             of goods.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#leadingRootCause"
-          $ref: "#/components/schemas/LeadingRootCauseEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/LeadingRootCauseEnumeration"
         effect:
           description: Effect or impact on the supply of goods as a consequence mentioned
             in the leadingRootCause. From business perspective demand/capacity reduction
@@ -205,47 +209,56 @@ components:
             technical completeness demand/capacity increase are also added to the
             enumeration.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#effect"
-          $ref: "#/components/schemas/EffectEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/EffectEnumeration"
         text:
           description: Free text description for notification (max. 4000 characters).
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#text"
-          $ref: "#/components/schemas/UserInputTrait"
+          allOf:
+          - $ref: "#/components/schemas/UserInputTrait"
         materialGlobalAssetId:
           description: Identifier used uniquely to identify part type twin.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#materialGlobalAssetId"
-          $ref: "#/components/schemas/MaterialNumberDigitalTwinCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialNumberDigitalTwinCharacteristic"
         startDateOfEffect:
           description: This property defines the start date and time of the effect
             regardless of the time the notification was sent.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#startDateOfEffect"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         expectedEndDateOfEffect:
           description: Expected end date of the impact MAY be defined by the sender
             of the notification.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#expectedEndDateOfEffect"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         status:
           description: Status "open" should be used in the context of an effect which
             remains active. Status "resolved" should be used to inform the partner
             that the effect of the initial notification stopped or has been resolved.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#status"
-          $ref: "#/components/schemas/StatusEnumeration"
+          allOf:
+          - $ref: "#/components/schemas/StatusEnumeration"
         contentChangedAt:
           description: The timestamp of the latest change of this notification. Date
             and time are set according to a timezone.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#contentChangedAt"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         sourceNotificationId:
           description: Unique ID identifying a source notification related to the
             current one.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#sourceNotificationId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         materialNumberSupplier:
           description: "Material identifiers as assigned by the supplier or manufacturer.\
             \ This property identifies the material in the supplier's database. If\
             \ the supplier is the data provider, sending this property is RECOMMENDED."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#materialNumberSupplier"
-          $ref: "#/components/schemas/MaterialNumberSet"
+          allOf:
+          - $ref: "#/components/schemas/MaterialNumberSet"
         materialNumberCustomer:
           description: "Material identifier as assigned by the customer. This property\
             \ identifies the material in the customer's database. For standard materials\
@@ -253,16 +266,19 @@ components:
             \ material ID should be set in this field, too. If the customer is the\
             \ data provider, sending this property is RECOMMENDED."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#materialNumberCustomer"
-          $ref: "#/components/schemas/MaterialNumberSet"
+          allOf:
+          - $ref: "#/components/schemas/MaterialNumberSet"
         notificationId:
           description: Unique ID identifying the notification.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#notificationId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
         relatedNotificationId:
           description: Unique ID identifying a previously received notification triggering
             the exchange of the current notification.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.demand_and_capacity_notification:2.0.0#relatedNotificationId"
-          $ref: "#/components/schemas/UuidV4Trait"
+          allOf:
+          - $ref: "#/components/schemas/UuidV4Trait"
       required:
       - leadingRootCause
       - effect

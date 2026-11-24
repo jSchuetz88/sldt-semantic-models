@@ -87,20 +87,24 @@ components:
         issuer:
           description: BPMN of the business partner who creates this certificate
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:1.0.0#issuer"
-          $ref: "#/components/schemas/IssuerCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/IssuerCharacteristic"
         issueDate:
           description: This is the date when the certificate was issued.
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:1.0.0#issueDate"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         catenaXIdPreviousLife:
           description: Twin identification previous life
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:1.0.0#catenaXIdPreviousLife"
-          $ref: "#/components/schemas/CatenaXIdTraitCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CatenaXIdTraitCharacteristic"
         catenaXId:
           description: "The Catena-X ID of the given part (e.g. the assembly), valid\
             \ for the Catena-X dataspace."
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:1.0.0#catenaXId"
-          $ref: "#/components/schemas/CatenaXIdTraitCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/CatenaXIdTraitCharacteristic"
       required:
       - issuer
       - issueDate
@@ -115,7 +119,8 @@ components:
       properties:
         recyclingStrategyCertificateProperty:
           x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.recycling_strategy_certificate:1.0.0#recyclingStrategyCertificateProperty"
-          $ref: "#/components/schemas/RecyclingStrategyCertificateCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RecyclingStrategyCertificateCharacteristic"
       required:
       - recyclingStrategyCertificateProperty
   responses:

@@ -35,7 +35,9 @@
           "catenaXId" : {
             "description" : "A unique identifier for a part or a vehicle. The identifier relates to a Catena-X digital twin",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#catenaXId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           }
         }
       },
@@ -69,27 +71,37 @@
           "aspectProperty" : {
             "description" : "A property from the aspect model referenced by \"aspectModel\"",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#aspectProperty",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "aspectModel" : {
             "description" : "A reference to an aspect model standardized by Catena-X for the quality use case",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#aspectModel",
-            "$ref" : "#/components/schemas/ResourcePath"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ResourcePath"
+            } ]
           },
           "rangeFrom" : {
             "description" : "Start value of a value range for an aspect property ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#rangeFrom",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "rangeTo" : {
             "description" : "End value of a value range for an aspect property ",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#rangeTo",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "valueList" : {
             "description" : "A list of values for the aspect property",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#valueList",
-            "$ref" : "#/components/schemas/ValuesCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ValuesCharacteristic"
+            } ]
           }
         },
         "required" : [ "aspectProperty", "aspectModel" ]
@@ -108,42 +120,58 @@
     "notificationId" : {
       "description" : "A unique ID for the EW notification ",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#notificationId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     },
     "relatedQualityTaskID" : {
       "description" : "An ID to reference an existing early warning project and its data",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#relatedQualityTaskID",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "information" : {
       "description" : "Some text describing the detected anomaly in the data",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#information",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     },
     "status" : {
       "description" : "A status information about the current status of the quality process triggered by this notification.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#status",
-      "$ref" : "#/components/schemas/Status"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Status"
+      } ]
     },
     "severity" : {
       "description" : "A flag indicating the severity of the quality issue",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#severity",
-      "$ref" : "#/components/schemas/Severity"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Severity"
+      } ]
     },
     "listOfAffectedItems" : {
       "description" : "List of unique identifiers to explicitly specify parts or vehicles exhibiting the issue described in the property \"Information\"",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#listOfAffectedItems",
-      "$ref" : "#/components/schemas/AffectedItemsCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/AffectedItemsCharacteristic"
+      } ]
     },
     "poulationFilterList" : {
       "description" : "A set of Population Filters",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#poulationFilterList",
-      "$ref" : "#/components/schemas/PopulationFilterListCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PopulationFilterListCharacteristic"
+      } ]
     },
     "earlyWarningAttachmentLink" : {
       "description" : "This property provides a reference to an EDC asset that will contain a zip file organized according to the specification CX-0092 and the model defined in io.catenax.quality_task_attachment:1.0.0. The zip file will contain additional data describing the early warning case.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.early_warning_notification:1.0.0#earlyWarningAttachmentLink",
-      "$ref" : "#/components/schemas/Text"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/Text"
+      } ]
     }
   },
   "required" : [ "notificationId", "relatedQualityTaskID", "status", "severity", "listOfAffectedItems" ]

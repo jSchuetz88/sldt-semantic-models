@@ -89,7 +89,8 @@ components:
         bpnsProperty:
           description: Property based on BPNS
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#bpnsProperty"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
       required:
       - bpnsProperty
     ScenarioOwnerRoleCharacteristic:
@@ -110,31 +111,38 @@ components:
         scenarioId:
           description: ID of scenario header
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         scenarioTitle:
           description: Title of scenario
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioTitle"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         scenarioCreationTimestamp:
           description: Date and Time of scenario creation
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioCreationTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         scenarioExpirationTimestamp:
           description: Date and Time of validity expiration
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioExpirationTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         scenarioOwner:
           description: Owner of the simulation scenario
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioOwner"
-          $ref: "#/components/schemas/ScenarioOwnerCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ScenarioOwnerCharacteristic"
         scenarioOwnerRole:
           description: Role of the scenario owner
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioOwnerRole"
-          $ref: "#/components/schemas/ScenarioOwnerRoleCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ScenarioOwnerRoleCharacteristic"
         scenarioDescription:
           description: Description of the scenario
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioDescription"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
       required:
       - scenarioId
       - scenarioTitle
@@ -169,45 +177,55 @@ components:
         parameterId:
           description: Identifier of scenario parameter
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#parameterId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         parameterDeliveryDateInitial:
           description: "Delivery date initial (without scenario changes), optional,\
             \ NULL when initially not set"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#parameterDeliveryDateInitial"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         parameterDeliveryDateUpdated:
           description: Delivery date updated (with scenario changes)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#parameterDeliveryDateUpdated"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         parameterQuantityInitial:
           description: "Amount initial (without scenario changes), optional, NULL,\
             \ when initially not set"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#parameterQuantityInitial"
-          $ref: "#/components/schemas/QuantityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityCharacteristic"
         parameterQuantityUpdated:
           description: Amount updated (with scenario changes)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#parameterQuantityUpdated"
-          $ref: "#/components/schemas/QuantityCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/QuantityCharacteristic"
         parameterOrderId:
           description: ID of the order
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#parameterOrderId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         parameterComment:
           description: Optional description of parameters
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#parameterComment"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         materialNumber:
           description: ID of the material contained in the batch
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#materialNumber"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         materialName:
           description: Name of the material
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#materialName"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         unitOfMeasurement:
           description: Unit used for measuring the quantity
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#unitOfMeasurement"
-          $ref: "#/components/schemas/UnitOfMeasurementCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/UnitOfMeasurementCharacteristic"
       required:
       - parameterId
       - parameterDeliveryDateInitial
@@ -233,7 +251,8 @@ components:
         bpnsProperty:
           description: Property based on BPNS
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#bpnsProperty"
-          $ref: "#/components/schemas/BpnsTrait"
+          allOf:
+          - $ref: "#/components/schemas/BpnsTrait"
       required:
       - bpnsProperty
     OwnerCharacteristic:
@@ -243,7 +262,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/BusinessPartnerSite"
     DataQualityOptions:
-      type: number
+      type: integer
       minimum: 0
       x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#DataQualityOptions"
       description: Possible values determining data quality
@@ -292,7 +311,7 @@ components:
       x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#WeightCharacteristic"
       description: Amount of weight of the handling unit
     AmountCharacteristic:
-      type: number
+      type: integer
       minimum: 1
       x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#AmountCharacteristic"
       description: Number describing handling units with identical pieces
@@ -308,40 +327,49 @@ components:
         batchSerialNumber:
           description: can be used to uniquely identify a singe product part
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#batchSerialNumber"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         materialNumber:
           description: ID of the material contained in the batch
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#materialNumber"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         materialName:
           description: Name of the material
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#materialName"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         materialHazardousGoods:
           description: Flags hazardous goods
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#materialHazardousGoods"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         batchExpirationTimestamp:
           description: Expiration date of batch
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#batchExpirationTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         quantity:
           description: Amount of materials
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#quantity"
-          $ref: "#/components/schemas/QuantityCharacteristic0"
+          allOf:
+          - $ref: "#/components/schemas/QuantityCharacteristic0"
         unitOfMeasurement:
           description: Unit used for measuring the quantity
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#unitOfMeasurement"
-          $ref: "#/components/schemas/UnitOfMeasurementCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/UnitOfMeasurementCharacteristic"
         batchNumber:
           description: "Number of the batch, generated by originator (e.g. from ERP\
             \ system, no uuid)"
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#batchNumber"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         batchOrderId:
           description: Order ID to which the batch belongs
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#batchOrderId"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
       required:
       - batchSerialNumber
       - materialNumber
@@ -367,27 +395,33 @@ components:
         handlingUnitId:
           description: ID of the handling unit
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#handlingUnitId"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         name:
           description: Name of the type of handling unit
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#name"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         volume:
           description: Volume of the handling unit
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#volume"
-          $ref: "#/components/schemas/VolumeCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/VolumeCharacteristic"
         weight:
           description: Weight of the handling unit
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#weight"
-          $ref: "#/components/schemas/WeightCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/WeightCharacteristic"
         amount:
           description: Number of handling units with identical content
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#amount"
-          $ref: "#/components/schemas/AmountCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/AmountCharacteristic"
         batches:
           description: List of material batches contained within a handling unit
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#batches"
-          $ref: "#/components/schemas/BatchList"
+          allOf:
+          - $ref: "#/components/schemas/BatchList"
       required:
       - handlingUnitId
       - name
@@ -409,40 +443,49 @@ components:
         shipmentId:
           description: ID to identify the shipment
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#shipmentId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         destination:
           description: Address where the shipment is immediately delivered to (by
             logistician) or provided for pickup (by producer)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#destination"
-          $ref: "#/components/schemas/DestinationCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/DestinationCharacteristic"
         destinationTimestamp:
           description: Time when delivery arrives or is ready at goods issue
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#destinationTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         recipient:
           description: Address of final recipient of shipment
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#recipient"
-          $ref: "#/components/schemas/RecipientCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/RecipientCharacteristic"
         recipientTimestampPlanned:
           description: Planned delivery time
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#recipientTimestampPlanned"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         splittingAllowed:
           description: Permission to split the shipment into individual deliveries
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#splittingAllowed"
-          $ref: "#/components/schemas/Boolean"
+          allOf:
+          - $ref: "#/components/schemas/Boolean"
         logistics:
           description: Address of logistician executing the shipment
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#logistics"
-          $ref: "#/components/schemas/LogisticsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/LogisticsCharacteristic"
         preceding:
           description: Reference ID of a preceding shipment
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#preceding"
-          $ref: "#/components/schemas/PrecedingCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/PrecedingCharacteristic"
         handlingUnits:
           description: List of Handling Units
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#handlingUnits"
-          $ref: "#/components/schemas/HandlingUnitList"
+          allOf:
+          - $ref: "#/components/schemas/HandlingUnitList"
       required:
       - shipmentId
       - destination
@@ -468,35 +511,43 @@ components:
         description:
           description: Verbal description
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#description"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         runId:
           description: Id of the simulation run
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#runId"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         comment:
           description: Additional comments
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#comment"
-          $ref: "#/components/schemas/Text0"
+          allOf:
+          - $ref: "#/components/schemas/Text0"
         expirationTimestamp:
           description: Date and time when the simulation is expired
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#expirationTimestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
         owner:
           description: Site identifier of the simulation originator
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#owner"
-          $ref: "#/components/schemas/OwnerCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/OwnerCharacteristic"
         dataQuality:
           description: Information on quality of simulation results
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#dataQuality"
-          $ref: "#/components/schemas/DataQualityOptions"
+          allOf:
+          - $ref: "#/components/schemas/DataQualityOptions"
         shipments:
           description: List of shipments
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#shipments"
-          $ref: "#/components/schemas/ShipmentList"
+          allOf:
+          - $ref: "#/components/schemas/ShipmentList"
         timestamp:
           description: Timestamp of simulation run
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_simulation_result:3.0.0#timestamp"
-          $ref: "#/components/schemas/Timestamp"
+          allOf:
+          - $ref: "#/components/schemas/Timestamp"
       required:
       - description
       - runId
@@ -514,16 +565,19 @@ components:
         resultOwnId:
           description: ID of scenario result own
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#resultOwnId"
-          $ref: "#/components/schemas/Text"
+          allOf:
+          - $ref: "#/components/schemas/Text"
         resultOwnSimRunInitial:
           description: Foreign key to simulation result based on initial parameters
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#resultOwnSimRunInitial"
-          $ref: "#/components/schemas/SimResult"
+          allOf:
+          - $ref: "#/components/schemas/SimResult"
         resultOwnSimRunUpdated:
           description: Foreign key to simulation result based on updated parameter
             (scenario)
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#resultOwnSimRunUpdated"
-          $ref: "#/components/schemas/SimResult"
+          allOf:
+          - $ref: "#/components/schemas/SimResult"
       required:
       - resultOwnId
     MaterialFlowScenarioRequestCharacteristic:
@@ -534,15 +588,18 @@ components:
         scenarioHeader:
           description: Required parameters for the scenario header
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioHeader"
-          $ref: "#/components/schemas/ScenarioHeaderCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ScenarioHeaderCharacteristic"
         scenarioParameter:
           description: Required parameters for the material flow scenario request
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioParameter"
-          $ref: "#/components/schemas/ScenarioParameterCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ScenarioParameterCharacteristic"
         scenarioSimResults:
           description: Simulation results of the scenario
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#scenarioSimResults"
-          $ref: "#/components/schemas/ScenarioSimResultsCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/ScenarioSimResultsCharacteristic"
       required:
       - scenarioHeader
       - scenarioSimResults
@@ -555,7 +612,8 @@ components:
           description: Contains standardized attributes for the content of the Material
             Flow Scenario Request
           x-samm-aspect-model-urn: "urn:samm:io.catenax.material_flow_scenario_request:2.0.0#materialFlowScenarioRequest"
-          $ref: "#/components/schemas/MaterialFlowScenarioRequestCharacteristic"
+          allOf:
+          - $ref: "#/components/schemas/MaterialFlowScenarioRequestCharacteristic"
       required:
       - materialFlowScenarioRequest
   responses:

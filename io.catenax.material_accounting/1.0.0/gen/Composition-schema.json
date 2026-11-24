@@ -24,12 +24,16 @@
           "materialWeight" : {
             "description" : "Weight of a material in a part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#materialWeight",
-            "$ref" : "#/components/schemas/WeightCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/WeightCharacteristic"
+            } ]
           },
           "globalAssetId" : {
             "description" : "The fully anonymous ID in the dataspace of the part.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           }
         },
         "required" : [ "materialWeight", "globalAssetId" ]
@@ -40,12 +44,16 @@
     "materials" : {
       "description" : "List of all materials.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.material_accounting:1.0.0#materials",
-      "$ref" : "#/components/schemas/MaterialsCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MaterialsCharacteristic"
+      } ]
     },
     "globalAssetId" : {
       "description" : "The fully anonymous ID in the dataspace of the part.",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.shared.industry_core.common:1.0.0#globalAssetId",
-      "$ref" : "#/components/schemas/UuidV4Trait"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/UuidV4Trait"
+      } ]
     }
   },
   "required" : [ "materials", "globalAssetId" ]

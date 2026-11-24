@@ -1,124 +1,124 @@
 {
   "materialFlowScenarioRequest" : {
-    "scenarioSimResults" : {
-      "resultOwnId" : "916b5688-8bd8-4d7e-83b9-e0d40939274e",
-      "resultOwnSimRunInitial" : {
-        "owner" : {
-          "bpnsProperty" : "BPNS0123456789ZZ"
-        },
-        "dataQuality" : 0,
-        "description" : "Please simulate asap",
-        "comment" : "successful simulation ",
-        "expirationTimestamp" : "2023-03-24T09:15:24.000Z",
-        "runId" : "0fece48b-c8d1-4180-1a9caca6d67e",
-        "shipments" : [ {
-          "handlingUnits" : [ {
-            "name" : "Palette",
-            "volume" : 1.0,
-            "weight" : 189.0,
-            "batches" : [ {
-              "unitOfMeasurement" : "KG",
-              "materialName" : "KK1000GR-Gehäuse-Rot",
-              "quantity" : 50.0,
-              "materialNumber" : "KK1000GR",
-              "materialHazardousGoods" : false,
-              "batchSerialNumber" : "Batch_1",
-              "batchOrderId" : "Order-0001",
-              "batchExpirationTimestamp" : "2023-08-22T16:00:00.000Z",
-              "batchNumber" : "45"
-            } ],
-            "handlingUnitId" : "HUT_1",
-            "amount" : 1
-          } ],
-          "shipmentId" : "DE51515151",
-          "recipientTimestampPlanned" : "2023-04-19T09:00:00.000Z",
-          "destination" : {
-            "bpnsProperty" : "BPNS0123456789ZZ"
-          },
-          "recipient" : {
-            "bpnsProperty" : "BPNS0123456789ZZ"
-          },
-          "logistics" : {
-            "bpnsProperty" : "BPNS0123456789ZZ"
-          },
-          "preceding" : {
-            "bpnsProperty" : "BPNS0123456789ZZ"
-          },
-          "splittingAllowed" : true,
-          "destinationTimestamp" : "2023-03-19T09:00:00.000Z"
-        } ],
-        "timestamp" : "2023-03-09T14:13:42.806Z"
-      },
-      "resultOwnSimRunUpdated" : {
-        "owner" : {
-          "bpnsProperty" : "BPNS0123456789ZZ"
-        },
-        "dataQuality" : 0,
-        "description" : "Please simulate asap",
-        "comment" : "successful simulation ",
-        "expirationTimestamp" : "2023-03-24T09:15:24.000Z",
-        "runId" : "0fece48b-c8d1-4180-1a9caca6d67e",
-        "shipments" : [ {
-          "handlingUnits" : [ {
-            "name" : "Palette",
-            "volume" : 1.0,
-            "weight" : 189.0,
-            "batches" : [ {
-              "unitOfMeasurement" : "KG",
-              "materialName" : "KK1000GR-Gehäuse-Rot",
-              "quantity" : 50.0,
-              "materialNumber" : "KK1000GR",
-              "materialHazardousGoods" : false,
-              "batchSerialNumber" : "Batch_1",
-              "batchOrderId" : "Order-0001",
-              "batchExpirationTimestamp" : "2023-08-22T16:00:00.000Z",
-              "batchNumber" : "45"
-            } ],
-            "handlingUnitId" : "HUT_1",
-            "amount" : 1
-          } ],
-          "shipmentId" : "DE51515151",
-          "recipientTimestampPlanned" : "2023-04-19T09:00:00.000Z",
-          "destination" : {
-            "bpnsProperty" : "BPNS0123456789ZZ"
-          },
-          "recipient" : {
-            "bpnsProperty" : "BPNS0123456789ZZ"
-          },
-          "logistics" : {
-            "bpnsProperty" : "BPNS0123456789ZZ"
-          },
-          "preceding" : {
-            "bpnsProperty" : "BPNS0123456789ZZ"
-          },
-          "splittingAllowed" : true,
-          "destinationTimestamp" : "2023-03-19T09:00:00.000Z"
-        } ],
-        "timestamp" : "2023-03-09T14:13:42.806Z"
-      }
-    },
-    "scenarioParameter" : [ {
-      "unitOfMeasurement" : "KG",
-      "parameterComment" : "updated Delivery Date",
-      "materialName" : "KK1000GR-Gehäuse-Rot",
-      "parameterQuantityUpdated" : 1.0,
-      "parameterId" : "847c71e5-614a-468b-a3a0-674bf2af3004",
-      "materialNumber" : "KK1000GR",
-      "parameterDeliveryDateUpdated" : "2023-10-10T09:00:00.000Z",
-      "parameterDeliveryDateInitial" : "2023-10-09T10:00:00.000Z",
-      "parameterOrderId" : "OID-011123546",
-      "parameterQuantityInitial" : 1.0
-    } ],
     "scenarioHeader" : {
-      "scenarioOwnerRole" : "Customer",
+      "scenarioId" : "8d464b8b-6977-4952-8a22-0489067ca081",
+      "scenarioTitle" : "Delivery Modification",
       "scenarioCreationTimestamp" : "2023-10-04T09:10:00.000Z",
       "scenarioExpirationTimestamp" : "2023-10-07T09:10:00.000Z",
       "scenarioOwner" : {
         "bpnsProperty" : "BPNS0123456789ZZ"
       },
-      "scenarioDescription" : "Changes in Delivery Date",
-      "scenarioId" : "8d464b8b-6977-4952-8a22-0489067ca081",
-      "scenarioTitle" : "Delivery Modification"
+      "scenarioOwnerRole" : "Customer",
+      "scenarioDescription" : "Changes in Delivery Date"
+    },
+    "scenarioParameter" : [ {
+      "parameterId" : "847c71e5-614a-468b-a3a0-674bf2af3004",
+      "parameterDeliveryDateInitial" : "2023-10-09T10:00:00.000Z",
+      "parameterDeliveryDateUpdated" : "2023-10-10T09:00:00.000Z",
+      "parameterQuantityInitial" : 1.0,
+      "parameterQuantityUpdated" : 1.0,
+      "parameterOrderId" : "OID-011123546",
+      "parameterComment" : "updated Delivery Date",
+      "materialNumber" : "KK1000GR",
+      "materialName" : "KK1000GR-Gehäuse-Rot",
+      "unitOfMeasurement" : "KG"
+    } ],
+    "scenarioSimResults" : {
+      "resultOwnId" : "916b5688-8bd8-4d7e-83b9-e0d40939274e",
+      "resultOwnSimRunInitial" : {
+        "description" : "Please simulate asap",
+        "runId" : "0fece48b-c8d1-4180-1a9caca6d67e",
+        "comment" : "successful simulation ",
+        "expirationTimestamp" : "2023-03-24T09:15:24.000Z",
+        "owner" : {
+          "bpnsProperty" : "BPNS0123456789ZZ"
+        },
+        "dataQuality" : 0,
+        "shipments" : [ {
+          "shipmentId" : "DE51515151",
+          "destination" : {
+            "bpnsProperty" : "BPNS0123456789ZZ"
+          },
+          "destinationTimestamp" : "2023-03-19T09:00:00.000Z",
+          "recipient" : {
+            "bpnsProperty" : "BPNS0123456789ZZ"
+          },
+          "recipientTimestampPlanned" : "2023-04-19T09:00:00.000Z",
+          "splittingAllowed" : true,
+          "logistics" : {
+            "bpnsProperty" : "BPNS0123456789ZZ"
+          },
+          "preceding" : {
+            "bpnsProperty" : "BPNS0123456789ZZ"
+          },
+          "handlingUnits" : [ {
+            "handlingUnitId" : "HUT_1",
+            "name" : "Palette",
+            "volume" : 1.0,
+            "weight" : 189.0,
+            "amount" : 1,
+            "batches" : [ {
+              "batchSerialNumber" : "Batch_1",
+              "materialNumber" : "KK1000GR",
+              "materialName" : "KK1000GR-Gehäuse-Rot",
+              "materialHazardousGoods" : false,
+              "batchExpirationTimestamp" : "2023-08-22T16:00:00.000Z",
+              "quantity" : 50.0,
+              "unitOfMeasurement" : "KG",
+              "batchNumber" : "45",
+              "batchOrderId" : "Order-0001"
+            } ]
+          } ]
+        } ],
+        "timestamp" : "2023-03-09T14:13:42.806Z"
+      },
+      "resultOwnSimRunUpdated" : {
+        "description" : "Please simulate asap",
+        "runId" : "0fece48b-c8d1-4180-1a9caca6d67e",
+        "comment" : "successful simulation ",
+        "expirationTimestamp" : "2023-03-24T09:15:24.000Z",
+        "owner" : {
+          "bpnsProperty" : "BPNS0123456789ZZ"
+        },
+        "dataQuality" : 0,
+        "shipments" : [ {
+          "shipmentId" : "DE51515151",
+          "destination" : {
+            "bpnsProperty" : "BPNS0123456789ZZ"
+          },
+          "destinationTimestamp" : "2023-03-19T09:00:00.000Z",
+          "recipient" : {
+            "bpnsProperty" : "BPNS0123456789ZZ"
+          },
+          "recipientTimestampPlanned" : "2023-04-19T09:00:00.000Z",
+          "splittingAllowed" : true,
+          "logistics" : {
+            "bpnsProperty" : "BPNS0123456789ZZ"
+          },
+          "preceding" : {
+            "bpnsProperty" : "BPNS0123456789ZZ"
+          },
+          "handlingUnits" : [ {
+            "handlingUnitId" : "HUT_1",
+            "name" : "Palette",
+            "volume" : 1.0,
+            "weight" : 189.0,
+            "amount" : 1,
+            "batches" : [ {
+              "batchSerialNumber" : "Batch_1",
+              "materialNumber" : "KK1000GR",
+              "materialName" : "KK1000GR-Gehäuse-Rot",
+              "materialHazardousGoods" : false,
+              "batchExpirationTimestamp" : "2023-08-22T16:00:00.000Z",
+              "quantity" : 50.0,
+              "unitOfMeasurement" : "KG",
+              "batchNumber" : "45",
+              "batchOrderId" : "Order-0001"
+            } ]
+          } ]
+        } ],
+        "timestamp" : "2023-03-09T14:13:42.806Z"
+      }
     }
   }
 }

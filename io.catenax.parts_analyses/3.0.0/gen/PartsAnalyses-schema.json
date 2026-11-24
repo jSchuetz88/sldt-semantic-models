@@ -46,12 +46,16 @@
           "key" : {
             "description" : "The unique key for this additional information",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#key",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "value" : {
             "description" : "The value for this additional information that refers to the linked unique key.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#value",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "key", "value" ]
@@ -72,77 +76,107 @@
           "recordStatus" : {
             "description" : "The record operation enumeration can be used to realize delta update concept.\nDelta update concept means:\n- You transfer an initial load of data\n- After the first week only the delta to the initial load is transferred\n\n\nThe record status describes whether this record is:\n- new=>This record is transferred the first time\n- update=> Some properties of this record have changed compared to a previous transfer\n- delete=> This record was transferred in the initial load or in a previous delta update, but is not used any more and therefore it should be deleted on data consumer side\n- same=> This record was transferred in the initial load or in a previous delta update",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#recordStatus",
-            "$ref" : "#/components/schemas/RecordStatusEnumeration"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/RecordStatusEnumeration"
+            } ]
           },
           "anonymizedVIN" : {
             "description" : "OEM-specific hashed VIN. Unique within OEM.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#anonymizedVIN",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "catenaXPartId" : {
             "description" : "The fully anonymous Catena-X ID of the analysed part - only available after digital twin registry is fully operational.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#catenaXPartId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "catenaXQualityTaskId" : {
             "description" : "The fully anonymous and unique Catena-X ID of this quality task. This id is unique inside Catena-X data space.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#catenaXQualityTaskId",
-            "$ref" : "#/components/schemas/UuidV4Trait"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UuidV4Trait"
+            } ]
           },
           "isDefect" : {
             "description" : "True: Analysis turned out that analysed part is defect according part's specification.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#isDefect",
-            "$ref" : "#/components/schemas/Boolean"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Boolean"
+            } ]
           },
           "manufacturerAnalysisID" : {
             "description" : "Internal identifier for this analysis at manufacturer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#manufacturerAnalysisID",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "manufacturerPartName" : {
             "description" : "Part name given from  the manufacturer or supplier of this part, component, sub component or raw material. A manufacturer part name is NOT unique: All parts of the same kind share the same part name.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#manufacturerPartName",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "manufacturerPartNumber" : {
             "description" : "Part number given from  the manufacturer or supplier of this part, component, sub component or raw material. A manufacturer part number is NOT unique: All parts of the same kind share the same part number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#manufacturerPartNumber",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "manufacturerSerialNumber" : {
             "description" : "Serial number given from the manufacturer or supplier of this part, component, sub component. A manufacturer serial number is unique: With the serial number the produced part can be traced within the manufacturer.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#manufacturerSerialNumber",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "parentAnalysisID" : {
             "description" : "Internal identifier for this analysis on parent level.\nIf the manufacturer is a TIER1 supplier -> parent level is OEM.\nIf the manufacturer is TIER2 supplier -> parent level is TIER1 supplier.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#parentAnalysisID",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "parentPartNumber" : {
             "description" : "Internal part number of the analysed part.\nIf the manufacturer is a TIER1 supplier -> parent level is OEM.\nIf the manufacturer is a TIER2 supplier -> parent level is TIER1 supplier.\nA parent part number is NOT unique: All parent parts of the same kind share the same parent part number.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#parentPartNumber",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "parentSerialNumber" : {
             "description" : "Serial number of the analysed part.\nIf the manufacturer is a TIER1 supplier -> parent level is OEM.\nIf the manufacturer is a TIER2 supplier -> parent level is TIER1 supplier.\nA parent serial number is unique: With the serial number the produced part can be traced within the parent company.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#parentSerialNumber",
-            "$ref" : "#/components/schemas/UniqueID"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/UniqueID"
+            } ]
           },
           "resultsDescription" : {
             "description" : "Detailed description of part analysis results.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#resultsDescription",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "status" : {
             "description" : "Status of this part analysis",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#status",
-            "$ref" : "#/components/schemas/StatusCharacteristic"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/StatusCharacteristic"
+            } ]
           },
           "listOfAddtionalInformation" : {
             "description" : "You can use this key:value list for additional properties that were not defined in this aspect model.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#listOfAddtionalInformation",
-            "$ref" : "#/components/schemas/AdditionalInformationList"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/AdditionalInformationList"
+            } ]
           }
         },
         "required" : [ "anonymizedVIN" ]
@@ -163,17 +197,23 @@
           "selectionCriteria" : {
             "description" : "Describes the selection criteria a Catena-X data provider has applied to create this data set.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#selectionCriteria",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "selectionStart" : {
             "description" : "Describes the starting point for providing records in this data set.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#selectionStart",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           },
           "selectionEnd" : {
             "description" : "Describes the end point for providing records in this data set.",
             "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#selectionEnd",
-            "$ref" : "#/components/schemas/Text"
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Text"
+            } ]
           }
         },
         "required" : [ "selectionCriteria" ]
@@ -184,12 +224,16 @@
     "listOfPartAnalyses" : {
       "description" : "A list of several part analyses",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#listOfPartAnalyses",
-      "$ref" : "#/components/schemas/PartsAnalysesList"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/PartsAnalysesList"
+      } ]
     },
     "metaInformation" : {
       "description" : "This meta information is valid for all entries in this data set. The meta information is used to tell the data consumer which selection criteria were applied by the data provider. ",
       "x-samm-aspect-model-urn" : "urn:samm:io.catenax.parts_analyses:3.0.0#metaInformation",
-      "$ref" : "#/components/schemas/MetaCharacteristic"
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/MetaCharacteristic"
+      } ]
     }
   },
   "required" : [ "listOfPartAnalyses" ]
