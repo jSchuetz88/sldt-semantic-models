@@ -39,24 +39,53 @@ jobs:
           java-version: '25'
       - name: Generate artifacts for new models
         run: |
-          find "." -type f -name "*.ttl" | while read -r file; do
-            # read metadata.json from the same directory
+          LOGS="$RUNNER_TEMP/gen-logs"; mkdir -p "$LOGS"
+          OK="$RUNNER_TEMP/ok.md"; FAIL="$RUNNER_TEMP/fail.md"; NA="$RUNNER_TEMP/na.md"
+          : > "$OK"; : > "$FAIL"; : > "$NA"
+
+          # Turn CLI output into a single markdown table cell
+          to_cell() {
+            sed $'s/\x1b\\[[0-9;]*m//g' | tr -d '\r' | grep -v '^[[:space:]]*$' | cut -c1-300 | head -n 10 \
+              | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g' -e 's/|/\&#124;/g' \
+              | awk 'NR>1{printf "<br>"} {printf "%s", $0}'
+          }
+
+          while IFS= read -r file; do
             metadata_file="$(dirname "$file")/metadata.json"
-            if [ -f "$metadata_file" ]; then 
-              # Check if "release" is present in metadata.json, if not, skip this model
-              grep -q "release" "$metadata_file" 2>&1 > /dev/null || continue
-            else
-              # Check just in case, if metadata.json is missing
+            if [ ! -f "$metadata_file" ]; then
               echo "WARNING: metadata.json not found for $file, skipping..."
               continue
             fi
-            # Create "gen"-folder per model
-            mkdir -p "$(dirname "$file")/gen"
+            # Only models with status "release"
+            grep -q "release" "$metadata_file" || continue
 
-            # Generate artefacts for each model
-            bash ./.scripts/generate.sh "$file" || printf "Artefact generation not possible for: $file \n"
-          done
-      
+            mkdir -p "$(dirname "$file")/gen"
+            model="${file#./}"
+            log="$LOGS/$(echo "$model" | tr '/' '_').log"
+
+            rc=0
+            bash ./.scripts/generate.sh "$file" < /dev/null > "$log" 2>&1 || rc=$?
+            echo "::group::$model"; cat "$log"; echo "::endgroup::"
+
+            failed="$(sed -n "s/.*could not generate '\([^']*\)' artifact.*/\1/p" "$log" | awk '!s[$0]++' | paste -sd, - | sed 's/,/, /g')"
+
+            if [ "$rc" -eq 0 ] && [ -z "$failed" ]; then
+              echo "| ✅ | \`$model\` |" >> "$OK"
+            elif ! grep -qE 'a[[:space:]]+(samm|bamm):Aspect([^A-Za-z]|$)' "$file"; then
+              echo "| ➖ | \`$model\` | all | Model has no aspect, artefacts cannot be generated |" >> "$NA"
+            else
+              if [ "$rc" -eq 0 ]; then
+                what="$failed"
+                # Only the output between "generate <type> into" and its warning
+                msg="$(awk '/^generate .* into /{buf="";next} /could not generate /{printf "%s", buf; buf="";next} {buf=buf $0 "\n"}' "$log" | to_cell)" || true
+              else
+                if grep -q "does not validate" "$log"; then what="validation"; else what="script aborted (exit code $rc)"; fi
+                msg="$(grep -vE '^(Check availability|Validate |.* does not validate)' "$log" | tail -n 10 | to_cell)" || true
+              fi
+              echo "| ❌ | \`$model\` | $what | ${msg:-see log} |" >> "$FAIL"
+            fi
+          done < <(find . -type f -name "*.ttl" | sort)
+
       - name: Add and commit new artifacts
         run: |
           git add -A
@@ -70,3 +99,30 @@ jobs:
           git config --global user.email "username@users.noreply.github.com"
           git commit -m "Adding auto-generated artifacts for new models"
           git push
+
+      - name: Report
+        if: ${{ !cancelled() }}
+        run: |
+          ok=$(wc -l < "$RUNNER_TEMP/ok.md" | tr -d ' ')
+          fail=$(cat "$RUNNER_TEMP/fail.md" "$RUNNER_TEMP/na.md" | wc -l | tr -d ' ')
+          {
+            echo "# Failed ($fail)"
+            echo
+            if [ "$fail" -gt 0 ]; then
+              echo "| | Model | What failed | Reason |"
+              echo "|---|---|---|---|"
+              cat "$RUNNER_TEMP/fail.md" "$RUNNER_TEMP/na.md"
+            else
+              echo "None"
+            fi
+            echo
+            echo "# Success ($ok)"
+            echo
+            if [ "$ok" -gt 0 ]; then
+              echo "| | Model |"
+              echo "|---|---|"
+              cat "$RUNNER_TEMP/ok.md"
+            else
+              echo "None"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
