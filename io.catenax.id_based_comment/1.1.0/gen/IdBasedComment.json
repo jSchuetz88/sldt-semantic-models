@@ -9,7 +9,7 @@
   "requestDelete" : true,
   "listOfReferenceDates" : [ "2023-11-05" ],
   "objectType" : "urn:samm:io.catenax.week_based_capacity_group",
-  "simulationId" : "urn:uuid:Cf0FAb00-bAFA-B2F9-Ac7e-E5aFD89dF76C",
+  "simulationId" : "ACbf0629-eF46-7d6A-a2e8-950aAE6926BC",
   "customer" : "BPNL8888888888XX",
   "supplier" : "BPNL6666666666YY"
 }

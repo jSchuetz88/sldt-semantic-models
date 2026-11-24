@@ -12,7 +12,7 @@
     "aspectModel" : "urn:bamm:io.catenax.manufactured_parts_quality_information:1.0.0",
     "rangeFrom" : "2019-02-01T00:00:00",
     "rangeTo" : "2019-07-30T23:59:59",
-    "valueList" : [ "Qfx6Tp" ]
+    "valueList" : [ "qNX" ]
   } ],
   "earlyWarningAttachmentLink" : "subprotocolBody: catalogEndpoint=https://test.com/catalog;dataset=79afc338-f7ea-4255-a17d-ba6faf40d2b5"
 }

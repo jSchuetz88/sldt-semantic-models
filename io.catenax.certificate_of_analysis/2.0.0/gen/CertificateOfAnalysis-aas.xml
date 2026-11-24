@@ -1985,11 +1985,11 @@ It defines how it should be managed, what information it contains and what proce
                   <aas:kind>TemplateQualifier</aas:kind>
                   <aas:type>SMT/ExampleValue</aas:type>
                   <aas:valueType>xs:string</aas:valueType>
-                  <aas:value>[B@116b7837</aas:value>
+                  <aas:value>[B@76de4b5</aas:value>
                 </aas:qualifier>
               </aas:qualifiers>
               <aas:valueType>xs:string</aas:valueType>
-              <aas:value>[B@116b7837</aas:value>
+              <aas:value>[B@76de4b5</aas:value>
             </aas:property>
             <aas:property>
               <aas:idShort>documentLanguage</aas:idShort>

@@ -6,7 +6,7 @@
     },
     "createdOn" : "2022-02-03T14:48:54.709Z",
     "businessPartner" : "BPNL50096894aNXY",
-    "globalAssetId" : "urn:uuid:CEbfd41F-2e66-ebA8-0Dd0-Ed4A9dA5F6F0",
+    "globalAssetId" : "C3AFbaFa-464d-Ac3B-64B3-d024e550fCCd",
     "lastModifiedOn" : "2022-02-03T14:48:54.709Z",
     "validityPeriod" : {
       "validTo" : "2024-07-01T16:10:00.000+01:00",
@@ -14,5 +14,5 @@
     }
   } ],
   "customers" : [ "BPNL50096894aNXY" ],
-  "globalAssetId" : "B1ded4e1-1877-De4E-967d-19af8bC82aed"
+  "globalAssetId" : "caDfE48c-e2e4-BD48-55c3-6B8fdEDe4fd2"
 }

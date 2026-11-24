@@ -8,7 +8,7 @@
       "description" : "Generic standard for classification of parts in the automotive industry."
     } ]
   },
-  "globalAssetId" : "urn:uuid:7CDb6aEA-c3E2-DDF8-C2c2-8Fbafee79871",
+  "globalAssetId" : "134F7Fa9-D740-74Dc-8309-8f3ada6fE38b",
   "localIdentifiers" : [ {
     "key" : "batchId",
     "value" : "BID12345678"
@@ -17,7 +17,7 @@
     "productionDate" : "2025-09-26",
     "country" : "DEU",
     "sites" : [ {
-      "siteId" : "BPNSOBN8Jxm6fYyv",
+      "siteId" : "BPNS74IKs8CWpXGb",
       "function" : "production"
     } ]
   }

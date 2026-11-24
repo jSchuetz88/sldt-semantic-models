@@ -35,7 +35,7 @@
           "value" : "Tor 1"
         },
         "country" : {
-          "shortName" : "CJ-L4"
+          "shortName" : ""
         },
         "postCode" : {
           "value" : "98765-4321",
@@ -107,7 +107,7 @@
             "value" : "Tor 1"
           },
           "country" : {
-            "shortName" : "CJ-L4"
+            "shortName" : ""
           },
           "postCode" : {
             "value" : "98765-4321",
@@ -137,7 +137,7 @@
             "value" : "Tor 1"
           },
           "country" : {
-            "shortName" : "CJ-L4"
+            "shortName" : ""
           },
           "postCode" : {
             "value" : "98765-4321",
@@ -177,7 +177,7 @@
             "value" : "Tor 1"
           },
           "country" : {
-            "shortName" : "CJ-L4"
+            "shortName" : ""
           },
           "postCode" : {
             "value" : "98765-4321",
@@ -215,7 +215,7 @@
           "value" : "Tor 1"
         },
         "country" : {
-          "shortName" : "CJ-L4"
+          "shortName" : ""
         },
         "postCode" : {
           "value" : "98765-4321",
@@ -228,7 +228,7 @@
         "email" : "test.mail@example.com",
         "faxNumber" : "+49 89 0987654321"
       },
-      "otherOperatorNames" : [ "cDKzQ" ]
+      "otherOperatorNames" : [ "BKPOK1" ]
     } ],
     "extendedProducerResponsibilityScheme" : {
       "applicable" : true,
@@ -240,7 +240,7 @@
         } ],
         "territoriesOfApplication" : [ "DE" ],
         "collectionPoints" : [ {
-          "collectionPointIdentification" : "ci69",
+          "collectionPointIdentification" : "V7a",
           "collectionPointAddress" : {
             "thoroughfare" : {
               "technicalKey" : "STREET",
@@ -260,7 +260,7 @@
               "value" : "Tor 1"
             },
             "country" : {
-              "shortName" : "CJ-L4"
+              "shortName" : ""
             },
             "postCode" : {
               "value" : "98765-4321",
@@ -294,7 +294,7 @@
             "value" : "Tor 1"
           },
           "country" : {
-            "shortName" : "CJ-L4"
+            "shortName" : ""
           },
           "postCode" : {
             "value" : "98765-4321",
@@ -368,7 +368,7 @@
   "commercial" : {
     "placedOnMarket" : "2000-01-01",
     "purpose" : [ "automotive" ],
-    "purchaseOrder" : "j",
+    "purchaseOrder" : "kd",
     "recallInformation" : {
       "applicable" : true,
       "content" : [ {
@@ -413,7 +413,7 @@
               "value" : "Tor 1"
             },
             "country" : {
-              "shortName" : "CJ-L4"
+              "shortName" : ""
             },
             "postCode" : {
               "value" : "98765-4321",
@@ -459,7 +459,7 @@
               "value" : "Tor 1"
             },
             "country" : {
-              "shortName" : "CJ-L4"
+              "shortName" : ""
             },
             "postCode" : {
               "value" : "98765-4321",
@@ -505,7 +505,7 @@
               "value" : "Tor 1"
             },
             "country" : {
-              "shortName" : "CJ-L4"
+              "shortName" : ""
             },
             "postCode" : {
               "value" : "98765-4321",
@@ -524,11 +524,11 @@
     "durabilityScore" : "A",
     "reusability" : {
       "content" : {
-        "reuseInfo" : "IQSYsC",
+        "reuseInfo" : "OAOl7x",
         "reuseSystem" : {
           "applicable" : true,
           "content" : {
-            "reuseSystemIdentification" : "z",
+            "reuseSystemIdentification" : "NkMq0rtDro",
             "symbolsOfDepositAndReturnSystem" : [ {
               "header" : "Example Document XYZ",
               "content" : "https://dummy.link",
@@ -543,7 +543,7 @@
               "calculationValue" : 100.0
             },
             "collectionPoints" : [ {
-              "collectionPointIdentification" : "ci69",
+              "collectionPointIdentification" : "V7a",
               "collectionPointAddress" : {
                 "thoroughfare" : {
                   "technicalKey" : "STREET",
@@ -563,7 +563,7 @@
                   "value" : "Tor 1"
                 },
                 "country" : {
-                  "shortName" : "CJ-L4"
+                  "shortName" : ""
                 },
                 "postCode" : {
                   "value" : "98765-4321",
@@ -592,7 +592,7 @@
                   "value" : "Tor 1"
                 },
                 "country" : {
-                  "shortName" : "CJ-L4"
+                  "shortName" : ""
                 },
                 "postCode" : {
                   "value" : "98765-4321",

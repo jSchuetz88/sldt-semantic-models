@@ -302,14 +302,14 @@ components:
       description: Represents a boolean value (i.e. a "flag").
     Long:
       type: integer
-      minimum: -9223372036854775808
       maximum: 9223372036854775807
+      minimum: -9223372036854775808
       x-samm-aspect-model-urn: "urn:samm:io.catenax.fleet.diagnostic_data:3.0.0#Long"
       description: Characteristic for a long value.
     MileageTrait:
       type: integer
-      minimum: -1
       maximum: 2000000
+      minimum: -1
       x-samm-aspect-model-urn: "urn:samm:io.catenax.shared.quality_core:1.0.0#MileageTrait"
       description: Range for a valid mileage counter. -1 marks not available.
       exclusiveMaximum: true

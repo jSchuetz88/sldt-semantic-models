@@ -93,7 +93,7 @@
     "causes" : [ {
       "typeOfCauses" : "TUA",
       "causeHypothesisDescription" : "Insufficient lubrication of the brake components.",
-      "verificationBy" : "dNCRTx7u",
+      "verificationBy" : "q3UiQt",
       "clarificationDate" : "2025-03-21",
       "result" : "Lubrication investigation showed insufficient lubrication in some cases.",
       "method" : "5why",

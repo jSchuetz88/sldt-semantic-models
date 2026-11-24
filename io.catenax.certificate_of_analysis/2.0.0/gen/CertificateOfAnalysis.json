@@ -1,8 +1,8 @@
 {
-  "customer" : "BPNLZPkpa5gDnezt",
-  "supplier" : "BPNLMxg673kT8OzM",
+  "customer" : "BPNL8KDd5VlqqDTY",
+  "supplier" : "BPNLE6nXZg8qbJrs",
   "certificateMetaData" : {
-    "issueDate" : "2026-11-24T12:31:55.000Z",
+    "issueDate" : "2026-11-24T19:47:05.000Z",
     "isConformWithSpecification" : true,
     "supplierOrderId" : "M-Nbr-4711",
     "customerOrderId" : "C-Nbr-4711"
@@ -34,11 +34,11 @@
       "productionDate" : "2025-09-26",
       "country" : "DEU",
       "sites" : [ {
-        "siteId" : "BPNSyHewaXipUrwD",
+        "siteId" : "BPNSXOasTgHStQOp",
         "function" : "production"
       } ]
     },
-    "globalAssetId" : "urn:uuid:fCCC03F4-6FCD-d40E-FDF8-DB00b95c00b6",
+    "globalAssetId" : "9D3aeE53-5E4a-9FBe-15AA-7B41e2EAD964",
     "expiryDate" : "2026-11-24Z"
   },
   "disclaimer" : {

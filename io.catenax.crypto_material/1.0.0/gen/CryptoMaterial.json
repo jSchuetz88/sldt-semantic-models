@@ -1,5 +1,5 @@
 {
-  "globalAssetId" : "urn:uuid:dfF1aeA5-ba4A-Ea42-c3dC-75AED4e30eAa",
+  "globalAssetId" : "urn:uuid:3D9A4cbE-F620-d8dA-AE5c-37bEcf0C3aD7",
   "cryptoMaterials" : [ {
     "name" : "ecuIdentityCsr",
     "type" : "certificateSigningRequest",

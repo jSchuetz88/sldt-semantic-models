@@ -22,7 +22,7 @@
     "pcfAssessmentInformation" : [ {
       "idAndVersion" : [ {
         "id" : "3893bb5d-da16-4dc1-9185-11d97476c254",
-        "precedingPfIds" : [ "ZozXK" ],
+        "precedingPfIds" : [ "vAb" ],
         "version" : 0,
         "status" : "Active",
         "retroOrProspectivePcfType" : "Retrospective PCF"
@@ -62,8 +62,8 @@
         "allocationRecycledCarbon" : "cut-off"
       } ],
       "massBalancingInformation" : [ {
-        "massBalancingUsed" : false,
-        "freeAttributionInMassBalancing" : true,
+        "massBalancingUsed" : true,
+        "freeAttributionInMassBalancing" : false,
         "massBalancingCertificateScheme" : "ISCC+"
       } ]
     } ],
@@ -75,7 +75,7 @@
       "geographicalDQR" : 2.0
     } ],
     "verificationAndCertificationShares" : [ {
-      "programCertificationShare" : 9.83,
+      "programCertificationShare" : 1.83,
       "productVerificationShare3rdParty" : 0.00,
       "productVerificationShare2ndParty" : 0.00,
       "productVerificationShare1stParty" : 0.00

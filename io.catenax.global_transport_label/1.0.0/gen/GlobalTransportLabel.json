@@ -1,6 +1,6 @@
 {
   "shipFrom" : {
-    "supplierId" : "pTswh0",
+    "supplierId" : "WZfW",
     "address" : {
       "thoroughfare" : {
         "technicalKey" : "STREET",
@@ -20,7 +20,7 @@
         "value" : "Tor 1"
       },
       "country" : {
-        "shortName" : "PB-WNK"
+        "shortName" : "ZJ-8QM"
       },
       "postCode" : {
         "value" : "98765-4321",
@@ -51,7 +51,7 @@
         "value" : "Tor 1"
       },
       "country" : {
-        "shortName" : "PB-WNK"
+        "shortName" : "ZJ-8QM"
       },
       "postCode" : {
         "value" : "98765-4321",
@@ -77,7 +77,7 @@
   },
   "contentDescription" : {
     "customerPartNumber" : "GFS-123-554-747",
-    "customerPartDescription" : "R45k5VPQ",
+    "customerPartDescription" : "9mnkSu",
     "safetyRelevantPart" : false,
     "catenaXId" : "c2801472-5f87-41a7-9a25-b0939c4e0dff"
   },

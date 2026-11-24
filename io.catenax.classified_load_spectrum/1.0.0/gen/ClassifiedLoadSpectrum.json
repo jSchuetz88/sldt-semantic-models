@@ -6,7 +6,7 @@
       "lowerLimit" : -500.0,
       "upperLimit" : 1500.0,
       "numberOfBins" : 10,
-      "binLimits" : [ -71366.2 ]
+      "binLimits" : [ -61402.6 ]
     } ],
     "countingMethod" : "TimeAtLevel",
     "countingValue" : "Time",
@@ -28,11 +28,11 @@
     "projectDescription" : "\"projectnumber pqr12345\"",
     "status" : {
       "mileage" : 123456,
-      "date" : "2026-11-24T12:32:38.000Z",
+      "date" : "2026-11-24T19:48:11.000Z",
       "operatingHours" : 3456.2
     }
   },
-  "targetComponentID" : "https://example.com/8oiNS",
+  "targetComponentID" : "https://example.com/IE3kJFnmD",
   "residuum" : {
     "residuumClassName" : "Temp_Oil-class",
     "residuumList" : [ 6 ]

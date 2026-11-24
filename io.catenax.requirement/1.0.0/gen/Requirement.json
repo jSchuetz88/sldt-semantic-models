@@ -5,10 +5,10 @@
     "reqIfType" : "Functional",
     "version" : {
       "versionNumber" : "2.0.0",
-      "versionId" : "urn:uuid:c7C13FAF-8d0F-af38-eB38-4faFa3a8aA87"
+      "versionId" : "urn:uuid:5c5a4CF3-A580-95fF-a735-1B693AE9D6D6"
     },
-    "description" : "gM",
-    "creationDate" : "2026-11-24T13:06:14.000Z",
+    "description" : "nXmzgcvF2q",
+    "creationDate" : "2026-11-24T20:38:29.000Z",
     "author" : "Lisa Dräxlmaier GmbH",
     "foreignId" : "3.1.1",
     "longname" : "Plastic deformation of the bogie",
@@ -20,21 +20,21 @@
     "specification" : [ "https://www.prostep.org/fileadmin/prod-pay-download-8c1d/Recommendation_ReqIF_V2.2.pdf" ],
     "versionPredecessor" : {
       "versionPredecessorNumber" : "1.4.5",
-      "versionPredecessorId" : "Eb114B12-6EFF-Fc57-0304-B9FFa57e1aeC"
+      "versionPredecessorId" : "BDbDAa12-F754-FE78-61f0-8Fde1B3da982"
     }
   },
   "requirementStatus" : {
     "statusValue" : "transition status",
-    "statusTimestamp" : "2026-11-24T13:06:14.000Z",
+    "statusTimestamp" : "2026-11-24T20:38:29.000Z",
     "customerStatus" : [ {
       "customerStatusValue" : "ToEvaluate",
       "customerStatusComment" : "Requirement needs to be evaluated",
-      "customerStatusTimestamp" : "2026-11-24T13:06:14.000Z"
+      "customerStatusTimestamp" : "2026-11-24T20:38:29.000Z"
     } ],
     "supplierStatus" : [ {
       "supplierStatusValue" : "ToBeClarified",
       "supplierStatusComment" : "More information needed from customer",
-      "supplierStatusTimestamp" : "2026-11-24T13:06:14.000Z"
+      "supplierStatusTimestamp" : "2026-11-24T20:38:29.000Z"
     } ]
   },
   "requirementRelations" : [ {

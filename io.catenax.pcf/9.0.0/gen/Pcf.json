@@ -56,7 +56,7 @@
       } ]
     } ],
     "verificationAndCertificationShares" : [ {
-      "programCertificationShare" : 30.64,
+      "programCertificationShare" : 18.03,
       "productVerificationShare3rdParty" : 0.00,
       "productVerificationShare2ndParty" : 0.00,
       "productVerificationShare1stParty" : 0.00
@@ -106,7 +106,7 @@
       "aircraftGhgEmissions" : 0.0
     } ],
     "distributionStage" : [ {
-      "distributionStageIncluded" : false,
+      "distributionStageIncluded" : true,
       "distributionStagePcfIncludingBiogenicUptake" : 0.15,
       "distributionStagePcfExcludingBiogenicUptake" : 0.15,
       "distributionStageFossilGhgEmissions" : 0.15,

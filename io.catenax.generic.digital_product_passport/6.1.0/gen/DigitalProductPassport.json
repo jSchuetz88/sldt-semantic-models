@@ -45,7 +45,7 @@
       "facility" : [ {
         "facility" : "BPNA1234567890AA"
       } ],
-      "manufacturer" : "BPNL181ggUc2LimX",
+      "manufacturer" : "BPNLwMF39jgQexMs",
       "manufacturingDate" : "2000-01-31"
     },
     "import" : {
@@ -118,7 +118,7 @@
   "commercial" : {
     "placedOnMarket" : "2000-01-01",
     "purpose" : [ "automotive" ],
-    "purchaseOrder" : "L",
+    "purchaseOrder" : "Sr",
     "recallInformation" : {
       "applicable" : true,
       "recallInformationDocumentation" : [ {
